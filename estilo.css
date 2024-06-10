@@ -107,7 +107,7 @@ body {
 /*BOTÓN DE BUSCAR*/
 .buscar {
   border: none;
-  background-image: url('lupa.png');
+  background-image: url('logo/lupa.png');
   background-size: 20px;
   background-repeat: no-repeat;
   background-position: center;
