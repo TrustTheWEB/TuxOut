@@ -328,6 +328,7 @@ h4{
 
 .boton-izquierdo {
   position: absolute;
+  background-image: url(../logo/flechaIzq.png);
   left: -20px;
   top: 45%;
   width: 60px;
@@ -336,12 +337,12 @@ h4{
   border: none;
   border-radius: 50%;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-  color: #4ec3e0;
-  font-size: 20px;
+    font-size: 20px;
 }
 
 .boton-derecho {
   position: absolute;
+  background-image: url(../logo/flechaDer.png);
   right: -20px;
   top: 45%;
   width: 60px;
@@ -350,7 +351,7 @@ h4{
   border: none;
   border-radius: 50%;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-  color: #4ec3e0;
+
   font-size: 20px;
 }
 
@@ -358,6 +359,7 @@ h4{
 .boton-derecho:hover {
   background-color: #f1f1f1;
 }
+
 .pie {
   position: relative;
   align-items: center;
