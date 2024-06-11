@@ -181,9 +181,14 @@ button.custom-carousel-button {
   height: auto;
 }
 /*LOGIN de UIVERSE*/
+.contenedorLogin {
+  position: relative;
+}
+
 .card {
-  top: 200px;
-  left: 700px;
+  position: absolute;
+  top: 250px;
+  left: -500px;
   width: 400px;
   height: 300px;
   background: #F4F6FB;
@@ -191,9 +196,9 @@ button.custom-carousel-button {
  }
 .textito{
   position: absolute;
-  left: 100px;
-  top: 300px;
-
+  right: 600px;
+  top: 250px;
+  width: 400px;
 }
 .form {
   padding: 20px;
@@ -286,21 +291,41 @@ h4{
   position: absolute;
   top: 30px;
 }
-/*footer*/
-.pie{
-  position: absolute;
-  left: 30px;
-  margin-top:40%;
+.miniCat-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start; 
+  text-align: left;
 }
-.pie a {
-  text-decoration: none;
-  color: #000000; 
-  font-size: 10px; 
+.miniCat {
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff;
+  padding: 40px;
+  border-radius: 4px;
+  height: 400px;
+  width: 365px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  margin-right: 23px;
+  position: relative;
+  top: 500px;
+  left: 60px;
+  margin-bottom: 50px;
+  text-align: left;
+  
 }
-.pie p {
-  color: gray;
-  font-size: 10px; 
+.miniCat .item1 img {
+  text-align: center;
+  margin-top: 50px;
+  margin-left: 20px;
+  margin-right: 50px;
+  width: 250px;
+  height: 250px;
 }
+.miniCat h4{
+  font-weight: bold;
+}
+
 .boton-izquierdo {
   position: absolute;
   left: -20px;
@@ -332,4 +357,27 @@ h4{
 .boton-izquierdo:hover,
 .boton-derecho:hover {
   background-color: #f1f1f1;
+}
+.pie {
+  position: relative;
+  align-items: center;
+  left: 0px;
+  top:0%;
+  bottom:0;
+  margin: 0;
+  padding: 10px;
+  background-color: #dfdfdf;
+  width: 100%;
+  margin-top: 60%;
+}
+
+.pie a {
+  text-decoration: none;
+  color: #000000; 
+  font-size: 10px; 
+}
+
+.pie p {
+  color: gray;
+  font-size: 10px; 
 }
