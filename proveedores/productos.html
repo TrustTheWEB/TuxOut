@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=°, initial-scale=1.0">
-    <title>TuxOn Proveedores</title>
+    <title>Mis productos</title>
 </head>
 <body>
     <header> <!-- Encabezado similar al de las tiendas pero con otros elementos relacionados a las ventas  -->
@@ -19,25 +19,29 @@
         </ul>
     </nav>
     <section> 
-        <h1>TuxOn Ventas</h1>
-        <h3>Nombre del Proveedor</h3>
-        <!-- Las estadísticas son un ejemplo, hay que ver cuales poner -->
-        <div>Ventas del mes: 16</div> <!-- Los datos son de ejemplo hasta la segunda entrega -->
-        <div>Dinero generado: $4000</div>
-        <div>Pedidos en camino al cliente: 3</div>
-        <!-- cada div es un recuadro con información sobre las ventas y estadisticas resaltables del mes -->
-    </section>
-    <section>
-        <h3>Productos populares</h3>
-        <div> <!-- Este div debería ser, a futuro, un boton o un vínculo que te lleve a la página de este producto -->
-            <h4>Producto 1</h4>
+        <h1>Productos de [nombre de la empresa vendedora]</h1>
+        <input type="button" value="Filtrar y ordenar"><!-- Los filtros pueden ser por precio, por nombre, por ventas -->
+        <form>
+            <input type="text" placeholder="Buscar producto">
+            <input type="button" value="🔍">
+        </form>
+        <div><!-- Cada div tiene un artículo, en un futuro estos tendrían que ser un enlace a la página de este artículo -->
+            <h3>Producto 1</h3>
             <img>
-            <p>Precio: $1</p>
+            <p>Stock: 4</p>
+            <p>Vendidos este mes: 35</p>
         </div>
         <div>
-            <h4>Producto 2</h4>
+            <h3>Producto 2</h3>
             <img>
-            <p>Precio: $2</p>
+            <p>Stock: 4</p>
+            <p>Vendidos este mes: 35</p>
+        </div>
+        <div>
+            <h3>Producto 3</h3>
+            <img>
+            <p>Stock: 4</p>
+            <p>Vendidos este mes: 35</p>
         </div>
     </section>
 </body>
