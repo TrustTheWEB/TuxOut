@@ -18,8 +18,21 @@
     <button class="buscar" type="submit"></button>
   </form>
 
-  <a href="crear.html" class="crear">Crear una cuenta</a>
-  <a href="ingresar.html" class="ingresar">Ingresar</a>
+  <a href="crear.html" class="crear" id="crear-cuenta" >Crear una cuenta</a>
+  <a href="ingresar.html" class="ingresar" id="ingresar">Ingresar</a>
+  <div id="contenedor-bienvenida">Bienvenido/a, <span id="nombre-usuario">USUARIO</span></div>  
+  <nav class="contenedorUsuario">
+    <button class="usuario"></button>
+      <nav class="contenidoUsuario">
+        <a href="usuario.html">Mis datos</a>
+        <a href="direcciones.html">Direcciones</a>
+        <a href="compras.html">Mis compras</a>
+        <a href="compras.html">Favoritos</a>
+        <hr>
+        <a href="index.html" id="cerrar-sesion">Cerrar sesión</button>
+      </nav>
+    </nav>
+ 
   <a href="carrito.html" class="carrito"></a>
 </nav>
 <nav class="contenedorSubMenu">
@@ -47,8 +60,10 @@
     </section>
   </section>
 </nav>
+
 <a href="vender.html" class="botonVender">Vender</a>
 </nav>
+
   <div id="carouselExampleIndicators" class="carousel slide">
     <div class="carousel-indicators">
       <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -140,6 +155,7 @@
       <h4>Accesorios para computadoras</h4>
       <section class="item1">
         <img src="img/iphone.jpg">
+        
       </section>
     </article>
     <article class="miniCat">

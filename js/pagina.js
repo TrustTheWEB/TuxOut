@@ -1,6 +1,14 @@
+  //ES PARA QUE TENGAN UNA IDEA DE LO QUE DEBE HACER CADA COSA, NO ES EL CODIGO FIJO!!!!! TIENE ERRORES 
+  // Y ESTÁ DESORDENADO!, HAY QUE SIMPLIFICARLO Y ORDENARLO SEGÚN EL ORDEN DE LA PÁGINA ;) 
+
+
+
 //FUNCIÓN PARA ABRIR EL MENÚ
-  $('.botonMenu').click(function() {
+  $('.botonMenu').click(function(){
     $('.contenidoMenu').toggle();
+  })
+  $('.usuario').click(function() {
+    $('.contenidoUsuario').toggle();
   })
 
   //FUNCION PARA LOS BOTONES DE PODRÍA INTERESARTE
@@ -47,4 +55,78 @@
     if (totalItems <= 5) {
       $(".boton-derecho").hide();
     }
-  });
+  })
+
+  //para que al iniciar sesion crear cuenta e ingresar desaparezcan
+  $(function() {
+    const crearCuenta = $('#crear-cuenta');
+    const ingresar = $('#ingresar');
+    const usuarioIniciado = localStorage.getItem('usuarioIniciado');
+  
+    if (usuarioIniciado) {
+      if (crearCuenta.length) {
+        crearCuenta.hide();
+      }
+  
+      if (ingresar.length) {
+        ingresar.hide();
+      }
+    }
+  })
+
+  //si el usuario inicia sesion index.html debe mostrarse sin crear cuenta e ingresar 
+  $(function() {
+    $('form').submit(function(e) {
+      e.preventDefault();
+      const usuarioValidado = true;
+  
+      if (usuarioValidado) {
+        localStorage.setItem('usuarioIniciado', true);
+        window.location.href = 'index.html';
+      }
+      if (usuarioValidado) {
+        localStorage.setItem('usuarioIniciado', true);
+        window.location.href = 'carrito.html';
+      }
+    })
+  //cierra la sesión, solo borra el mensaje de bievenida y vuelve a mostrar crear cuenta e ingresar XD
+    const cerrarSesionBtn = $('#cerrar-sesion');
+  
+    if (cerrarSesionBtn.length) {
+      cerrarSesionBtn.click(function() {
+        localStorage.removeItem('usuarioIniciado');
+        window.location.href = 'ingresar.html';
+      })
+      if (cerrarSesionBtn.length) {
+        cerrarSesionBtn.click(function() {
+          localStorage.removeItem('usuarioIniciado');
+          window.location.href = 'carrito.html';
+        })
+    }
+  }
+  //cuando el usuario inicia, crear cuenta e ingresar desaparecen pero se muestra un mensaje de bienvenida y el boton de usaurio
+    const contenedorBienvenida = $('#contenedor-bienvenida')[0];
+    const botonUsuario = $('.usuario')[0];
+    const usuarioIniciado = localStorage.getItem('usuarioIniciado');
+  
+    if (usuarioIniciado === 'true' && contenedorBienvenida) {
+      contenedorBienvenida.style.display = 'block';
+      botonUsuario.style.display = 'block';
+    } else {
+      if (contenedorBienvenida) {
+        contenedorBienvenida.style.display = 'none';
+        botonUsuario.style.display = 'none';
+      }
+    }
+  })
+   
+    const usuarioIniciado = localStorage.getItem('usuarioIniciado');
+      $('.carrito').click(function(event) {
+      if (usuarioIniciado !== 'true') {
+        event.preventDefault();
+        window.location.href = 'ingresar.html';
+      }
+    });
+      if (usuarioIniciado === 'true') {
+      $('#carrito-contenedor').load('carrito.html');
+    }
