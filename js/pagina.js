@@ -84,10 +84,6 @@
         localStorage.setItem('usuarioIniciado', true);
         window.location.href = 'index.html';
       }
-      if (usuarioValidado) {
-        localStorage.setItem('usuarioIniciado', true);
-        window.location.href = 'carrito.html';
-      }
     })
   //cierra la sesión, solo borra el mensaje de bievenida y vuelve a mostrar crear cuenta e ingresar XD
     const cerrarSesionBtn = $('#cerrar-sesion');
@@ -97,12 +93,7 @@
         localStorage.removeItem('usuarioIniciado');
         window.location.href = 'ingresar.html';
       })
-      if (cerrarSesionBtn.length) {
-        cerrarSesionBtn.click(function() {
-          localStorage.removeItem('usuarioIniciado');
-          window.location.href = 'carrito.html';
-        })
-    }
+   
   }
   //cuando el usuario inicia, crear cuenta e ingresar desaparecen pero se muestra un mensaje de bienvenida y el boton de usaurio
     const contenedorBienvenida = $('#contenedor-bienvenida')[0];
