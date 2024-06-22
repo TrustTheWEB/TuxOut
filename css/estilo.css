@@ -22,7 +22,6 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  z-index: 10000;
   margin: 0px;
   height: 40px;
   padding:5px;
@@ -56,7 +55,7 @@ body {
   transform: translate(0, -50%);
   }
 /*BOTÓN DE MENÚ*/
-.botonMenu {
+.btn-primary {
   position: relative;
   display: inline-block;
   margin-right: 20px;
@@ -94,7 +93,7 @@ body {
   background-color: #4ec3e0;
   color: #16161f;
 }
-.botonMenu.open .contenidoMenu {
+.btn-primary.open .contenidoMenu {
   display: block;
 }
 .botonVender {
@@ -127,6 +126,18 @@ body {
 }
 .buscar:hover{
   background-color: #111313;
+}
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active,
+.btn-primary.active {
+  background-color: transparent;
+  box-shadow: none;
+}
+.btn-primary.active,
+.btn-primary:active {
+  background-color: transparent !important;
+  box-shadow: none !important;
 }
 /*crear cuenta */
 .crear{
@@ -254,12 +265,14 @@ body {
   right: 40px;
   top: -3px;
   margin-top: 15px;
+  background-color: #111118;
   }
 /*LOS BOTONES DEL CARRUSEL*/
 button.custom-carousel-button {
   border: none;
   height: auto;
 }
+
 /*LOGIN de UIVERSE*/
 .contenedorLogin {
   position: absolute;
@@ -356,7 +369,7 @@ label {
   background-color: #ffffff;
   border: none;
   height: 450px;
-  width: 1110px;
+  width: 100%;
   margin: 0 auto; 
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
@@ -366,19 +379,20 @@ label {
   justify-content: center;
   align-items: center;
   height: 450px;
-
+    width: 100%;
 }
-
 .contenedorBotones h4 {
   position: relative;
+    justify-content: center;
+  align-items: center;
+  display: flex;
   margin-top: 0px;
-  left: 120px;
+  margin-left: -750px;
   color: rgb(0, 0, 0);
 }
-
 .boton-izquierdo {
   position: absolute;
-  left:-30px; 
+margin-left: -1050px;
   top: 45%;
   width: 60px;
   height: 60px;
@@ -388,12 +402,10 @@ label {
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
   color: #4ec3e0;
   font-size: 20px;
-
 }
-
 .boton-derecho {
   position: absolute;
-  right: -30px; 
+ margin-left: -20px ;
   top: 45%;
   width: 60px;
   height: 60px;
@@ -411,18 +423,15 @@ label {
 .item {
   margin-bottom: 10px;
 }
-
 .item img {
   width: 200px;
   height: 200px;
 }
-
 .item p {
   margin: 10px;
   width: 180px;
   text-align: center;
 }
-
 .item .precio {
   font-size: 20px;
   width: auto;
@@ -436,7 +445,6 @@ h4{
   position: absolute;
   top: 30px;
 }
-
 /*las mini categorias :) */
 .miniCat-container {
   margin: 0 auto; 
@@ -467,7 +475,6 @@ h4{
   left: 10px;
   margin-bottom: 50px;
   text-align: left;
-  
 }
 .miniCat .item1 img {
   text-align: center;
@@ -480,7 +487,6 @@ h4{
 .miniCat h4{
   font-weight: bold;
 }
-
 /*footer*/
 .pie {
   position: relative;
@@ -494,13 +500,11 @@ h4{
   width: 100%;
   margin-top: 60%;
 }
-
 .pie a {
   text-decoration: none;
   color: #ffffff; 
   font-size: 10px; 
 }
-
 .pie p {
   color: gray;
   font-size: 10px; 

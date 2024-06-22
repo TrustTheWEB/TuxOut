@@ -11,9 +11,7 @@
 </head>
 <body>
   <nav class="contenedorMenu">
-  <a href="index.html">
-    <img src="logo/logo.png" class="logo">
-  </a>
+  <a href="index.html"><img src="logo/logo.png" class="logo"></a>
   <form class="d-flex" role="search">
     <input class="form-control me-2" type="search" placeholder="Buscar producto..." aria-label="Search">
     <button class="buscar" type="submit"></button>
@@ -29,38 +27,41 @@
         <a href="compras.html">Mis compras</a>
         <a href="compras.html">Favoritos</a>
         <hr>
-        <a href="index.html" id="cerrar-sesion">Cerrar sesión</button>
+        <a href="index.html" id="cerrar-sesion">Cerrar sesión</a>
       </nav>
     </nav>
-  <a href="carrito.html" class="carrito"></a>
+    <button type="button" class="carrito" data-bs-toggle="modal" data-bs-target="#exampleModal"></button>
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            ...
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            <a href="carrito.html" class="btn btn-secondary">Comprar</a>          </div>
+        </div>
+      </div>
+    </div>
 </nav>
 <nav class="contenedorSubMenu">
-<button class="botonMenu">≡ Menú</button>
-<nav class="contenidoMenu">
-  <a id="top"  href="productos.html">Auriculares</a>
-  <a id="middle" href="productos.html">Parlantes</a>
-  <section class="SubMenu">
-    <a href="#">Computadoras</a>
-    <section class="contenidoSubMenu">
-      <a href="productos.html">Torres</a>
-      <a href="productos.html">All in One</a>
-      <a href="productos.html">Notebooks</a>
-      <a href="productos.html">Todas las categorías</a>
-    </section>
-  </section>
-  <section class="SubMenu">
-    <a href="productos.html">Celulares</a>
-    <section class="contenidoSubMenu">
-      <a href="productos.html">Apple</a>
-      <a href="productos.html">Samsung</a>
-      <a href="productos.html">Xiaomi</a>
-      <a href="productos.html">Honor</a>
-      <a href="productos.html">Motorola</a>
-    </section>
-  </section>
-  <a href="productos.html">Todas las categorías</a>
-</nav>
+  <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">≡ Menú</button>
+
+  <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title" id="offcanvasWithBothOptionsLabel"> Hola, USUARIO</h5>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+      <p>ACÁ DEBERÍA ESTAR EL CONTENIDO DEL MENÚ, PODEMOS HACER QUE AL PRESIONAR UNA CATEGORIA SE DESLICE Y MUESTRE LAS SUBCATEGORÍAS</p>
+    </div>
+  </div>
 <a href="vender.html" class="botonVender">Vender</a>
+</nav>
 </nav>
   <div id="carouselExampleIndicators" class="carousel slide">
     <div class="carousel-indicators">
@@ -88,7 +89,6 @@
     </button>
     <button class="carousel-control-next custom-carousel-button" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
       <span class="carousel-control-next-icon" aria-hidden="true"></span>
-  
     </button>
   </div>
   <div class="contenedorBotones">

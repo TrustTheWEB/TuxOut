@@ -11,55 +11,43 @@
 </head>
 <body>
   <nav class="contenedorMenu">
-    <a href="index.html">
-      <img src="logo/logo.png" class="logo">
-    </a>
-    <form class="d-flex" role="search">
-      <input class="form-control me-2" type="search" placeholder="Buscar producto..." aria-label="Search">
-      <button class="buscar" type="submit"></button>
-    </form>
-    <div id="contenedor-bienvenida">Bienvenido/a, <span id="nombre-usuario">USUARIO</span></div>  
-    <nav class="contenedorUsuario">
-      <button class="usuario"></button>
-        <nav class="contenidoUsuario">
-          <a href="usuario.html">Mis datos</a>
-          <a href="direcciones.html">Direcciones</a>
-          <a href="compras.html">Mis compras</a>
-          <a href="compras.html">Favoritos</a>
-          <hr>
-          <a href="index.html" id="cerrar-sesion">Cerrar sesión</button>
-        </nav>
+  <a href="index.html">
+    <img src="logo/logo.png" class="logo">
+  </a>
+  <form class="d-flex" role="search">
+    <input class="form-control me-2" type="search" placeholder="Buscar producto..." aria-label="Search">
+    <button class="buscar" type="submit"></button>
+  </form>
+  <a href="crear.html" class="crear" id="crear-cuenta" >Crear una cuenta</a>
+  <a href="ingresar.html" class="ingresar" id="ingresar">Ingresar</a>
+  <div id="contenedor-bienvenida">Bienvenido/a, <span id="nombre-usuario">USUARIO</span></div>  
+  <nav class="contenedorUsuario">
+    <button class="usuario"></button>
+      <nav class="contenidoUsuario">
+        <a href="usuario.html">Mis datos</a>
+        <a href="direcciones.html">Direcciones</a>
+        <a href="compras.html">Mis compras</a>
+        <a href="compras.html">Favoritos</a>
+        <hr>
+        <a href="index.html" id="cerrar-sesion">Cerrar sesión</button>
       </nav>
-    <a href="carrito.html" class="carrito"></a>
-  </nav>
-  <nav class="contenedorSubMenu">
-  <button class="botonMenu">≡ Menú</button>
-  <nav class="contenidoMenu">
-    <a id="top"  href="productos.html">Auriculares</a>
-    <a id="middle" href="productos.html">Parlantes</a>
-    <section class="SubMenu">
-      <a href="#">Computadoras</a>
-      <section class="contenidoSubMenu">
-        <a href="productos.html">Torres</a>
-        <a href="productos.html">All in One</a>
-        <a href="productos.html">Notebooks</a>
-        <a href="productos.html">Todas las categorías</a>
-      </section>
-    </section>
-    <section class="SubMenu">
-      <a href="productos.html">Celulares</a>
-      <section class="contenidoSubMenu">
-        <a href="productos.html">Apple</a>
-        <a href="productos.html">Samsung</a>
-        <a href="productos.html">Xiaomi</a>
-        <a href="productos.html">Honor</a>
-        <a href="productos.html">Motorola</a>
-      </section>
-    </section>
-    <a href="productos.html">Todas las categorías</a>
-  </nav>
-  <a href="vender.html" class="botonVender">Vender</a>
-  </nav>
+    </nav>
+  <a href="carrito.html" class="carrito"></a>
+</nav>
+<nav class="contenedorSubMenu">
+  <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">≡ Menú</button>
+  <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title" id="offcanvasWithBothOptionsLabel"> Hola, USUARIO</h5>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+      <p>ACÁ DEBERÍA ESTAR EL CONTENIDO DEL MENÚ, PODEMOS HACER QUE AL PRESIONAR UNA CATEGORIA SE DESLICE Y MUESTRE LAS SUBCATEGORÍAS</p>
+    </div>
+  </div>
+<a href="vender.html" class="botonVender">Vender</a>
+</nav>
+</nav>
   <div class="contenedorCarrito">
     <article class="contenidoCarrito">
       <h4>Carrito</h4>

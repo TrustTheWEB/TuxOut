@@ -3,13 +3,10 @@
 
 
 
-//FUNCIÓN PARA ABRIR EL MENÚ
-  $('.botonMenu').click(function(){
-    $('.contenidoMenu').toggle();
-  })
   $('.usuario').click(function() {
     $('.contenidoUsuario').toggle();
   })
+
 
   //FUNCION PARA LOS BOTONES DE PODRÍA INTERESARTE
   $(function() {
