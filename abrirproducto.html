@@ -10,44 +10,34 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-  <nav class="contenedorMenu">
-  <a href="index.html">
-    <img src="logo/logo.png" class="logo">
-  </a>
-  <form class="d-flex" role="search">
-    <input class="form-control me-2" type="search" placeholder="Buscar producto..." aria-label="Search">
-    <button class="buscar" type="submit"></button>
-  </form>
-  <a href="crear.html" class="crear" id="crear-cuenta" >Crear una cuenta</a>
-  <a href="ingresar.html" class="ingresar" id="ingresar">Ingresar</a>
-  <div id="contenedor-bienvenida">Bienvenido/a, <span id="nombre-usuario">USUARIO</span></div>  
-  <nav class="contenedorUsuario">
-    <button class="usuario"></button>
-      <nav class="contenidoUsuario">
-        <a href="usuario.html">Mis datos</a>
-        <a href="direcciones.html">Direcciones</a>
-        <a href="compras.html">Mis compras</a>
-        <a href="compras.html">Favoritos</a>
-        <hr>
-        <a href="index.html" id="cerrar-sesion">Cerrar sesión</button>
-      </nav>
-    </nav>
-  <a href="carrito.html" class="carrito"></a>
-</nav>
-<nav class="contenedorSubMenu">
-  <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">≡ Menú</button>
-  <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
-    <div class="offcanvas-header">
-      <h5 class="offcanvas-title" id="offcanvasWithBothOptionsLabel"> Hola, USUARIO</h5>
-      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="index.html"><img class="logo" src="logo/logo.png"></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse m-2" id="navbarSupportedContent">
+        <form class="d-flex" role="search">
+            <input class="form-control me-2" type="search" placeholder="Buscar producto..." aria-label="Search">
+            <button class="btn btn-outline-success" type="submit"><img class="lupa" src="logo/lupa.png"></button>
+          </form>
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" href="#">Crear una cuenta</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Ingresar</a>
+          </li>
+       </ul>
+      </div>
     </div>
-    <div class="offcanvas-body">
-      <p>ACÁ DEBERÍA ESTAR EL CONTENIDO DEL MENÚ, PODEMOS HACER QUE AL PRESIONAR UNA CATEGORIA SE DESLICE Y MUESTRE LAS SUBCATEGORÍAS</p>
-    </div>
-  </div>
-<a href="vender.html" class="botonVender">Vender</a>
-</nav>
-</nav>
+  </nav>
+  <nav class="navbar bg-body-tertiary" id="subnav">
+    <form class="container-fluid justify-content-start" id="subnav1">
+      <button class="btn btn-outline-success me-2" id="botonMenu" type="button">≡ Menú</button>
+      <button class="btn btn-sm btn-outline-secondary" id="vender" type="button">Vender</button>
+    </form>
+  </nav>
   <footer class="pie">
     <a href="condiciones.html">Términos y condiciones</a> |
     <a href="ayuda.html">Ayuda</a>

@@ -1,133 +1,102 @@
-body {
+
+.body {
   margin: 0;
   padding: 0;
   font-family: Arial, Verdana ;
   background-color: #f7f7ff;
 }
-/*BARRA DE NAVEGACIÓN*/
-.contenedorMenu {
-  width: 100%;
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin: 0px;
-  height: 60px;
-  padding:10px;
-  background-color: #111118;
-  border: none; 
-}
-.contenedorSubMenu {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin: 0px;
-  height: 40px;
-  padding:5px;
-  background-color: #16161f;
-}
-.contenidoSubMenu {
-  display: none;
-  position: absolute;
-  top: 0;
-  left: 100%;
-  white-space: nowrap;
-  width: 200px;
-}
-.SubMenu:hover .contenidoSubMenu {
-  display: block;
-}
-.contenidoSubMenu a {
-  display: inline-block;
-  padding: 5px 10px;
-}
-/*LOGO TUXON*/
 .logo {
-  flex-shrink: 0;
-  width: 220px;
-  height: 50px;
-  margin-left: 10px;
-  margin-right: 10px;
-  position: absolute;
-  left: 10px;
-  top: 50%;
-  transform: translate(0, -50%);
-  z-index: 1000;
+    width: 200px; 
+    height: 50px; 
+  }
+  .container-fluid{
+    background-color: #111118;
+    margin-top: -10PX;
+    height: auto;
+  }
+  .nav-item a{
+    color: aliceblue;
+  }
+  .navbar-toggler {
+    border: none;
+    background-color: white;
+  }
+  .lupa{
+    height: 30px;
+    width: 30px;
+  }
+  .d-flex{
+    width: 75%;
+    margin-left: 10px;
+  }
+  .nav-item{
+    margin-left: 10px;
+  }
+
+ .card-margin {
+  
+position: relative;
+  display: inline-block;
+  left:20px;
+right: 20px;
+min-width: 200px;
+max-width: 250px;
+min-height: 200px;
+max-height: 400px;
 
   }
-/*BOTÓN DE MENÚ*/
-.btn-primary {
-  position: relative;
-  display: inline-block;
-  margin-right: 20px;
-  left: 15px;
-  top:0px;
-  background-color: #16161f;
-  border: none;
-  color: white;
-  width: 100px;
-  height: 40px;
-}
-.contenidoMenu a {
-  background-color: #16161f;
-  color: #FFFFFF; 
-  padding: 10px 10px;
-  text-decoration: none;
-  display: block;
-  transition: 0.1s;
-  min-width: 200px;
+  .carousel-container {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+  }
+#carouselExampleIndicators{
+  top:-10px;
+  }
 
-}
-.contenidoMenu {
-  display: none;
-  font-size: 13px;
-  position: absolute;
-  z-index: 1;
-  min-width: 100px;
-  height: 180px;
-  left: 15px;
-  background-color: #16161f;
-  opacity: 98%;
-  top: 40px; 
-}
-.contenidoMenu a:hover {
-  background-color: #4ec3e0;
-  color: #16161f;
-}
-.btn-primary.open .contenidoMenu {
-  display: block;
-}
-.botonVender {
-  position: relative;
-  display: inline-block;
-  margin-right: auto;
-  margin-left: 10px;
-  top: 0px;
-  background-color: #16161f;
-  border: none;
-  color: white;
-  text-decoration: none;
-}
-/*BOTÓN DE BUSCAR*/
-.buscar {
-  border: none;
-  background-image: url(../logo/lupa.png);
-  background-size: 20px;
-  background-repeat: no-repeat;
-  background-position: center;
-  z-index: 1000;
-  width: 45px;
-  height: 40px; 
-  margin-right: 20px; 
-  position: absolute;
-  right: 400px;
-  top: 50%;
-  transform: translate(0, -50%);
-  border-radius: 0px 4px 4px 0px;
+  #subnav{
+  margin-top: -10px;
+   background-color: #16161f;
+  }
+  #subnav1{
+    background-color: #16161f;
+    height: 50px;
+  }
+  #botonMenu{
+    position: relative;
+    display: inline-block;
+    left: 15px;
+    top:0px;
+    background-color: transparent;
+    border: none;
+    color: white;
+    width: 100px;
+    height: 40px;
+  }
+  #vender {
+    position: relative;
+    display: inline-block;
+    margin-right: auto;
+    margin-left: 10px;
+    top: 0px;
+    background-color: transparent;
+    border: none;
+    color: white;
+    text-decoration: none;
+  }
+.col.card-margin {
+  
+margin-left: 30px;
+min-width: 100px;
+
+}/*BOTÓN DE BUSCAR*/
+#buscar {
+  border:1;
+  border-color: #ffffff;
+  border-radius: 4px 4px 4px 4px;
   background-color: #000000;
 }
-.buscar:hover{
+#buscar:hover{
   background-color: #111313;
 }
 .btn-primary:hover,
@@ -242,18 +211,8 @@ body {
 .contenidoUsuario a {
   display: block;
   padding: 5px;
-  color: #fff;
+  color: #e6e6e6;
   text-decoration: none;
-}
-/*BARRA DE BUSQUEDA*/
-.form-control {
-  width: calc(100% - 700px);
-  height: 40px;
-  z-index: 1000;
-  position: absolute;
-  left: 280px;
-  top: 50%;
-  transform: translate(0, -50%);
 }
 /*BOTÓN DEL CARRITO*/
 .carrito {
@@ -272,76 +231,6 @@ body {
   margin-top: 15px;
   background-color: transparent;
   }
-/*LOS BOTONES DEL CARRUSEL*/
-button.custom-carousel-button {
-  border: none;
-  height: auto;
-}
-
-/*LOGIN de UIVERSE*/
-.contenedorLogin {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-.card {
-  position: relative;
-  width: 400px;
-  height: 330px;
-  border: none;
-  background: white;
-  margin: 0 auto;
-}
-
-.textito {
-  position: relative;
-  width: 400px;
-  margin: 0 auto;
-  top:80px;
-  right:300px;
-  text-align: center;
-}
-
-.form {
-  padding: 20px;
-  top:380px;
-  left: 200px;
-}
-
-.form_heading {
-  padding-bottom: 20px;
-  font-size: 21px;
-  color: #4ec3e0;
-  text-align: center;
-  font-weight: bold;
-}
-
-.field {
-  padding-bottom: 10px;
-}
-
-.input {
-  border-radius: 5px;
-  background-color: #e9e9f7;
-  padding: 5px;
-  width: 100%;
-  color: #000000;
-  border: 1px solid #dadaf7;
-}
-
-.input::placeholder {
-  color: #bcbcdf;
-}
-
-label {
-  color: #b2bac8;
-  font-size: 14px;
-  display: block;
-  padding-bottom: 4px;
-}
-
 .ingrese {
   background-color: #4ec3e0;
   margin-top: 0px;
@@ -368,87 +257,10 @@ label {
 .registrar a {
   color: #4ec3e0;
 }
-.contenedorBotones {
-  position: relative;
-  top: 50px;
-  background-color: #ffffff;
-  border: none;
-  height: 450px;
-  width: 100%;
-  margin: 0 auto; 
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-}
 
-.contenidoContenedor {
+#carouselExampleCards {
   display: flex;
   justify-content: center;
-  align-items: center;
-  height: 450px;
-    width: 100%;
-}
-.contenedorBotones h4 {
-  position: relative;
-    justify-content: center;
-  align-items: center;
-  display: flex;
-  margin-top: 0px;
-  margin-left: -750px;
-  color: rgb(0, 0, 0);
-}
-.boton-izquierdo {
-  position: absolute;
-margin-left: -1050px;
-  top: 45%;
-  width: 60px;
-  height: 60px;
-  background-color: white;
-  border: none;
-  border-radius: 50%;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-  color: #4ec3e0;
-  font-size: 20px;
-}
-.boton-derecho {
-  position: absolute;
- margin-left: -20px ;
-  top: 45%;
-  width: 60px;
-  height: 60px;
-  background-color: white;
-  border: none;
-  border-radius: 50%;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-  color: #4ec3e0;
-  font-size: 20px;
-}
-.boton-izquierdo:hover,
-.boton-derecho:hover {
-  background-color: #f1f1f1;
-}
-.item {
-  margin-bottom: 10px;
-}
-.item img {
-  width: 200px;
-  height: 200px;
-}
-.item p {
-  margin: 10px;
-  width: 180px;
-  text-align: center;
-}
-.item .precio {
-  font-size: 20px;
-  width: auto;
-  text-align: center;
-  font-weight: bold;
-}
-.item.oculto {
-  display: none;
-}
-h4{
-  position: absolute;
-  top: 30px;
 }
 /*las mini categorias :) */
 .miniCat-container {
@@ -456,7 +268,7 @@ h4{
   display: flex;
  justify-content: center;
   text-align: left;
-  margin-top: 20px; 
+  margin-top: 10px; 
 }
 .miniCat-container2 {
   margin: 0 auto; 
@@ -472,11 +284,11 @@ h4{
   padding: 40px;
   border-radius: 4px;
   height: 400px;
-  width: 355px;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  width: 400px;
+  box-shadow:2px 4px 2px 4px rgba(0, 0, 0, 0.1);
   margin-right: 23px;
   position: relative;
-  top: 100px;
+  top: 50px;
   left: 10px;
   margin-bottom: 50px;
   text-align: left;
@@ -490,7 +302,9 @@ h4{
   height: 250px;
 }
 .miniCat h4{
+  font-size: 20px;
   font-weight: bold;
+  margin: none;
 }
 /*footer*/
 .pie {
@@ -503,7 +317,7 @@ h4{
   padding: 10px;
   background-color: #111118;
   width: 100%;
-  margin-top: 60%;
+  margin-top: 50px;
 }
 .pie a {
   text-decoration: none;
