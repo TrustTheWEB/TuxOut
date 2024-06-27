@@ -45,11 +45,7 @@ min-height: 200px;
 max-height: 400px;
 
   }
-  .carousel-container {
-    display: grid;
-    justify-content: center;
-    align-items: center;
-  }
+
 #carouselExampleIndicators{
   top:-10px;
   }
@@ -84,12 +80,8 @@ max-height: 400px;
     color: white;
     text-decoration: none;
   }
-.col.card-margin {
-  
-margin-left: 30px;
-min-width: 100px;
 
-}/*BOTÓN DE BUSCAR*/
+/*BOTÓN DE BUSCAR*/
 #buscar {
   border:1;
   border-color: #ffffff;
@@ -261,37 +253,59 @@ min-width: 100px;
 #carouselExampleCards {
   margin-top: 30px;
   display: flex;
+}
+
+.carousel-container {
+  display: grid;
   justify-content: center;
-    
+  align-items: center;
 }
-.card{
-  min-width: 50px;
-  min-height: 100px;
-}
-.card img{
-position: relative;
-width: auto;
+.col.card-margin {
+  margin-left: 30px;
+  min-width: 100px;
+  }
 
+.botonFavorito{
+  position: absolute;
+  right:0px;
+  top:0px;
+  height: 40px;
+  width: 40px;
+  background-color: rgb(236, 236, 236) ;
+  border-radius: 50%;
 }
-
-.card-body {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+.botonFavorito:hover{
+background-color: #58cbe7;
 }
 
 .btn-primary {
+  position: relative;
   display: flex;
   justify-content: center;
-  align-items: flex-end;
+  width: auto;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  font-size: 12px;
+}
+.btn-favorite{
+  border-radius: 50%;
+  height: 40px;
+  width: 40px;
+}
+.btn-favorite img{
+  position: relative;
+  width: 20px;
+  height: 20px;
+  left: -3px;
 }
 /*las mini categorias :) */
-
-#cat{
-  margin-top: 50px;
+.miniCat-container {
   position: relative;
-  width: 350px;
+  margin-top: 50px;
+    justify-content: center;
+  margin-bottom: 20px;
 }
+ 
 /*footer*/
 .pie {
   position: relative;
