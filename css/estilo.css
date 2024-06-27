@@ -259,52 +259,38 @@ min-width: 100px;
 }
 
 #carouselExampleCards {
+  margin-top: 30px;
   display: flex;
   justify-content: center;
+    
 }
-/*las mini categorias :) */
-.miniCat-container {
-  margin: 0 auto; 
-  display: flex;
- justify-content: center;
-  text-align: left;
-  margin-top: 10px; 
+.card{
+  min-width: 50px;
+  min-height: 100px;
 }
-.miniCat-container2 {
-  margin: 0 auto; 
-  display: flex;
- justify-content: center;
-  text-align: left;
-  margin-top: 20px; 
+.card img{
+position: relative;
+width: auto;
+
 }
-.miniCat {
+
+.card-body {
   display: flex;
   flex-direction: column;
-  background-color: #ffffff;
-  padding: 40px;
-  border-radius: 4px;
-  height: 400px;
-  width: 400px;
-  box-shadow:2px 4px 2px 4px rgba(0, 0, 0, 0.1);
-  margin-right: 23px;
-  position: relative;
-  top: 50px;
-  left: 10px;
-  margin-bottom: 50px;
-  text-align: left;
+  justify-content: space-between;
 }
-.miniCat .item1 img {
-  text-align: center;
+
+.btn-primary {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+/*las mini categorias :) */
+
+#cat{
   margin-top: 50px;
-  margin-left: 20px;
-  margin-right: 50px;
-  width: 250px;
-  height: 250px;
-}
-.miniCat h4{
-  font-size: 20px;
-  font-weight: bold;
-  margin: none;
+  position: relative;
+  width: 350px;
 }
 /*footer*/
 .pie {
