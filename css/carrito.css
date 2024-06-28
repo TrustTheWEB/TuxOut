@@ -1,3 +1,4 @@
+
 .contenedorCarrito {
   display: flex;
   flex-direction: column;
@@ -15,7 +16,7 @@
 }
   .contenedorCarrito .item1 img {
     text-align: center;
-    margin-top: 10px;
+    margin-top: 5px;
     margin-left: 20px;
     margin-right: 50px;
     width: 100px;
@@ -23,7 +24,7 @@
   }
   .contenedorCarrito .item1 p {
     position: absolute;
-    top:100px;
+    top:120px;
     text-align: center;
     margin-left: 80px;
     margin-right: 50px;
@@ -31,7 +32,7 @@
     height: 250px;
   }
   .contenedorCarrito  hr {
-margin-top: 25px;
+margin-top: 10px;
   }
   #barrasubtotal{
     margin-top: 20px;
@@ -61,3 +62,26 @@ margin-top: 25px;
     text-decoration: none;
     font-weight: bold;
   }
+/*footer*/
+.pie {
+  position: fixed;
+  position:block;
+  padding: 10px 0;
+  text-align: left;
+  background-color: #111118;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+}
+.pie a {
+  text-decoration: none;
+  color: #ffffff; 
+  font-size: 10px; 
+}
+.pie p {
+  color: gray;
+  font-size: 10px; 
+}
+.field p{
+  margin-top: 20px;
+}

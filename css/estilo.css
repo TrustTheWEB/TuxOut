@@ -83,15 +83,13 @@ max-height: 400px;
 
 /*BOTÓN DE BUSCAR*/
 #buscar {
-  border:1;
-  border-color: #ffffff;
+  border:none;
   border-radius: 4px 4px 4px 4px;
-  background-color: #000000;
+  background-color: #4ec3e0;
 }
 #buscar:hover{
-  background-color: #111313;
+  background-color: #58cbe7;
 }
-.btn-primary:hover,
 .btn-primary:focus,
 .btn-primary:active,
 .btn-primary.active {
@@ -104,52 +102,35 @@ max-height: 400px;
   box-shadow: none !important;
 }
 /*crear cuenta */
-.crear{
-  position: absolute;
-  right: 230px;
-  top: 50%;
+#crear{
+  position: relative;
+  left: -10px;
   display: inline-block;
   margin-right: auto;
   margin-left: 10px;
-  top: 20px;
+  top: 3px;
   border: none;
   color: white;
   text-decoration: none;
+  background-color: #111118;
+}
+ .dropdown-menu{ 
+  position: relative;
+  width: 300px;
+  
 }
 /*ingresar */
-.ingresar{
-  position: absolute;
-  right: 120px;
-  top: 50%;
+#ingresar{
+  position: relative;
+  left: -10px;
   display: inline-block;
   margin-right: auto;
-  margin-left: 10px;
-  top: 20px;
+  margin-left:20px;
+  top: 3px;
   border: none;
   color: white;
   text-decoration: none;
-}
-/*Bienvenido usuario*/
-#contenedor-bienvenida {
-  display: none;
-  position: absolute;
-  right: 220px;
-  top: 20px;
-  margin-right: auto;
-  margin-left: 10px;
-  border: none;
-  color: white;
-  text-decoration: none;
-  font-size: 12px;
-}
-
-#contenedor-bienvenida span {
-  font-weight: bold;
-  margin-top: 5px; 
-}
-
-#contenedor-bienvenida span#nombre-usuario {
-  font-size: 14px;
+  background-color: #111118;
 }
 .contenedorUsuario {
   position: absolute;
@@ -173,25 +154,60 @@ max-height: 400px;
     display: none;
     position: absolute;
     top: 50px;
-    right: 0;
+    right: -30PX;
     white-space: nowrap;
   background-color: #16161f;
   font-size: 13px;
   padding: 5px;
   opacity: 98%;
   width: 200px;
+  z-index: 10001;
 }
 .contenidoUsuario a:hover {
   background-color: #4ec3e0;
   color: #16161f;
 }
-.usuario {
+#contenedor-bienvenida {
   display: none;
-  position: absolute;
-  margin-right: 20px;
-  right: 10px;
-  top:0px;
-  background-image: url(../img/usuario.png);
+  position: relative;
+  right: -10px;
+  top: 10px;
+  margin-right: 5px;
+  margin-left: 10px;
+  border: none;
+  color: white;
+  text-decoration: none;
+  font-size: 12px;
+  background-repeat: no-repeat;
+  background-position: center;
+  margin-bottom: 20px;
+  width: 90px;
+}
+#contenedor-bienvenida span {
+  font-weight: bold;
+  margin-top: 5px; 
+}
+#contenedor-bienvenida span#nombre-usuario {
+  font-size: 14px;
+}
+.contenedorUsuario {
+  position: relative;
+  align-items: center;
+  left:290px;
+  top:50px; 
+  z-index: 1000;
+  margin: 0;
+  height: 40px;
+  padding: 10px;
+  font-size: 14px;
+}
+.usuario {
+  position: relative;
+  left:110px;
+  margin-left: -85px;
+  margin-top: -7px;
+  margin-right: 120px;
+  background-image: url(../logo/usuario.png);
   background-repeat: no-repeat;
   background-position: center;
   width: 40px;
@@ -213,13 +229,14 @@ max-height: 400px;
   background-size: 45px;
   background-repeat: no-repeat;
   background-position: center;
+  margin-left: 10px;
+  left: 15px;
   width: 40px;
   height: 40px;
   z-index: 1000;
   border-radius: 5px;
   position: relative;
-  right: 40px;
-  top: -3px;
+  top: -5px;
   margin-top: 15px;
   background-color: transparent;
   }
@@ -253,6 +270,7 @@ max-height: 400px;
 #carouselExampleCards {
   margin-top: 30px;
   display: flex;
+  width: auto;
 }
 
 .carousel-container {
@@ -285,8 +303,19 @@ background-color: #58cbe7;
   width: auto;
   margin-bottom: 10px;
   margin-top: 10px;
-  font-size: 12px;
+  font-size: 14px;
+  border:none;
+  background-color: #4ec3e0;
 }
+.btn-primary:active,
+.btn-primary:focus,
+.btn-primary:hover {
+  background-color: #4ec3e0;
+}
+.btn-primary:hover{
+  background-color: #58cbe7;
+}
+
 .btn-favorite{
   border-radius: 50%;
   height: 40px;
@@ -306,28 +335,3 @@ background-color: #58cbe7;
   margin-bottom: 20px;
 }
  
-/*footer*/
-.pie {
-  position: relative;
-  align-items: center;
-  left: 0px;
-  top:0%;
-  bottom:0;
-  margin: 0;
-  padding: 10px;
-  background-color: #111118;
-  width: 100%;
-  margin-top: 50px;
-}
-.pie a {
-  text-decoration: none;
-  color: #ffffff; 
-  font-size: 10px; 
-}
-.pie p {
-  color: gray;
-  font-size: 10px; 
-}
-.field p{
-  margin-top: 20px;
-}
