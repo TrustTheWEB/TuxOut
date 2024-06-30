@@ -42,7 +42,7 @@ function toggleOffcanvas() {
     if (cerrarSesionBtn.length) {
       cerrarSesionBtn.click(function() {
         localStorage.removeItem('usuarioIniciado');
-        window.location.href = 'ingresar.html';
+        window.location.href = 'index.html';
       })
    
   }
@@ -66,9 +66,15 @@ function toggleOffcanvas() {
       $('.carrito').click(function(event) {
       if (usuarioIniciado !== 'true') {
         event.preventDefault();
-        window.location.href = 'ingresar.html';
       }
     });
-      if (usuarioIniciado === 'true') {
-      $('#carrito-contenedor').load('carrito.html');
-    }
+  
+    $('.carrito').click(function(event) {
+      if (usuarioIniciado !== 'true') {
+        event.preventDefault();
+        $('.alerta-carrito').show();
+        $('#exampleModal').modal('hide'); 
+      }
+    });
+    $
+    

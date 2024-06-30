@@ -151,17 +151,10 @@ max-height: 400px;
   text-decoration: none;
 }
 .contenidoUsuario {
-    display: none;
-    position: absolute;
-    top: 50px;
-    right: -30PX;
-    white-space: nowrap;
+ position: absolute;
   background-color: #16161f;
-  font-size: 13px;
-  padding: 5px;
-  opacity: 98%;
-  width: 200px;
   z-index: 10001;
+ 
 }
 .contenidoUsuario a:hover {
   background-color: #4ec3e0;
@@ -190,17 +183,7 @@ max-height: 400px;
 #contenedor-bienvenida span#nombre-usuario {
   font-size: 14px;
 }
-.contenedorUsuario {
-  position: relative;
-  align-items: center;
-  left:290px;
-  top:50px; 
-  z-index: 1000;
-  margin: 0;
-  height: 40px;
-  padding: 10px;
-  font-size: 14px;
-}
+
 .usuario {
   position: relative;
   left:110px;
@@ -230,6 +213,7 @@ max-height: 400px;
   background-repeat: no-repeat;
   background-position: center;
   margin-left: 10px;
+  margin-right: 20px;
   left: 15px;
   width: 40px;
   height: 40px;
@@ -335,3 +319,13 @@ background-color: #58cbe7;
   margin-bottom: 20px;
 }
  
+.alert{
+  top:0px;
+  position: absolute;
+width: 100%;
+z-index: 10001;
+text-align: center;
+}
+#exampleModal{
+margin-top:100px;
+}

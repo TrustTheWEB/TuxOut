@@ -30,7 +30,7 @@
         </form>
         <div id="contenedor-bienvenida">Bienvenido/a,<br> <span id="nombre-usuario">USUARIO</span></div>  
         <div class="dropdown">
-          <button class="btn btn-secondary dropdown-toggle usuario" type="button" data-bs-toggle="dropdown" aria-expanded="false"></button>
+          <a class="btn btn-secondary dropdown-toggle usuario" type="button" data-bs-toggle="dropdown" aria-expanded="false">          </a>
           <ul class="dropdown-menu contenidoUsuario">
             <li><a class="dropdown-item" href="usuario.html">Mis datos</a></li>
             <li><a class="dropdown-item" href="direcciones.html">Direcciones</a></li>
@@ -41,7 +41,6 @@
           </ul>
         </div>
    
-    <button type="button" class="carrito" data-bs-toggle="modal" data-bs-target="#exampleModal"></button>
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
         <div class="modal-content">
@@ -57,7 +56,9 @@
             <a href="carrito.html" class="btn btn-secondary">Ver mi carrito</a>          </div>
         </div>
       </div>
+     
     </div>
+ 
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item dropdown">
 <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-none-caret" id="crear" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">Crear una cuenta</button>          
@@ -88,7 +89,7 @@
                       </label>
                     </div>
                   </div>
-                  <button type="submit" class="btn btn-primary">Ingresar</button>
+                  <button type="submit" class="btn btn-primary"> Ingresar</button>
                 </form>
               </li>
             </ul>
@@ -120,6 +121,7 @@
               </li>
             </ul>
           </li>
+          <button type="button" class="carrito" data-bs-toggle="modal" data-bs-target="#exampleModal"></button>
         </ul>
       </div>
     </div>
@@ -147,7 +149,10 @@
       </div>
     </div>
   </nav>
-  
+  <div class="alert alert-warning alert-dismissible fade show alerta-carrito" role="alert" style="display: none;">
+    <strong>Inicia sesión o regístrate para continuar</strong>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
   <div id="carouselExampleIndicators" class="carousel slide">
     <div class="carousel-indicators">
       <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
