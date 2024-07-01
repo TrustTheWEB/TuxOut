@@ -13,8 +13,8 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
+<header>
 
-<body>
   <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
       <a class="navbar-brand" href="index.html"><img class="logo" src="../../Assets/logo/logo.png"></a>
@@ -41,23 +41,23 @@
           </ul>
         </div>
    
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h1 class="modal-title fs-5" id="exampleModalLabel">Mi carrito</h1>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            ...
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-            <a href="carrito.html" class="btn btn-secondary">Ver mi carrito</a>          </div>
-        </div>
-      </div>
-     
-    </div>
+        <article class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <section class="modal-dialog">
+            <section class="modal-content">
+              <header class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Mi carrito</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </header>
+              <section class="modal-body">
+                ...
+              </section>
+              <footer class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <a href="carrito.html" class="btn btn-secondary">Ver mi carrito</a>
+              </footer>
+            </section>
+          </section>
+        </article>
  
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item dropdown">
@@ -65,31 +65,29 @@
             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="crear">
               <li>
                 <form class="p-4">
-                  <div class="mb-2">
+                  <section class="mb-2">
                     <label for="exampleDropdownFormEmail2" class="form-label">Nombre</label>
                     <input type="name" class="form-control" id="exampleDropdownFormEmail2" placeholder="Ingresa tu nombre">
-                  </div>
-                  <div class="mb-2">
+                  </section>
+                  <section class="mb-2">
                     <label for="exampleDropdownFormEmail2" class="form-label">Apellido</label>
                     <input type="lastname" class="form-control" id="exampleDropdownFormEmail2" placeholder="Ingresa tu apellido">
-                  </div>
-                  <div class="mb-3">
+                  </section>
+                  <section class="mb-3">
                     <label for="exampleDropdownFormEmail2" class="form-label">Email</label>
                     <input type="email" class="form-control" id="exampleDropdownFormEmail2" placeholder="email@example.com">
-                  </div>
-                  <div class="mb-3">
+                  </section>
+                  <section class="mb-3">
                     <label for="exampleDropdownFormPassword2" class="form-label">Contraseña</label>
                     <input type="password" class="form-control" id="exampleDropdownFormPassword2" placeholder="Password">
-                  </div>
-                  <div class="mb-3">
+                  </section>
+                  <section class="mb-3">
                     <div class="form-check">
                       <input type="checkbox" class="form-check-input" id="dropdownCheck2">
-                      <label class="form-check-label" for="dropdownCheck2">
-                         Recordar
-                      </label>
+                      <label class="form-check-label" for="dropdownCheck2">Recordar</label>
                     </div>
-                  </div>
-                  <button type="submit" class="btn btn-primary"> Ingresar</button>
+                  </section>
+                  <button type="submit" class="btn btn-primary">Ingresar</button>
                 </form>
               </li>
             </ul>
@@ -131,13 +129,13 @@
       <button class="btn btn-outline-success me-2" id="botonMenu" type="button" onclick="toggleOffcanvas()">≡ Menú</button>
       <button class="btn btn-sm btn-outline-secondary" id="vender" type="button" onclick="window.location.href = 'vender.html'">Vender</button>
     </form>
-
-    <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
-      <div class="offcanvas-header">
+  
+    <aside class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+      <header class="offcanvas-header">
         <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Bienvenido, usuario</h5>
         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-      </div>
-      <div class="offcanvas-body">
+      </header>
+      <section class="offcanvas-body">
         <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="productos.html">categoría</a>
@@ -146,10 +144,16 @@
             <a class="nav-link active" aria-current="page" href="productos.html">categoría</a>
           </li>
         </ul>
-      </div>
-    </div>
+      </section>
+    </aside>
   </nav>
-
+  <!-- Alerta de carrito -->
+  <section class="alert alert-warning alert-dismissible fade show alerta-carrito" role="alert" style="display: none;">
+    <strong>Inicia sesión o regístrate para continuar</strong>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </section>
+</header>
+<body>
   
   <footer class="pie">
     <a href="condiciones.html">Términos y condiciones</a> |

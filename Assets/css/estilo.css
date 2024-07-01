@@ -45,7 +45,11 @@ min-height: 200px;
 max-height: 400px;
 
   }
-
+  .carousel-indicators {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
 #carouselExampleIndicators{
   top:-10px;
   }
@@ -90,14 +94,24 @@ max-height: 400px;
 #buscar:hover{
   background-color: #58cbe7;
 }
-.btn-primary:focus,
-.btn-primary:active,
-.btn-primary.active {
+.botn-primary{
+  position: relative;
+  display: flex;
+  justify-content: center;
+  width: auto;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  font-size: 14px;
+  border:none;
+}
+.botn-primary:focus,
+.botn-primary:active,
+.botn-primary.active {
   background-color: transparent;
   box-shadow: none;
 }
-.btn-primary.active,
-.btn-primary:active {
+.botn-primary.active,
+.botn-primary:active {
   background-color: transparent !important;
   box-shadow: none !important;
 }
@@ -289,15 +303,15 @@ background-color: #58cbe7;
   margin-top: 10px;
   font-size: 14px;
   border:none;
-  background-color: #4ec3e0;
+  background-color: #4ec3e0!important;
 }
 .btn-primary:active,
 .btn-primary:focus,
 .btn-primary:hover {
-  background-color: #4ec3e0;
+  background-color: #4ec3e0!important;
 }
 .btn-primary:hover{
-  background-color: #58cbe7;
+  background-color: #58cbe7!important;
 }
 
 .btn-favorite{
@@ -328,4 +342,45 @@ text-align: center;
 }
 #exampleModal{
 margin-top:100px;
+}
+.text-center{
+  border: none;
+top:-300px;
+}
+.text-center h1, .text-center h3 {
+  white-space: nowrap;
+  overflow: hidden; 
+  text-overflow: unset; 
+}
+.btn-secondary {
+  background-color: #4ec3e0 !important;
+  border: none;
+}
+
+.btn-secondary:focus,
+.btn-secondary:hover {
+  background-color: #58cbe7 !important;
+}
+
+.ingresarVender{
+  position: relative;
+  display: flex;
+  justify-content: center;
+  width: auto;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  font-size: 14px;
+  border:none;
+  background-color: #4ec3e0!important;
+  margin-bottom: 50px;
+}
+.loginVender{
+  position: relative;
+  right:50px;
+}
+.contenedorVender {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
