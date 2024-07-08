@@ -13,148 +13,171 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
-<header>
-  <nav class="navbar navbar-expand-lg bg-body-tertiary">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="index.html"><img class="logo" src="../../Assets/logo/logo.png"></a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse m-2" id="navbarSupportedContent">
-        <form class="d-flex" role="search">
-          <input class="form-control me-2" type="search" placeholder="Buscar producto..." aria-label="Search">
-          <button class="btn btn-outline-success" id="buscar" type="submit"><img class="lupa"
-              src="../../Assets/logo/lupa.png"></button>
-        </form>
-        <div id="contenedor-bienvenida">Bienvenido/a,<br> <span id="nombre-usuario">USUARIO</span></div>  
-        <div class="dropdown">
-          <a class="btn btn-secondary dropdown-toggle usuario" type="button" data-bs-toggle="dropdown" aria-expanded="false">          </a>
-          <ul class="dropdown-menu contenidoUsuario">
-            <li><a class="dropdown-item" href="usuario.html">Mis datos</a></li>
-            <li><a class="dropdown-item" href="direcciones.html">Direcciones</a></li>
-            <li><a class="dropdown-item" href="compras.html">Mis compras</a></li>
-            <li><a class="dropdown-item" href="compras.html">Favoritos</a></li>
-            <hr>
-            <li><a class="dropdown-item" href="index.html" id="cerrar-sesion">Cerrar sesión</a></li>
+<body>
+
+  <header>
+    <nav class="navbar navbar-expand-lg">
+      <div class="container-fluid">
+        <!-- Logo y vinculo a home -->
+        <a class="navbar-brand" href="index.html">
+          <img class="logo" src="../../Assets/logo/logo.png" alt="Logo">
+        </a>
+        <!-- Boton responsive para adaptar la barra de navegacion a pantallas mas chicas -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse m-2" id="navbarSupportedContent">
+          <!-- Barra de busqueda -->
+          <form class="d-flex" role="search">
+            <input class="form-control me-2" type="search" placeholder="Buscar producto..." aria-label="Search">
+            <button class="btn btn-outline-success" id="buscar" type="submit">
+              <img class="lupa" src="../../Assets/logo/lupa.png" alt="Buscar">
+            </button>
+          </form>
+
+          <!-- Simulacro de como seria la pagina con el usuario ya iniciado, pudiendo redirigirse a demas paginas -->
+          <div id="contenedor-bienvenida">Bienvenido/a,<br> <span id="nombre-usuario">USUARIO</span></div>
+          <div class="dropdown">
+            <a class="btn btn-secondary dropdown-toggle usuario" type="button" data-bs-toggle="dropdown" aria-expanded="false"></a>
+            <ul class="dropdown-menu contenidoUsuario">
+              <li><a class="dropdown-item" href="usuario.html">Mis datos</a></li>
+              <li><a class="dropdown-item" href="direcciones.html">Direcciones</a></li>
+              <li><a class="dropdown-item" href="compras.html">Mis compras</a></li>
+              <li><a class="dropdown-item" href="compras.html">Favoritos</a></li>
+              <hr>
+              <li><a class="dropdown-item" href="index.html" id="cerrar-sesion">Cerrar sesión</a></li>
+            </ul>
+          </div>
+  
+          
+  
+          <!-- Inicios de sesion y registros desplegables -->
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item dropdown">
+              <button type="button" class="btn botn-primary dropdown-toggle dropdown-toggle-none-caret" id="crear" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">Crear una cuenta</button>
+              <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="crear">
+                <li>
+                  <form class="p-4">
+                    <div class="mb-2">
+                      <label for="exampleDropdownFormEmail2" class="form-label">Nombre</label>
+                      <input type="name" class="form-control" id="exampleDropdownFormEmail2" placeholder="Ingresa tu nombre">
+                    </div>
+                    <div class="mb-2">
+                      <label for="exampleDropdownFormEmail2" class="form-label">Apellido</label>
+                      <input type="lastname" class="form-control" id="exampleDropdownFormEmail2" placeholder="Ingresa tu apellido">
+                    </div>
+                    <div class="mb-3">
+                      <label for="exampleDropdownFormEmail2" class="form-label">Email</label>
+                      <input type="email" class="form-control" id="exampleDropdownFormEmail2" placeholder="email@example.com">
+                    </div>
+                    <div class="mb-3">
+                      <label for="exampleDropdownFormPassword2" class="form-label">Contraseña</label>
+                      <input type="password" class="form-control" id="exampleDropdownFormPassword2" placeholder="Password">
+                    </div>
+                    <div class="mb-3">
+                      <div class="form-check">
+                        <input type="checkbox" class="form-check-input" id="dropdownCheck2">
+                        <label class="form-check-label" for="dropdownCheck2">Recordar</label>
+                      </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Ingresar</button>
+                  </form>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown">
+              <button type="button" class="btn botn-primary dropdown-toggle" id="ingresar" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">Ingresar</button>
+              <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="ingresar">
+                <li>
+                  <form class="p-4">
+                    <div class="mb-2">
+                      <label for="exampleDropdownFormEmail2" class="form-label">Email</label>
+                      <input type="email" class="form-control" id="exampleDropdownFormEmail2" placeholder="email@example.com">
+                    </div>
+                    <div class="mb-3">
+                      <label for="exampleDropdownFormPassword2" class="form-label">Contraseña</label>
+                      <input type="password" class="form-control" id="exampleDropdownFormPassword2" placeholder="Password">
+                    </div>
+                    <div class="mb-3">
+                      <div class="form-check">
+                        <input type="checkbox" class="form-check-input" id="dropdownCheck2">
+                        <label class="form-check-label" for="dropdownCheck2">Recordar</label>
+                      </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Ingresar</button>
+                  </form>
+                </li>
+              </ul>
+            </li>
+            <button type="button" class="carrito" data-bs-toggle="modal" data-bs-target="#exampleModal"></button>
           </ul>
         </div>
-   
-        <article class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-          <section class="modal-dialog">
-            <section class="modal-content">
-              <header class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Mi carrito</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-              </header>
-              <section class="modal-body">
-                ...
-              </section>
-              <footer class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                <a href="carrito.html" class="btn btn-secondary">Ver mi carrito</a>
-              </footer>
-            </section>
-          </section>
-        </article>
- 
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item dropdown">
-<button type="button" class="btn botn-primary dropdown-toggle dropdown-toggle-none-caret" id="crear" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">Crear una cuenta</button>          
-            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="crear">
-              <li>
-                <form class="p-4">
-                  <section class="mb-2">
-                    <label for="exampleDropdownFormEmail2" class="form-label">Nombre</label>
-                    <input type="name" class="form-control" id="exampleDropdownFormEmail2" placeholder="Ingresa tu nombre">
-                  </section>
-                  <section class="mb-2">
-                    <label for="exampleDropdownFormEmail2" class="form-label">Apellido</label>
-                    <input type="lastname" class="form-control" id="exampleDropdownFormEmail2" placeholder="Ingresa tu apellido">
-                  </section>
-                  <section class="mb-3">
-                    <label for="exampleDropdownFormEmail2" class="form-label">Email</label>
-                    <input type="email" class="form-control" id="exampleDropdownFormEmail2" placeholder="email@example.com">
-                  </section>
-                  <section class="mb-3">
-                    <label for="exampleDropdownFormPassword2" class="form-label">Contraseña</label>
-                    <input type="password" class="form-control" id="exampleDropdownFormPassword2" placeholder="Password">
-                  </section>
-                  <section class="mb-3">
-                    <div class="form-check">
-                      <input type="checkbox" class="form-check-input" id="dropdownCheck2">
-                      <label class="form-check-label" for="dropdownCheck2">Recordar</label>
-                    </div>
-                  </section>
-                  <button type="submit" class="btn btn-primary">Ingresar</button>
-                </form>
-              </li>
-            </ul>
-          </li>
-          <li class="nav-item dropdown">
-            <button type="button" class="btn botn-primary dropdown-toggle" id="ingresar" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">Ingresar</button>
+      </div>
 
-            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="ingresar">
-              <li>
-                <form class="p-4">
-                  <div class="mb-2">
-                    <label for="exampleDropdownFormEmail2" class="form-label">Email</label>
-                    <input type="email" class="form-control" id="exampleDropdownFormEmail2" placeholder="email@example.com">
-                  </div>
-                  <div class="mb-3">
-                    <label for="exampleDropdownFormPassword2" class="form-label">Contraseña</label>
-                    <input type="password" class="form-control" id="exampleDropdownFormPassword2" placeholder="Password">
-                  </div>
-                  <div class="mb-3">
-                    <div class="form-check">
-                      <input type="checkbox" class="form-check-input" id="dropdownCheck2">
-                      <label class="form-check-label" for="dropdownCheck2">
-                         Recordar
-                      </label>
-                    </div>
-                  </div>
-                  <button type="submit" class="btn btn-primary">Ingresar</button>
-                </form>
-              </li>
-            </ul>
-          </li>
-          <button type="button" class="carrito" data-bs-toggle="modal" data-bs-target="#exampleModal"></button>
-        </ul>
+      <!-- Caja oculta con la vista previa del carrito -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Mi carrito</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          ...
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+          <a href="carrito.html" class="btn btn-secondary">Ver mi carrito</a>
+        </div>
       </div>
     </div>
-  </nav>
-  <nav class="navbar bg-body-tertiary" id="subnav">
-    <form class="container-fluid justify-content-start" id="subnav1">
-      <button class="btn btn-outline-success me-2" id="botonMenu" type="button" onclick="toggleOffcanvas()">≡ Menú</button>
-      <button class="btn btn-sm btn-outline-secondary" id="vender" type="button" onclick="window.location.href = 'vender.html'">Vender</button>
-    </form>
+  </div>
+
+    </nav>
+
+    <!-- Barra de navegacion inferior con la capacidad de desplegar la barra lateral -->
+    <nav class="navbar" id="subnav">
+      <form class="container-fluid justify-content-start" id="subnav-form">
+        <button class="btn" id="botonMenu" type="button" onclick="toggleOffcanvas()">≡ Menú</button>
+        <a class="btn" id="vender" href="vender.html">Vender</a>
+      </form>
+    </nav>
+  </header>
   
-    <aside class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
-      <header class="offcanvas-header">
-        <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Bienvenido, usuario</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-      </header>
-      <section class="offcanvas-body">
-        <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="productos.html">categoría</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="productos.html">categoría</a>
-          </li>
-        </ul>
-      </section>
-    </aside>
-  </nav>
-  <!-- Alerta de carrito -->
-  <section class="alert alert-warning alert-dismissible fade show alerta-carrito" role="alert" style="display: none;">
-    <strong>Inicia sesión o regístrate para continuar</strong>
-    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-  </section>
-</header>
-<body>
- 
-  <div id="carouselExampleIndicators" class="carousel slide">
+  <aside class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+    <nav>
+        <div class="offcanvas-header">
+          <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Bienvenido, usuario</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+          <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+            <li class="nav-item">
+              <a class="nav-link" href="productos.html">categoría</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="productos.html">categoría</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="productos.html">categoría</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="productos.html">categoría</a>
+            </li>
+          </ul>
+        </div>
+    </nav>
+  </aside>
+  
+    <!-- Alerta de carrito -->
+    <section class="alert alert-warning alert-dismissible fade show alerta-carrito" role="alert" style="display: none;">
+      <strong>Inicia sesión o regístrate para continuar</strong>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </section>
+
+  <main>
+    <div id="carouselExampleIndicators" class="carousel slide">
     <ul class="carousel-indicators">
       <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"></li>
       <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"></li>
@@ -417,6 +440,9 @@
       </section>
     </section>
   </section>
+
+
+  </main>
 
 <footer class="pie">
   <a href="condiciones.html">Términos y condiciones</a> |

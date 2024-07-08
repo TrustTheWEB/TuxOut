@@ -1,89 +1,105 @@
-
+/* Normalizar el css */
 .body {
   margin: 0;
   padding: 0;
   font-family: Arial, Verdana ;
   background-color: #f7f7ff;
 }
+
 .logo {
-    width: 200px; 
     height: 50px; 
   }
-  .container-fluid{
-    background-color: #111118;
-    margin-top: -10PX;
-    height: auto;
-  }
-  .nav-item a{
-    color: aliceblue;
-  }
-  .navbar-toggler {
-    border: none;
-    background-color: white;
-  }
-  .lupa{
-    height: 30px;
-    width: 30px;
-  }
-  .d-flex{
-    width: 75%;
-    margin-left: 10px;
-  }
-  .nav-item{
-    margin-left: 10px;
-  }
 
- .card-margin {
-  
-position: relative;
+.container-fluid{
+  background-color: #111118;
+  margin-top: -10px;
+  height: auto;
+}
+
+.nav-item a{
+  color: aliceblue;
+}
+
+.side-item-active a{
+  background-color: #4ec3e0;
+}
+
+.nav-item,.side a{
+  color: #16161f;
+}
+
+
+.navbar-toggler {
+  border: none;
+  background-color: white;
+}
+.lupa{
+  height: 30px;
+  width: 30px;
+}
+.d-flex{
+  width: 75%;
+  margin-left: 10px;
+}
+.nav-item{
+  margin-left: 10px;
+}
+
+.card-margin {
+  position: relative;
   display: inline-block;
   left:20px;
-right: 20px;
-min-width: 200px;
-max-width: 250px;
-min-height: 200px;
-max-height: 400px;
+  right: 20px;
+  min-width: 200px;
+  max-width: 250px;
+  min-height: 200px;
+  max-height: 400px;
+}
 
-  }
-  .carousel-indicators {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
+.carousel-indicators {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
 #carouselExampleIndicators{
   top:-10px;
-  }
+}
 
-  #subnav{
-  margin-top: -10px;
-   background-color: #16161f;
-  }
-  #subnav1{
-    background-color: #16161f;
-    height: 50px;
-  }
-  #botonMenu{
-    position: relative;
-    display: inline-block;
-    left: 15px;
-    top:0px;
-    background-color: transparent;
-    border: none;
-    color: white;
-    width: 100px;
-    height: 40px;
-  }
-  #vender {
-    position: relative;
-    display: inline-block;
-    margin-right: auto;
-    margin-left: 10px;
-    top: 0px;
-    background-color: transparent;
-    border: none;
-    color: white;
-    text-decoration: none;
-  }
+#subnav{
+  padding-bottom: 0;
+  margin-bottom: 8px;
+  background-color: #16161f;
+}
+
+#subnav-form{
+  background-color: #16161f;
+  height: 50px;
+}
+
+#botonMenu{
+  position: relative;
+  display: inline-block;
+  left: 15px;
+  top:0px;
+  background-color: transparent;
+  border: none;
+  color: white;
+  width: 100px;
+  height: 40px;
+}
+
+#vender {
+  position: relative;
+  display: inline-block;
+  margin-right: auto;
+  margin-left: 10px;
+  top: 0px;
+  background-color: transparent;
+  border: none;
+  color: white;
+  text-decoration: none;
+}
 
 /*BOTÓN DE BUSCAR*/
 #buscar {
@@ -383,4 +399,14 @@ top:-300px;
   justify-content: center;
   align-items: center;
   height: 100vh;
+}
+
+/* PROVEEDORES */
+
+#sidebar {
+  width: 280px;
+}
+
+.navbar {
+  padding-bottom: 0;
 }
