@@ -9,12 +9,12 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="../../Assets/css/estilo.css">
-    <link rel="stylesheet" type="text/css" href="../../Assets/css/carrito.css">
+    <link rel="stylesheet" type="text/css" href="../../Assets/css/footer.css">
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
- 
+
   <header>
     <nav class="navbar navbar-expand-lg">
       <div class="container-fluid">
@@ -23,40 +23,37 @@
           <img class="logo" src="../../Assets/logo/logo.png" alt="Logo">
         </a>
         <!-- Boton responsive para adaptar la barra de navegacion a pantallas mas chicas -->
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
           <span class="navbar-toggler-icon"></span>
         </button>
 
         <div class="collapse navbar-collapse m-2" id="navbarSupportedContent">
           <!-- Barra de busqueda -->
-          <form class="d-flex" role="search">
-            <input class="form-control me-2" type="search" placeholder="Buscar producto..." aria-label="Search">
-            <button class="btn btn-outline-success" id="buscar" type="submit">
+          <form class="d-flex" action="productos.html">
+            <input class="form-control me-2" type="search" placeholder="Buscar producto...">
+            <button class="btn btn-outline-success btn-barra" type="submit">
               <img class="lupa" src="../../Assets/logo/lupa.png" alt="Buscar">
             </button>
           </form>
 
-          <!-- Simulacro de como seria la pagina con el usuario ya iniciado, pudiendo redirigirse a demas paginas -->
-          <div id="contenedor-bienvenida">Bienvenido/a,<br> <span id="nombre-usuario">USUARIO</span></div>
+          <!--Boton de usuario (se activaría cuando se inicie sesion), pudiendo redirigirse a demas paginas -->
           <div class="dropdown">
             <a class="btn btn-secondary dropdown-toggle usuario" type="button" data-bs-toggle="dropdown" aria-expanded="false"></a>
             <ul class="dropdown-menu contenidoUsuario">
-              <li><a class="dropdown-item" href="usuario.html">Mis datos</a></li>
-              <li><a class="dropdown-item" href="direcciones.html">Direcciones</a></li>
-              <li><a class="dropdown-item" href="compras.html">Mis compras</a></li>
-              <li><a class="dropdown-item" href="compras.html">Favoritos</a></li>
+              <li class="p-1"><a class="dropdown-item" href="usuario.html">Mis datos</a></li>
+              <li class="p-1"><a class="dropdown-item" href="direcciones.html">Direcciones</a></li>
+              <li class="p-1"><a class="dropdown-item" href="compras.html">Mis compras</a></li>
+              <li class="p-1"><a class="dropdown-item" href="compras.html">Favoritos</a></li>
               <hr>
-              <li><a class="dropdown-item" href="index.html" id="cerrar-sesion">Cerrar sesión</a></li>
+              <li class="p-1"><a class="dropdown-item" href="index.html" id="cerrar-sesion">Cerrar sesión</a></li>
             </ul>
           </div>
   
-          
-  
-          <!-- Inicios de sesion y registros desplegables -->
+          <!-- Inicios de sesion y registros desplegables (una vez se inicie sesion con la base de datos esto se dejaría de mostrar)-->
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item dropdown">
               <button type="button" class="btn botn-primary dropdown-toggle dropdown-toggle-none-caret" id="crear" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">Crear una cuenta</button>
-              <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="crear">
+              <ul class="dropdown-menu dropdown-menu-login dropdown-menu-end" aria-labelledby="crear">
                 <li>
                   <form class="p-4">
                     <div class="mb-2">
@@ -88,7 +85,7 @@
             </li>
             <li class="nav-item dropdown">
               <button type="button" class="btn botn-primary dropdown-toggle" id="ingresar" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">Ingresar</button>
-              <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="ingresar">
+              <ul class="dropdown-menu dropdown-menu-login dropdown-menu-end" aria-labelledby="ingresar">
                 <li>
                   <form class="p-4">
                     <div class="mb-2">
@@ -123,9 +120,11 @@
           <h1 class="modal-title fs-5" id="exampleModalLabel">Mi carrito</h1>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <div class="modal-body">
-          ...
-        </div>
+        <article class="modal-body">
+          <p id="carrito-vista-previa">
+            
+          </p>
+        </article>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
           <a href="carrito.html" class="btn btn-secondary">Ver mi carrito</a>
@@ -169,12 +168,6 @@
         </div>
     </nav>
   </aside>
-  
-    <!-- Alerta de carrito -->
-    <section class="alert alert-warning alert-dismissible fade show alerta-carrito" role="alert" style="display: none;">
-      <strong>Inicia sesión o regístrate para continuar</strong>
-      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </section>
 
     <main>
       <div class="contenedorPantalla">
@@ -201,7 +194,6 @@
     <p>&copy; 2024-2024 Trust the WEB Company</p>
   </footer>
     <script src="../../Vista/js/jquery-3.7.1.min.js"></script>
-    <script src="../../Vista/js/pagina.js"></script>
   
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
       integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"

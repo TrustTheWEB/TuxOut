@@ -1,5 +1,5 @@
 /* Normalizar el css */
-.body {
+body {
   margin: 0;
   padding: 0;
   font-family: Arial, Verdana ;
@@ -14,6 +14,10 @@
   background-color: #111118;
   margin-top: -10px;
   height: auto;
+}
+
+.container {
+  box-sizing: content-box !important;
 }
 
 .nav-item a{
@@ -102,14 +106,22 @@
 }
 
 /*BOTÓN DE BUSCAR*/
-#buscar {
+
+.btn-outline-success{
+  background-color: #58cbe7 !important;
+}
+
+.btn-barra {
   border:none;
   border-radius: 4px 4px 4px 4px;
-  background-color: #4ec3e0;
+  background-color: #4ec3e0 !important;
 }
-#buscar:hover{
-  background-color: #58cbe7;
+
+.btn-barra:hover{
+  background-color: #58cbe7 !important;
 }
+
+
 .botn-primary{
   position: relative;
   display: flex;
@@ -146,9 +158,12 @@
 }
  .dropdown-menu{ 
   position: relative;
-  width: 300px;
-  
 }
+
+.dropdown-menu-login{ 
+  width: 300px;
+}
+
 /*ingresar */
 #ingresar{
   position: relative;
@@ -314,7 +329,7 @@ background-color: #58cbe7;
   position: relative;
   display: flex;
   justify-content: center;
-  width: auto;
+  width: 100%;
   margin-bottom: 10px;
   margin-top: 10px;
   font-size: 14px;
@@ -341,33 +356,39 @@ background-color: #58cbe7;
   height: 20px;
   left: -3px;
 }
+
 /*las mini categorias :) */
+
 .miniCat-container {
   position: relative;
   margin-top: 50px;
-    justify-content: center;
+  justify-content: center;
   margin-bottom: 20px;
 }
  
 .alert{
   top:0px;
   position: absolute;
-width: 100%;
-z-index: 10001;
-text-align: center;
+  width: 100%;
+  z-index: 10001;
+  text-align: center;
 }
+
 #exampleModal{
-margin-top:100px;
+  margin-top:100px;
 }
+
 .text-center{
   border: none;
-top:-300px;
+  top:-300px;
 }
+
 .text-center h1, .text-center h3 {
   white-space: nowrap;
   overflow: hidden; 
   text-overflow: unset; 
 }
+
 .btn-secondary {
   background-color: #4ec3e0 !important;
   border: none;
@@ -390,21 +411,201 @@ top:-300px;
   background-color: #4ec3e0!important;
   margin-bottom: 50px;
 }
+
 .loginVender{
   position: relative;
   right:50px;
 }
-.contenedorVender {
-  display: grid;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
+
+.precio-anterior {
+  text-decoration: line-through;
+  font-size: 14px;
+  color: #16161f;
+}
+
+.precio-nuevo {
+  font-weight: bold;
+  font-size: 25px;
+  line-height: 30px;
+}
+
+.precio-descuento {
+  font-size: 16px;
+  color: rgb(10, 119, 95);
+}
+
+.card-texto {
+  height: 135px;
+}
+
+.card-title-producto {
+  font-size: 16px;
+  padding-bottom: 8px;
+}
+
+.img-abrir {
+  width: 350px;
+}
+
+.img-abrir-select {
+  width: 45px;
+  height: auto;
+}
+
+.img-abrir-select:hover {
+  border: 2px solid #4ec3e0 !important;
+}
+
+.li-abrir {
+  list-style: none;
+}
+
+.art-abrir {
+  box-sizing: border-box;
+}
+
+.btn-card-comprar {
+  font-size: 12px;
+  font-weight: bold;
+  background-color: #4ec3e0;
+  color: #f7f7ff;
+}
+
+.btn-card-comprar:hover {
+  background-color: #58cbe7;
+  color: #f7f7ff;
+}
+
+.btn-card-comprar:active {
+  background-color: #58cbe7 !important;
+  color: #f7f7ff !important;
+}
+
+.titulo-producto {
+  font-size: 28px;
+}
+
+.atributo-producto {
+  margin-bottom: 10px;
+  font-size: 15px;
+}
+
+.calificacion {
+  width: 70px;
+}
+
+.card-comprar {
+  height: 350px;
+}
+
+.card-comprar .precio-nuevo {
+  font-size: 40px;
+}
+
+.card-comprar .precio-anterior {
+  font-size: 16px;
+}
+
+.card-comprar .precio-descuento {
+  font-size: 18px;
+  line-height: 18px;
 }
 
 /* PROVEEDORES */
 
-#sidebar {
-  width: 280px;
+.sidebar {
+  padding-top: 10px;
+  margin-left: -10px;
+  background-color: #16161f;
+  width: 220px !important;
+}
+
+.sidebar .nav-link:focus {
+  color: #f7f7ff;
+}
+
+.contenedor-proveedor {
+  width: 100% !important;
+}
+
+.img-proveedor {
+  height: 170px;
+}
+
+.card-proveedores-inicio {
+  height: 265px;
+}
+
+.card-body-proveedores {
+  height: 180px;
+}
+
+.pill-sidebar-active {
+  background-color: #4ec3e0 !important;
+}
+
+.pill-sidebar:hover {
+  color: #4ec3e0;
+}
+
+.pill-sidebar-active:hover {
+  color: #f7f7ff;
+}
+
+.badge-noti {
+  background-color: #4ec3e0 !important;
+}
+
+.badge-noti-active {
+  background-color: #f7f7ff !important;
+  color: #4ec3e0 !important;
+}
+
+.img-productos {
+  width: 120px !important; 
+  height: auto; 
+}
+
+.card-body-mis {
+  height: 145px;
+}
+
+.card-body-mis h5{
+  font-size: 14px;
+}
+
+.card-body-mis .precio-anterior{
+  font-size: 12px;
+}
+
+.card-body-mis .precio-nuevo{
+  font-size: 18px;
+  line-height: 18px;
+}
+
+.card-body-mis .precio-descuento{
+  font-size: 15px;
+}
+
+.card-body-mis p{
+  font-size: 14px;
+}
+
+.card-body-mis h5{
+  font-size: 14px;
+}
+
+/* VENDER */
+
+.card-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-container {
+  max-width: 400px;
+  width: 100%;
 }
 
 .navbar {

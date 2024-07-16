@@ -23,40 +23,37 @@
           <img class="logo" src="../../Assets/logo/logo.png" alt="Logo">
         </a>
         <!-- Boton responsive para adaptar la barra de navegacion a pantallas mas chicas -->
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
           <span class="navbar-toggler-icon"></span>
         </button>
 
         <div class="collapse navbar-collapse m-2" id="navbarSupportedContent">
           <!-- Barra de busqueda -->
-          <form class="d-flex" role="search">
-            <input class="form-control me-2" type="search" placeholder="Buscar producto..." aria-label="Search">
-            <button class="btn btn-outline-success" id="buscar" type="submit">
+          <form class="d-flex" action="productos.html">
+            <input class="form-control me-2" type="search" placeholder="Buscar producto...">
+            <button class="btn btn-outline-success btn-barra" type="submit">
               <img class="lupa" src="../../Assets/logo/lupa.png" alt="Buscar">
             </button>
           </form>
 
-          <!-- Simulacro de como seria la pagina con el usuario ya iniciado, pudiendo redirigirse a demas paginas -->
-          <div id="contenedor-bienvenida">Bienvenido/a,<br> <span id="nombre-usuario">USUARIO</span></div>
+          <!--Boton de usuario (se activaría cuando se inicie sesion), pudiendo redirigirse a demas paginas -->
           <div class="dropdown">
             <a class="btn btn-secondary dropdown-toggle usuario" type="button" data-bs-toggle="dropdown" aria-expanded="false"></a>
             <ul class="dropdown-menu contenidoUsuario">
-              <li><a class="dropdown-item" href="usuario.html">Mis datos</a></li>
-              <li><a class="dropdown-item" href="direcciones.html">Direcciones</a></li>
-              <li><a class="dropdown-item" href="compras.html">Mis compras</a></li>
-              <li><a class="dropdown-item" href="compras.html">Favoritos</a></li>
+              <li class="p-1"><a class="dropdown-item" href="usuario.html">Mis datos</a></li>
+              <li class="p-1"><a class="dropdown-item" href="direcciones.html">Direcciones</a></li>
+              <li class="p-1"><a class="dropdown-item" href="compras.html">Mis compras</a></li>
+              <li class="p-1"><a class="dropdown-item" href="compras.html">Favoritos</a></li>
               <hr>
-              <li><a class="dropdown-item" href="index.html" id="cerrar-sesion">Cerrar sesión</a></li>
+              <li class="p-1"><a class="dropdown-item" href="index.html" id="cerrar-sesion">Cerrar sesión</a></li>
             </ul>
           </div>
   
-          
-  
-          <!-- Inicios de sesion y registros desplegables -->
+          <!-- Inicios de sesion y registros desplegables (una vez se inicie sesion con la base de datos esto se dejaría de mostrar)-->
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item dropdown">
               <button type="button" class="btn botn-primary dropdown-toggle dropdown-toggle-none-caret" id="crear" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">Crear una cuenta</button>
-              <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="crear">
+              <ul class="dropdown-menu dropdown-menu-login dropdown-menu-end" aria-labelledby="crear">
                 <li>
                   <form class="p-4">
                     <div class="mb-2">
@@ -88,7 +85,7 @@
             </li>
             <li class="nav-item dropdown">
               <button type="button" class="btn botn-primary dropdown-toggle" id="ingresar" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">Ingresar</button>
-              <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="ingresar">
+              <ul class="dropdown-menu dropdown-menu-login dropdown-menu-end" aria-labelledby="ingresar">
                 <li>
                   <form class="p-4">
                     <div class="mb-2">
@@ -123,9 +120,11 @@
           <h1 class="modal-title fs-5" id="exampleModalLabel">Mi carrito</h1>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <div class="modal-body">
-          ...
-        </div>
+        <article class="modal-body">
+          <p id="carrito-vista-previa">
+            
+          </p>
+        </article>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
           <a href="carrito.html" class="btn btn-secondary">Ver mi carrito</a>
@@ -169,15 +168,9 @@
         </div>
     </nav>
   </aside>
-  
-    <!-- Alerta de carrito -->
-    <section class="alert alert-warning alert-dismissible fade show alerta-carrito" role="alert" style="display: none;">
-      <strong>Inicia sesión o regístrate para continuar</strong>
-      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </section>
 
   <main>
-    <div id="carouselExampleIndicators" class="carousel slide">
+    <section id="carouselExampleIndicators" class="carousel slide">
     <ul class="carousel-indicators">
       <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"></li>
       <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"></li>
@@ -206,242 +199,276 @@
       data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
       <span class="carousel-control-next-icon" aria-hidden="true"></span>
     </button>
-  </div>
-  </nav>
-<section class="carousel-container">
-  <section id="carouselExampleCards" class="carousel slide carousel-fade" data-bs-ride="carousel">
-    <section class="carousel-inner">
-      <section class="carousel-item active">
-        <section class="row row-cols-3 row-cols-lg-6 g-4">
-          <section class="col card-margin">
-            <article class="card">
-              <a href="abrirproducto.html">
-                <img src="../../Assets/img/iphone.jpg" class="card-img-top">
-              </a>
-              <section class="card-body">
-                <h5 class="card-title">iPhone</h5>
-                <a href="#" class="btn btn-primary justify-center">Comprar</a>
-                <a href="#" class="btn btn-primary justify-center">Agregar al carrito</a>
-              </section>
-              <section class="botonFavorito">
-                <button class="btn btn-favorite">
-                  <img src="../../Assets/logo/favorito.png">
-                </button>
-              </section>
-            </article>
-          </section>
-          <section class="col card-margin">
-            <article class="card">
-              <a href="abrirproducto.html">
-                <img src="../../Assets/img/iphone.jpg" class="card-img-top">
-              </a>
-              <section class="card-body">
-                <h5 class="card-title">iPhone</h5>
-                <a href="#" class="btn btn-primary justify-center">Comprar</a>
-                <a href="#" class="btn btn-primary justify-center">Agregar al carrito</a>
-              </section>
-              <section class="botonFavorito">
-                <button class="btn btn-favorite">
-                  <img src="../../Assets/logo/favorito.png">
-                </button>
-              </section>
-            </article>
-          </section>
-          <section class="col card-margin">
-            <article class="card">
-              <a href="abrirproducto.html">
-                <img src="../../Assets/img/iphone.jpg" class="card-img-top">
-              </a>
-              <section class="card-body">
-                <h5 class="card-title">iPhone</h5>
-                <a href="#" class="btn btn-primary justify-center">Comprar</a>
-                <a href="#" class="btn btn-primary justify-center">Agregar al carrito</a>
-              </section>
-              <section class="botonFavorito">
-                <button class="btn btn-favorite">
-                  <img src="../../Assets/logo/favorito.png">
-                </button>
-              </section>
-            </article>
-          </section>
-          <section class="col card-margin">
-            <article class="card">
-              <a href="abrirproducto.html">
-                <img src="../../Assets/img/iphone.jpg" class="card-img-top">
-              </a>
-              <section class="card-body">
-                <h5 class="card-title">iPhone</h5>
-                <a href="#" class="btn btn-primary justify-center">Comprar</a>
-                <a href="#" class="btn btn-primary justify-center">Agregar al carrito</a>
-              </section>
-              <section class="botonFavorito">
-                <button class="btn btn-favorite">
-                  <img src="../../Assets/logo/favorito.png">
-                </button>
-              </section>
-            </article>
-          </section>
-          <section class="col card-margin">
-            <article class="card">
-              <a href="abrirproducto.html">
-                <img src="../../Assets/img/iphone.jpg" class="card-img-top">
-              </a>
-              <section class="card-body">
-                <h5 class="card-title">iPhone</h5>
-                <a href="#" class="btn btn-primary justify-center">Comprar</a>
-                <a href="#" class="btn btn-primary justify-center">Agregar al carrito</a>
-              </section>
-              <section class="botonFavorito">
-                <button class="btn btn-favorite">
-                  <img src="../../Assets/logo/favorito.png">
-                </button>
-              </section>
-            </article>
-          </section>
-          <section class="col card-margin">
-            <article class="card">
-              <a href="abrirproducto.html">
-                <img src="../../Assets/img/iphone.jpg" class="card-img-top">
-              </a>
-              <section class="card-body">
-                <h5 class="card-title">iPhone</h5>
-                <a href="#" class="btn btn-primary justify-center">Comprar</a>
-                <a href="#" class="btn btn-primary justify-center">Agregar al carrito</a>
-              </section>
-              <section class="botonFavorito">
-                <button class="btn btn-favorite">
-                  <img src="../../Assets/logo/favorito.png">
-                </button>
-              </section>
-            </article>
-          </section>
-          <section class="col card-margin">
-            <article class="card">
-              <a href="abrirproducto.html">
-                <img src="../../Assets/img/iphone.jpg" class="card-img-top">
-              </a>
-              <section class="card-body">
-                <h5 class="card-title">iPhone</h5>
-                <a href="#" class="btn btn-primary justify-center">Comprar</a>
-                <a href="#" class="btn btn-primary justify-center">Agregar al carrito</a>
-              </section>
-              <section class="botonFavorito">
-                <button class="btn btn-favorite">
-                  <img src="../../Assets/logo/favorito.png">
-                </button>
-              </section>
-            </article>
-          </section>
-          <section class="col card-margin">
-            <article class="card">
-              <a href="abrirproducto.html">
-                <img src="../../Assets/img/iphone.jpg" class="card-img-top">
-              </a>
-              <section class="card-body">
-                <h5 class="card-title">iPhone</h5>
-                <a href="#" class="btn btn-primary justify-center">Comprar</a>
-                <a href="#" class="btn btn-primary justify-center">Agregar al carrito</a>
-              </section>
-              <section class="botonFavorito">
-                <button class="btn btn-favorite">
-                  <img src="../../Assets/logo/favorito.png">
-                </button>
-              </section>
-            </article>
-          </section>
-          <section class="col card-margin">
-            <article class="card">
-              <a href="abrirproducto.html">
-                <img src="../../Assets/img/iphone.jpg" class="card-img-top">
-              </a>
-              <section class="card-body">
-                <h5 class="card-title">iPhone</h5>
-                <a href="#" class="btn btn-primary justify-center">Comprar</a>
-                <a href="#" class="btn btn-primary justify-center">Agregar al carrito</a>
-              </section>
-              <section class="botonFavorito">
-                <button class="btn btn-favorite">
-                  <img src="../../Assets/logo/favorito.png">
-                </button>
-              </section>
-            </article>
-          </section>
-          <section class="col card-margin">
-            <article class="card">
-              <a href="abrirproducto.html">
-                <img src="../../Assets/img/iphone.jpg" class="card-img-top">
-              </a>
-              <section class="card-body">
-                <h5 class="card-title">iPhone</h5>
-                <a href="#" class="btn btn-primary justify-center">Comprar</a>
-                <a href="#" class="btn btn-primary justify-center">Agregar al carrito</a>
-              </section>
-              <section class="botonFavorito">
-                <button class="btn btn-favorite">
-                  <img src="../../Assets/logo/favorito.png">
-                </button>
-              </section>
-            </article>
-          </section>
-          </section>
-        </section>
-      </section>
     </section>
+
+  <section class="carousel-container">
+    <div id="carouselExampleCards" class="carousel slide carousel-fade" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel">
+                <div class="row row-cols-3 row-cols-lg-6">
+                    <div class="col card-margin mb-4">
+                        <article class="card pt-2">
+                            <a href="abrirProducto.html">
+                                <img src="../../Assets/img/iphone.jpg" class="card-img-top">
+                            </a>
+                            <div class="card-body pt-0 pb-1 contenedor-producto">
+                                <div class="card-texto">
+                                    <h5 class="card-title m-0 card-title-producto id-producto" data-id-producto="1">iPhone 1 128GB 4GB RAM 5000mhA</h5>
+                                    <p class="precio-anterior m-0">$50.00</p>
+                                    <p class="precio-nuevo m-0">$25.000</p>
+                                    <p class="precio-descuento m-0">%50 OFF</p>
+                                </div>
+                                <button class="btn btn-primary justify-center agregar-carrito">Agregar al carrito</button>
+                            </div>
+                            <div class="botonFavorito">
+                                <button class="btn btn-favorite">
+                                    <img src="../../Assets/logo/favorito.png">
+                                </button>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="col card-margin mb-4">
+                        <article class="card pt-2">
+                            <a href="abrirProducto.html">
+                                <img src="../../Assets/img/iphone.jpg" class="card-img-top">
+                            </a>
+                            <div class="card-body pt-0 pb-1 contenedor-producto">
+                                <div class="card-texto">
+                                    <h5 class="card-title card-title-producto id-producto" data-id-producto="2">iPhone 2</h5>
+                                    <p class="precio-anterior m-0">$50.00</p>
+                                    <p class="precio-nuevo m-0">$25.000</p>
+                                    <p class="precio-descuento m-0">%50 OFF</p>
+                                </div>
+                                <button class="btn btn-primary justify-center agregar-carrito">Agregar al carrito</button>
+                            </div>
+                            <div class="botonFavorito">
+                                <button class="btn btn-favorite">
+                                    <img src="../../Assets/logo/favorito.png">
+                                </button>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="col card-margin mb-4">
+                        <article class="card pt-2">
+                            <a href="abrirProducto.html">
+                                <img src="../../Assets/img/iphone.jpg" class="card-img-top">
+                            </a>
+                            <div class="card-body pt-0 pb-1 contenedor-producto">
+                                <div class="card-texto">
+                                    <h5 class="card-title card-title-producto id-producto" data-id-producto="3">iPhone 3</h5>
+                                    <p class="precio-anterior m-0">$50.00</p>
+                                    <p class="precio-nuevo m-0">$25.000</p>
+                                    <p class="precio-descuento m-0">%50 OFF</p>
+                                </div>
+                                <button class="btn btn-primary justify-center agregar-carrito">Agregar al carrito</button>
+                            </div>
+                            <div class="botonFavorito">
+                                <button class="btn btn-favorite">
+                                    <img src="../../Assets/logo/favorito.png">
+                                </button>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="col card-margin mb-4">
+                        <article class="card pt-2">
+                            <a href="abrirProducto.html">
+                                <img src="../../Assets/img/iphone.jpg" class="card-img-top">
+                            </a>
+                            <div class="card-body pt-0 pb-1 contenedor-producto">
+                                <div class="card-texto">
+                                    <h5 class="card-title card-title-producto id-producto" data-id-producto="4">iPhone 4</h5>
+                                    <p class="precio-anterior m-0"></p>
+                                    <p class="precio-nuevo m-0">$25.000</p>
+                                    <p class="precio-descuento m-0"></p>
+                                </div>
+                                <button class="btn btn-primary justify-center agregar-carrito">Agregar al carrito</button>
+                            </div>
+                            <div class="botonFavorito">
+                                <button class="btn btn-favorite">
+                                    <img src="../../Assets/logo/favorito.png">
+                                </button>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="col card-margin mb-4">
+                        <article class="card pt-2">
+                            <a href="abrirProducto.html">
+                                <img src="../../Assets/img/iphone.jpg" class="card-img-top">
+                            </a>
+                            <div class="card-body pt-0 pb-1 contenedor-producto">
+                                <div class="card-texto">
+                                    <h5 class="card-title card-title-producto id-producto" data-id-producto="5">iPhone 5</h5>
+                                    <p class="precio-anterior m-0">$50.00</p>
+                                    <p class="precio-nuevo m-0">$25.000</p>
+                                    <p class="precio-descuento m-0">%50 OFF</p>
+                                </div>
+                                <button class="btn btn-primary justify-center agregar-carrito">Agregar al carrito</button>
+                            </div>
+                            <div class="botonFavorito">
+                                <button class="btn btn-favorite">
+                                    <img src="../../Assets/logo/favorito.png">
+                                </button>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="col card-margin mb-4">
+                        <article class="card pt-2">
+                            <a href="abrirProducto.html">
+                                <img src="../../Assets/img/iphone.jpg" class="card-img-top">
+                            </a>
+                            <div class="card-body pt-0 pb-1 contenedor-producto">
+                                <div class="card-texto">
+                                    <h5 class="card-title card-title-producto id-producto" data-id-producto="6">iPhone 6</h5>
+                                    <p class="precio-anterior m-0">$50.00</p>
+                                    <p class="precio-nuevo m-0">$25.000</p>
+                                    <p class="precio-descuento m-0">%50 OFF</p>
+                                </div>
+                                <button class="btn btn-primary justify-center agregar-carrito">Agregar al carrito</button>
+                            </div>
+                            <div class="botonFavorito">
+                                <button class="btn btn-favorite">
+                                    <img src="../../Assets/logo/favorito.png">
+                                </button>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="col card-margin mb-4">
+                        <article class="card pt-2">
+                            <a href="abrirProducto.html">
+                                <img src="../../Assets/img/iphone.jpg" class="card-img-top">
+                            </a>
+                            <div class="card-body pt-0 pb-1 contenedor-producto">
+                                <div class="card-texto">
+                                    <h5 class="card-title card-title-producto id-producto" data-id-producto="7">iPhone 7</h5>
+                                    <p class="precio-anterior m-0">$50.00</p>
+                                    <p class="precio-nuevo m-0">$25.000</p>
+                                    <p class="precio-descuento m-0">%50 OFF</p>
+                                </div>
+                                <button class="btn btn-primary justify-center agregar-carrito">Agregar al carrito</button>
+                            </div>
+                            <div class="botonFavorito">
+                                <button class="btn btn-favorite">
+                                    <img src="../../Assets/logo/favorito.png">
+                                </button>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="col card-margin mb-4">
+                        <article class="card pt-2">
+                            <a href="abrirProducto.html">
+                                <img src="../../Assets/img/iphone.jpg" class="card-img-top">
+                            </a>
+                            <div class="card-body pt-0 pb-1 contenedor-producto">
+                                <div class="card-texto">
+                                    <h5 class="card-title card-title-producto id-producto" data-id-producto="8">iPhone 8</h5>
+                                    <p class="precio-anterior m-0">$50.00</p>
+                                    <p class="precio-nuevo m-0">$25.000</p>
+                                    <p class="precio-descuento m-0">%50 OFF</p>
+                                </div>
+                                <button class="btn btn-primary justify-center agregar-carrito">Agregar al carrito</button>
+                            </div>
+                            <div class="botonFavorito">
+                                <button class="btn btn-favorite">
+                                    <img src="../../Assets/logo/favorito.png">
+                                </button>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="col card-margin mb-4">
+                        <article class="card pt-2">
+                            <a href="abrirProducto.html">
+                                <img src="../../Assets/img/iphone.jpg" class="card-img-top">
+                            </a>
+                            <div class="card-body pt-0 pb-1 contenedor-producto">
+                                <div class="card-texto">
+                                    <h5 class="card-title card-title-producto id-producto" data-id-producto="9">iPhone 9</h5>
+                                    <p class="precio-anterior m-0">$50.00</p>
+                                    <p class="precio-nuevo m-0">$25.000</p>
+                                    <p class="precio-descuento m-0">%50 OFF</p>
+                                </div>
+                                <button class="btn btn-primary justify-center agregar-carrito">Agregar al carrito</button>
+                            </div>
+                            <div class="botonFavorito">
+                                <button class="btn btn-favorite">
+                                    <img src="../../Assets/logo/favorito.png">
+                                </button>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="col card-margin mb-4">
+                        <article class="card pt-2">
+                            <a href="abrirProducto.html">
+                                <img src="../../Assets/img/iphone.jpg" class="card-img-top">
+                            </a>
+                            <div class="card-body pt-0 pb-1 contenedor-producto">
+                                <div class="card-texto">
+                                    <h5 class="card-title card-title-producto id-producto" data-id-producto="10">iPhone 10</h5>
+                                    <p class="precio-anterior m-0"></p>
+                                    <p class="precio-nuevo m-0">$25.000</p>
+                                    <p class="precio-descuento m-0"></p>
+                                </div>
+                                <button class="btn btn-primary justify-center agregar-carrito">Agregar al carrito</button>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
   </section>
+  <hr>
   <section class="container">
-    <section class="row row-cols-md-2 row-cols-lg-3 g-4">
-      <section class="miniCat-container">
+    <div class="row row-cols-md-2 row-cols-lg-3 g-4">
+      <div class="miniCat-container">
         <article class="card" id="cat">
-          <section class="card-body">
+          <div class="card-body">
             <h5 class="card-title">Accesorios para computadoras</h5>
-          </section>
+          </div>
           <img src="../../Assets/img/xiaomi.jpg" class="card-img-bottom">
         </article>
-      </section>
-      <section class="miniCat-container">
+      </div>
+      <div class="miniCat-container">
         <article class="card" id="cat">
-          <section class="card-body">
+          <div class="card-body">
             <h5 class="card-title">Accesorios para computadoras</h5>
-          </section>
+          </div>
           <img src="../../Assets/img/xiaomi.jpg" class="card-img-bottom">
         </article>
-      </section>
-      <section class="miniCat-container">
+      </div>
+      <div class="miniCat-container">
         <article class="card" id="cat">
-          <section class="card-body">
+          <div class="card-body">
             <h5 class="card-title">Accesorios para computadoras</h5>
-          </section>
+          </div>
           <img src="../../Assets/img/xiaomi.jpg" class="card-img-bottom">
         </article>
-      </section>
-      <section class="miniCat-container">
+      </div>
+      <div class="miniCat-container">
         <article class="card" id="cat">
-          <section class="card-body">
+          <div class="card-body">
             <h5 class="card-title">Accesorios para computadoras</h5>
-          </section>
+          </div>
           <img src="../../Assets/img/xiaomi.jpg" class="card-img-bottom">
         </article>
-      </section>
-      <section class="miniCat-container">
+      </div>
+      <div class="miniCat-container">
         <article class="card" id="cat">
-          <section class="card-body">
+          <div class="card-body">
             <h5 class="card-title">Accesorios para computadoras</h5>
-          </section>
+          </div>
           <img src="../../Assets/img/xiaomi.jpg" class="card-img-bottom">
         </article>
-      </section>
-      <section class="miniCat-container">
+      </div>
+      <div class="miniCat-container">
         <article class="card" id="cat">
-          <section class="card-body">
+          <div class="card-body">
             <h5 class="card-title">Accesorios para computadoras</h5>
-          </section>
+          </div>
           <img src="../../Assets/img/xiaomi.jpg" class="card-img-bottom">
         </article>
-      </section>
-    </section>
+      </div>
+    </div>
   </section>
-
-
   </main>
 
 <footer class="pie">
@@ -450,7 +477,8 @@
   <p>&copy; 2024-2024 Trust the WEB Company</p>
 </footer>
   <script src="../../Vista/js/jquery-3.7.1.min.js"></script>
-  <script src="../../Vista/js/pagina.js"></script>
+  <script src="../../Vista/js/funciones.js"></script>
+  <script src="../../Vista/js/validaciones.js"></script>
 
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
     integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"

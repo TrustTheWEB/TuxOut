@@ -49,6 +49,7 @@ margin-top: 10px;
     margin-left: 420px;
     font-size: 25px;
   }
+  
   .continuarcompra {
     position: relative;
     display: block;
@@ -62,26 +63,3 @@ margin-top: 10px;
     text-decoration: none;
     font-weight: bold;
   }
-/*footer*/
-.pie {
-  position: fixed;
-  position:block;
-  padding: 10px 0;
-  text-align: left;
-  background-color: #111118;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-}
-.pie a {
-  text-decoration: none;
-  color: #ffffff; 
-  font-size: 10px; 
-}
-.pie p {
-  color: gray;
-  font-size: 10px; 
-}
-.field p{
-  margin-top: 20px;
-}

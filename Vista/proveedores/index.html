@@ -16,51 +16,155 @@
       <div class="container-fluid">
         <!-- Logo y vinculo a home -->
         <a class="navbar-brand" href="index.html">
-          <img class="logo" src="../../Assets/logo/logo.png" alt="Logo">
+          <img class="logo" src="../../Assets/logo/logoP.png" alt="Logo">
         </a>      
       </div>
     </nav>
   </header>
 
-  <aside class="d-flex flex-column flex-shrink-0 p-3 m-0o  text-bg-dark" id="sidebar">
+<div class="row contenedor-proveedor m-0">
+  
+  <aside class="sidebar col-2">
     <nav>
       <ul class="nav nav-pills flex-column">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Inicio</a>
+          <a class="nav-link pill-sidebar-active" href="index.html">Inicio</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Mis productos</a>
+          <a class="nav-link pill-sidebar" href="productos.html">Mis productos</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Estadísticas</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Notificaciones <span class="badge text-bg-primary rounded-pill">1</span></a>
+          <a class="nav-link pill-sidebar" href="notificaciones.html">Notificaciones  <span class="badge text-bg-primary rounded-pill badge-noti ms-1">1</span></a>
         </li>
       </ul>
     </nav>
   </aside>
 
-  <main class="container">
-    <h1>NOMBRE PROVEEDOR</h1>
+  <main class="container col-9 p-3 mt-2">
+    <h1 class="mb-3">Nombre Proveedor</h1>
     <section class="card-group">
-      <article class="card">
-        <h3>Ventas del mes:</h3>
-        <p>10</p>
+      <article class="card ps-3 pt-2">
+        <h3>Ventas del mes</h3>
+        <p class="ps-3">120</p>
       </article>
-      <article class="card">
-        <h3>Ventas del mes:</h3>
-        <p>10</p>
+      <article class="card ps-3 pt-2">
+        <h3>Ingresos de este mes</h3>
+        <p class="ps-3">$1.700.000</p>
       </article>
-      <article class="card">
-        <h3>Ventas del mes:</h3>
-        <p>10</p>
+      <article class="card ps-3 pt-2">
+        <h3>Pedidos pendientes</h3>
+        <p class="ps-3">3</p>
       </article>
     </section>
-    <section>
-      
-    </section>
+    <hr class="my-4">
+
+    <section class="row">
+      <h2 class="mb-3">Artículos más vendidos</h2>
+
+      <article class="col-6">
+        <a href="productos.html" class="text-decoration-none">
+          <div class="card mb-4 p-1 card-proveedores-inicio">
+              <div class="row g-0">
+                  <div class="col-4">
+                      <img src="../../Assets/img/iphone.jpg" class="img-proveedor mt-2" alt="iPhone">
+                  </div>
+                  <div class="col-8">
+                      <div class="card-body card-body-proveedores pb-0">
+                          <h5 class="card-title card-title-producto" >iPhone 15, 64GB, Color Negro, Unlocked</h5>
+                          <p class="precio-anterior m-0"></p>
+                          <p class="precio-nuevo m-0">$25.000</p>
+                          <p class="precio-descuento m-0"></p>
+                          <p>Stock: 52</p>
+                      </div>
+                  </div>
+              </div>
+              <div>
+                <hr>
+                <p class="ps-4">Unidades vendidas este mes: 50</p>
+              </div>
+          </div>
+        </a>
+      </article>
+    
+      <article class="col-6">
+        <a href="productos.html" class="text-decoration-none">
+          <div class="card mb-4 p-1 card-proveedores-inicio">
+              <div class="row g-0">
+                  <div class="col-4">
+                      <img src="../../Assets/img/iphone.jpg" class="img-proveedor mt-2" alt="iPhone">
+                  </div>
+                  <div class="col-8">
+                      <div class="card-body card-body-proveedores pb-0">
+                          <h5 class="card-title card-title-producto" >iPhone 15, 64GB, Color Negro, Unlocked</h5>
+                          <p class="precio-anterior m-0"></p>
+                          <p class="precio-nuevo m-0">$25.000</p>
+                          <p class="precio-descuento m-0"></p>
+                          <p>Stock: 52</p>
+                      </div>
+                  </div>
+              </div>
+              <div>
+                <hr>
+                <p class="ps-4">Unidades vendidas este mes: 50</p>
+              </div>
+          </div>
+        </a>
+      </article>
+
+      <article class="col-6">
+        <a href="productos.html" class="text-decoration-none">
+          <div class="card mb-4 p-1 card-proveedores-inicio">
+              <div class="row g-0">
+                  <div class="col-4">
+                      <img src="../../Assets/img/iphone.jpg" class="img-proveedor mt-2" alt="iPhone">
+                  </div>
+                  <div class="col-8">
+                      <div class="card-body card-body-proveedores pb-0">
+                          <h5 class="card-title card-title-producto" >iPhone 15, 64GB, Color Negro, Unlocked</h5>
+                          <p class="precio-anterior m-0"></p>
+                          <p class="precio-nuevo m-0">$25.000</p>
+                          <p class="precio-descuento m-0"></p>
+                          <p>Stock: 52</p>
+                      </div>
+                  </div>
+              </div>
+              <div>
+                <hr>
+                <p class="ps-4">Unidades vendidas este mes: 50</p>
+              </div>
+          </div>
+        </a>
+      </article>
+
+      <article class="col-6">
+        <a href="productos.html" class="text-decoration-none">
+          <div class="card mb-4 p-1 card-proveedores-inicio">
+              <div class="row g-0">
+                  <div class="col-4">
+                      <img src="../../Assets/img/iphone.jpg" class="img-proveedor mt-2" alt="iPhone">
+                  </div>
+                  <div class="col-8">
+                      <div class="card-body card-body-proveedores pb-0">
+                          <h5 class="card-title card-title-producto" >iPhone 15, 64GB, Color Negro, Unlocked</h5>
+                          <p class="precio-anterior m-0">$50.000</p>
+                          <p class="precio-nuevo m-0">$25.000</p>
+                          <p class="precio-descuento m-0">50% OFF</p>
+                          <p>Stock: 52</p>
+                      </div>
+                  </div>
+              </div>
+              <div class="contenedor-unidades">
+                <hr>
+                <p class="ps-4">Unidades vendidas este mes: 50</p>
+              </div>
+          </div>
+        </a>
+      </article>
+
+      </section>
   </main>
+</div>
+ 
 
   <footer class="pie">
     <a href="condiciones.html">Términos y condiciones</a> |
