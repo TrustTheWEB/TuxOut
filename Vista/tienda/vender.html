@@ -27,65 +27,65 @@
 
   <main class="card-center contenedor-vender">
     <section class="form-container">
-        <article class="card m-3 p-3">
-            <div class="card-body">
-                <h5 class="card-title text-center">Comienza a vender</h5>
-                <ul class="nav nav-tabs" role="tablist">
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#login" type="button">Iniciar Sesión</button>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link" data-bs-toggle="tab" data-bs-target="#register" type="button">Registrarse</button>
-                    </li>
-                </ul>
-                <div class="tab-content mt-3">
-                    <div class="tab-pane fade show active" id="login">
-                        <form>
-                            <div class="mb-3">
-                                <label for="rutLogin" class="form-label">RUT de la empresa</label>
-                                <input type="text" class="form-control" id="rutLogin" placeholder="XXXXXXXXY">
-                            </div>
-                            <div class="mb-3">
-                                <label for="passlogin" class="form-label">Contraseña</label>
-                                <input type="password" class="form-control" id="passlogin" placeholder="contraseña">
-                            </div>
-                            <a href="../proveedores/index.html" class="btn btn-primary w-100">Registrarse</a>
-                        </form>
-                    </div>
-                    <div class="tab-pane fade" id="register" aria-labelledby="register-tab">
-                        <form>
-                            <div class="mb-3">
-                                <label for="rutRegistro" class="form-label">RUT de la empresa</label>
-                                <input type="text" class="form-control" id="rutRegistro" placeholder="XXXXXXXXY">
-                            </div>
-                            <div class="mb-3">
-                                <label for="nomRegistro" class="form-label">Nombre</label>
-                                <input type="text" class="form-control" id="nomRegistro" placeholder="Ingresa el nombre de la empresa">
-                            </div>
-                            <div class="mb-3">
-                                <label for="telRegistro" class="form-label">Teléfono</label>
-                                <input type="tel" class="form-control" id="telRegistro" placeholder="000000000">
-                            </div>
-                            <div class="mb-3">
-                                <label for="dirRegistro" class="form-label">Dirección</label>
-                                <input type="text" class="form-control" id="dirRegistro" placeholder="Nombre Calle 1111">
-                            </div>
-                            <div class="mb-3">
-                                <label for="emailRegistro" class="form-label">Correo electrónico</label>
-                                <input type="email" class="form-control" id="emailRegistro" placeholder="email@example.com">
-                            </div>
-                            <div class="mb-3">
-                                <label for="passRegistro" class="form-label">Contraseña</label>
-                                <input type="password" class="form-control" id="passRegistro" placeholder="contraseña">
-                            </div>
-                            <a href="../proveedores/index.html" class="btn btn-primary w-100">Registrarse</a>
-                        </form>
-                    </div>
+      <article class="card m-3 p-3">
+        <div class="card-body">
+          <h5 class="card-title text-center">Comienza a vender</h5>
+          <ul class="nav nav-tabs" role="tablist">
+            <li class="nav-item" role="presentation">
+              <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#login" type="button">Iniciar Sesión</button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" data-bs-toggle="tab" data-bs-target="#register" type="button">Registrarse</button>
+            </li>
+          </ul>
+          <div class="tab-content mt-3">
+            <div class="tab-pane fade show active" id="login">
+              <form>
+                <div class="mb-3">
+                  <label for="emailLoginEmpresa" class="form-label">RUT de la empresa</label>
+                  <input type="text" class="form-control" id="emailLoginEmpresa" placeholder="XXXXXXXXY">
                 </div>
+                <div class="mb-3">
+                  <label for="contraLoginEmpresa" class="form-label">Contraseña</label>
+                  <input type="password" class="form-control" id="contraLoginEmpresa" placeholder="contraseña">
+                </div>
+                <a href="../proveedores/index.html" class="btnSignUpEmpresa btn btn-primary w-100">Registrarse</a>
+              </form>
             </div>
-        </article>
+            <div class="tab-pane fade" id="register" aria-labelledby="register-tab">
+              <form>
+                <div class="mb-3">
+                  <label for="rutSignUpEmpresa" class="form-label">RUT de la empresa</label>
+                  <input type="text" class="form-control" id="rutSignUpEmpresa" placeholder="XXXXXXXXY">
+                </div>
+                <div class="mb-3">
+                  <label for="nombreSignUpEmpresa" class="form-label">Nombre</label>
+                  <input type="text" class="form-control" id="nombreSignUpEmpresa" placeholder="Ingresa el nombre de la empresa">
+                </div>
+                <div class="mb-3">
+                  <label for="telefonoSignUpEmpresa" class="form-label">Teléfono</label>
+                  <input type="tel" class="form-control" id="telefonoSignUpEmpresa" placeholder="000000000">
+                </div>
+                <div class="mb-3">
+                  <label for="direccionSignUpEmpresa" class="form-label">Dirección</label>
+                  <input type="text" class="form-control" id="direccionSignUpEmpresa" placeholder="Nombre Calle 1111">
+                </div>
+                <div class="mb-3">
+                  <label for="emailSignUpEmpresa" class="form-label">Correo electrónico</label>
+                  <input type="email" class="form-control" id="emailSignUpEmpresa" placeholder="email@example.com">
+                </div>
+                <div class="mb-3">
+                  <label for="contraSignUpEmpresa" class="form-label">Contraseña</label>
+                  <input type="password" class="form-control" id="contraSignUpEmpresa" placeholder="contraseña">
+                </div>
+                <a href="../proveedores/index.html" class="btnLoginEmpresa btn btn-primary w-100">Registrarse</a>
+              </form>
+            </div>
+          </div>
+        </div>
+      </article>
     </section>
-</main>
+  </main>
 
 
   <footer class="pie">
