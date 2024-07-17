@@ -43,7 +43,7 @@
               <li class="p-1"><a class="dropdown-item" href="usuario.html">Mis datos</a></li>
               <li class="p-1"><a class="dropdown-item" href="direcciones.html">Direcciones</a></li>
               <li class="p-1"><a class="dropdown-item" href="compras.html">Mis compras</a></li>
-              <li class="p-1"><a class="dropdown-item" href="compras.html">Favoritos</a></li>
+              <li class="p-1"><a class="dropdown-item" href="productos.html">Favoritos</a></li>
               <hr>
               <li class="p-1"><a class="dropdown-item" href="index.html" id="cerrar-sesion">Cerrar sesión</a></li>
             </ul>
@@ -57,28 +57,32 @@
                 <li>
                   <form class="p-4">
                     <div class="mb-2">
-                      <label for="exampleDropdownFormEmail2" class="form-label">Nombre</label>
-                      <input type="name" class="form-control" id="exampleDropdownFormEmail2" placeholder="Ingresa tu nombre">
+                      <label for="usuarioSignUpUsuario" class="form-label">Usuario</label>
+                      <input type="name" class="form-control" id="usuarioSignUpUsuario" placeholder="Ingresa tu usuario">
                     </div>
                     <div class="mb-2">
-                      <label for="exampleDropdownFormEmail2" class="form-label">Apellido</label>
-                      <input type="lastname" class="form-control" id="exampleDropdownFormEmail2" placeholder="Ingresa tu apellido">
+                      <label for="nombreSignUpUsuario" class="form-label">Nombre</label>
+                      <input type="name" class="form-control" id="nombreSignUpUsuario" placeholder="Ingresa tu nombre">
+                    </div>
+                    <div class="mb-2">
+                      <label for="apellidoSignUpUsuario" class="form-label">Apellido</label>
+                      <input type="lastname" class="form-control" id="apellidoSignUpUsuario" placeholder="Ingresa tu apellido">
                     </div>
                     <div class="mb-3">
-                      <label for="exampleDropdownFormEmail2" class="form-label">Email</label>
-                      <input type="email" class="form-control" id="exampleDropdownFormEmail2" placeholder="email@example.com">
+                      <label for="emailSignUpUsuario" class="form-label">Email</label>
+                      <input type="email" class="form-control" id="emailSignUpUsuario" placeholder="email@example.com">
                     </div>
                     <div class="mb-3">
-                      <label for="exampleDropdownFormPassword2" class="form-label">Contraseña</label>
-                      <input type="password" class="form-control" id="exampleDropdownFormPassword2" placeholder="Password">
+                      <label for="contraSignUpUsuario" class="form-label">Contraseña</label>
+                      <input type="password" class="form-control" id="contraSignUpUsuario" placeholder="Password">
                     </div>
                     <div class="mb-3">
                       <div class="form-check">
-                        <input type="checkbox" class="form-check-input" id="dropdownCheck2">
-                        <label class="form-check-label" for="dropdownCheck2">Recordar</label>
+                        <input type="checkbox" class="form-check-input" id="recordarSignUpUsuario">
+                        <label class="form-check-label" for="recordarSignUpUsuario">Recordar</label>
                       </div>
                     </div>
-                    <button type="submit" class="btn btn-primary">Ingresar</button>
+                    <button type="button" class="btn btn-primary" id="btnSignUpUsuario">Ingresar</button>
                   </form>
                 </li>
               </ul>
@@ -89,20 +93,20 @@
                 <li>
                   <form class="p-4">
                     <div class="mb-2">
-                      <label for="exampleDropdownFormEmail2" class="form-label">Email</label>
-                      <input type="email" class="form-control" id="exampleDropdownFormEmail2" placeholder="email@example.com">
+                      <label for="emailLoginUsuario" class="form-label">Email</label>
+                      <input type="email" class="form-control" id="emailLoginUsuario" placeholder="email@example.com">
                     </div>
                     <div class="mb-3">
-                      <label for="exampleDropdownFormPassword2" class="form-label">Contraseña</label>
-                      <input type="password" class="form-control" id="exampleDropdownFormPassword2" placeholder="Password">
+                      <label for="contraLoginUsuario" class="form-label">Contraseña</label>
+                      <input type="password" class="form-control" id="contraLoginUsuario" placeholder="Password">
                     </div>
                     <div class="mb-3">
                       <div class="form-check">
-                        <input type="checkbox" class="form-check-input" id="dropdownCheck2">
-                        <label class="form-check-label" for="dropdownCheck2">Recordar</label>
+                        <input type="checkbox" class="form-check-input" id="recordarLoginUsuario">
+                        <label class="form-check-label" for="recordarLoginUsuario">Recordar</label>
                       </div>
                     </div>
-                    <button type="submit" class="btn btn-primary">Ingresar</button>
+                    <button type="button" class="btn btn-primary" id="btnLoginUsuario">Ingresar</button>
                   </form>
                 </li>
               </ul>
@@ -169,7 +173,127 @@
     </nav>
   </aside>
 
-    <main>
+  <main class="container">
+    <section class="row justify-content-evenly">
+      <h1 class="my-3 ps-5 ms-4">Carrito</h1>
+
+      <section class="col-7">
+        <article class="card px-3 mb-3">
+          <div class="row my-3">
+            <div class="col-3">
+              <img src="../../Assets/img/iphone.jpg" class="rounded border img-carrito m-0" alt="iPhone">
+            </div>
+            <div class="col-6 p-1 card-body">
+              <div class="card-carrito">
+                <h4 class="card-title titulo-carrito">iPhone 15, 64GB, Color Gris, Unlocked</h4>
+              </div>
+              <hr>
+              <div class="row justify-content-between pe-4">
+                <div class="col-6">
+                  <div class="border rounded-pill botonera-carrito-cant row text-center">
+                    <button class="col-4 btn-carrito-restar">-</button>
+                    <p class="col-4 m-0 btn-carrito-cant pt-1">1</p>
+                    <button class="col-4 btn-carrito-sumar">+</button>
+                  </div>
+                </div>
+                <button class="btn-carrito-eliminar col-1">
+                  <img src="../../Assets/logo/eliminar.png" class="img-carrito-eliminar">
+                </button>
+              </div>
+              </div>
+            <div class="col-3 m-0 py-3 ps-4">
+              <p class="precio-anterior m-0">$50.00</p>
+              <p class="precio-nuevo m-0">$25.000</p>
+              <p class="precio-descuento m-0">%50 OFF</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="card px-3 mb-3">
+          <div class="row my-3">
+            <div class="col-3">
+              <img src="../../Assets/img/iphone.jpg" class="rounded border img-carrito m-0" alt="iPhone">
+            </div>
+            <div class="col-6 p-1 card-body">
+              <div class="card-carrito">
+                <h4 class="card-title titulo-carrito">iPhone 15, 64GB, Color Gris, Unlocked</h4>
+              </div>
+              <hr>
+              <div class="row justify-content-between pe-4">
+                <div class="col-6">
+                  <div class="border rounded-pill botonera-carrito-cant row text-center">
+                    <button class="col-4 btn-carrito-restar">-</button>
+                    <p class="col-4 m-0 btn-carrito-cant pt-1">1</p>
+                    <button class="col-4 btn-carrito-sumar">+</button>
+                  </div>
+                </div>
+                <button class="btn-carrito-eliminar col-1">
+                  <img src="../../Assets/logo/eliminar.png" class="img-carrito-eliminar">
+                </button>
+              </div>
+              </div>
+            <div class="col-3 m-0 py-3 ps-4">
+              <p class="precio-anterior m-0">$50.00</p>
+              <p class="precio-nuevo m-0">$25.000</p>
+              <p class="precio-descuento m-0">%50 OFF</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="card px-3 mb-3">
+          <div class="row my-3">
+            <div class="col-3">
+              <img src="../../Assets/img/iphone.jpg" class="rounded border img-carrito m-0" alt="iPhone">
+            </div>
+            <div class="col-6 p-1 card-body">
+              <div class="card-carrito">
+                <h4 class="card-title titulo-carrito">iPhone 15, 64GB, Color Gris, Unlocked</h4>
+              </div>
+              <hr>
+              <div class="row justify-content-between pe-4">
+                <div class="col-6">
+                  <div class="border rounded-pill botonera-carrito-cant row text-center">
+                    <button class="col-4 btn-carrito-restar">-</button>
+                    <p class="col-4 m-0 btn-carrito-cant pt-1">1</p>
+                    <button class="col-4 btn-carrito-sumar">+</button>
+                  </div>
+                </div>
+                <button class="btn-carrito-eliminar col-1">
+                  <img src="../../Assets/logo/eliminar.png" class="img-carrito-eliminar">
+                </button>
+              </div>
+              </div>
+            <div class="col-3 m-0 py-3 ps-4">
+              <p class="precio-anterior m-0">$50.00</p>
+              <p class="precio-nuevo m-0">$25.000</p>
+              <p class="precio-descuento m-0">%50 OFF</p>
+            </div>
+          </div>
+        </article>
+      </section>
+      
+      <article class="card col-3 p-4 card-carrito-total">
+        <div class="card-body p-1">
+          <h4 class="card-title">Resumen</h4>  
+          <p class="subtotal-carrito-p mb-1">iPhone 15, 64GB, Color Gris, Unlocked: </p>
+          <p class="subtotal-carrito-precio mb-3">$25.000</p>
+          <p class="subtotal-carrito-p mb-1">iPhone 15, 64GB, Color Gris, Unlocked: </p>
+          <p class="subtotal-carrito-precio mb-3">$25.000</p>
+          <p class="subtotal-carrito-p mb-1">iPhone 15, 64GB, Color Gris, Unlocked: </p>
+          <p class="subtotal-carrito-precio mb-3">$25.000</p>
+        </div>
+        <p><b>Total: </b>$75.000</p>
+        <button class="btn btn-card-comprar">
+          COMPRAR
+        </button>
+      </article>
+
+    </section>
+  </main>
+
+  
+
+    <!-- <main>
       <div class="contenedorPantalla">
         <div class="contenedorCarrito">
           <article class="contenidoCarrito">
@@ -186,7 +310,7 @@
         </div>
         <a href="facturacion.html" class="continuarcompra">Continuar compra</a>
       </div>
-    </main>
+    </main> -->
 
   <footer class="pie">
     <a href="condiciones.html">Términos y condiciones</a> |
@@ -194,6 +318,7 @@
     <p>&copy; 2024-2024 Trust the WEB Company</p>
   </footer>
     <script src="../../Vista/js/jquery-3.7.1.min.js"></script>
+    <script src="../../Vista/js/pagina.js"></script>
   
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
       integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"

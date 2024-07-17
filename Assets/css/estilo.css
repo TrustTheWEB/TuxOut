@@ -452,6 +452,17 @@ background-color: #58cbe7;
   height: auto;
 }
 
+.img-agregar-select {
+  width: 25px;
+  height: auto;
+}
+
+.btn-agregar-select {
+  width: 45px;
+  border: none !important;
+  align-content: center;
+}
+
 .img-abrir-select:hover {
   border: 2px solid #4ec3e0 !important;
 }
@@ -509,6 +520,106 @@ background-color: #58cbe7;
 .card-comprar .precio-descuento {
   font-size: 18px;
   line-height: 18px;
+}
+
+/* CARRITO */
+
+.img-carrito {
+  width: 120px;
+}
+
+.titulo-carrito {
+  font-size: 16px;
+}
+
+.botonera-carrito-cant {
+  width: 150px;
+  background: #f7f7ff;
+}
+
+.btn-carrito-restar {
+  border: none;
+  background: #f7f7ff;
+  border-top-left-radius: 1rem;
+  border-bottom-left-radius: 1rem;
+}
+
+.btn-carrito-restar:active {
+  border: 1px solid #4ec3e0;
+  border-top-left-radius: 1rem;
+  border-bottom-left-radius: 1rem;
+}
+
+.btn-carrito-sumar {
+  border: none;
+  background: #f7f7ff;
+  border-top-right-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+}
+
+.btn-carrito-sumar:active {
+  border: 1px solid #4ec3e0;
+  border-top-right-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+}
+
+.btn-carrito-eliminar {
+  background: none;
+  border: none;
+}
+
+.img-carrito-eliminar {
+  width: 30px;
+}
+
+.card-carrito {
+  height: 50px;
+}
+
+.card-carrito-total {
+  height: 450px;
+}
+
+.subtotal-carrito-p {
+  font-size: 12px;
+}
+
+.subtotal-carrito-precio {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+/* Usuario */
+
+.foto-perfil {
+  width: 150px;
+}
+
+.logo-editar {
+  width: 20px;
+}
+
+.separador {
+  border-left: 1px solid gray;
+}
+
+.boton-mostrar {
+  background-color: white;
+  border: 1px solid #dee2e6;
+}
+
+.boton-mostrar:hover {
+  background-color: white;
+  border: 1px solid #dee2e6;
+}
+
+.boton-mostrar:active {
+  background-color: white !important;
+  border: 1px solid #4ec3e0 !important;
+}
+
+.boton-mostrar:focus {
+  background-color: white;
 }
 
 /* PROVEEDORES */
@@ -595,6 +706,39 @@ background-color: #58cbe7;
   font-size: 14px;
 }
 
+.editar-producto-area {
+  height: 300px;
+}
+
+.btn-guardar {
+  font-size: 16px;
+  font-weight: bold;
+  background-color: #4ec3e0;
+  color: #f7f7ff;
+}
+
+.btn-guardar:hover {
+  background-color: #58cbe7;
+  color: #f7f7ff;
+}
+
+.btn-guardar:active {
+  background-color: #58cbe7 !important;
+  color: #f7f7ff !important;
+}
+
+.img-agregar-producto-nuevo {
+  width: 35px;
+}
+
+.img-arrastrar {
+  width: 320px;
+}
+
+.img-pedido {
+  width: 100px;
+}
+
 /* VENDER */
 
 .card-center {
@@ -610,4 +754,71 @@ background-color: #58cbe7;
 
 .navbar {
   padding-bottom: 0;
+}
+
+/* backoffice */
+
+.img-empresa {
+  width: 80px;
+  height: 80px;
+}
+
+.contenedor-empresa {
+  font-size: 15px;
+}
+
+.btn-suspender {
+  font-size: 16px;
+  font-weight: bold;
+  background-color: #f7f7ff;
+  color: #e60114;
+  border: 1px #e60114 solid !important;
+}
+
+.btn-suspender:hover {
+  font-size: 16px;
+  font-weight: bold;
+  background-color: #ffecef;
+  color: #e60114;
+  border: 1px #e60114 solid !important;
+}
+
+.btn-suspender:active {
+  font-size: 16px;
+  font-weight: bold;
+  background-color: #f7f7ff;
+  color: #e60114 !important;
+  border: 1px #e60114 solid !important;
+}
+
+.btn-habilitar {
+  font-size: 16px;
+  font-weight: bold;
+  background-color: #f7f7ff;
+  color: #16c96f;
+  border: 1px #16c96f solid !important;
+}
+
+.btn-habilitar:hover {
+  font-size: 16px;
+  font-weight: bold;
+  background-color: #ecfff9;
+  color: #16c96f;
+  border: 1px #16c96f solid !important;
+}
+
+.btn-habilitar:active {
+  font-size: 16px;
+  font-weight: bold;
+  background-color: #f7f7ff;
+  color: #16c96f !important;
+  border: 1px #16c96f solid !important;
+}
+.h6-datos {
+  font-size: 16px;
+}
+
+.h4-noti {
+  font-weight: bold;
+  font-size: 18px;
 }

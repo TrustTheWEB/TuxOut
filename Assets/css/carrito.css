@@ -1,8 +1,5 @@
 
-.contenedorCarrito {
-  display: flex;
-  flex-direction: column;
-  background-color: white;
+/* .contenedorCarrito {
   padding: 50px;
   border-radius: 4px;
   height: 300px;
@@ -22,6 +19,7 @@
     width: 100px;
     height: 100px;
   }
+
   .contenedorCarrito .item1 p {
     position: absolute;
     top:120px;
@@ -34,6 +32,7 @@
   .contenedorCarrito  hr {
 margin-top: 10px;
   }
+  
   #barrasubtotal{
     margin-top: 20px;
   }
@@ -62,4 +61,4 @@ margin-top: 10px;
     color: white;
     text-decoration: none;
     font-weight: bold;
-  }
+  } */

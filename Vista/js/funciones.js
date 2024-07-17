@@ -24,6 +24,8 @@ function agregarProducto(id) {
     return("Producto agregado al carrito");
 }
 
+//Aún no se implementa la función de mostrar productos con un diseño elaborado por la falta de base de datos
+//una vez implementada únicamente se necesitara la id y se extraeran nombre, imagen, cantidad, etc para poder mostrarlo
 function mostrarProductos() {
     $("#carrito-vista-previa").empty();
     for(let i = 0; i < productos.length ; i++) {

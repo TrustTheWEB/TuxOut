@@ -20,7 +20,7 @@
       <div class="container-fluid">
         <!-- Logo y vinculo a home -->
         <a class="navbar-brand" href="index.html">
-          <img class="logo" src="../../Assets/logo/logoP.png" alt="Logo">
+          <img class="logo" src="../../Assets/logo/logoB.png" alt="Logo">
         </a>      
       </div>
     </nav>
@@ -28,21 +28,18 @@
 
 <div class="row contenedor-proveedor m-0">
   
-  <aside class="col-2 sidebar">
-    <nav>
-      <ul class="nav nav-pills flex-column">
-        <li class="nav-item">
-          <a class="nav-link pill-sidebar" href="index.html">Inicio</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link pill-sidebar-active" href="productos.html">Mis productos</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link pill-sidebar" href="notificaciones.html">Notificaciones  <span class="badge text-bg-primary rounded-pill badge-noti ms-1">1</span></a>
-        </li>
-      </ul>
-    </nav>
-  </aside>
+    <aside class="col-2 sidebar">
+        <nav>
+          <ul class="nav nav-pills flex-column">
+            <li class="nav-item">
+              <a class="nav-link pill-sidebar-active" href="index.html">Empresas</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link pill-sidebar" href="notificaciones.html">Notificaciones  <span class="badge text-bg-primary rounded-pill badge-noti ms-1">1</span></a>
+            </li>
+          </ul>
+        </nav>
+      </aside>
 
   <main class="container col-9 p-3 mt-2">
     <section class="row mt-2 justify-content-evenly">
@@ -81,43 +78,24 @@
       <article class="col-6 art-abrir ps-0 pe-5 py-2">
         <h1 class="titulo-producto id-producto">iPhone 15, 64GB, Color Gris, Unlocked</h1>
         <img src="../../Assets/logo/5estrellas.png" class="calificacion mt-2 mb-3" alt="calificacion">
-        <form action="abrirProducto.html">
-          <label class="d-block form-label" for="marcaEditarProducto">Precio: </label>
-          <input class="d-block form-control mb-3 w-75" type="text" id="precioEditarProducto" value="$50.000">
-          <label class="d-block form-label" for="marcaEditarProducto">Descuento: </label>
-          <input class="d-block form-control mb-3 w-75" type="text" id="descuentoEditarProducto" value="50%">
-          <label class="d-block form-label" for="marcaEditarProducto">Marca: </label>
-          <input class="d-block form-control mb-3 w-75" type="text" id="marcaEditarProducto" value="Apple">
-          <label class="d-block form-label" for="estadoEditarProducto">Estado: </label>
-          <input class="d-block form-control mb-3 w-75" type="text" id="estadoEditarProducto" value="Nuevo">
-          <label class="d-block form-label" for="almacenamientoEditarProducto">Almacenamiento: </label>
-          <input class="d-block form-control mb-3 w-75" type="text" id="almacenamientoEditarProducto" value="128 GB">
-          <label class="d-block form-label" for="ramEditarProducto">RAM: </label>
-          <input class="d-block form-control mb-3 w-75" type="text" id="ramEditarProducto" value="8 GB">
-          <label class="d-block form-label" for="colorEditarProducto">Color: </label>
-          <input class="d-block form-control mb-3 w-75" type="text" id="colorEditarProducto" value="Gris">
-          <label class="d-block form-label" for="resolucionEditarProducto">Resolución: </label>
-          <input class="d-block form-control mb-3 w-75" type="text" id="resolucionEditarProducto" value="1280 x 1080">
-          <button class="btn btn-guardar w-75" id="btnGuardarCambios">Guardar</button>
-        </form>
-        <!-- <p class="atributo-producto"><b>Marca:</b> Apple</p>
+        <p class="atributo-producto"><b>ID Producto:</b> 32</p>
+        <p class="atributo-producto"><b>Proveedor:</b> Empresa 1</p>
         <p class="atributo-producto"><b>Estado:</b> Nuevo</p>
-        <p class="atributo-producto"><b>Almacenamiento:</b> 64 GB</p>
-        <p class="atributo-producto"><b>RAM:</b> 4 GB</p>
-        <p class="atributo-producto"><b>Color:</b> Gris</p>
-        <p class="atributo-producto"><b>Resolución:</b> 1080 x 1280</p> -->
+        <p class="atributo-producto"><b>Stock:</b> 52</p>
+        <p class="atributo-producto"><b>Precio:</b> 50.000</p>
+        <p class="atributo-producto"><b>Descuento:</b> 50%</p>
+        <!-- En caso de suspender un producto, se mostraría el boton de habilitar el producto -->
+        <button class="btn btn-suspender mb-2 w-100">Suspender producto</button>
+        <button class="btn btn-habilitar mb-2 w-100">Habilitar producto</button>
       </article>
     <hr class="my-4">
-
     <section class="row justify-content-center">
       <article class="col-8">
         <h3>Descripción</h3>
-        <form action="abrirProducto.html">
-          <textarea name="descripcion" id="descripcionEditarProducto" class="form-control editar-producto-area" rows="3">
-Lorem ipsum dolor sit amet, consectetur adipisicing elit. Suscipit error tempore itaque sed velit delectus rem odio aut atque ad dolor, debitis unde ex recusandae voluptatum! Perferendis voluptatum explicabo assumenda?
-Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate amet nisi, possimus quaerat dignissimos debitis laboriosam nihil hic, quidem fugit, et ea? Molestiae, exercitationem. Voluptate blanditiis suscipit recusandae sunt consectetur.
-          </textarea>
-        </form>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Suscipit error tempore itaque sed velit delectus rem odio aut atque ad dolor, debitis unde ex recusandae voluptatum! Perferendis voluptatum explicabo assumenda?
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate amet nisi, possimus quaerat dignissimos debitis laboriosam nihil hic, quidem fugit, et ea? Molestiae, exercitationem. Voluptate blanditiis suscipit recusandae sunt consectetur.
+        </p>
       </article>
     </section>
 
