@@ -38,13 +38,13 @@
 
           <!--Boton de usuario (se activaría cuando se inicie sesion), pudiendo redirigirse a demas paginas -->
           <div class="dropdown">
-            <a class="btn btn-secondary dropdown-toggle usuario" type="button" data-bs-toggle="dropdown" aria-expanded="false"></a>
+            <button class="btn btn-secondary dropdown-toggle usuario" type="button" data-bs-toggle="dropdown" aria-expanded="false"></button>
             <ul class="dropdown-menu contenidoUsuario">
               <li class="p-1"><a class="dropdown-item" href="usuario.html">Mis datos</a></li>
               <li class="p-1"><a class="dropdown-item" href="direcciones.html">Direcciones</a></li>
               <li class="p-1"><a class="dropdown-item" href="compras.html">Mis compras</a></li>
               <li class="p-1"><a class="dropdown-item" href="productos.html">Favoritos</a></li>
-              <hr>
+              <li><hr></li>
               <li class="p-1"><a class="dropdown-item" href="index.html" id="cerrar-sesion">Cerrar sesión</a></li>
             </ul>
           </div>
@@ -58,15 +58,15 @@
                   <form class="p-4">
                     <div class="mb-2">
                       <label for="usuarioSignUpUsuario" class="form-label">Usuario</label>
-                      <input type="name" class="form-control" id="usuarioSignUpUsuario" placeholder="Ingresa tu usuario">
+                      <input type="text" class="form-control" id="usuarioSignUpUsuario" placeholder="Ingresa tu usuario">
                     </div>
                     <div class="mb-2">
                       <label for="nombreSignUpUsuario" class="form-label">Nombre</label>
-                      <input type="name" class="form-control" id="nombreSignUpUsuario" placeholder="Ingresa tu nombre">
+                      <input type="text" class="form-control" id="nombreSignUpUsuario" placeholder="Ingresa tu nombre">
                     </div>
                     <div class="mb-2">
                       <label for="apellidoSignUpUsuario" class="form-label">Apellido</label>
-                      <input type="lastname" class="form-control" id="apellidoSignUpUsuario" placeholder="Ingresa tu apellido">
+                      <input type="text" class="form-control" id="apellidoSignUpUsuario" placeholder="Ingresa tu apellido">
                     </div>
                     <div class="mb-3">
                       <label for="emailSignUpUsuario" class="form-label">Email</label>
@@ -111,7 +111,7 @@
                 </li>
               </ul>
             </li>
-            <button type="button" class="carrito" data-bs-toggle="modal" data-bs-target="#exampleModal"></button>
+            <li><button type="button" class="carrito" data-bs-toggle="modal" data-bs-target="#exampleModal"></button></li>
           </ul>
         </div>
       </div>
@@ -125,6 +125,7 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <article class="modal-body">
+          <h6>Mi carrito</h6>
           <p id="carrito-vista-previa">
             
           </p>
@@ -175,10 +176,10 @@
   
   <main class="container">
     <section class="row">
-        
+      <h2>Productos</h2>
       <article class="col-3 card pt-2">
             <a href="abrirProducto.html">
-                <img src="../../Assets/img/iphone.jpg" class="card-img-top">
+                <img src="../../Assets/img/iphone.jpg" class="card-img-top" alt="celular">
             </a>
             <div class="card-body pt-0 pb-1 contenedor-producto">
                 <div class="card-texto">
@@ -191,13 +192,13 @@
             </div>
             <div class="botonFavorito">
                 <button class="btn btn-favorite">
-                    <img src="../../Assets/logo/favorito.png">
+                    <img src="../../Assets/logo/favorito.png" alt="favorito">
                 </button>
             </div>
         </article>
         <article class="col-3 card pt-2">
           <a href="abrirProducto.html">
-              <img src="../../Assets/img/iphone.jpg" class="card-img-top">
+              <img src="../../Assets/img/iphone.jpg" class="card-img-top" alt="celular">
           </a>
           <div class="card-body pt-0 pb-1 contenedor-producto">
               <div class="card-texto">
@@ -210,13 +211,13 @@
           </div>
           <div class="botonFavorito">
               <button class="btn btn-favorite">
-                  <img src="../../Assets/logo/favorito.png">
+                  <img src="../../Assets/logo/favorito.png" alt="favorito">
               </button>
           </div>
       </article>
       <article class="col-3 card pt-2">
         <a href="abrirProducto.html">
-            <img src="../../Assets/img/iphone.jpg" class="card-img-top">
+            <img src="../../Assets/img/iphone.jpg" class="card-img-top" alt="celular">
         </a>
         <div class="card-body pt-0 pb-1 contenedor-producto">
             <div class="card-texto">
@@ -229,13 +230,13 @@
         </div>
         <div class="botonFavorito">
             <button class="btn btn-favorite">
-                <img src="../../Assets/logo/favorito.png">
+                <img src="../../Assets/logo/favorito.png" alt="favorito">
             </button>
         </div>
     </article>
     <article class="col-3 card pt-2">
       <a href="abrirProducto.html">
-          <img src="../../Assets/img/iphone.jpg" class="card-img-top">
+          <img src="../../Assets/img/iphone.jpg" class="card-img-top" alt="celular">
       </a>
       <div class="card-body pt-0 pb-1 contenedor-producto">
           <div class="card-texto">
@@ -248,7 +249,7 @@
       </div>
       <div class="botonFavorito">
           <button class="btn btn-favorite">
-              <img src="../../Assets/logo/favorito.png">
+              <img src="../../Assets/logo/favorito.png" alt="favorito">
           </button>
       </div>
   </article>
