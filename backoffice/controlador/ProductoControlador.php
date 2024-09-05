@@ -15,7 +15,7 @@ class ProductoControlador {
         exit;
     }
 
-    public function create($rut, $nombre, $descripcion, $precio, $stock, $estado, $marca) {
+    public function store($rut, $nombre, $descripcion, $precio, $stock, $estado, $marca) {
         $producto = new Producto();
         $producto->setRut($rut);
         $producto->setNombre($nombre);
@@ -24,7 +24,7 @@ class ProductoControlador {
         $producto->setStock($stock);
         $producto->setEstado($estado);
         $producto->setMarca($marca);
-        if($usuario->create()) {
+        if($usuario->store()) {
              //EXITOSO
         } else {
             //ERROR
@@ -74,7 +74,7 @@ class ProductoControlador {
             //error
         }
 
-        $resultados = $producto->show($atributo, $valor);
+        $resultados = $producto->show($atributo);
 
         header('Content-Type: application/json');
         echo json_encode($resultados);

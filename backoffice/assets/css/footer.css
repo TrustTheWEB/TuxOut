@@ -1,0 +1,49 @@
+/*footer*/
+body {
+  min-height: 100vh;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+header,
+footer {
+  flex: none;
+}
+
+main {
+  flex: auto;
+}
+
+.contenedor-proveedor {
+  flex: auto;
+}
+
+
+.pie {
+  position: relative;
+  bottom: 0;
+  height: 80px;
+  width: 100%;
+  text-align: center;
+  padding: 10px;
+  margin: 0;
+  background-color: #111118;
+}
+
+.pie a {
+  text-decoration: none;
+  color: #ffffff; 
+  font-size: 10px; 
+}
+
+.pie p {
+  color: gray;
+  font-size: 10px; 
+}
+
+.field p{
+  margin-top: 20px;
+}

@@ -1,24 +1,92 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TuxOut BackOffice</title>
-</head>
-<body>
-    <header>
+<html lang="es">
 
-    </header>
-    <aside>
-        <nav>
-            <ul>
-                <li>Notificaciones</li>
-                <li><a href="tablas.html">Tablas</a></li>
-            </ul>
-        </nav>
-    </aside>
-    <main>
-        
-    </main>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TuxOut</title>
+  <link rel="icon" type="image/png" href="../assets/logo/logochico2.ico">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="../assets/css/estilo.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/footer.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/backoffice.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+  
+  <header>
+    <nav class="navbar navbar-expand-lg">
+      <div class="container-fluid">
+        <!-- Logo y vinculo a home -->
+        <a class="navbar-brand" href="index.html">
+          <img class="logo" src="../assets/logo/logoB.png" alt="Logo">
+        </a>      
+      </div>
+    </nav>
+  </header>
+
+<div class="row contenedor-proveedor m-0">
+  
+  <aside class="col-2 sidebar">
+    <nav>
+      <ul class="nav nav-pills flex-column">
+        <li class="nav-item">
+          <a class="nav-link pill-sidebar" href="index.html">Empresas</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link pill-sidebar-active" href="notificaciones.html">Notificaciones  <span class="badge text-bg-primary rounded-pill badge-noti-active ms-1">1</span></a>
+        </li>
+      </ul>
+    </nav>
+  </aside>
+
+  <main class="container col-9 p-3 mt-2">
+    <section>
+        <h1>Administrar tablas</h1>
+        <article class="selects-backoffice">
+          <label for="tablas">Tabla:</label>
+          <select name="tablas" id="selectTabla" class="form-select form-select-sm d-inline">
+            <option value="caracteristica">Característica</option>
+            <option value="categoria">Categoría</option>
+            <option value="categoriza">Categoriza</option>
+            <option value="contiene">Contiene</option>
+            <option value="descuento">Descuento</option>
+            <option value="direccion">Dirección</option>
+            <option value="empresa">Empresa</option>
+            <option value="favorito">Favorito</option>
+            <option value="pedido">Pedido</option>
+            <option value="producto">Producto</option>
+            <option value="tiene">Tiene</option>
+            <option value="usuario">Usuario</option>
+            <option value="visita">Visita</option>
+        </select>
+        <label for="atributos"class="w-25">Atributo:</label>
+        <select name="atributos" id="selectAtributo" class="form-select form-select-sm"></select>
+        </article>
+        <label for="valor">Buscar: </label>
+        <input name="valor" type="text" id="selectValor" class="form-control form-control-sm">
+        <div>
+          <button id="seleccionarCondicion" class="btn p-1 w-0">SELECCIONAR</button>
+          <a href="ingresar.html?tabla=caracteristica" id="ingresar" class="btn p-1 w-0">INGRESAR</a>
+        </div>
+        <hr>
+        <table id="tabla" class="table">
+        </table>
+    </section>
+  </main>
+</div>
+
+  <footer class="pie">
+    <a href="condiciones.html">Términos y condiciones</a> |
+    <a href="ayuda.html">Ayuda</a>
+    <p>&copy; 2024-2024 Trust the WEB Company</p>
+  </footer>
+
+  <script src="js/jquery-3.7.1.min.js"></script>
+  <script src="js/tablas.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
 </body>
 </html>

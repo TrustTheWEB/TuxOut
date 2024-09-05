@@ -2,7 +2,7 @@
 
 require_once("../config/Conexion.php");
 
-class Producto {
+class Empresa {
 
     private $conn;
     private $tabla = "empresa";
@@ -18,7 +18,7 @@ class Producto {
         $this->conn = Conexion::getInstance()->getDatabaseInstance();
     }
 
-    //rut
+    // Métodos GET y SET para cada atributo
     public function getRut() {
         return $this->rut;
     }
@@ -27,7 +27,6 @@ class Producto {
         $this->rut = $rut;
     }
 
-    //nombre
     public function getNombre() {
         return $this->nombre;
     }
@@ -36,7 +35,6 @@ class Producto {
         $this->nombre = $nombre;
     }
 
-    // teléfono
     public function getTelefono() {
         return $this->telefono;
     }
@@ -45,7 +43,6 @@ class Producto {
         $this->telefono = $telefono;
     }
 
-    // dirección
     public function getDireccion() {
         return $this->direccion;
     }
@@ -54,7 +51,6 @@ class Producto {
         $this->direccion = $direccion;
     }
 
-    // email
     public function getEmail() {
         return $this->email;
     }
@@ -63,7 +59,6 @@ class Producto {
         $this->email = $email;
     }
 
-    // contraseña
     public function getContraseña() {
         return $this->contraseña;
     }
@@ -72,126 +67,115 @@ class Producto {
         $this->contraseña = $contraseña;
     }
 
-    //7 metodos principales
+    // Métodos CRUD
 
     public function index() {
         try {
             $consulta = $this->conn->prepare("SELECT * FROM " . $this->tabla . ";");
             $consulta->execute();
-            $resultados = $consulta->fetchAll(PDO::FETCH_ASSOC);
-
-            return $resultados;
-            
-            exit;
+            return $consulta->fetchAll(PDO::FETCH_ASSOC);
         } catch (PDOException $e) {
             return "Error en la consulta: " . $e->getMessage();
         }
     }
 
-    public function create() { //create - store
+    public function store() {
         try {
-            $query = "INSER INTO " . $this->tabla . "SET RUT=?, nombre=?, telefono=?, direccion=?, email=?, contraseña=?";
+            $query = "INSERT INTO " . $this->tabla . " (rut, nombre, telefono, direccion, email, contraseña) VALUES (?, ?, ?, ?, ?, ?)";
 
             $stmt = $this->conn->prepare($query);
 
-            $stmt->bind_param("ssssss", $this->rut, $this->nombre, $this->telefono, $this->direccion, $this->email, $this->contraseña);
+            $stmt->bindValue(1, $this->rut, PDO::PARAM_STR);
+            $stmt->bindValue(2, $this->nombre, PDO::PARAM_STR);
+            $stmt->bindValue(3, $this->telefono, PDO::PARAM_STR);
+            $stmt->bindValue(4, $this->direccion, PDO::PARAM_STR);
+            $stmt->bindValue(5, $this->email, PDO::PARAM_STR);
+            $stmt->bindValue(6, $this->contraseña, PDO::PARAM_STR);
 
-            if($stmt->execute()) {
-                return true;
-            } else {
-                //echo "Error: " . $stmt->error;
-                return false;
-            }
+            return $stmt->execute();
 
-        }catch (PDOException $e) {
-
+        } catch (PDOException $e) {
+            return "Error en la consulta: " . $e->getMessage();
         }
     }
 
-    public function show() {
-        $query = "SELECT * FROM " . $this->tabla . "WHERE RUT = ?";
-
-        $stmt = $this->conn->prepare($query);
-
-        $stmt->bind_param("s", $this->idProducto);
-
-        $stmt->execute();
-
-        $resultados = $stmt->get_result();
-        return $resultados->fetch_assoc();
-    }
-
-    public function showCondicion($tipoCondicion) {
-
-        switch($tipoCondicion) {
-            case "RUT":
-                $parametro = $this->rut;
-                $tipoDato = "s";
-                break;
-            case "nombre":
-                $parametro = $this->nombre;
-                $tipoDato = "s";
-                break;
-            case "telefono":
-                $parametro = $this->telefono;
-                $tipoDato = "s";
-                break;
-            case "direccion":
-                $parametro = $this->direccion;
-                $tipoDato = "s";
-                break;
-            case "email":
-                $parametro = $this->email;
-                $tipoDato = "s";
-                break;
-            case "contraseña":
-                $parametro = $this->contraseña;
-                $tipoDato = "s";
-                break;
+    public function show($tipoCondicion) {
+        try {
+            switch ($tipoCondicion) {
+                case "rut":
+                    $parametro = $this->rut;
+                    $tipoDato = PDO::PARAM_STR;
+                    break;
+                case "nombre":
+                    $parametro = $this->nombre;
+                    $tipoDato = PDO::PARAM_STR;
+                    break;
+                case "telefono":
+                    $parametro = $this->telefono;
+                    $tipoDato = PDO::PARAM_STR;
+                    break;
+                case "direccion":
+                    $parametro = $this->direccion;
+                    $tipoDato = PDO::PARAM_STR;
+                    break;
+                case "email":
+                    $parametro = $this->email;
+                    $tipoDato = PDO::PARAM_STR;
+                    break;
+                case "contraseña":
+                    $parametro = $this->contraseña;
+                    $tipoDato = PDO::PARAM_STR;
+                    break;
+                default:
+                    throw new Exception("Tipo de condición no reconocida");
             }
 
-        $query = "SELECT * FROM " . $this->tabla . "WHERE " . $tipoCondicion . " = ?";
+            $query = "SELECT * FROM " . $this->tabla . " WHERE " . $tipoCondicion . " = ?;";
+            $stmt = $this->conn->prepare($query);
+            $stmt->bindValue(1, $parametro, $tipoDato);
+            $stmt->execute();
 
-        $stmt = $this->conn->prepare($query);
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-        $stmt->bind_param($tipoDato, $parametro);
-
-        $stmt->execute();
-
-        $resultados = $stmt->get_result();
-        return $resultados->fetch_assoc();
+        } catch (PDOException $e) {
+            return "Error en la consulta: " . $e->getMessage();
+        }
     }
 
-    public function update() { //edit - update
-        $query = "UPDATE " . $this->table_name . " SET nombre=?, telefono=?, direccion=?, email=?, contraseña=?";
+    public function update() {
+        try {
+            $query = "UPDATE " . $this->tabla . " SET nombre=?, telefono=?, direccion=?, email=?, contraseña=? WHERE rut=?";
 
-        $stmt = $this->conn->prepare($query);
+            $stmt = $this->conn->prepare($query);
 
-        $stmt->bind_param("sssss", $this->nombre, $this->descripcion, $this->precio, $this->stock ,$this->estado, $this->marca);
+            $stmt->bindValue(1, $this->nombre, PDO::PARAM_STR);
+            $stmt->bindValue(2, $this->telefono, PDO::PARAM_STR);
+            $stmt->bindValue(3, $this->direccion, PDO::PARAM_STR);
+            $stmt->bindValue(4, $this->email, PDO::PARAM_STR);
+            $stmt->bindValue(5, $this->contraseña, PDO::PARAM_STR);
+            $stmt->bindValue(6, $this->rut, PDO::PARAM_STR);
 
-        if($stmt->execute()) {
-            return true;
-        } else {
-            //echo "Error: " . $stmt->error;
-            return false;
+            return $stmt->execute();
+
+        } catch (PDOException $e) {
+            return "Error en la consulta: " . $e->getMessage();
         }
     }
 
     public function destroy() {
-        $query = "DELETE FROM " . $this->tabla . "WHERE RUT = ?";
+        try {
+            $query = "DELETE FROM " . $this->tabla . " WHERE rut = ?";
 
-        $stmt = $this->conn->prepare($query);
+            $stmt = $this->conn->prepare($query);
+            $stmt->bindValue(1, $this->rut, PDO::PARAM_STR);
 
-        $stmt->bind_param("s", $this->idProduto);
+            return $stmt->execute();
 
-        $stmt->execute();
-
-        if($stmt->execute()) {
-            return true;
-        } else {
-            //echo "Error: " . $stmt->error;
-            return false;
+        } catch (PDOException $e) {
+            return "Error en la consulta: " . $e->getMessage();
         }
     }
     
 }
+
+?>

@@ -108,7 +108,7 @@ class Producto {
         }
     }
 
-    public function create() { //create - store
+    public function store() { //create - store
         try {
             $query = "INSERT INTO " . $this->tabla . " (RUT, nombre, descripcion, precio, stock, estado, marca) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
@@ -223,3 +223,5 @@ class Producto {
     }
     
 }
+
+?>
