@@ -101,11 +101,10 @@ class ProductoControlador {
     public function destroy($id) {
         $producto = new Producto();
         $producto->setIdProducto($id);
-        if($usuario->destroy()) {
-            //EXITOSO
-       } else {
-           //ERROR
-       }
+        $resultados = $producto->destroy();
+        header('Content-Type: application/json');
+        echo json_encode($resultados);
+        exit;
     }
 }
 
@@ -118,6 +117,11 @@ switch($metodo) {
         break;
     case "show": 
         $controlador->show($_POST["atributo"],$_POST["valor"]);
+        break;
+    case "destroy":
+        $controlador->destroy($_POST["valores"][0]);
+        break;
+    default:
         break;
 }
 

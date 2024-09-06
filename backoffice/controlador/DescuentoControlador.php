@@ -77,11 +77,10 @@ class DescuentoControlador {
     public function destroy($idDescuento) {
         $descuento = new Descuento();
         $descuento->setIdDescuento($idDescuento);
-        if($descuento->destroy()) {
-            // EXITOSO
-        } else {
-            // ERROR
-        }
+        $resultados = $descuento->destroy();
+        header('Content-Type: application/json');
+        echo json_encode($resultados);
+        exit;
     }
 }
 
@@ -95,7 +94,11 @@ switch($metodo) {
     case "show": 
         $controlador->show($_POST["atributo"], $_POST["valor"]);
         break;
-    // Puedes agregar aquí otros casos para métodos como store, update y destroy
+    case "destroy":
+        $controlador->destroy($_POST["valores"][0]);
+        break;
+    default:
+        break;
 }
 
 ?>

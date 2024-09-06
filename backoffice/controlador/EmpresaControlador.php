@@ -90,11 +90,11 @@ class EmpresaControlador {
     public function destroy($rut) {
         $empresa = new Empresa();
         $empresa->setRut($rut);
-        if($empresa->destroy()) {
-            //EXITOSO
-       } else {
-           //ERROR
-       }
+        $resultados = $empresa->destroy();
+        
+        header('Content-Type: application/json');
+        echo json_encode($resultados);
+        exit;
     }
 }
 
@@ -107,6 +107,11 @@ switch($metodo) {
         break;
     case "show": 
         $controlador->show($_POST["atributo"],$_POST["valor"]);
+        break;
+    case "destroy":
+        $controlador->destroy($_POST["valores"][0]);
+        break;
+    default:
         break;
 }
 

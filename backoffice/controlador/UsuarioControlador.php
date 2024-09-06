@@ -104,11 +104,10 @@ class UsuarioControlador {
         $usuario = new Usuario();
         $usuario->setEmail($email);
 
-        if ($usuario->destroy()) {
-            // Proceso exitoso
-        } else {
-            // Error
-        }
+        $resultados = $usuario->destroy();
+        header('Content-Type: application/json');
+        echo json_encode($resultados);
+        exit;
     }
 }
 
@@ -121,6 +120,11 @@ switch($metodo) {
         break;
     case "show":
         $controlador->show($_POST["atributo"], $_POST["valor"]);
+        break;
+    case "destroy":
+        $controlador->destroy($_POST["valores"][0]);
+        break;
+    default:
         break;
     // Agrega más casos según lo necesites
 }

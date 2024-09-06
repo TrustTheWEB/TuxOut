@@ -61,27 +61,27 @@ const imprimirEmpresa = (resultado) => {
     if (Array.isArray(resultado)) {
         resultado.forEach(item => {
             $('#tablaBody').append(
-                `<tr>
+                `<tr data-fila="empresa-${item["RUT"]}">
                     <td>${item["RUT"] || ''}</td>
                     <td>${item["nombre"] || ''}</td>
                     <td>${item["telefono"] || ''}</td>
                     <td>${item["direccion"] || ''}</td>
                     <td>${item["email"] || ''}</td>
                     <td>${item["contraseña"] || ''}</td>
-                    <td> <a class="editar" href="editar.html?tabla=empresa&rut=${item["RUT"]}">EDITAR</a> <button class="eliminar" data-rut="${item["RUT"]}">ELIMINAR</button> </td>
+                    <td> <a class="editar" href="editar.html?tabla=empresa&rut=${item["RUT"]}">EDITAR</a> <button class="btn eliminar" data-rut="${item["RUT"]}">ELIMINAR</button> </td>
                 </tr>`
             );
         });
     } else {
         $('#tablaBody').append(
-            `<tr>
+            `<tr data-fila="empresa-${resultado["RUT"]}">
                 <td>${resultado["RUT"] || ''}</td>
                     <td>${resultado["nombre"] || ''}</td>
                     <td>${resultado["telefono"] || ''}</td>
                     <td>${resultado["direccion"] || ''}</td>
                     <td>${resultado["email"] || ''}</td>
                     <td>${resultado["contraseña"] || ''}</td>
-                    <td> <a class="editar" href="editar.html?tabla=empresa&rut=${resultado["RUT"]}">EDITAR</a> <button class="eliminar" data-rut="${resultado["RUT"]}">ELIMINAR</button> </td>
+                    <td> <a class="editar" href="editar.html?tabla=empresa&rut=${resultado["RUT"]}">EDITAR</a> <button class="btn eliminar" data-rut="${resultado["RUT"]}">ELIMINAR</button> </td>
                </tr>`
         );
     }
@@ -90,7 +90,7 @@ const imprimirEmpresa = (resultado) => {
 const cargarAtributosEmpresa = () => {
     $("#selectAtributo").html("");
     $("#selectAtributo").append(`
-                <option value="idProducto">RUT</option>
+                <option value="rut">RUT</option>
                 <option value="nombre">Nombre</option>
                 <option value="telefono">Teléfono</option>
                 <option value="direccion">Dirección</option>
@@ -165,7 +165,7 @@ const imprimirProducto = (resultado) => {
     if (Array.isArray(resultado)) {
         resultado.forEach(item => {
             $('#tablaBody').append(
-                `<tr>
+                `<tr data-fila="producto-${item["idProducto"]}">
                     <td>${item["idProducto"] || ''}</td>
                     <td>${item["RUT"] || ''}</td>
                     <td>${item["nombre"] || ''}</td>
@@ -174,13 +174,13 @@ const imprimirProducto = (resultado) => {
                     <td>${item["stock"] || ''}</td>
                     <td>${item["estado"] || ''}</td>
                     <td>${item["marca"] || ''}</td>
-                    <td> <a class="editar" href="editar.html?tabla=producto&idProducto=${item["idProducto"]}">EDITAR</a> <button class="eliminar" data-idProducto="${item["idProducto"]}">ELIMINAR</button> </td>
+                    <td> <a class="editar" href="editar.html?tabla=producto&idProducto=${item["idProducto"]}">EDITAR</a> <button class="btn eliminar" data-idProducto="${item["idProducto"]}">ELIMINAR</button> </td>
                 </tr>`
             );
         });
     } else {
         $('#tablaBody').append(
-            `<tr>
+            `<tr data-fila="producto-${resultado["idProducto"]}">
                 <td>${resultado["idProducto"] || ''}</td>
                 <td>${resultado["RUT"] || ''}</td>
                 <td>${resultado["nombre"] || ''}</td>
@@ -189,7 +189,7 @@ const imprimirProducto = (resultado) => {
                 <td>${resultado["stock"] || ''}</td>
                 <td>${resultado["estado"] || ''}</td>
                 <td>${resultado["marca"] || ''}</td>
-                <td> <a class="editar" href="editar.html?tabla=producto&idProducto=${resultado["idProducto"]}">EDITAR</a> <button class="eliminar" data-idProducto="${resultado["idProducto"]}">ELIMINAR</button> </td>
+                <td> <a class="editar" href="editar.html?tabla=producto&idProducto=${resultado["idProducto"]}">EDITAR</a> <button class="btn eliminar" data-idProducto="${resultado["idProducto"]}">ELIMINAR</button> </td>
             </tr>`
         );
     }
@@ -269,21 +269,21 @@ const imprimirContiene = (resultado) => {
     if (Array.isArray(resultado)) {
         resultado.forEach(item => {
             $('#tablaBody').append(
-                `<tr>
+                `<tr data-fila="contiene-${item["idPedido"]}-${item["idProducto"]}">
                     <td>${item["idPedido"] || ''}</td>
                     <td>${item["idProducto"] || ''}</td>
                     <td>${item["cantidad"] || ''}</td>
-                    <td> <a class="editar" href="editar.html?tabla=contiene&idPedido=${item["idPedido"]}&idProducto=${item["idProducto"]}">EDITAR</a> <button class="eliminar" data-idpedido="${item["idPedido"]}" data-idproducto="${item["idProducto"]}">ELIMINAR</button> </td>
+                    <td> <a class="editar" href="editar.html?tabla=contiene&idPedido=${item["idPedido"]}&idProducto=${item["idProducto"]}">EDITAR</a> <button class="btn eliminar" data-idpedido="${item["idPedido"]}" data-idproducto="${item["idProducto"]}">ELIMINAR</button> </td>
                 </tr>`
             );
         });
     } else {
         $('#tablaBody').append(
-            `<tr>
+            `<tr data-fila="contiene-${resultado["idPedido"]}-${resultado["idProducto"]}">
                 <td>${resultado["idPedido"] || ''}</td>
                 <td>${resultado["idProducto"] || ''}</td>
                 <td>${resultado["cantidad"] || ''}</td>
-                <td> <a class="editar" href="editar.html?tabla=contiene&idPedido=${resultado["idPedido"]}&idProducto=${resultado["idProducto"]}">EDITAR</a> <button class="eliminar" data-idpedido="${resultado["idPedido"]}" data-idproducto="${resultado["idProducto"]}">ELIMINAR</button> </td>
+                <td> <a class="editar" href="editar.html?tabla=contiene&idPedido=${resultado["idPedido"]}&idProducto=${resultado["idProducto"]}">EDITAR</a> <button class="btn eliminar" data-idpedido="${resultado["idPedido"]}" data-idproducto="${resultado["idProducto"]}">ELIMINAR</button> </td>
             </tr>`
         );
     }
@@ -360,27 +360,27 @@ const imprimirPedido = (resultado) => {
     if (Array.isArray(resultado)) {
         resultado.forEach(item => {
             $('#tablaBody').append(
-                `<tr>
+                `<tr data-fila="pedido-${item["idPedido"]}">
                     <td>${item["idPedido"] || ''}</td>
                     <td>${item["estado"] || ''}</td>
                     <td>${item["medioPago"] || ''}</td>
                     <td>${item["montoTotal"] || ''}</td>
                     <td>${item["fecha"] || ''}</td>
                     <td>${item["email"] || ''}</td>
-                    <td> <a class="editar" href="editar.html?tabla=pedido&idPedido=${item["idPedido"]}">EDITAR</a> <button class="eliminar" data-idpedido="${item["idPedido"]}">ELIMINAR</button> </td>
+                    <td> <a class="editar" href="editar.html?tabla=pedido&idPedido=${item["idPedido"]}">EDITAR</a> <button class="btn eliminar" data-idpedido="${item["idPedido"]}">ELIMINAR</button> </td>
                 </tr>`
             );
         });
     } else {
         $('#tablaBody').append(
-            `<tr>
+            `<tr data-fila="pedido-${resultado["idPedido"]}">
                 <td>${resultado["idPedido"] || ''}</td>
                 <td>${resultado["estado"] || ''}</td>
                 <td>${resultado["medioPago"] || ''}</td>
                 <td>${resultado["montoTotal"] || ''}</td>
                 <td>${resultado["fecha"] || ''}</td>
                 <td>${resultado["email"] || ''}</td>
-                <td> <a class="editar" href="editar.html?tabla=pedido&idPedido=${resultado["idPedido"]}">EDITAR</a> <button class="eliminar" data-idpedido="${resultado["idPedido"]}">ELIMINAR</button> </td>
+                <td> <a class="editar" href="editar.html?tabla=pedido&idPedido=${resultado["idPedido"]}">EDITAR</a> <button class="btn eliminar" data-idpedido="${resultado["idPedido"]}">ELIMINAR</button> </td>
             </tr>`
         );
     }
@@ -443,7 +443,7 @@ const imprimirUsuario = (resultado) => {
     $("#tabla").html("");
     $("#tabla").append(
         `<thead>
-            <tr>
+            <tr">
                 <th>Email</th>
                 <th>Usuario</th>
                 <th>Nombre</th>
@@ -462,7 +462,7 @@ const imprimirUsuario = (resultado) => {
     if (Array.isArray(resultado)) {
         resultado.forEach(item => {
             $('#tablaBody').append(
-                `<tr>
+                `<tr data-fila="usuario-${item["email"]}">
                     <td>${item["email"] || ''}</td>
                     <td>${item["usuario"] || ''}</td>
                     <td>${item["nombre"] || ''}</td>
@@ -471,13 +471,13 @@ const imprimirUsuario = (resultado) => {
                     <td>${item["contraseña"] || ''}</td>
                     <td>${item["fechaNac"] || ''}</td>
                     <td>${item["ci"] || ''}</td>
-                    <td> <a class="editar" href="editar.html?tabla=usuario&email=${item["email"]}">EDITAR</a> <button class="eliminar" data-email="${item["email"]}">ELIMINAR</button> </td>
+                    <td> <a class="editar" href="editar.html?tabla=usuario&email=${item["email"]}">EDITAR</a> <button class="btn eliminar" data-email="${item["email"]}">ELIMINAR</button> </td>
                 </tr>`
             );
         });
     } else {
         $('#tablaBody').append(
-            `<tr>
+            `<tr data-fila="usuario-${resultado["email"]}">
                 <td>${resultado["email"] || ''}</td>
                 <td>${resultado["usuario"] || ''}</td>
                 <td>${resultado["nombre"] || ''}</td>
@@ -486,7 +486,7 @@ const imprimirUsuario = (resultado) => {
                 <td>${resultado["contraseña"] || ''}</td>
                 <td>${resultado["fechaNac"] || ''}</td>
                 <td>${resultado["ci"] || ''}</td>
-                <td> <a class="editar" href="editar.html?tabla=usuario&email=${resultado["email"]}">EDITAR</a> <button class="eliminar" data-email="${resultado["email"]}">ELIMINAR</button> </td>
+                <td> <a class="editar" href="editar.html?tabla=usuario&email=${resultado["email"]}">EDITAR</a> <button class="btn eliminar" data-email="${resultado["email"]}">ELIMINAR</button> </td>
             </tr>`
         );
     }
@@ -564,19 +564,19 @@ const imprimirCategoria = (resultado) => {
     if (Array.isArray(resultado)) {
         resultado.forEach(item => {
             $('#tablaBody').append(
-                `<tr>
+                `<tr data-fila="categoria-${item["idCategoria"]}">
                     <td>${item["idCategoria"] || ''}</td>
                     <td>${item["nombre"] || ''}</td>
-                    <td> <a class="editar" href="editar.html?tabla=categoria&idCategoria=${item["idCategoria"]}">EDITAR</a> <button class="eliminar" data-idcategoria="${item["idCategoria"]}">ELIMINAR</button> </td>
+                    <td> <a class="editar" href="editar.html?tabla=categoria&idCategoria=${item["idCategoria"]}">EDITAR</a> <button class="btn eliminar" data-idcategoria="${item["idCategoria"]}">ELIMINAR</button> </td>
                 </tr>`
             );
         });
     } else {
         $('#tablaBody').append(
-            `<tr>
+            `<tr data-fila="categoria-${resultado["idCategoria"]}">
                 <td>${resultado["idCategoria"] || ''}</td>
                 <td>${resultado["nombre"] || ''}</td>
-                <td> <a class="editar" href="editar.html?tabla=categoria&idCategoria=${resultado["idCategoria"]}">EDITAR</a> <button class="eliminar" data-idcategoria="${resultado["idCategoria"]}">ELIMINAR</button> </td>
+                <td> <a class="editar" href="editar.html?tabla=categoria&idCategoria=${resultado["idCategoria"]}">EDITAR</a> <button class="btn eliminar" data-idcategoria="${resultado["idCategoria"]}">ELIMINAR</button> </td>
             </tr>`
         );
     }
@@ -649,21 +649,21 @@ const imprimirCaracteristica = (resultado) => {
     if (Array.isArray(resultado)) {
         resultado.forEach(item => {
             $('#tablaBody').append(
-                `<tr>
+                `<tr data-fila="caracteristica-${item["idProducto"]}-${(item["nombre"] || '').replace(/\s+/g, '_')}-${(item["valor"] || '').replace(/\s+/g, '_')}">
                     <td>${item["idProducto"] || ''}</td>
                     <td>${item["nombre"] || ''}</td>
                     <td>${item["valor"] || ''}</td>
-                    <td> <a class="editar" href="editar.html?tabla=caracteristica&idProducto=${item["idProducto"]}&nombre=${item["nombre"]}&valor=${item["valor"]}">EDITAR</a> <button class="eliminar" data-idproducto="${item["idProducto"]}" data-nombre="${item["nombre"]}" data-valor="${item["valor"]}">ELIMINAR</button> </td>
+                    <td> <a class="editar" href="editar.html?tabla=caracteristica&idProducto=${item["idProducto"]}&nombre=${item["nombre"]}&valor=${item["valor"]}">EDITAR</a> <button class="btn eliminar" data-idproducto="${item["idProducto"]}" data-nombre="${item["nombre"]}" data-valor="${item["valor"]}">ELIMINAR</button> </td>
                 </tr>`
             );
         });
     } else {
         $('#tablaBody').append(
-            `<tr>
+            `<tr data-fila="caracteristica-${(resultado["idProducto"] || '').replace(/\s+/g, '_')}-${resultado["nombre"]}-${(resultado["valor"] || '').replace(/\s+/g, '_')}">
                 <td>${resultado["idProducto"] || ''}</td>
                 <td>${resultado["nombre"] || ''}</td>
                 <td>${resultado["valor"] || ''}</td>
-                <td> <a class="editar" href="editar.html?tabla=caracteristica&idProducto=${resultado["idProducto"]}&nombre=${resultado["nombre"]}&valor=${resultado["valor"]}">EDITAR</a> <button class="eliminar" data-idproducto="${resultado["idProducto"]}" data-nombre="${resultado["nombre"]}" data-valor="${resultado["valor"]}">ELIMINAR</button> </td>
+                <td> <a class="editar" href="editar.html?tabla=caracteristica&idProducto=${resultado["idProducto"]}&nombre=${resultado["nombre"]}&valor=${resultado["valor"]}">EDITAR</a> <button class="btn eliminar" data-idproducto="${resultado["idProducto"]}" data-nombre="${resultado["nombre"]}" data-valor="${resultado["valor"]}">ELIMINAR</button> </td>
             </tr>`
         );
     }
@@ -740,25 +740,25 @@ const imprimirDescuento = (resultado) => {
     if (Array.isArray(resultado)) {
         resultado.forEach(item => {
             $('#tablaBody').append(
-                `<tr>
+                `<tr data-fila="descuento-${item["idDescuento"]}">
                     <td>${item["idDescuento"] || ''}</td>
                     <td>${item["porcentaje"] || ''}</td>
                     <td>${item["fechaInicio"] || ''}</td>
                     <td>${item["fechaFin"] || ''}</td>
                     <td>${item["motivo"] || ''}</td>
-                    <td> <a class="editar" href="editar.html?tabla=descuento&idDescuento=${item["idDescuento"]}">EDITAR</a> <button class="eliminar" data-iddescuento="${item["idDescuento"]}">ELIMINAR</button> </td>
+                    <td> <a class="editar" href="editar.html?tabla=descuento&idDescuento=${item["idDescuento"]}">EDITAR</a> <button class="btn eliminar" data-iddescuento="${item["idDescuento"]}">ELIMINAR</button> </td>
                 </tr>`
             );
         });
     } else {
         $('#tablaBody').append(
-            `<tr>
+            `<tr data-fila="descuento-${resultado["idDescuento"]}">
                 <td>${resultado["idDescuento"] || ''}</td>
                 <td>${resultado["porcentaje"] || ''}</td>
                 <td>${resultado["fechaInicio"] || ''}</td>
                 <td>${resultado["fechaFin"] || ''}</td>
                 <td>${resultado["motivo"] || ''}</td>
-                <td> <a class="editar" href="editar.html?tabla=descuento&idDescuento=${resultado["idDescuento"]}">EDITAR</a> <button class="eliminar" data-iddescuento="${resultado["idDescuento"]}">ELIMINAR</button> </td>
+                <td> <a class="editar" href="editar.html?tabla=descuento&idDescuento=${resultado["idDescuento"]}">EDITAR</a> <button class="btn eliminar" data-iddescuento="${resultado["idDescuento"]}">ELIMINAR</button> </td>
             </tr>`
         );
     }
@@ -834,21 +834,21 @@ const imprimirVisita = (resultado) => {
     if (Array.isArray(resultado)) {
         resultado.forEach(item => {
             $('#tablaBody').append(
-                `<tr>
+                `<tr data-fila="visita-${item["email"]}-${item["idProducto"]}">
                     <td>${item["email"] || ''}</td>
                     <td>${item["idProducto"] || ''}</td>
                     <td>${item["fecha"] || ''}</td>
-                    <td> <a class="editar" href="editar.html?tabla=visita&email=${item["email"]}&idProducto=${item["idProducto"]}">EDITAR</a> <button class="eliminar" data-email="${item["email"]}" data-idproducto="${item["idProducto"]}">ELIMINAR</button> </td>
+                    <td> <a class="editar" href="editar.html?tabla=visita&email=${item["email"]}&idProducto=${item["idProducto"]}">EDITAR</a> <button class="btn eliminar" data-email="${item["email"]}" data-idproducto="${item["idProducto"]}">ELIMINAR</button> </td>
                 </tr>`
             );
         });
     } else {
         $('#tablaBody').append(
-            `<tr>
+            `<tr data-fila="visita-${resultado["email"]}-${resultado["idProducto"]}">
                 <td>${resultado["email"] || ''}</td>
                 <td>${resultado["idProducto"] || ''}</td>
                 <td>${resultado["fecha"] || ''}</td>
-                <td> <a class="editar" href="editar.html?tabla=visita&email=${resultado["email"]}&idProducto=${resultado["idProducto"]}">EDITAR</a> <button class="eliminar" data-email="${resultado["email"]}" data-idproducto="${resultado["idProducto"]}">ELIMINAR</button> </td>
+                <td> <a class="editar" href="editar.html?tabla=visita&email=${resultado["email"]}&idProducto=${resultado["idProducto"]}">EDITAR</a> <button class="btn eliminar" data-email="${resultado["email"]}" data-idproducto="${resultado["idProducto"]}">ELIMINAR</button> </td>
             </tr>`
         );
     }
@@ -921,19 +921,19 @@ const imprimirFavorito = (resultado) => {
     if (Array.isArray(resultado)) {
         resultado.forEach(item => {
             $('#tablaBody').append(
-                `<tr>
+                `<tr data-fila="favorito-${item["email"]}-${item["idProducto"]}">
                     <td>${item["email"] || ''}</td>
                     <td>${item["idProducto"] || ''}</td>
-                    <td> <a class="editar" href="editar.html?tabla=visita&email=${item["email"]}&idProducto=${item["idProducto"]}">EDITAR</a> <button class="eliminar" data-email="${item["email"]}" data-idproducto="${item["idProducto"]}">ELIMINAR</button> </td>
+                    <td> <a class="editar" href="editar.html?tabla=visita&email=${item["email"]}&idProducto=${item["idProducto"]}">EDITAR</a> <button class="btn eliminar" data-email="${item["email"]}" data-idproducto="${item["idProducto"]}">ELIMINAR</button> </td>
                 </tr>`
             );
         });
     } else {
         $('#tablaBody').append(
-            `<tr>
+            `<tr data-fila="favorito-${resultado["email"]}-${resultado["idProducto"]}">
                 <td>${resultado["email"] || ''}</td>
                 <td>${resultado["idProducto"] || ''}</td>
-                <td> <a class="editar" href="editar.html?tabla=visita&email=${resultado["email"]}&idProducto=${resultado["idProducto"]}">EDITAR</a> <button class="eliminar" data-email="${resultado["email"]}" data-idproducto="${resultado["idProducto"]}">ELIMINAR</button> </td>
+                <td> <a class="editar" href="editar.html?tabla=visita&email=${resultado["email"]}&idProducto=${resultado["idProducto"]}">EDITAR</a> <button class="btn eliminar" data-email="${resultado["email"]}" data-idproducto="${resultado["idProducto"]}">ELIMINAR</button> </td>
             </tr>`
         );
     }
@@ -1005,19 +1005,19 @@ const imprimirDireccion = (resultado) => {
     if (Array.isArray(resultado)) {
         resultado.forEach(item => {
             $('#tablaBody').append(
-                `<tr>
+                `<tr data-fila="direccion-${item["email"]}-${(item["direccion"] || '').replace(/\s+/g, '_')}">
                     <td>${item["email"] || ''}</td>
                     <td>${item["direccion"] || ''}</td>
-                    <td> <a class="editar" href="editar.html?tabla=direccion&email=${item["email"]}&direccion=${encodeURIComponent(item["direccion"])}">EDITAR</a> <button class="eliminar" data-email="${item["email"]}" data-direccion="${encodeURIComponent(item["direccion"])}">ELIMINAR</button> </td>
+                    <td> <a class="editar" href="editar.html?tabla=direccion&email=${item["email"]}&direccion=${encodeURIComponent(item["direccion"])}">EDITAR</a> <button class="btn eliminar" data-email="${item["email"]}" data-direccion="${encodeURIComponent(item["direccion"])}">ELIMINAR</button> </td>
                 </tr>`
             );
         });
     } else {
         $('#tablaBody').append(
-            `<tr>
+            `<tr data-fila="direccion-${resultado["email"]}-${(resultado["direccion"] || '').replace(/\s+/g, '_')}">
                 <td>${resultado["email"] || ''}</td>
                 <td>${resultado["direccion"] || ''}</td>
-                <td> <a class="editar" href="editar.html?tabla=direccion&email=${resultado["email"]}&direccion=${encodeURIComponent(resultado["direccion"])}">EDITAR</a> <button class="eliminar" data-email="${resultado["email"]}" data-direccion="${encodeURIComponent(resultado["direccion"])}">ELIMINAR</button> </td>
+                <td> <a class="editar" href="editar.html?tabla=direccion&email=${resultado["email"]}&direccion=${encodeURIComponent(resultado["direccion"])}">EDITAR</a> <button class="btn eliminar" data-email="${resultado["email"]}" data-direccion="${encodeURIComponent(resultado["direccion"])}">ELIMINAR</button> </td>
             </tr>`
         );
     }
@@ -1090,19 +1090,19 @@ const imprimirTiene = (resultado) => {
     if (Array.isArray(resultado)) {
         resultado.forEach(item => {
             $('#tablaBody').append(
-                `<tr>
+                `<tr data-fila="tiene-${item["idProducto"]}-${item["idDescuento"]}">
                     <td>${item["idProducto"] || ''}</td>
                     <td>${item["idDescuento"] || ''}</td>
-                    <td> <a class="editar" href="editar.html?tabla=tiene&idProducto=${item["idProducto"]}&idDescuento=${item["idDescuento"]}">EDITAR</a> <button class="eliminar" data-idproducto="${item["idProducto"]}" data-iddescuento="${item["idDescuento"]}">ELIMINAR</button> </td>
+                    <td> <a class="editar" href="editar.html?tabla=tiene&idProducto=${item["idProducto"]}&idDescuento=${item["idDescuento"]}">EDITAR</a> <button class="btn eliminar" data-idproducto="${item["idProducto"]}" data-iddescuento="${item["idDescuento"]}">ELIMINAR</button> </td>
                 </tr>`
             );
         });
     } else {
         $('#tablaBody').append(
-            `<tr>
+            `<tr data-fila="tiene-${resultado["idProducto"]}-${resultado["idDescuento"]}">
                 <td>${resultado["idProducto"] || ''}</td>
                 <td>${resultado["idDescuento"] || ''}</td>
-                <td> <a class="editar" href="editar.html?tabla=tiene&idProducto=${resultado["idProducto"]}&idDescuento=${resultado["idDescuento"]}">EDITAR</a> <button class="eliminar" data-idproducto="${resultado["idProducto"]}" data-iddescuento="${resultado["idDescuento"]}">ELIMINAR</button> </td>
+                <td> <a class="editar" href="editar.html?tabla=tiene&idProducto=${resultado["idProducto"]}&idDescuento=${resultado["idDescuento"]}">EDITAR</a> <button class="btn eliminar" data-idproducto="${resultado["idProducto"]}" data-iddescuento="${resultado["idDescuento"]}">ELIMINAR</button> </td>
             </tr>`
         );
     }
@@ -1174,19 +1174,19 @@ const imprimirCategoriza = (resultado) => {
     if (Array.isArray(resultado)) {
         resultado.forEach(item => {
             $('#tablaBody').append(
-                `<tr>
+                `<tr data-fila="categoriza-${item["idCategoria"]}-${item["idProducto"]}">
                     <td>${item["idCategoria"] || ''}</td>
                     <td>${item["idProducto"] || ''}</td>
-                    <td> <a class="editar" href="editar.html?tabla=categoriza&idCategoria=${item["idCategoria"]}&idProducto=${item["idProducto"]}">EDITAR</a> <button class="eliminar" data-idcategoria="${item["idCategoria"]}" data-idproducto="${item["idProducto"]}">ELIMINAR</button> </td>
+                    <td> <a class="editar" href="editar.html?tabla=categoriza&idCategoria=${item["idCategoria"]}&idProducto=${item["idProducto"]}">EDITAR</a> <button class="btn eliminar" data-idcategoria="${item["idCategoria"]}" data-idproducto="${item["idProducto"]}">ELIMINAR</button> </td>
                 </tr>`
             );
         });
     } else {
         $('#tablaBody').append(
-            `<tr>
+            `<tr data-fila="categoriza-${resultado["idCategoria"]}-${resultado["idProducto"]}">
                 <td>${resultado["idCategoria"] || ''}</td>
                 <td>${resultado["idProducto"] || ''}</td>
-                <td> <a class="editar" href="editar.html?tabla=categoriza&idCategoria=${resultado["idCategoria"]}&idProducto=${resultado["idProducto"]}">EDITAR</a> <button class="eliminar" data-idcategoria="${resultado["idCategoria"]}" data-idproducto="${resultado["idProducto"]}">ELIMINAR</button> </td>
+                <td> <a class="editar" href="editar.html?tabla=categoriza&idCategoria=${resultado["idCategoria"]}&idProducto=${resultado["idProducto"]}">EDITAR</a> <button class="btn eliminar" data-idcategoria="${resultado["idCategoria"]}" data-idproducto="${resultado["idProducto"]}">ELIMINAR</button> </td>
             </tr>`
         );
     }
@@ -1203,8 +1203,25 @@ const cargarAtributosCategoriza = () => {
 
 // TABLAS
 
+const tomarUltimaTabla = () => {
+
+    let tabla = localStorage.getItem("ultimaTabla");
+    $("#selectTabla").val(tabla).change();
+    if(tabla === null || tabla === undefined) {
+        let tabla = $("#selectTabla").val();
+        localStorage.setItem("ultimaTabla", tabla);
+    }
+    llamarMetodosImpresion(tabla);
+}
+
 const tomarTabla = () => {
+
     let tabla = $("#selectTabla").val();
+    localStorage.setItem("ultimaTabla", tabla);
+    llamarMetodosImpresion(tabla);
+}
+
+const llamarMetodosImpresion = (tabla) => {
 
     switch (tabla) {
         case 'caracteristica':
@@ -1314,6 +1331,131 @@ const tomarTablaAtributo = () => {
     }
 }
 
-$(document).ready(tomarTabla)
+const tomarTablaEliminar = (event) => {
+    event.preventDefault(); // Evita el comportamiento por defecto del botón, si es necesario
+    let tabla = $("#selectTabla").val();
+    let $botonEliminar = $(event.currentTarget); // Obtiene el botón específico que fue clicado
+    eliminarDato(tabla, $botonEliminar);
+}
+
+
+const eliminarDato = (tabla, $botonEliminar) => {
+    let valores = [];
+    let id = "";
+
+    // Declaración de variables fuera del switch
+    let idProducto, nombre, valor, idCategoria, idPedido, idDescuento, direccion, email, rut;
+
+    // Obtención de datos del botón clicado
+    switch (tabla) {
+        case 'caracteristica':
+            idProducto = $botonEliminar.data('idproducto');
+            nombre = $botonEliminar.data('nombre');
+            valor = $botonEliminar.data('valor');
+            id = ""+tabla+"-"+idProducto+"-"+nombre+"-"+valor;
+            valores = [idProducto, nombre, valor];
+            break;
+        case 'categoria':
+            idCategoria = $botonEliminar.data('idcategoria');
+            id = ""+tabla+"-"+idCategoria;
+            valores = [idCategoria];
+            break;
+        case 'categoriza':
+            idCategoria = $botonEliminar.data('idcategoria');
+            idProducto = $botonEliminar.data('idproducto');
+            id = ""+tabla+"-"+idCategoria+"-"+idProducto;
+            valores = [idCategoria, idProducto];
+            break;
+        case 'contiene':
+            idPedido = $botonEliminar.data('idpedido');
+            idProducto = $botonEliminar.data('idproducto');
+            id = ""+tabla+"-"+idPedido+"-"+idProducto;
+            valores = [idPedido, idProducto];
+            break;
+        case 'descuento':
+            idDescuento = $botonEliminar.data('iddescuento');
+            id = ""+tabla+"-"+idDescuento;
+            valores = [idDescuento];
+            break;
+        case 'direccion':
+            direccion = $botonEliminar.data('direccion');
+            email = $botonEliminar.data('email');
+            id = ""+tabla+"-"+email+"-"+direccion;
+            valores = [direccion, email];
+            break;
+        case 'empresa':
+            rut = $botonEliminar.data('rut');
+            id = ""+tabla+"-"+rut;
+            valores = [rut];
+            break;
+        case 'favorito':
+            idProducto = $botonEliminar.data('idproducto');
+            email = $botonEliminar.data('email');
+            id = ""+tabla+"-"+idProducto+"-"+email;
+            valores = [idProducto, email];
+            break;
+        case 'pedido':
+            idPedido = $botonEliminar.data('idpedido');
+            id = ""+tabla+"-"+idPedido;
+            valores = [idPedido];
+            break;
+        case 'producto':
+            idProducto = $botonEliminar.data('idproducto');
+            id = ""+tabla+"-"+idProducto;
+            valores = [idProducto];
+            break;
+        case 'tiene':
+            idProducto = $botonEliminar.data('idproducto');
+            idDescuento = $botonEliminar.data('iddescuento');
+            id = ""+tabla+"-"+idProducto+"-"+idDescuento;
+            valores = [idProducto, idDescuento];
+            break;
+        case 'usuario':
+            email = $botonEliminar.data('email');
+            id = ""+tabla+"-"+email;
+            valores = [email];
+            break;
+        case 'visita':
+            email = $botonEliminar.data('email');
+            idProducto = $botonEliminar.data('idproducto');
+            id = ""+tabla+"-"+email+"-"+idProducto;
+            valores = [email, idProducto];
+            break;
+        default:
+            console.log("Selección no válida");
+    }
+
+    $.ajax({
+        url: 'http://localhost/PROYECTO/TuxOut/backoffice/controlador/'+tabla+'Controlador.php',
+        method: 'POST',
+        dataType: 'json',
+        data: {metodoControlador: "destroy", valores: valores},
+        success: function(response) {
+            if (response.error) {
+                console.error('Error:', response.error);
+            } else {
+                if(response) {
+                    console.error(response);
+                    alert("Eliminado exitosamente");
+                    id = id.replace(/\s+/g, '_');
+                    let selector = '[data-fila="'+ id +'"]';
+                    
+                    if ($(selector).length) {
+                        console.log("Elemento encontrado:", id);
+                        $(selector).remove();
+                    } else {
+                        console.error("Elemento no encontrado:", id);
+                    }
+                }
+            }
+        },
+        error: function(xhr, status, error) {
+            console.error('Error en la solicitud:', error);
+        }
+    });
+}
+
+$(document).ready(tomarUltimaTabla);
 $("#selectTabla").change(tomarTabla);
 $("#seleccionarCondicion").click(tomarTablaAtributo);
+$(document).on('click', '.eliminar', tomarTablaEliminar);

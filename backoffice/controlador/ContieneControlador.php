@@ -67,11 +67,11 @@ class ContieneControlador {
         $contiene = new Contiene();
         $contiene->setIdProducto($idProducto);
         $contiene->setIdPedido($idPedido);
-        if($contiene->destroy()) {
-            //EXITOSO
-       } else {
-           //ERROR
-       }
+        $resultados = $contiene->destroy();
+
+        header('Content-Type: application/json');
+        echo json_encode($resultados);
+        exit;
     }
 }
 
@@ -92,7 +92,7 @@ switch($metodo) {
         $controlador->update($_POST["idProducto"], $_POST["idPedido"]);
         break;
     case "destroy":
-        $controlador->destroy($_POST["idProducto"], $_POST["idPedido"]);
+        $controlador->destroy($_POST["valores"][0], $_POST["valores"][1]);
         break;
 }
 

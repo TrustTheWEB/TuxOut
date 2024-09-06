@@ -71,13 +71,17 @@ class Caracteristica {
 
     public function show($tipoCondicion) {
         switch ($tipoCondicion) {
-            case "idCategoria":
-                $parametro = $this->idCategoria;
-                $tipoDato = PDO::PARAM_INT;
+            case "nombre":
+                $parametro = $this->nombre;
+                $tipoDato = PDO::PARAM_STR;
                 break;
             case "idProducto":
                 $parametro = $this->idProducto;
                 $tipoDato = PDO::PARAM_INT;
+                break;
+            case "valor":
+                $parametro = $this->valor;
+                $tipoDato = PDO::PARAM_STR;
                 break;
             default:
                 throw new Exception("Tipo de condición no reconocida");
@@ -113,11 +117,12 @@ class Caracteristica {
 
     public function destroy() {
         try {
-            $query = "DELETE FROM " . $this->tabla . " WHERE idProducto = ? AND nombre = ?";
+            $query = "DELETE FROM " . $this->tabla . " WHERE idProducto = ? AND nombre = ? AND valor = ?";
             $stmt = $this->conn->prepare($query);
 
             $stmt->bindValue(1, $this->idProducto, PDO::PARAM_INT);
             $stmt->bindValue(2, $this->nombre, PDO::PARAM_STR);
+            $stmt->bindValue(3, $this->valor, PDO::PARAM_STR);
 
             return $stmt->execute();
         } catch (PDOException $e) {

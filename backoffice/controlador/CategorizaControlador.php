@@ -67,11 +67,10 @@ class CategorizaControlador {
         $categoriza = new Categoriza();
         $categoriza->setIdProducto($idProducto);
         $categoriza->setIdCategoria($idCategoria);
-        if($categoriza->destroy()) {
-            //EXITOSO
-       } else {
-           //ERROR
-       }
+        $resultados = $categoriza->destroy();
+        header('Content-Type: application/json');
+        echo json_encode($resultados);
+        exit;
     }
 }
 
@@ -92,7 +91,7 @@ switch($metodo) {
         $controlador->update($_POST["idProducto"], $_POST["idCategoria"]);
         break;
     case "destroy":
-        $controlador->destroy($_POST["idProducto"], $_POST["idCategoria"]);
+        $controlador->destroy($_POST["valores"][0], $_POST["valores"][1]);
         break;
 }
 

@@ -39,6 +39,17 @@ class DireccionControlador {
         echo json_encode($resultados);
         exit;
     }
+
+    public function destroy($email, $dir) {
+        $direccion = new Direccion();
+        $direccion->setEmail($email);
+        $direccion->setDireccion($dir);
+        
+        $resultados = $direccion->destroy();
+        header('Content-Type: application/json');
+        echo json_encode($resultados);
+        exit;
+    }
 }
 
 $controlador = new DireccionControlador();
@@ -50,6 +61,11 @@ switch($metodo) {
         break;
     case "show":
         $controlador->show($_POST["atributo"], $_POST["valor"]);
+        break;
+    case "destroy":
+        $controlador->destroy($_POST["valores"][0], $_POST["valores"][1]);
+        break;
+    default:
         break;
 }
 

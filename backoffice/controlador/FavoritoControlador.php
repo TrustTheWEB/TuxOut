@@ -67,11 +67,12 @@ class FavoritoControlador {
         $favorito = new Favorito();
         $favorito->setEmail($email);
         $favorito->setIdProducto($idProducto);
-        if($favorito->destroy()) {
-            // Éxito
-        } else {
-            // Error
-        }
+        $resultados = $favorito->destroy();
+
+        
+        header('Content-Type: application/json');
+        echo json_encode($resultados);
+        exit;
     }
 }
 
@@ -84,6 +85,11 @@ switch($metodo) {
         break;
     case "show":
         $controlador->show($_POST["atributo"], $_POST["valor"]);
+        break;
+    case "destroy":
+        $controlador->destroy($_POST["valores"][0], $_POST["valores"][1]);
+        break;
+    default:
         break;
     // Agregar casos para store, update y destroy según sea necesario
 }

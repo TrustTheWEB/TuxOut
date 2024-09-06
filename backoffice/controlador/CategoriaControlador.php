@@ -49,10 +49,10 @@ class CategoriaControlador {
         exit;
     }
 
-    public function update($idProducto, $categoria) {
+    public function update($idCategoria, $nombre) {
         $categoria = new Categoria();
-        $categoria->setIdProducto($idProducto);
-        $categoria->setCategoria($categoria);
+        $categoria->setIdCategoria($idCategoria);
+        $categoria->setNombre($nombre);
         if ($categoria->update()) {
             // Éxito
         } else {
@@ -60,14 +60,13 @@ class CategoriaControlador {
         }
     }
 
-    public function destroy($idProducto) {
+    public function destroy($idCategoria) {
         $categoria = new Categoria();
-        $categoria->setIdProducto($idProducto);
-        if ($categoria->destroy()) {
-            // Éxito
-        } else {
-            // Error
-        }
+        $categoria->setIdCategoria($idCategoria);
+        $resultados = $categoria->destroy();
+        header('Content-Type: application/json');
+        echo json_encode($resultados);
+        exit;
     }
 }
 
@@ -80,6 +79,11 @@ switch ($metodo) {
         break;
     case "show":
         $controlador->show($_POST["atributo"], $_POST["valor"]);
+        break;
+    case "destroy":
+        $controlador->destroy($_POST["valores"][0]);
+        break;
+    default:
         break;
 }
 ?>

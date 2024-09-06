@@ -6,11 +6,11 @@ class Favorito {
 
     private $email;
     private $idProducto;
-    private $conexion;
+    private $conn;
     private $tabla = "favorito";
 
     public function __construct() {
-        $this->conexion = Conexion::getInstance()->getDatabaseInstance();
+        $this->conn = Conexion::getInstance()->getDatabaseInstance();
     }
 
     public function setEmail($email) {
@@ -25,7 +25,7 @@ class Favorito {
 
     public function index() {
         try {
-            $consulta = $this->conexion->prepare("SELECT * FROM " . $this->tabla . ";");
+            $consulta = $this->conn->prepare("SELECT * FROM " . $this->tabla . ";");
             $consulta->execute();
             return $consulta->fetchAll(PDO::FETCH_ASSOC);
         } catch (PDOException $e) {
@@ -36,7 +36,7 @@ class Favorito {
     public function store() {
         try {
             $query = "INSERT INTO " . $this->tabla . " (email, idProducto) VALUES (?, ?)";
-            $stmt = $this->conexion->prepare($query);
+            $stmt = $this->conn->prepare($query);
 
             $stmt->bindValue(1, $this->email, PDO::PARAM_STR);
             $stmt->bindValue(2, $this->idProducto, PDO::PARAM_INT);
@@ -78,7 +78,7 @@ class Favorito {
     public function update() {
         try {
             $query = "UPDATE " . $this->tabla . " SET idProducto = ? WHERE email = ?";
-            $stmt = $this->conexion->prepare($query);
+            $stmt = $this->conn->prepare($query);
 
             $stmt->bindValue(1, $this->idProducto, PDO::PARAM_INT);
             $stmt->bindValue(2, $this->email, PDO::PARAM_STR);
@@ -92,7 +92,7 @@ class Favorito {
     public function destroy() {
         try {
             $query = "DELETE FROM " . $this->tabla . " WHERE email = ? AND idProducto = ?";
-            $stmt = $this->conexion->prepare($query);
+            $stmt = $this->conn->prepare($query);
 
             $stmt->bindValue(1, $this->email, PDO::PARAM_STR);
             $stmt->bindValue(2, $this->idProducto, PDO::PARAM_INT);

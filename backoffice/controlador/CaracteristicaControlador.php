@@ -60,14 +60,16 @@ class CaracteristicaControlador {
         }
     }
 
-    public function destroy($idProducto) {
+    public function destroy($idProducto, $nombre, $valor) {
         $caracteristica = new Caracteristica();
         $caracteristica->setIdProducto($idProducto);
-        if($caracteristica->destroy()) {
-            // EXITOSO
-        } else {
-            // ERROR
-        }
+        $caracteristica->setNombre($nombre);
+        $caracteristica->setValor($valor);
+        
+        $resultados = $caracteristica->destroy();
+        header('Content-Type: application/json');
+        echo json_encode($resultados);
+        exit;
     }
 }
 
@@ -81,6 +83,8 @@ switch($metodo) {
     case "show": 
         $controlador->show($_POST["atributo"], $_POST["valor"]);
         break;
+    case "destroy":
+        $controlador->destroy($_POST["valores"][0], $_POST["valores"][1], $_POST["valores"][2]);
     // Puedes agregar aquí otros casos para métodos como store, update y destroy
 }
 

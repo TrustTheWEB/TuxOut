@@ -74,11 +74,11 @@ class VisitaControlador {
         $visita = new Visita();
         $visita->setEmail($email);
         $visita->setIdProducto($idProducto);
-        if($visita->destroy()) {
-            //EXITOSO
-       } else {
-           //ERROR
-       }
+        
+        $resultados = $visita->destroy();
+        header('Content-Type: application/json');
+        echo json_encode($resultados);
+        exit;
     }
 }
 
@@ -91,6 +91,11 @@ switch($metodo) {
         break;
     case "show": 
         $controlador->show($_POST["atributo"],$_POST["valor"]);
+        break;
+    case "destroy":
+        $controlador->destroy($_POST["valores"][0], $_POST["valores"][1]);
+        break;
+    default:
         break;
 }
 

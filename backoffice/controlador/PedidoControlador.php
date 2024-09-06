@@ -89,11 +89,9 @@ class PedidoControlador {
         $pedido = new Pedido();
         $pedido->setIdPedido($idPedido);
 
-        if($pedido->destroy()) {
-            echo json_encode(["success" => true]);
-        } else {
-            echo json_encode(["error" => "Error al eliminar el pedido."]);
-        }
+        $resultados = $pedido->destroy();
+        header('Content-Type: application/json');
+        echo json_encode($resultados);
         exit;
     }
 }
@@ -107,6 +105,11 @@ switch($metodo) {
         break;
     case "show": 
         $controlador->show($_POST["atributo"], $_POST["valor"]);
+        break;
+    case "destroy":
+        $controlador->destroy($_POST["valores"][0]);
+        break;
+    default:
         break;
     // Otros métodos pueden ser añadidos aquí
 }

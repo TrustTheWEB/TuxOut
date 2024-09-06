@@ -69,12 +69,11 @@ class TieneControlador {
         $tiene = new Tiene();
         $tiene->setIdProducto($idProducto);
         $tiene->setIdDescuento($idDescuento);
-
-        if($tiene->destroy()) {
-            // EXITOSO
-        } else {
-            // ERROR
-        }
+        
+        $resultados = $tiene->destroy();
+        header('Content-Type: application/json');
+        echo json_encode($resultados);
+        exit;
     }
 }
 
@@ -87,6 +86,11 @@ switch($metodo) {
         break;
     case "show": 
         $controlador->show($_POST["atributo"], $_POST["valor"]);
+        break;
+    case "destroy":
+        $controlador->destroy($_POST["valores"][0], $_POST["valores"][1]);
+        break;
+    default:
         break;
 }
 

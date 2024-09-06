@@ -9,11 +9,11 @@ class Descuento {
     private $fechaFin;
     private $motivo;
     
-    private $conexion;
+    private $conn;
     private $tabla = "descuento";
 
     public function __construct() {
-        $this->conexion = Conexion::getInstance()->getDatabaseInstance();
+        $this->conn = Conexion::getInstance()->getDatabaseInstance();
     }
 
     // Métodos GET y SET
@@ -61,7 +61,7 @@ class Descuento {
 
     public function index() {
         try {
-            $consulta = $this->conexion->prepare("SELECT * FROM " . $this->tabla . ";");
+            $consulta = $this->conn->prepare("SELECT * FROM " . $this->tabla . ";");
             $consulta->execute();
             return $consulta->fetchAll(PDO::FETCH_ASSOC);
         } catch (PDOException $e) {
@@ -113,7 +113,7 @@ class Descuento {
     public function store() {
         try {
             $query = "INSERT INTO " . $this->tabla . " (porcentaje, fechaInicio, fechaFin, motivo) VALUES (?, ?, ?, ?)";
-            $stmt = $this->conexion->prepare($query);
+            $stmt = $this->conn->prepare($query);
 
             $stmt->bindValue(1, $this->porcentaje, PDO::PARAM_STR);
             $stmt->bindValue(2, $this->fechaInicio, PDO::PARAM_STR);
@@ -129,7 +129,7 @@ class Descuento {
     public function update() {
         try {
             $query = "UPDATE " . $this->tabla . " SET porcentaje = ?, fechaInicio = ?, fechaFin = ?, motivo = ? WHERE idDescuento = ?";
-            $stmt = $this->conexion->prepare($query);
+            $stmt = $this->conn->prepare($query);
 
             $stmt->bindValue(1, $this->porcentaje, PDO::PARAM_STR);
             $stmt->bindValue(2, $this->fechaInicio, PDO::PARAM_STR);
@@ -146,7 +146,7 @@ class Descuento {
     public function destroy() {
         try {
             $query = "DELETE FROM " . $this->tabla . " WHERE idDescuento = ?";
-            $stmt = $this->conexion->prepare($query);
+            $stmt = $this->conn->prepare($query);
 
             $stmt->bindValue(1, $this->idDescuento, PDO::PARAM_INT);
 
