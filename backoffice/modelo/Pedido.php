@@ -68,6 +68,7 @@ class Pedido {
     }
 
     // Métodos CRUD
+
     public function index() {
         try {
             $consulta = $this->conn->prepare("SELECT * FROM " . $this->tabla . ";");

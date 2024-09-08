@@ -67,8 +67,8 @@ const imprimirEmpresa = (resultado) => {
                     <td>${item["telefono"] || ''}</td>
                     <td>${item["direccion"] || ''}</td>
                     <td>${item["email"] || ''}</td>
-                    <td>${item["contraseña"] || ''}</td>
-                    <td> <a class="editar" href="editar.html?tabla=empresa&rut=${item["RUT"]}">EDITAR</a> <button class="btn eliminar" data-rut="${item["RUT"]}">ELIMINAR</button> </td>
+                    <td class="tdContra">${item["contraseña"] || ''}</td>
+                    <td> <a class="btn editar" href="editar.html?tabla=empresa&rut=${item["RUT"]}">EDITAR</a> <button class="btn eliminar" data-rut="${item["RUT"]}">ELIMINAR</button> </td>
                 </tr>`
             );
         });
@@ -80,8 +80,8 @@ const imprimirEmpresa = (resultado) => {
                     <td>${resultado["telefono"] || ''}</td>
                     <td>${resultado["direccion"] || ''}</td>
                     <td>${resultado["email"] || ''}</td>
-                    <td>${resultado["contraseña"] || ''}</td>
-                    <td> <a class="editar" href="editar.html?tabla=empresa&rut=${resultado["RUT"]}">EDITAR</a> <button class="btn eliminar" data-rut="${resultado["RUT"]}">ELIMINAR</button> </td>
+                    <td class="tdContra">${resultado["contraseña"] || ''}</td>
+                    <td> <a class="btn editar" href="editar.html?tabla=empresa&rut=${resultado["RUT"]}">EDITAR</a> <button class="btn eliminar" data-rut="${resultado["RUT"]}">ELIMINAR</button> </td>
                </tr>`
         );
     }
@@ -97,7 +97,7 @@ const cargarAtributosEmpresa = () => {
                 <option value="email">Email</option>
                 <option value="contraseña">Contraseña</option>
         `);
-        $("#ingresar").attr("href","ingresar.html?tabla=empresa");
+        $("#btnIngresarTabla").attr("href","ingresar.html?tabla=empresa");
 }
 
 // PRODUCTO
@@ -174,7 +174,7 @@ const imprimirProducto = (resultado) => {
                     <td>${item["stock"] || ''}</td>
                     <td>${item["estado"] || ''}</td>
                     <td>${item["marca"] || ''}</td>
-                    <td> <a class="editar" href="editar.html?tabla=producto&idProducto=${item["idProducto"]}">EDITAR</a> <button class="btn eliminar" data-idProducto="${item["idProducto"]}">ELIMINAR</button> </td>
+                    <td> <a class="btn editar" href="editar.html?tabla=producto&idProducto=${item["idProducto"]}">EDITAR</a> <button class="btn eliminar" data-idProducto="${item["idProducto"]}">ELIMINAR</button> </td>
                 </tr>`
             );
         });
@@ -189,7 +189,7 @@ const imprimirProducto = (resultado) => {
                 <td>${resultado["stock"] || ''}</td>
                 <td>${resultado["estado"] || ''}</td>
                 <td>${resultado["marca"] || ''}</td>
-                <td> <a class="editar" href="editar.html?tabla=producto&idProducto=${resultado["idProducto"]}">EDITAR</a> <button class="btn eliminar" data-idProducto="${resultado["idProducto"]}">ELIMINAR</button> </td>
+                <td> <a class="btn editar" href="editar.html?tabla=producto&idProducto=${resultado["idProducto"]}">EDITAR</a> <button class="btn eliminar" data-idProducto="${resultado["idProducto"]}">ELIMINAR</button> </td>
             </tr>`
         );
     }
@@ -208,7 +208,7 @@ const cargarAtributosProducto = () => {
                 <option value="estado">Estado</option>
                 <option value="marca">Marca</option>
         `);
-        $("#ingresar").attr("href","ingresar.html?tabla=producto");
+        $("#btnIngresarTabla").attr("href","ingresar.html?tabla=producto");
 }
 
 // CONTIENE 
@@ -273,7 +273,7 @@ const imprimirContiene = (resultado) => {
                     <td>${item["idPedido"] || ''}</td>
                     <td>${item["idProducto"] || ''}</td>
                     <td>${item["cantidad"] || ''}</td>
-                    <td> <a class="editar" href="editar.html?tabla=contiene&idPedido=${item["idPedido"]}&idProducto=${item["idProducto"]}">EDITAR</a> <button class="btn eliminar" data-idpedido="${item["idPedido"]}" data-idproducto="${item["idProducto"]}">ELIMINAR</button> </td>
+                    <td> <a class="btn editar" href="editar.html?tabla=contiene&idPedido=${item["idPedido"]}&idProducto=${item["idProducto"]}">EDITAR</a> <button class="btn eliminar" data-idpedido="${item["idPedido"]}" data-idproducto="${item["idProducto"]}">ELIMINAR</button> </td>
                 </tr>`
             );
         });
@@ -283,7 +283,7 @@ const imprimirContiene = (resultado) => {
                 <td>${resultado["idPedido"] || ''}</td>
                 <td>${resultado["idProducto"] || ''}</td>
                 <td>${resultado["cantidad"] || ''}</td>
-                <td> <a class="editar" href="editar.html?tabla=contiene&idPedido=${resultado["idPedido"]}&idProducto=${resultado["idProducto"]}">EDITAR</a> <button class="btn eliminar" data-idpedido="${resultado["idPedido"]}" data-idproducto="${resultado["idProducto"]}">ELIMINAR</button> </td>
+                <td> <a class="btn editar" href="editar.html?tabla=contiene&idPedido=${resultado["idPedido"]}&idProducto=${resultado["idProducto"]}">EDITAR</a> <button class="btn eliminar" data-idpedido="${resultado["idPedido"]}" data-idproducto="${resultado["idProducto"]}">ELIMINAR</button> </td>
             </tr>`
         );
     }
@@ -296,7 +296,7 @@ const cargarAtributosContiene = () => {
         <option value="idProducto">IdProducto</option>
         <option value="cantidad">Cantidad</option>
     `);
-    $("#ingresar").attr("href","ingresar.html?tabla=contiene");
+    $("#btnIngresarTabla").attr("href","ingresar.html?tabla=contiene");
 }
 
 // PEDIDO
@@ -367,7 +367,7 @@ const imprimirPedido = (resultado) => {
                     <td>${item["montoTotal"] || ''}</td>
                     <td>${item["fecha"] || ''}</td>
                     <td>${item["email"] || ''}</td>
-                    <td> <a class="editar" href="editar.html?tabla=pedido&idPedido=${item["idPedido"]}">EDITAR</a> <button class="btn eliminar" data-idpedido="${item["idPedido"]}">ELIMINAR</button> </td>
+                    <td> <a class="btn editar" href="editar.html?tabla=pedido&idPedido=${item["idPedido"]}">EDITAR</a> <button class="btn eliminar" data-idpedido="${item["idPedido"]}">ELIMINAR</button> </td>
                 </tr>`
             );
         });
@@ -380,7 +380,7 @@ const imprimirPedido = (resultado) => {
                 <td>${resultado["montoTotal"] || ''}</td>
                 <td>${resultado["fecha"] || ''}</td>
                 <td>${resultado["email"] || ''}</td>
-                <td> <a class="editar" href="editar.html?tabla=pedido&idPedido=${resultado["idPedido"]}">EDITAR</a> <button class="btn eliminar" data-idpedido="${resultado["idPedido"]}">ELIMINAR</button> </td>
+                <td> <a class="btn editar" href="editar.html?tabla=pedido&idPedido=${resultado["idPedido"]}">EDITAR</a> <button class="btn eliminar" data-idpedido="${resultado["idPedido"]}">ELIMINAR</button> </td>
             </tr>`
         );
     }
@@ -396,7 +396,7 @@ const cargarAtributosPedido = () => {
         <option value="fecha">Fecha</option>
         <option value="email">Email</option>
     `);
-    $("#ingresar").attr("href","ingresar.html?tabla=pedido");
+    $("#btnIngresarTabla").attr("href","ingresar.html?tabla=pedido");
 }
 
 // USUARIO
@@ -468,10 +468,10 @@ const imprimirUsuario = (resultado) => {
                     <td>${item["nombre"] || ''}</td>
                     <td>${item["apellido"] || ''}</td>
                     <td>${item["telefono"] || ''}</td>
-                    <td>${item["contraseña"] || ''}</td>
+                    <td class="tdContra">${item["contraseña"] || ''}</td>
                     <td>${item["fechaNac"] || ''}</td>
                     <td>${item["ci"] || ''}</td>
-                    <td> <a class="editar" href="editar.html?tabla=usuario&email=${item["email"]}">EDITAR</a> <button class="btn eliminar" data-email="${item["email"]}">ELIMINAR</button> </td>
+                    <td> <a class="btn editar" href="editar.html?tabla=usuario&email=${item["email"]}">EDITAR</a> <button class="btn eliminar" data-email="${item["email"]}">ELIMINAR</button> </td>
                 </tr>`
             );
         });
@@ -483,10 +483,10 @@ const imprimirUsuario = (resultado) => {
                 <td>${resultado["nombre"] || ''}</td>
                 <td>${resultado["apellido"] || ''}</td>
                 <td>${resultado["telefono"] || ''}</td>
-                <td>${resultado["contraseña"] || ''}</td>
+                <td class="tdContra">${resultado["contraseña"] || ''}</td>
                 <td>${resultado["fechaNac"] || ''}</td>
                 <td>${resultado["ci"] || ''}</td>
-                <td> <a class="editar" href="editar.html?tabla=usuario&email=${resultado["email"]}">EDITAR</a> <button class="btn eliminar" data-email="${resultado["email"]}">ELIMINAR</button> </td>
+                <td> <a class="btn editar" href="editar.html?tabla=usuario&email=${resultado["email"]}">EDITAR</a> <button class="btn eliminar" data-email="${resultado["email"]}">ELIMINAR</button> </td>
             </tr>`
         );
     }
@@ -504,7 +504,7 @@ const cargarAtributosUsuario = () => {
         <option value="fechaNac">Fecha de Nacimiento</option>
         <option value="ci">CI</option>
     `);
-    $("#ingresar").attr("href","ingresar.html?tabla=usuario");
+    $("#btnIngresarTabla").attr("href","ingresar.html?tabla=usuario");
 }
 
 // CATEGORIA
@@ -567,7 +567,7 @@ const imprimirCategoria = (resultado) => {
                 `<tr data-fila="categoria-${item["idCategoria"]}">
                     <td>${item["idCategoria"] || ''}</td>
                     <td>${item["nombre"] || ''}</td>
-                    <td> <a class="editar" href="editar.html?tabla=categoria&idCategoria=${item["idCategoria"]}">EDITAR</a> <button class="btn eliminar" data-idcategoria="${item["idCategoria"]}">ELIMINAR</button> </td>
+                    <td> <a class="btn editar" href="editar.html?tabla=categoria&idCategoria=${item["idCategoria"]}">EDITAR</a> <button class="btn eliminar" data-idcategoria="${item["idCategoria"]}">ELIMINAR</button> </td>
                 </tr>`
             );
         });
@@ -576,7 +576,7 @@ const imprimirCategoria = (resultado) => {
             `<tr data-fila="categoria-${resultado["idCategoria"]}">
                 <td>${resultado["idCategoria"] || ''}</td>
                 <td>${resultado["nombre"] || ''}</td>
-                <td> <a class="editar" href="editar.html?tabla=categoria&idCategoria=${resultado["idCategoria"]}">EDITAR</a> <button class="btn eliminar" data-idcategoria="${resultado["idCategoria"]}">ELIMINAR</button> </td>
+                <td> <a class="btn editar" href="editar.html?tabla=categoria&idCategoria=${resultado["idCategoria"]}">EDITAR</a> <button class="btn eliminar" data-idcategoria="${resultado["idCategoria"]}">ELIMINAR</button> </td>
             </tr>`
         );
     }
@@ -588,7 +588,7 @@ const cargarAtributosCategoria = () => {
         <option value="idCategoria">ID Categoría</option>
         <option value="nombre">Nombre</option>
     `);
-    $("#ingresar").attr("href","ingresar.html?tabla=categoria");
+    $("#btnIngresarTabla").attr("href","ingresar.html?tabla=categoria");
 }
 
 // CARACTERISTICA
@@ -649,21 +649,21 @@ const imprimirCaracteristica = (resultado) => {
     if (Array.isArray(resultado)) {
         resultado.forEach(item => {
             $('#tablaBody').append(
-                `<tr data-fila="caracteristica-${item["idProducto"]}-${(item["nombre"] || '').replace(/\s+/g, '_')}-${(item["valor"] || '').replace(/\s+/g, '_')}">
+                `<tr data-fila="caracteristica-${item["idProducto"]}-${(item["nombre"])}-${(item["valor"])}">
                     <td>${item["idProducto"] || ''}</td>
                     <td>${item["nombre"] || ''}</td>
                     <td>${item["valor"] || ''}</td>
-                    <td> <a class="editar" href="editar.html?tabla=caracteristica&idProducto=${item["idProducto"]}&nombre=${item["nombre"]}&valor=${item["valor"]}">EDITAR</a> <button class="btn eliminar" data-idproducto="${item["idProducto"]}" data-nombre="${item["nombre"]}" data-valor="${item["valor"]}">ELIMINAR</button> </td>
+                    <td> <a class="btn editar" href="editar.html?tabla=caracteristica&idProducto=${item["idProducto"]}&nombre=${item["nombre"]}&valor=${item["valor"]}">EDITAR</a> <button class="btn eliminar" data-idproducto="${item["idProducto"]}" data-nombre="${item["nombre"]}" data-valor="${item["valor"]}">ELIMINAR</button> </td>
                 </tr>`
             );
         });
     } else {
         $('#tablaBody').append(
-            `<tr data-fila="caracteristica-${(resultado["idProducto"] || '').replace(/\s+/g, '_')}-${resultado["nombre"]}-${(resultado["valor"] || '').replace(/\s+/g, '_')}">
+            `<tr data-fila="caracteristica-${(resultado["idProducto"])}-${resultado["nombre"]}-${(resultado["valor"])}">
                 <td>${resultado["idProducto"] || ''}</td>
                 <td>${resultado["nombre"] || ''}</td>
                 <td>${resultado["valor"] || ''}</td>
-                <td> <a class="editar" href="editar.html?tabla=caracteristica&idProducto=${resultado["idProducto"]}&nombre=${resultado["nombre"]}&valor=${resultado["valor"]}">EDITAR</a> <button class="btn eliminar" data-idproducto="${resultado["idProducto"]}" data-nombre="${resultado["nombre"]}" data-valor="${resultado["valor"]}">ELIMINAR</button> </td>
+                <td> <a class="btn editar" href="editar.html?tabla=caracteristica&idProducto=${resultado["idProducto"]}&nombre=${resultado["nombre"]}&valor=${resultado["valor"]}">EDITAR</a> <button class="btn eliminar" data-idproducto="${resultado["idProducto"]}" data-nombre="${resultado["nombre"]}" data-valor="${resultado["valor"]}">ELIMINAR</button> </td>
             </tr>`
         );
     }
@@ -676,7 +676,7 @@ const cargarAtributosCaracteristica = () => {
         <option value="nombre">Nombre</option>
         <option value="valor">Valor</option>
     `);
-    $("#ingresar").attr("href","ingresar.html?tabla=caracteristica");
+    $("#btnIngresarTabla").attr("href","ingresar.html?tabla=caracteristica");
 }
 
 
@@ -746,7 +746,7 @@ const imprimirDescuento = (resultado) => {
                     <td>${item["fechaInicio"] || ''}</td>
                     <td>${item["fechaFin"] || ''}</td>
                     <td>${item["motivo"] || ''}</td>
-                    <td> <a class="editar" href="editar.html?tabla=descuento&idDescuento=${item["idDescuento"]}">EDITAR</a> <button class="btn eliminar" data-iddescuento="${item["idDescuento"]}">ELIMINAR</button> </td>
+                    <td> <a class="btn editar" href="editar.html?tabla=descuento&idDescuento=${item["idDescuento"]}">EDITAR</a> <button class="btn eliminar" data-iddescuento="${item["idDescuento"]}">ELIMINAR</button> </td>
                 </tr>`
             );
         });
@@ -758,7 +758,7 @@ const imprimirDescuento = (resultado) => {
                 <td>${resultado["fechaInicio"] || ''}</td>
                 <td>${resultado["fechaFin"] || ''}</td>
                 <td>${resultado["motivo"] || ''}</td>
-                <td> <a class="editar" href="editar.html?tabla=descuento&idDescuento=${resultado["idDescuento"]}">EDITAR</a> <button class="btn eliminar" data-iddescuento="${resultado["idDescuento"]}">ELIMINAR</button> </td>
+                <td> <a class="btn editar" href="editar.html?tabla=descuento&idDescuento=${resultado["idDescuento"]}">EDITAR</a> <button class="btn eliminar" data-iddescuento="${resultado["idDescuento"]}">ELIMINAR</button> </td>
             </tr>`
         );
     }
@@ -773,7 +773,7 @@ const cargarAtributosDescuento = () => {
         <option value="fechaFin">Fecha Fin</option>
         <option value="motivo">Motivo</option>
     `);
-    $("#ingresar").attr("href","ingresar.html?tabla=descuento");
+    $("#btnIngresarTabla").attr("href","ingresar.html?tabla=descuento");
 }
 
 // VISITA
@@ -838,7 +838,7 @@ const imprimirVisita = (resultado) => {
                     <td>${item["email"] || ''}</td>
                     <td>${item["idProducto"] || ''}</td>
                     <td>${item["fecha"] || ''}</td>
-                    <td> <a class="editar" href="editar.html?tabla=visita&email=${item["email"]}&idProducto=${item["idProducto"]}">EDITAR</a> <button class="btn eliminar" data-email="${item["email"]}" data-idproducto="${item["idProducto"]}">ELIMINAR</button> </td>
+                    <td> <a class="btn editar" href="editar.html?tabla=visita&email=${item["email"]}&idProducto=${item["idProducto"]}">EDITAR</a> <button class="btn eliminar" data-email="${item["email"]}" data-idproducto="${item["idProducto"]}">ELIMINAR</button> </td>
                 </tr>`
             );
         });
@@ -848,7 +848,7 @@ const imprimirVisita = (resultado) => {
                 <td>${resultado["email"] || ''}</td>
                 <td>${resultado["idProducto"] || ''}</td>
                 <td>${resultado["fecha"] || ''}</td>
-                <td> <a class="editar" href="editar.html?tabla=visita&email=${resultado["email"]}&idProducto=${resultado["idProducto"]}">EDITAR</a> <button class="btn eliminar" data-email="${resultado["email"]}" data-idproducto="${resultado["idProducto"]}">ELIMINAR</button> </td>
+                <td> <a class="btn editar" href="editar.html?tabla=visita&email=${resultado["email"]}&idProducto=${resultado["idProducto"]}">EDITAR</a> <button class="btn eliminar" data-email="${resultado["email"]}" data-idproducto="${resultado["idProducto"]}">ELIMINAR</button> </td>
             </tr>`
         );
     }
@@ -861,7 +861,7 @@ const cargarAtributosVisita = () => {
         <option value="idProducto">ID Producto</option>
         <option value="fecha">Fecha</option>
     `);
-    $("#ingresar").attr("href","ingresar.html?tabla=visita");
+    $("#btnIngresarTabla").attr("href","ingresar.html?tabla=visita");
 }
 
 // FAVORITO
@@ -924,7 +924,7 @@ const imprimirFavorito = (resultado) => {
                 `<tr data-fila="favorito-${item["email"]}-${item["idProducto"]}">
                     <td>${item["email"] || ''}</td>
                     <td>${item["idProducto"] || ''}</td>
-                    <td> <a class="editar" href="editar.html?tabla=visita&email=${item["email"]}&idProducto=${item["idProducto"]}">EDITAR</a> <button class="btn eliminar" data-email="${item["email"]}" data-idproducto="${item["idProducto"]}">ELIMINAR</button> </td>
+                    <td> <a class="btn editar" href="editar.html?tabla=visita&email=${item["email"]}&idProducto=${item["idProducto"]}">EDITAR</a> <button class="btn eliminar" data-email="${item["email"]}" data-idproducto="${item["idProducto"]}">ELIMINAR</button> </td>
                 </tr>`
             );
         });
@@ -933,7 +933,7 @@ const imprimirFavorito = (resultado) => {
             `<tr data-fila="favorito-${resultado["email"]}-${resultado["idProducto"]}">
                 <td>${resultado["email"] || ''}</td>
                 <td>${resultado["idProducto"] || ''}</td>
-                <td> <a class="editar" href="editar.html?tabla=visita&email=${resultado["email"]}&idProducto=${resultado["idProducto"]}">EDITAR</a> <button class="btn eliminar" data-email="${resultado["email"]}" data-idproducto="${resultado["idProducto"]}">ELIMINAR</button> </td>
+                <td> <a class="btn editar" href="editar.html?tabla=visita&email=${resultado["email"]}&idProducto=${resultado["idProducto"]}">EDITAR</a> <button class="btn eliminar" data-email="${resultado["email"]}" data-idproducto="${resultado["idProducto"]}">ELIMINAR</button> </td>
             </tr>`
         );
     }
@@ -945,7 +945,7 @@ const cargarAtributosFavorito = () => {
         <option value="email">Email</option>
         <option value="idProducto">ID Producto</option>
     `);
-    $("#ingresar").attr("href","ingresar.html?tabla=favorito");
+    $("#btnIngresarTabla").attr("href","ingresar.html?tabla=favorito");
 }
 
 // DIRECCION
@@ -1005,19 +1005,19 @@ const imprimirDireccion = (resultado) => {
     if (Array.isArray(resultado)) {
         resultado.forEach(item => {
             $('#tablaBody').append(
-                `<tr data-fila="direccion-${item["email"]}-${(item["direccion"] || '').replace(/\s+/g, '_')}">
+                `<tr data-fila="direccion-${item["email"]}-${(item["direccion"])}">
                     <td>${item["email"] || ''}</td>
                     <td>${item["direccion"] || ''}</td>
-                    <td> <a class="editar" href="editar.html?tabla=direccion&email=${item["email"]}&direccion=${encodeURIComponent(item["direccion"])}">EDITAR</a> <button class="btn eliminar" data-email="${item["email"]}" data-direccion="${encodeURIComponent(item["direccion"])}">ELIMINAR</button> </td>
+                    <td> <a class="btn editar" href="editar.html?tabla=direccion&email=${item["email"]}&direccion=${(item["direccion"])}">EDITAR</a> <button class="btn eliminar" data-email="${item["email"]}" data-direccion="${(item["direccion"])}">ELIMINAR</button> </td>
                 </tr>`
             );
         });
     } else {
         $('#tablaBody').append(
-            `<tr data-fila="direccion-${resultado["email"]}-${(resultado["direccion"] || '').replace(/\s+/g, '_')}">
+            `<tr data-fila="direccion-${resultado["email"]}-${(resultado["direccion"])}">
                 <td>${resultado["email"] || ''}</td>
                 <td>${resultado["direccion"] || ''}</td>
-                <td> <a class="editar" href="editar.html?tabla=direccion&email=${resultado["email"]}&direccion=${encodeURIComponent(resultado["direccion"])}">EDITAR</a> <button class="btn eliminar" data-email="${resultado["email"]}" data-direccion="${encodeURIComponent(resultado["direccion"])}">ELIMINAR</button> </td>
+                <td> <a class="btn editar" href="editar.html?tabla=direccion&email=${resultado["email"]}&direccion=${(resultado["direccion"])}">EDITAR</a> <button class="btn eliminar" data-email="${resultado["email"]}" data-direccion="${(resultado["direccion"])}">ELIMINAR</button> </td>
             </tr>`
         );
     }
@@ -1029,7 +1029,7 @@ const cargarAtributosDireccion = () => {
         <option value="email">Email</option>
         <option value="direccion">Dirección</option>
     `);
-    $("#ingresar").attr("href","ingresar.html?tabla=direccion");
+    $("#btnIngresarTabla").attr("href","ingresar.html?tabla=direccion");
 
 }
 
@@ -1093,7 +1093,7 @@ const imprimirTiene = (resultado) => {
                 `<tr data-fila="tiene-${item["idProducto"]}-${item["idDescuento"]}">
                     <td>${item["idProducto"] || ''}</td>
                     <td>${item["idDescuento"] || ''}</td>
-                    <td> <a class="editar" href="editar.html?tabla=tiene&idProducto=${item["idProducto"]}&idDescuento=${item["idDescuento"]}">EDITAR</a> <button class="btn eliminar" data-idproducto="${item["idProducto"]}" data-iddescuento="${item["idDescuento"]}">ELIMINAR</button> </td>
+                    <td> <a class="btn editar" href="editar.html?tabla=tiene&idProducto=${item["idProducto"]}&idDescuento=${item["idDescuento"]}">EDITAR</a> <button class="btn eliminar" data-idproducto="${item["idProducto"]}" data-iddescuento="${item["idDescuento"]}">ELIMINAR</button> </td>
                 </tr>`
             );
         });
@@ -1102,7 +1102,7 @@ const imprimirTiene = (resultado) => {
             `<tr data-fila="tiene-${resultado["idProducto"]}-${resultado["idDescuento"]}">
                 <td>${resultado["idProducto"] || ''}</td>
                 <td>${resultado["idDescuento"] || ''}</td>
-                <td> <a class="editar" href="editar.html?tabla=tiene&idProducto=${resultado["idProducto"]}&idDescuento=${resultado["idDescuento"]}">EDITAR</a> <button class="btn eliminar" data-idproducto="${resultado["idProducto"]}" data-iddescuento="${resultado["idDescuento"]}">ELIMINAR</button> </td>
+                <td> <a class="btn editar" href="editar.html?tabla=tiene&idProducto=${resultado["idProducto"]}&idDescuento=${resultado["idDescuento"]}">EDITAR</a> <button class="btn eliminar" data-idproducto="${resultado["idProducto"]}" data-iddescuento="${resultado["idDescuento"]}">ELIMINAR</button> </td>
             </tr>`
         );
     }
@@ -1114,7 +1114,7 @@ const cargarAtributosTiene = () => {
         <option value="email">idProducto</option>
         <option value="direccion">idDescuento</option>
     `);
-    $("#ingresar").attr("href","ingresar.html?tabla=tiene");
+    $("#btnIngresarTabla").attr("href","ingresar.html?tabla=tiene");
 }
 
 // CATEGORIZA
@@ -1177,7 +1177,7 @@ const imprimirCategoriza = (resultado) => {
                 `<tr data-fila="categoriza-${item["idCategoria"]}-${item["idProducto"]}">
                     <td>${item["idCategoria"] || ''}</td>
                     <td>${item["idProducto"] || ''}</td>
-                    <td> <a class="editar" href="editar.html?tabla=categoriza&idCategoria=${item["idCategoria"]}&idProducto=${item["idProducto"]}">EDITAR</a> <button class="btn eliminar" data-idcategoria="${item["idCategoria"]}" data-idproducto="${item["idProducto"]}">ELIMINAR</button> </td>
+                    <td> <a class="btn editar" href="editar.html?tabla=categoriza&idCategoria=${item["idCategoria"]}&idProducto=${item["idProducto"]}">EDITAR</a> <button class="btn eliminar" data-idcategoria="${item["idCategoria"]}" data-idproducto="${item["idProducto"]}">ELIMINAR</button> </td>
                 </tr>`
             );
         });
@@ -1186,7 +1186,7 @@ const imprimirCategoriza = (resultado) => {
             `<tr data-fila="categoriza-${resultado["idCategoria"]}-${resultado["idProducto"]}">
                 <td>${resultado["idCategoria"] || ''}</td>
                 <td>${resultado["idProducto"] || ''}</td>
-                <td> <a class="editar" href="editar.html?tabla=categoriza&idCategoria=${resultado["idCategoria"]}&idProducto=${resultado["idProducto"]}">EDITAR</a> <button class="btn eliminar" data-idcategoria="${resultado["idCategoria"]}" data-idproducto="${resultado["idProducto"]}">ELIMINAR</button> </td>
+                <td> <a class="btn editar" href="editar.html?tabla=categoriza&idCategoria=${resultado["idCategoria"]}&idProducto=${resultado["idProducto"]}">EDITAR</a> <button class="btn eliminar" data-idcategoria="${resultado["idCategoria"]}" data-idproducto="${resultado["idProducto"]}">ELIMINAR</button> </td>
             </tr>`
         );
     }
@@ -1198,7 +1198,7 @@ const cargarAtributosCategoriza = () => {
         <option value="idCategoria">ID Categoría</option>
         <option value="idProducto">ID Producto</option>
     `);
-    $("#ingresar").attr("href","ingresar.html?tabla=categoriza");
+    $("#btnIngresarTabla").attr("href","ingresar.html?tabla=categoriza");
 }
 
 // TABLAS
@@ -1437,7 +1437,6 @@ const eliminarDato = (tabla, $botonEliminar) => {
                 if(response) {
                     console.error(response);
                     alert("Eliminado exitosamente");
-                    id = id.replace(/\s+/g, '_');
                     let selector = '[data-fila="'+ id +'"]';
                     
                     if ($(selector).length) {
@@ -1457,5 +1456,14 @@ const eliminarDato = (tabla, $botonEliminar) => {
 
 $(document).ready(tomarUltimaTabla);
 $("#selectTabla").change(tomarTabla);
-$("#seleccionarCondicion").click(tomarTablaAtributo);
+$("#btnSeleccionarAtributo").click(tomarTablaAtributo);
 $(document).on('click', '.eliminar', tomarTablaEliminar);
+
+$(document).ready(function() {
+    $('#selectValor').keydown(function(event) {
+        if (event.key === 'Enter') {
+            tomarTablaAtributo();
+            event.preventDefault();
+        }
+    });
+});

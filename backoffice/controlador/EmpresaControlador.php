@@ -5,8 +5,8 @@ require_once("../modelo/Empresa.php");
 class EmpresaControlador {
     
     public function index() {
-        $empresa = new Empresa();
-        $resultados = $empresa->index();
+        $modelo = new Empresa();
+        $resultados = $modelo->index();
 
         header('Content-Type: application/json');
         echo json_encode($resultados);
@@ -14,22 +14,22 @@ class EmpresaControlador {
     }
 
     public function store($rut, $nombre, $telefono, $direccion, $email, $contraseña) {
-        $empresa = new Empresa();
-        $empresa->setRut($rut);
-        $empresa->setNombre($nombre);
-        $empresa->setTelefono($telefono);
-        $empresa->setDireccion($direccion);
-        $empresa->setEmail($email);
-        $empresa->setContraseña($contraseña);
-        if($empresa->store()) {
-             //EXITOSO
-        } else {
-            //ERROR
-        }
+        $modelo = new Empresa();
+        $modelo->setRut($rut);
+        $modelo->setNombre($nombre);
+        $modelo->setTelefono($telefono);
+        $modelo->setDireccion($direccion);
+        $modelo->setEmail($email);
+        $modelo->setContraseña($contraseña);
+        
+        $resultados = $modelo->store();
+        header('Content-Type: application/json');
+        echo json_encode($resultados);
+        exit;
     }
 
     public function show($atributo, $valor) {
-        $empresa = new Empresa();
+        $modelo = new Empresa();
 
         if (empty($valor)) {
             throw new Exception("El valor para '$atributo' está vacío o es nulo.");
@@ -37,34 +37,34 @@ class EmpresaControlador {
 
         switch($atributo) {
         case "RUT":
-            $empresa->setRut($valor);
+            $modelo->setRut($valor);
             break;
     
         case "nombre":
-            $empresa->setNombre($valor);
+            $modelo->setNombre($valor);
             break;
     
         case "telefono":
-            $empresa->setTelefono($valor);
+            $modelo->setTelefono($valor);
             break;
     
         case "direccion":
-            $empresa->setDireccion($valor);
+            $modelo->setDireccion($valor);
             break;
     
         case "email":
-            $empresa->setEmail($valor);
+            $modelo->setEmail($valor);
             break;
     
         case "contraseña":
-            $empresa->setContraseña($valor);
+            $modelo->setContraseña($valor);
             break;
     
         default:
             //error
         }
 
-        $resultados = $empresa->show($atributo);
+        $resultados = $modelo->show($atributo);
 
         header('Content-Type: application/json');
         echo json_encode($resultados);
@@ -73,14 +73,14 @@ class EmpresaControlador {
     }
 
     public function update($rut, $nombre, $telefono, $direccion, $email, $contraseña) {
-        $empresa = new Empresa();
-        $empresa->setRut($rut);
-        $empresa->setNombre($nombre);
-        $empresa->setTelefono($telefono);
-        $empresa->setDireccion($direccion);
-        $empresa->setEmail($email);
-        $empresa->setContraseña($contraseña);
-        if($empresa->update()) {
+        $modelo = new Empresa();
+        $modelo->setRut($rut);
+        $modelo->setNombre($nombre);
+        $modelo->setTelefono($telefono);
+        $modelo->setDireccion($direccion);
+        $modelo->setEmail($email);
+        $modelo->setContraseña($contraseña);
+        if($modelo->update()) {
             //EXITOSO
        } else {
            //ERROR
@@ -88,9 +88,9 @@ class EmpresaControlador {
     }
 
     public function destroy($rut) {
-        $empresa = new Empresa();
-        $empresa->setRut($rut);
-        $resultados = $empresa->destroy();
+        $modelo = new Empresa();
+        $modelo->setRut($rut);
+        $resultados = $modelo->destroy();
         
         header('Content-Type: application/json');
         echo json_encode($resultados);
@@ -107,6 +107,9 @@ switch($metodo) {
         break;
     case "show": 
         $controlador->show($_POST["atributo"],$_POST["valor"]);
+        break;
+    case "store":
+        $controlador->store($_POST["valores"][0],$_POST["valores"][1],$_POST["valores"][2],$_POST["valores"][3],$_POST["valores"][4],$_POST["valores"][5]);
         break;
     case "destroy":
         $controlador->destroy($_POST["valores"][0]);

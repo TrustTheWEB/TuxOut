@@ -5,8 +5,8 @@ require_once("../modelo/Tiene.php");
 class TieneControlador {
     
     public function index() {
-        $tiene = new Tiene();
-        $resultados = $tiene->index();
+        $modelo = new Tiene();
+        $resultados = $modelo->index();
 
         header('Content-Type: application/json');
         echo json_encode($resultados);
@@ -16,19 +16,18 @@ class TieneControlador {
     }
 
     public function store($idProducto, $idDescuento) {
-        $tiene = new Tiene();
-        $tiene->setIdProducto($idProducto);
-        $tiene->setIdDescuento($idDescuento);
+        $modelo = new Tiene();
+        $modelo->setIdProducto($idProducto);
+        $modelo->setIdDescuento($idDescuento);
         
-        if($tiene->store()) {
-            // EXITOSO
-        } else {
-            // ERROR
-        }
+        $resultados = $modelo->store();
+        header('Content-Type: application/json');
+        echo json_encode($resultados);
+        exit;
     }
 
     public function show($atributo, $valor) {
-        $tiene = new Tiene();
+        $modelo = new Tiene();
 
         if (empty($valor)) {
             throw new Exception("El valor para '$atributo' está vacío o es nulo.");
@@ -36,16 +35,16 @@ class TieneControlador {
 
         switch($atributo) {
             case "idProducto":
-                $tiene->setIdProducto($valor);
+                $modelo->setIdProducto($valor);
                 break;
             case "idDescuento":
-                $tiene->setIdDescuento($valor);
+                $modelo->setIdDescuento($valor);
                 break;
             default:
                 // ERROR
         }
 
-        $resultados = $tiene->show($atributo);
+        $resultados = $modelo->show($atributo);
 
         header('Content-Type: application/json');
         echo json_encode($resultados);
@@ -54,11 +53,11 @@ class TieneControlador {
     }
 
     public function update($idProducto, $idDescuento) {
-        $tiene = new Tiene();
-        $tiene->setIdProducto($idProducto);
-        $tiene->setIdDescuento($idDescuento);
+        $modelo = new Tiene();
+        $modelo->setIdProducto($idProducto);
+        $modelo->setIdDescuento($idDescuento);
 
-        if($tiene->update()) {
+        if($modelo->update()) {
             // EXITOSO
         } else {
             // ERROR
@@ -66,11 +65,11 @@ class TieneControlador {
     }
 
     public function destroy($idProducto, $idDescuento) {
-        $tiene = new Tiene();
-        $tiene->setIdProducto($idProducto);
-        $tiene->setIdDescuento($idDescuento);
+        $modelo = new Tiene();
+        $modelo->setIdProducto($idProducto);
+        $modelo->setIdDescuento($idDescuento);
         
-        $resultados = $tiene->destroy();
+        $resultados = $modelo->destroy();
         header('Content-Type: application/json');
         echo json_encode($resultados);
         exit;
@@ -86,6 +85,9 @@ switch($metodo) {
         break;
     case "show": 
         $controlador->show($_POST["atributo"], $_POST["valor"]);
+        break;
+    case "store":
+        $controlador->store($_POST["valores"][0],$_POST["valores"][1]);
         break;
     case "destroy":
         $controlador->destroy($_POST["valores"][0], $_POST["valores"][1]);

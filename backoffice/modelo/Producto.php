@@ -101,8 +101,6 @@ class Producto {
             $resultados = $consulta->fetchAll(PDO::FETCH_ASSOC);
 
             return $resultados;
-            
-            exit;
         } catch (PDOException $e) {
             return "Error en la consulta: " . $e->getMessage();
         }

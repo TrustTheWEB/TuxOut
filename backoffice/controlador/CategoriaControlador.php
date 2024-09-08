@@ -5,27 +5,26 @@ require_once("../modelo/Categoria.php");
 class CategoriaControlador {
 
     public function index() {
-        $categoria = new Categoria();
-        $resultados = $categoria->index();
+        $modelo = new Categoria();
+        $resultados = $modelo->index();
 
         header('Content-Type: application/json');
         echo json_encode($resultados);
         exit;
     }
 
-    public function store($idProducto, $categoria) {
-        $categoria = new Categoria();
-        $categoria->setIdProducto($idProducto);
-        $categoria->setCategoria($categoria);
-        if ($categoria->store()) {
-            // Éxito
-        } else {
-            // Error
-        }
+    public function store($nombre) {
+        $modelo = new Categoria();
+        $modelo->setNombre($nombre);
+        $resultados = $modelo->store();
+
+        header('Content-Type: application/json');
+        echo json_encode($resultados);
+        exit;
     }
 
     public function show($atributo, $valor) {
-        $categoria = new Categoria();
+        $modelo = new Categoria();
 
         if (empty($valor)) {
             throw new Exception("El valor para '$atributo' está vacío o es nulo.");
@@ -33,16 +32,16 @@ class CategoriaControlador {
 
         switch ($atributo) {
             case "idCategoria":
-                $categoria->setIdCategoria($valor);
+                $modelo->setIdCategoria($valor);
                 break;
             case "nombre":
-                $categoria->setNombre($valor);
+                $modelo->setNombre($valor);
                 break;
             default:
                 // Error
         }
 
-        $resultados = $categoria->show($atributo);
+        $resultados = $modelo->show($atributo);
 
         header('Content-Type: application/json');
         echo json_encode($resultados);
@@ -50,10 +49,10 @@ class CategoriaControlador {
     }
 
     public function update($idCategoria, $nombre) {
-        $categoria = new Categoria();
-        $categoria->setIdCategoria($idCategoria);
-        $categoria->setNombre($nombre);
-        if ($categoria->update()) {
+        $modelo = new Categoria();
+        $modelo->setIdCategoria($idCategoria);
+        $modelo->setNombre($nombre);
+        if ($modelo->update()) {
             // Éxito
         } else {
             // Error
@@ -61,9 +60,9 @@ class CategoriaControlador {
     }
 
     public function destroy($idCategoria) {
-        $categoria = new Categoria();
-        $categoria->setIdCategoria($idCategoria);
-        $resultados = $categoria->destroy();
+        $modelo = new Categoria();
+        $modelo->setIdCategoria($idCategoria);
+        $resultados = $modelo->destroy();
         header('Content-Type: application/json');
         echo json_encode($resultados);
         exit;
@@ -79,6 +78,9 @@ switch ($metodo) {
         break;
     case "show":
         $controlador->show($_POST["atributo"], $_POST["valor"]);
+        break;
+    case "store":
+        $controlador->destroy($_POST["valores"][0]);
         break;
     case "destroy":
         $controlador->destroy($_POST["valores"][0]);

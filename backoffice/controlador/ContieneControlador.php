@@ -5,8 +5,8 @@ require_once("../modelo/Contiene.php");
 class ContieneControlador {
     
     public function index() {
-        $contiene = new Contiene();
-        $resultados = $contiene->index();
+        $modelo = new Contiene();
+        $resultados = $modelo->index();
 
         header('Content-Type: application/json');
         echo json_encode($resultados);
@@ -14,18 +14,18 @@ class ContieneControlador {
     }
 
     public function store($idProducto, $idPedido) {
-        $contiene = new Contiene();
-        $contiene->setIdProducto($idProducto);
-        $contiene->setIdPedido($idPedido);
-        if($contiene->store()) {
-             //EXITOSO
-        } else {
-            //ERROR
-        }
+        $modelo = new Contiene();
+        $modelo->setIdProducto($idProducto);
+        $modelo->setIdPedido($idPedido);
+        
+        $resultados = $modelo->store();
+        header('Content-Type: application/json');
+        echo json_encode($resultados);
+        exit;
     }
 
     public function show($atributo, $valor) {
-        $contiene = new Contiene();
+        $modelo = new Contiene();
 
         if (empty($valor)) {
             throw new Exception("El valor para '$atributo' está vacío o es nulo.");
@@ -33,18 +33,18 @@ class ContieneControlador {
 
         switch($atributo) {
         case "idProducto":
-            $contiene->setIdProducto($valor);
+            $modelo->setIdProducto($valor);
             break;
     
         case "idPedido":
-            $contiene->setIdPedido($valor);
+            $modelo->setIdPedido($valor);
             break;
     
         default:
             //error
         }
 
-        $resultados = $contiene->show($atributo);
+        $resultados = $modelo->show($atributo);
 
         header('Content-Type: application/json');
         echo json_encode($resultados);
@@ -53,10 +53,10 @@ class ContieneControlador {
     }
 
     public function update($idProducto, $idPedido) {
-        $contiene = new Contiene();
-        $contiene->setIdProducto($idProducto);
-        $contiene->setIdPedido($idPedido);
-        if($contiene->update()) {
+        $modelo = new Contiene();
+        $modelo->setIdProducto($idProducto);
+        $modelo->setIdPedido($idPedido);
+        if($modelo->update()) {
             //EXITOSO
        } else {
            //ERROR
@@ -64,10 +64,10 @@ class ContieneControlador {
     }
 
     public function destroy($idProducto, $idPedido) {
-        $contiene = new Contiene();
-        $contiene->setIdProducto($idProducto);
-        $contiene->setIdPedido($idPedido);
-        $resultados = $contiene->destroy();
+        $modelo = new Contiene();
+        $modelo->setIdProducto($idProducto);
+        $modelo->setIdPedido($idPedido);
+        $resultados = $modelo->destroy();
 
         header('Content-Type: application/json');
         echo json_encode($resultados);
@@ -86,7 +86,7 @@ switch($metodo) {
         $controlador->show($_POST["atributo"],$_POST["valor"]);
         break;
     case "store":
-        $controlador->store($_POST["idProducto"], $_POST["idPedido"]);
+        $controlador->store($_POST["valores"][0], $_POST["valores"][1]);
         break;
     case "update":
         $controlador->update($_POST["idProducto"], $_POST["idPedido"]);

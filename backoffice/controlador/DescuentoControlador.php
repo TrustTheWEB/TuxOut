@@ -5,8 +5,8 @@ require_once("../modelo/Descuento.php");
 class DescuentoControlador {
     
     public function index() {
-        $descuento = new Descuento();
-        $resultados = $descuento->index();
+        $modelo = new Descuento();
+        $resultados = $modelo->index();
 
         header('Content-Type: application/json');
         echo json_encode($resultados);
@@ -14,12 +14,12 @@ class DescuentoControlador {
     }
 
     public function store($porcentaje, $fechaInicio, $fechaFin, $motivo) {
-        $descuento = new Descuento();
-        $descuento->setPorcentaje($porcentaje);
-        $descuento->setFechaInicio($fechaInicio);
-        $descuento->setFechaFin($fechaFin);
-        $descuento->setMotivo($motivo);
-        if($descuento->store()) {
+        $modelo = new Descuento();
+        $modelo->setPorcentaje($porcentaje);
+        $modelo->setFechaInicio($fechaInicio);
+        $modelo->setFechaFin($fechaFin);
+        $modelo->setMotivo($motivo);
+        if($modelo->store()) {
             // EXITOSO
         } else {
             // ERROR
@@ -27,7 +27,7 @@ class DescuentoControlador {
     }
 
     public function show($atributo, $valor) {
-        $descuento = new Descuento();
+        $modelo = new Descuento();
 
         if (empty($valor)) {
             throw new Exception("El valor para '$atributo' está vacío o es nulo.");
@@ -35,25 +35,25 @@ class DescuentoControlador {
 
         switch($atributo) {
             case "idDescuento":
-                $descuento->setIdDescuento($valor);
+                $modelo->setIdDescuento($valor);
                 break;
             case "porcentaje":
-                $descuento->setPorcentaje($valor);
+                $modelo->setPorcentaje($valor);
                 break;
             case "fechaInicio":
-                $descuento->setFechaInicio($valor);
+                $modelo->setFechaInicio($valor);
                 break;
             case "fechaFin":
-                $descuento->setFechaFin($valor);
+                $modelo->setFechaFin($valor);
                 break;
             case "motivo":
-                $descuento->setMotivo($valor);
+                $modelo->setMotivo($valor);
                 break;
             default:
                 // error
         }
 
-        $resultados = $descuento->show($atributo);
+        $resultados = $modelo->show($atributo);
 
         header('Content-Type: application/json');
         echo json_encode($resultados);
@@ -61,23 +61,22 @@ class DescuentoControlador {
     }
 
     public function update($idDescuento, $porcentaje, $fechaInicio, $fechaFin, $motivo) {
-        $descuento = new Descuento();
-        $descuento->setIdDescuento($idDescuento);
-        $descuento->setPorcentaje($porcentaje);
-        $descuento->setFechaInicio($fechaInicio);
-        $descuento->setFechaFin($fechaFin);
-        $descuento->setMotivo($motivo);
-        if($descuento->update()) {
-            // EXITOSO
-        } else {
-            // ERROR
-        }
+        $modelo = new Descuento();
+        $modelo->setIdDescuento($idDescuento);
+        $modelo->setPorcentaje($porcentaje);
+        $modelo->setFechaInicio($fechaInicio);
+        $modelo->setFechaFin($fechaFin);
+        $modelo->setMotivo($motivo);
+        $resultados = $modelo->store();
+        header('Content-Type: application/json');
+        echo json_encode($resultados);
+        exit;
     }
 
     public function destroy($idDescuento) {
-        $descuento = new Descuento();
-        $descuento->setIdDescuento($idDescuento);
-        $resultados = $descuento->destroy();
+        $modelo = new Descuento();
+        $modelo->setIdDescuento($idDescuento);
+        $resultados = $modelo->destroy();
         header('Content-Type: application/json');
         echo json_encode($resultados);
         exit;
@@ -93,6 +92,9 @@ switch($metodo) {
         break;
     case "show": 
         $controlador->show($_POST["atributo"], $_POST["valor"]);
+        break;
+    case "store":
+        $controlador->store($_POST["valores"][0],$_POST["valores"][1],$_POST["valores"][2],$_POST["valores"][3]);
         break;
     case "destroy":
         $controlador->destroy($_POST["valores"][0]);

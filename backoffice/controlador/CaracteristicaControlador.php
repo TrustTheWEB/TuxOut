@@ -5,27 +5,28 @@ require_once("../modelo/Caracteristica.php");
 class CaracteristicaControlador {
     
     public function index() {
-        $caracteristica = new Caracteristica();
-        $resultados = $caracteristica->index();
+        $modelo = new Caracteristica();
+        $resultados = $modelo->index();
 
         header('Content-Type: application/json');
         echo json_encode($resultados);
         exit;
     }
 
-    public function store($idProducto, $caracteristica) {
-        $caracteristica = new Caracteristica();
-        $caracteristica->setIdProducto($idProducto);
-        $caracteristica->setCaracteristica($caracteristica);
-        if($caracteristica->store()) {
-            // EXITOSO
-        } else {
-            // ERROR
-        }
+    public function store($idProducto, $nombre, $valor) {
+        $modelo = new Caracteristica();
+        $modelo->setIdProducto($idProducto);
+        $modelo->setNombre($nombre);
+        $modelo->setValor($valor);
+
+        $resultados = $modelo->store();
+        header('Content-Type: application/json');
+        echo json_encode($resultados);
+        exit;
     }
 
     public function show($atributo, $valor) {
-        $caracteristica = new Caracteristica();
+        $modelo = new Caracteristica();
 
         if (empty($valor)) {
             throw new Exception("El valor para '$atributo' está vacío o es nulo.");
@@ -33,16 +34,19 @@ class CaracteristicaControlador {
 
         switch($atributo) {
             case "idProducto":
-                $caracteristica->setIdProducto($valor);
+                $modelo->setIdProducto($valor);
                 break;
-            case "caracteristica":
-                $caracteristica->setCaracteristica($valor);
+            case "nombre":
+                $modelo->setNombre($valor);
+                break;
+            case "valor":
+                $modelo->setValor($valor);
                 break;
             default:
                 // error
         }
 
-        $resultados = $caracteristica->show($atributo);
+        $resultados = $modelo->show($atributo);
 
         header('Content-Type: application/json');
         echo json_encode($resultados);
@@ -50,10 +54,10 @@ class CaracteristicaControlador {
     }
 
     public function update($idProducto, $caracteristica) {
-        $caracteristica = new Caracteristica();
-        $caracteristica->setIdProducto($idProducto);
-        $caracteristica->setCaracteristica($caracteristica);
-        if($caracteristica->update()) {
+        $modelo = new Caracteristica();
+        $modelo->setIdProducto($idProducto);
+        $modelo->setCaracteristica($caracteristica);
+        if($modelo->update()) {
             // EXITOSO
         } else {
             // ERROR
@@ -61,12 +65,12 @@ class CaracteristicaControlador {
     }
 
     public function destroy($idProducto, $nombre, $valor) {
-        $caracteristica = new Caracteristica();
-        $caracteristica->setIdProducto($idProducto);
-        $caracteristica->setNombre($nombre);
-        $caracteristica->setValor($valor);
+        $modelo = new Caracteristica();
+        $modelo->setIdProducto($idProducto);
+        $modelo->setNombre($nombre);
+        $modelo->setValor($valor);
         
-        $resultados = $caracteristica->destroy();
+        $resultados = $modelo->destroy();
         header('Content-Type: application/json');
         echo json_encode($resultados);
         exit;
@@ -83,8 +87,12 @@ switch($metodo) {
     case "show": 
         $controlador->show($_POST["atributo"], $_POST["valor"]);
         break;
+    case "store";
+        $controlador->store($_POST["valores"][0], $_POST["valores"][1], $_POST["valores"][2]);
+        break;
     case "destroy":
         $controlador->destroy($_POST["valores"][0], $_POST["valores"][1], $_POST["valores"][2]);
+        break;
     // Puedes agregar aquí otros casos para métodos como store, update y destroy
 }
 

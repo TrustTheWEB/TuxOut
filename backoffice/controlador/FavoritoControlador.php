@@ -5,8 +5,8 @@ require_once("../modelo/Favorito.php");
 class FavoritoControlador {
 
     public function index() {
-        $favorito = new Favorito();
-        $resultados = $favorito->index();
+        $modelo = new Favorito();
+        $resultados = $modelo->index();
 
         header('Content-Type: application/json');
         echo json_encode($resultados);
@@ -15,18 +15,18 @@ class FavoritoControlador {
     }
 
     public function store($email, $idProducto) {
-        $favorito = new Favorito();
-        $favorito->setEmail($email);
-        $favorito->setIdProducto($idProducto);
-        if($favorito->store()) {
-            // Éxito
-        } else {
-            // Error
-        }
+        $modelo = new Favorito();
+        $modelo->setEmail($email);
+        $modelo->setIdProducto($idProducto);
+       
+        $resultados = $modelo->store();
+        header('Content-Type: application/json');
+        echo json_encode($resultados);
+        exit;
     }
 
     public function show($atributo, $valor) {
-        $favorito = new Favorito();
+        $modelo = new Favorito();
 
         if (empty($valor)) {
             throw new Exception("El valor para '$atributo' está vacío o es nulo.");
@@ -34,18 +34,18 @@ class FavoritoControlador {
 
         switch($atributo) {
             case "email":
-                $favorito->setEmail($valor);
+                $modelo->setEmail($valor);
                 break;
 
             case "idProducto":
-                $favorito->setIdProducto($valor);
+                $modelo->setIdProducto($valor);
                 break;
 
             default:
                 // Error
         }
 
-        $resultados = $favorito->show($atributo);
+        $resultados = $modelo->show($atributo);
 
         header('Content-Type: application/json');
         echo json_encode($resultados);
@@ -53,10 +53,10 @@ class FavoritoControlador {
     }
 
     public function update($email, $idProducto) {
-        $favorito = new Favorito();
-        $favorito->setEmail($email);
-        $favorito->setIdProducto($idProducto);
-        if($favorito->update()) {
+        $modelo = new Favorito();
+        $modelo->setEmail($email);
+        $modelo->setIdProducto($idProducto);
+        if($modelo->update()) {
             // Éxito
         } else {
             // Error
@@ -64,10 +64,10 @@ class FavoritoControlador {
     }
 
     public function destroy($email, $idProducto) {
-        $favorito = new Favorito();
-        $favorito->setEmail($email);
-        $favorito->setIdProducto($idProducto);
-        $resultados = $favorito->destroy();
+        $modelo = new Favorito();
+        $modelo->setEmail($email);
+        $modelo->setIdProducto($idProducto);
+        $resultados = $modelo->destroy();
 
         
         header('Content-Type: application/json');
@@ -85,6 +85,9 @@ switch($metodo) {
         break;
     case "show":
         $controlador->show($_POST["atributo"], $_POST["valor"]);
+        break;
+    case "store":
+        $controlador->store($_POST["valores"][0],$_POST["valores"][1]);
         break;
     case "destroy":
         $controlador->destroy($_POST["valores"][0], $_POST["valores"][1]);

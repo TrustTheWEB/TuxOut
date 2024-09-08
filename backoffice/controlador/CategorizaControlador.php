@@ -5,8 +5,8 @@ require_once("../modelo/Categoriza.php");
 class CategorizaControlador {
     
     public function index() {
-        $categoriza = new Categoriza();
-        $resultados = $categoriza->index();
+        $modelo = new Categoriza();
+        $resultados = $modelo->index();
 
         header('Content-Type: application/json');
         echo json_encode($resultados);
@@ -14,18 +14,18 @@ class CategorizaControlador {
     }
 
     public function store($idProducto, $idCategoria) {
-        $categoriza = new Categoriza();
-        $categoriza->setIdProducto($idProducto);
-        $categoriza->setIdCategoria($idCategoria);
-        if($categoriza->store()) {
-             //EXITOSO
-        } else {
-            //ERROR
-        }
+        $modelo = new Categoriza();
+        $modelo->setIdProducto($idProducto);
+        $modelo->setIdCategoria($idCategoria);
+        
+        $resultados = $modelo->store();
+        header('Content-Type: application/json');
+        echo json_encode($resultados);
+        exit;
     }
 
     public function show($atributo, $valor) {
-        $categoriza = new Categoriza();
+        $modelo = new Categoriza();
 
         if (empty($valor)) {
             throw new Exception("El valor para '$atributo' está vacío o es nulo.");
@@ -33,18 +33,18 @@ class CategorizaControlador {
 
         switch($atributo) {
         case "idProducto":
-            $categoriza->setIdProducto($valor);
+            $modelo->setIdProducto($valor);
             break;
     
         case "idCategoria":
-            $categoriza->setIdCategoria($valor);
+            $modelo->setIdCategoria($valor);
             break;
     
         default:
             //error
         }
 
-        $resultados = $categoriza->show($atributo);
+        $resultados = $modelo->show($atributo);
 
         header('Content-Type: application/json');
         echo json_encode($resultados);
@@ -53,10 +53,10 @@ class CategorizaControlador {
     }
 
     public function update($idProducto, $idCategoria) {
-        $categoriza = new Categoriza();
-        $categoriza->setIdProducto($idProducto);
-        $categoriza->setIdCategoria($idCategoria);
-        if($categoriza->update()) {
+        $modelo = new Categoriza();
+        $modelo->setIdProducto($idProducto);
+        $modelo->setIdCategoria($idCategoria);
+        if($modelo->update()) {
             //EXITOSO
        } else {
            //ERROR
@@ -64,10 +64,10 @@ class CategorizaControlador {
     }
 
     public function destroy($idProducto, $idCategoria) {
-        $categoriza = new Categoriza();
-        $categoriza->setIdProducto($idProducto);
-        $categoriza->setIdCategoria($idCategoria);
-        $resultados = $categoriza->destroy();
+        $modelo = new Categoriza();
+        $modelo->setIdProducto($idProducto);
+        $modelo->setIdCategoria($idCategoria);
+        $resultados = $modelo->destroy();
         header('Content-Type: application/json');
         echo json_encode($resultados);
         exit;
@@ -85,7 +85,7 @@ switch($metodo) {
         $controlador->show($_POST["atributo"],$_POST["valor"]);
         break;
     case "store":
-        $controlador->store($_POST["idProducto"], $_POST["idCategoria"]);
+        $controlador->store($_POST["valores"][0], $_POST["valores"][1]);
         break;
     case "update":
         $controlador->update($_POST["idProducto"], $_POST["idCategoria"]);

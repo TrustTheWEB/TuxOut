@@ -1,0 +1,357 @@
+const formularios = {
+    imprimirFormularioCaracteristica: (datos) => {
+        $("#titulo-formulario-actualizacion").append("característica");
+        $("#formulario-actualizacion").append(
+            `
+            <label for="inputIdProducto">ID Producto:</label>
+            <input id="inputIdProducto" class="form-control inputIngresar" value="${datos[0]}" disabled">
+            <label for="inputNombre">Nombre de la característica:</label>
+            <input type="text" id="inputNombre" class="form-control inputIngresar" value="${datos[1]}" disabled">
+            <label for="inputValor">Valor:</label>
+            <input type="text" id="inputValor" class="form-control inputIngresar" value="${datos[2]}">
+            `
+        );
+    },
+
+    imprimirFormularioCategoria: (datos) => {
+        $("#titulo-formulario-actualizacion").append("categoría");
+        $("#formulario-actualizacion").append(
+            `
+            <label for="inputIdCategoria">ID Categoría:</label>
+            <input id="inputIdCategoria" class="form-control inputIngresar" value="${datos[0]}" disabled">
+            <label for="inputNombre">Nombre:</label>
+            <input type="text" id="inputNombre" class="form-control inputIngresar" value="${datos[1]}">
+            `
+        );
+    },
+
+    imprimirFormularioCategoriza: (datos) => {
+        $("#titulo-formulario-actualizacion").append("categoriza");
+        $("#formulario-actualizacion").append(
+            `
+            <label for="inputIdProducto">ID Producto:</label>
+            <input id="inputIdProducto" class="form-control inputIngresar" value="${datos[0]}" disabled">
+            <label for="inputIdCategoria">ID Categoría:</label>
+            <input id="inputIdCategoria" class="form-control inputIngresar" value="${datos[1]}" disabled">
+            `
+        );
+    },
+
+    imprimirFormularioContiene: (datos) => {
+        $("#titulo-formulario-actualizacion").append("contiene");
+        $("#formulario-actualizacion").append(
+            `
+            <label for="inputIdPedido">ID Pedido:</label>
+            <input id="inputIdPedido" class="form-control inputIngresar" value="${datos[0]}" disabled">
+            <label for="inputIdProducto">ID Producto:</label>
+            <input id="inputIdProducto" class="form-control inputIngresar" value="${datos[1]}" disabled">
+            <label for="inputCantidad">Cantidad:</label>
+            <input type="number" id="inputCantidad" class="form-control inputIngresar" value="${datos[2]}">
+            `
+        );
+    },
+
+    imprimirFormularioDescuento: (datos) => {
+        $("#titulo-formulario-actualizacion").append("descuento");
+        $("#formulario-actualizacion").append(
+            `
+            <label for="inputIdDescuento">ID Descuento:</label>
+            <input id="inputIdDescuento" class="form-control inputIngresar" value="${datos[0]}" disabled">
+            <label for="inputPorcentaje">Porcentaje:</label>
+            <input type="number" id="inputPorcentaje" class="form-control inputIngresar" value="${datos[1]}">
+            <label for="inputFechaInicio">Fecha Inicio:</label>
+            <input type="date" id="inputFechaInicio" class="form-control inputIngresar" value="${datos[2]}" disabled">
+            <label for="inputFechaFin">Fecha Fin:</label>
+            <input type="date" id="inputFechaFin" class="form-control inputIngresar" value="${datos[3]}" disabled">
+            <label for="inputMotivo">Motivo:</label>
+            <input type="text" id="inputMotivo" class="form-control inputIngresar" value="${datos[4]}">
+            `
+        );
+    },
+
+    imprimirFormularioDireccion: (datos) => {
+        $("#titulo-formulario-actualizacion").append("dirección");
+        $("#formulario-actualizacion").append(
+            `
+            <label for="inputEmail">Email:</label>
+            <input type="email" id="inputEmail" class="form-control inputIngresar" value="${datos[0]}" disabled">
+            <label for="inputDireccion">Dirección:</label>
+            <input type="text" id="inputDireccion" class="form-control inputIngresar" value="${datos[1]}">
+            `
+        );
+    },
+
+    imprimirFormularioEmpresa: (datos) => {
+        $("#titulo-formulario-actualizacion").append("empresa");
+        $("#formulario-actualizacion").append(
+            `
+            <label for="inputRUT">RUT:</label>
+            <input type="text" id="inputRUT" class="form-control inputIngresar" value="${datos[0]}" disabled">
+            <label for="inputNombre">Nombre:</label>
+            <input type="text" id="inputNombre" class="form-control inputIngresar" value="${datos[1]}">
+            <label for="inputTeléfono">Teléfono:</label>
+            <input type="text" id="inputTeléfono" class="form-control inputIngresar" value="${datos[2]}">
+            <label for="inputDirección">Dirección:</label>
+            <input type="text" id="inputDirección" class="form-control inputIngresar" value="${datos[3]}">
+            <label for="inputEmail">Email:</label>
+            <input type="email" id="inputEmail" class="form-control inputIngresar" value="${datos[4]}">
+            <label for="inputContraseña">Contraseña:</label>
+            <input type="password" id="inputContraseña" class="form-control inputIngresar" value="${datos[5]}">
+            `
+        );
+    },
+
+    imprimirFormularioFavorito: (datos) => {
+        $("#titulo-formulario-actualizacion").append("favorito");
+        $("#formulario-actualizacion").append(
+            `
+            <label for="inputEmail">Email:</label>
+            <input type="email" id="inputEmail" class="form-control inputIngresar" value="${datos[0]}" disabled">
+            <label for="inputIdProducto">ID Producto:</label>
+            <input id="inputIdProducto" class="form-control inputIngresar" value="${datos[1]}" disabled">
+            `
+        );
+    },
+
+    imprimirFormularioPedido: (datos) => {
+        $("#titulo-formulario-actualizacion").append("pedido");
+        $("#formulario-actualizacion").append(
+            `
+            <label for="inputIdPedido">ID Pedido:</label>
+            <input id="inputIdPedido" class="form-control inputIngresar" value="${datos[0]}" disabled">
+            <label for="inputEstado">Estado:</label>
+            <select id="inputEstado" class="form-select">
+                <option value="carrito">Carrito</option>
+                <option value="procesando">Procesando</option>
+                <option value="pagado">Pagado</option>
+                <option value="entregado">Entregado</option>
+            </select>
+            <label for="inputMedioPago">Medio de Pago:</label>
+            <select id="inputMedioPago" class="form-select">
+                <option value="PayPal">PayPal</option>
+                <option value="MercadoPago">MercadoPago</option>
+            </select>
+            <label for="inputMontoTotal">Monto Total:</label>
+            <input type="number" id="inputMontoTotal" class="form-control inputIngresar" value="${datos[3]}">
+            <label for="inputEmail">Email:</label>
+            <input type="email" id="inputEmail" class="form-control inputIngresar" value="${datos[4]}">
+            `
+        );
+    },
+
+    imprimirFormularioProducto: (datos) => {
+        $("#titulo-formulario-actualizacion").append("producto");
+        $("#formulario-actualizacion").append(
+            `
+            <label for="inputIdProducto">ID Producto:</label>
+            <input type="text" id="inputIdProducto" class="form-control inputIngresar" value="${datos[0]}" disabled">
+            <label for="inputRUT">RUT:</label>
+            <input type="text" id="inputRUT" class="form-control inputIngresar" value="${datos[1]}">
+            <label for="inputDescripción">Descripción:</label>
+            <input type="text" id="inputDescripción" class="form-control inputIngresar" value="${datos[2]}">
+            <label for="inputEstado">Estado:</label>
+            <input type="text" id="inputEstado" class="form-control inputIngresar" value="${datos[3]}">
+            <label for="inputPrecio">Precio:</label>
+            <input type="number" id="inputPrecio" class="form-control inputIngresar" value="${datos[4]}">
+            <label for="inputNombre">Nombre:</label>
+            <input type="text" id="inputNombre" class="form-control inputIngresar" value="${datos[5]}">
+            <label for="inputStock">Stock:</label>
+            <input type="number" id="inputStock" class="form-control inputIngresar" value="${datos[6]}">
+            <label for="inputMarca">Marca:</label>
+            <input type="text" id="inputMarca" class="form-control inputIngresar" value="${datos[7]}">
+            `
+        );
+    },
+
+    imprimirFormularioTiene: (datos) => {
+        $("#titulo-formulario-actualizacion").append("tiene");
+        $("#formulario-actualizacion").append(
+            `
+            <label for="inputIdDescuento">ID Descuento:</label>
+            <input id="inputIdDescuento" class="form-control inputIngresar" value="${datos[0]}" disabled">
+            <label for="inputIdProducto">ID Producto:</label>
+            <input id="inputIdProducto" class="form-control inputIngresar" value="${datos[1]}" disabled">
+            `
+        );
+    },
+
+    imprimirFormularioUsuario: (datos) => {
+        $("#titulo-formulario-actualizacion").append("usuario");
+        $("#formulario-actualizacion").append(
+            `
+            <label for="inputEmail">Email:</label>
+            <input type="email" id="inputEmail" class="form-control inputIngresar" value="${datos[0]}" disabled">
+            <label for="inputUsuario">Usuario:</label>
+            <input type="text" id="inputUsuario" class="form-control inputIngresar" value="${datos[1]}">
+            <label for="inputNombre">Nombre:</label>
+            <input type="text" id="inputNombre" class="form-control inputIngresar" value="${datos[2]}">
+            <label for="inputApellido">Apellido:</label>
+            <input type="text" id="inputApellido" class="form-control inputIngresar" value="${datos[3]}">
+            <label for="inputDirecciones">Direcciones:</label>
+            <input type="text" id="inputDirecciones" class="form-control inputIngresar" value="${datos[4]}">
+            <label for="inputTeléfono">Teléfono:</label>
+            <input type="text" id="inputTeléfono" class="form-control inputIngresar" value="${datos[5]}">
+            <label for="inputContraseña">Contraseña:</label>
+            <input type="password" id="inputContraseña" class="form-control inputIngresar" value="${datos[6]}">
+            <label for="inputFechaNac">Fecha de Nacimiento:</label>
+            <input type="date" id="inputFechaNac" class="form-control inputIngresar" value="${datos[7]}">
+            <label for="inputCI">CI:</label>
+            <input type="text" id="inputCI" class="form-control inputIngresar" value="${datos[8]}">
+            `
+        );
+    },
+    imprimirFormularioVisita: (datos) => {
+        $("#titulo-formulario-actualizacion").append("visita");
+        $("#formulario-actualizacion").append(
+            `
+            <label for="inputEmail">Email:</label>
+            <input type="email" id="inputEmail" class="form-control inputIngresar" value="${datos[0]}" disabled">
+            <label for="inputIdProducto">ID Producto:</label>
+            <input id="inputIdProducto" class="form-control inputIngresar" value="${datos[1]}" disabled">
+            <label for="inputFecha">Fecha:</label>
+            <input type="date" id="inputFecha" class="form-control inputIngresar" value="${datos[2]}" disabled">
+            `
+        );
+    }    
+}
+
+const obtenerDatos = {
+    Caracteristica: () => {
+        let urlParams = new URLSearchParams(window.location.search);
+        return [
+            urlParams.get('idProducto'),
+            urlParams.get('nombre'),
+            urlParams.get('valor')
+        ];
+    },
+
+    Categoria: () => {
+        let urlParams = new URLSearchParams(window.location.search);
+        return [
+            urlParams.get('idCategoria'),
+            urlParams.get('nombre')
+        ];
+    },
+
+    Categoriza: () => {
+        let urlParams = new URLSearchParams(window.location.search);
+        return [
+            urlParams.get('idProducto'),
+            urlParams.get('idCategoria')
+        ];
+    },
+
+    Contiene: () => {
+        let urlParams = new URLSearchParams(window.location.search);
+        return [
+            urlParams.get('idPedido'),
+            urlParams.get('idProducto'),
+            urlParams.get('cantidad')
+        ];
+    },
+
+    Descuento: () => {
+        let urlParams = new URLSearchParams(window.location.search);
+        return [
+            urlParams.get('porcentaje'),
+            urlParams.get('fechaInicio'),
+            urlParams.get('fechaFin'),
+            urlParams.get('motivo')
+        ];
+    },
+
+    Direccion: () => {
+        let urlParams = new URLSearchParams(window.location.search);
+        return [
+            urlParams.get('email'),
+            urlParams.get('direccion')
+        ];
+    },
+
+    Empresa: () => {
+        let urlParams = new URLSearchParams(window.location.search);
+        return [
+            urlParams.get('rut'),
+            urlParams.get('nombre'),
+            urlParams.get('telefono'),
+            urlParams.get('direccion'),
+            urlParams.get('email'),
+            urlParams.get('contraseña')
+        ];
+    },
+
+    Favorito: () => {
+        let urlParams = new URLSearchParams(window.location.search);
+        return [
+            urlParams.get('email'),
+            urlParams.get('idProducto')
+        ];
+    },
+
+    Pedido: () => {
+        let urlParams = new URLSearchParams(window.location.search);
+        return [
+            urlParams.get('estado'),
+            urlParams.get('medioPago'),
+            urlParams.get('montoTotal'),
+            urlParams.get('email')
+        ];
+    },
+
+    Producto: () => {
+        let urlParams = new URLSearchParams(window.location.search);
+        return [
+            urlParams.get('rut'),
+            urlParams.get('descripcion'),
+            urlParams.get('estado'),
+            urlParams.get('precio'),
+            urlParams.get('nombre'),
+            urlParams.get('stock'),
+            urlParams.get('marca')
+        ];
+    },
+
+    Tiene: () => {
+        let urlParams = new URLSearchParams(window.location.search);
+        return [
+            urlParams.get('idDescuento'),
+            urlParams.get('idProducto')
+        ];
+    },
+
+    Usuario: () => {
+        let urlParams = new URLSearchParams(window.location.search);
+        return [
+            urlParams.get('email'),
+            urlParams.get('usuario'),
+            urlParams.get('nombre'),
+            urlParams.get('apellido'),
+            urlParams.get('telefono'),
+            urlParams.get('contraseña'),
+            urlParams.get('fechaNac'),
+            urlParams.get('ci')
+        ];
+    },
+
+    Visita: () => {
+        let urlParams = new URLSearchParams(window.location.search);
+        return [
+            urlParams.get('email'),
+            urlParams.get('idProducto'),
+            urlParams.get('fecha')
+        ];
+    }
+}
+
+let tomarTablaDatos = () => {
+    let url = new URLSearchParams(window.location.search);
+    let tabla = url.get('tabla');
+    let datos = obtenerDatos.obtener[tabla.charAt(0).toUpperCase() + tabla.slice(1)];
+
+    let formulario = "imprimirFormulario" + tabla.charAt(0).toUpperCase() + tabla.slice(1);
+
+    formularios[formulario](datos);
+
+}
+
+$(document).ready(tomarTablaDatos);

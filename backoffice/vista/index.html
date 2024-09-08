@@ -65,14 +65,12 @@
         <label for="selectAtributo"class="w-25">Atributo:</label>
         <select name="atributo" id="selectAtributo" class="form-select form-select-sm"></select>
         </article>
-        <label for="selectValor">Buscar: </label>
+        <label for="selectValor">Busqueda: </label>
         <input name="valor" type="text" id="selectValor" class="form-control form-control-sm">
-        <div>
-          <button id="seleccionarCondicion" class="btn p-1 w-0">SELECCIONAR</button>
-          <a href="ingresar.html?tabla=caracteristica" id="ingresar" class="btn p-1 w-0">INGRESAR</a>
-        </div>
+          <button id="btnSeleccionarAtributo" class="btn mt-2">BUSCAR</button>
         <hr>
-        <table id="tabla" class="table">
+        <a href="ingresar.html?tabla=caracteristica" id="btnIngresarTabla" class="btn mt-1 mb-3 btnIngresarBackoffice">INGRESAR</a>
+        <table id="tabla" class="table table-bordered rounded">
         </table>
     </section>
   </main>

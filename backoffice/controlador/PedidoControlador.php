@@ -5,8 +5,8 @@ require_once("../modelo/Pedido.php");
 class PedidoControlador {
 
     public function index() {
-        $pedido = new Pedido();
-        $resultados = $pedido->index();
+        $modelo = new Pedido();
+        $resultados = $modelo->index();
 
         header('Content-Type: application/json');
         echo json_encode($resultados);
@@ -14,54 +14,52 @@ class PedidoControlador {
     }
 
     public function store($estado, $medioPago, $montoTotal, $fecha, $email) {
-        $pedido = new Pedido();
-        $pedido->setEstado($estado);
-        $pedido->setMedioPago($medioPago);
-        $pedido->setMontoTotal($montoTotal);
-        $pedido->setFecha($fecha);
-        $pedido->setEmail($email);
+        $modelo = new Pedido();
+        $modelo->setEstado($estado);
+        $modelo->setMedioPago($medioPago);
+        $modelo->setMontoTotal($montoTotal);
+        $modelo->setFecha($fecha);
+        $modelo->setEmail($email);
 
-        if($pedido->store()) {
-            echo json_encode(["success" => true]);
-        } else {
-            echo json_encode(["error" => "Error al guardar el pedido."]);
-        }
+        $resultados = $modelo->store();
+        header('Content-Type: application/json');
+        echo json_encode($resultados);
         exit;
     }
 
     public function show($atributo, $valor) {
-        $pedido = new Pedido();
+        $modelo = new Pedido();
     
         switch($atributo) {
             case "idPedido":
-                $pedido->setIdPedido($valor);
+                $modelo->setIdPedido($valor);
                 break;
         
             case "estado":
-                $pedido->setEstado($valor);
+                $modelo->setEstado($valor);
                 break;
         
             case "medioPago":
-                $pedido->setMedioPago($valor);
+                $modelo->setMedioPago($valor);
                 break;
         
             case "montoTotal":
-                $pedido->setMontoTotal($valor);
+                $modelo->setMontoTotal($valor);
                 break;
         
             case "fecha":
-                $pedido->setFecha($valor);
+                $modelo->setFecha($valor);
                 break;
         
             case "email":
-                $pedido->setEmail($valor);
+                $modelo->setEmail($valor);
                 break;
         
             default:
                 // manejar error
         }
         
-        $resultados = $pedido->show($atributo);
+        $resultados = $modelo->show($atributo);
 
         header('Content-Type: application/json');
         echo json_encode($resultados);
@@ -69,15 +67,15 @@ class PedidoControlador {
     }
 
     public function update($idPedido, $estado, $medioPago, $montoTotal, $fecha, $email) {
-        $pedido = new Pedido();
-        $pedido->setIdPedido($idPedido);
-        $pedido->setEstado($estado);
-        $pedido->setMedioPago($medioPago);
-        $pedido->setMontoTotal($montoTotal);
-        $pedido->setFecha($fecha);
-        $pedido->setEmail($email);
+        $modelo = new Pedido();
+        $modelo->setIdPedido($idPedido);
+        $modelo->setEstado($estado);
+        $modelo->setMedioPago($medioPago);
+        $modelo->setMontoTotal($montoTotal);
+        $modelo->setFecha($fecha);
+        $modelo->setEmail($email);
 
-        if($pedido->update()) {
+        if($modelo->update()) {
             echo json_encode(["success" => true]);
         } else {
             echo json_encode(["error" => "Error al actualizar el pedido."]);
@@ -86,10 +84,10 @@ class PedidoControlador {
     }
 
     public function destroy($idPedido) {
-        $pedido = new Pedido();
-        $pedido->setIdPedido($idPedido);
+        $modelo = new Pedido();
+        $modelo->setIdPedido($idPedido);
 
-        $resultados = $pedido->destroy();
+        $resultados = $modelo->destroy();
         header('Content-Type: application/json');
         echo json_encode($resultados);
         exit;
@@ -105,6 +103,9 @@ switch($metodo) {
         break;
     case "show": 
         $controlador->show($_POST["atributo"], $_POST["valor"]);
+        break;
+    case "store":
+        $controlador->store($_POST["valores"][0],$_POST["valores"][1],$_POST["valores"][2],$_POST["valores"][3],$_POST["valores"][4]);
         break;
     case "destroy":
         $controlador->destroy($_POST["valores"][0]);

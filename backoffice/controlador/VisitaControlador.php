@@ -5,8 +5,8 @@ require_once("../modelo/Visita.php");
 class VisitaControlador {
 
     public function index() {
-        $visita = new Visita();
-        $resultados = $visita->index();
+        $modelo = new Visita();
+        $resultados = $modelo->index();
 
         header('Content-Type: application/json');
         echo json_encode($resultados);
@@ -15,19 +15,19 @@ class VisitaControlador {
     }
 
     public function store($email, $idProducto, $fecha) {
-        $visita = new Visita();
-        $visita->setEmail($email);
-        $visita->setIdProducto($idProducto);
-        $visita->setFecha($fecha);
-        if($visita->store()) {
-             //EXITOSO
-        } else {
-            //ERROR
-        }
+        $modelo = new Visita();
+        $modelo->setEmail($email);
+        $modelo->setIdProducto($idProducto);
+        $modelo->setFecha($fecha);
+        
+        $resultados = $modelo->store();
+        header('Content-Type: application/json');
+        echo json_encode($resultados);
+        exit;
     }
 
     public function show($atributo, $valor) {
-        $visita = new Visita();
+        $modelo = new Visita();
 
         if (empty($valor)) {
             throw new Exception("El valor para '$atributo' está vacío o es nulo.");
@@ -35,22 +35,22 @@ class VisitaControlador {
 
         switch($atributo) {
             case "email":
-                $visita->setEmail($valor);
+                $modelo->setEmail($valor);
                 break;
         
             case "idProducto":
-                $visita->setIdProducto($valor);
+                $modelo->setIdProducto($valor);
                 break;
 
             case "fecha":
-                $visita->setFecha($valor);
+                $modelo->setFecha($valor);
                 break;
         
             default:
                 //error
         }
 
-        $resultados = $visita->show($atributo);
+        $resultados = $modelo->show($atributo);
 
         header('Content-Type: application/json');
         echo json_encode($resultados);
@@ -59,11 +59,11 @@ class VisitaControlador {
     }
 
     public function update($email, $idProducto, $fecha) {
-        $visita = new Visita();
-        $visita->setEmail($email);
-        $visita->setIdProducto($idProducto);
-        $visita->setFecha($fecha);
-        if($visita->update()) {
+        $modelo = new Visita();
+        $modelo->setEmail($email);
+        $modelo->setIdProducto($idProducto);
+        $modelo->setFecha($fecha);
+        if($modelo->update()) {
             //EXITOSO
        } else {
            //ERROR
@@ -71,11 +71,11 @@ class VisitaControlador {
     }
 
     public function destroy($email, $idProducto) {
-        $visita = new Visita();
-        $visita->setEmail($email);
-        $visita->setIdProducto($idProducto);
+        $modelo = new Visita();
+        $modelo->setEmail($email);
+        $modelo->setIdProducto($idProducto);
         
-        $resultados = $visita->destroy();
+        $resultados = $modelo->destroy();
         header('Content-Type: application/json');
         echo json_encode($resultados);
         exit;
@@ -91,6 +91,9 @@ switch($metodo) {
         break;
     case "show": 
         $controlador->show($_POST["atributo"],$_POST["valor"]);
+        break;
+    case "store":
+        $controlador->store($_POST["valores"][0],$_POST["valores"][1]);
         break;
     case "destroy":
         $controlador->destroy($_POST["valores"][0], $_POST["valores"][1]);
