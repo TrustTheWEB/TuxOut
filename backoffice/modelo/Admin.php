@@ -2,13 +2,13 @@
 require_once("../config/ConexionBackOffice.php");
 
 class Admin {
-    private $conexion;
+    private $conn;
     private $tabla = "admin";
     private $usuario;
     private $contraseña;
 
     public function __construct() {
-        $this->conexion = ConexionBackOffice::getInstance()->getDatabaseInstance();
+        $this->conn = ConexionBackOffice::getInstance()->getDatabaseInstance();
     }
 
     public function setUsuario($usuario) {
@@ -21,7 +21,7 @@ class Admin {
 
     public function login() {
         $query = "SELECT contraseña FROM " . $this->tabla . " WHERE usuario = ?";
-        $stmt = $this->conexion->prepare($query);
+        $stmt = $this->conn->prepare($query);
         $stmt->bindValue(1, $this->usuario);
         $stmt->execute();
         $resultado = $stmt->fetch(PDO::FETCH_ASSOC);
