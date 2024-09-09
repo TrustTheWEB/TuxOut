@@ -187,16 +187,14 @@ const formularios = {
             <input type="text" id="inputNombre" class="form-control inputIngresar" value="${datos[2]}">
             <label for="inputApellido">Apellido:</label>
             <input type="text" id="inputApellido" class="form-control inputIngresar" value="${datos[3]}">
-            <label for="inputDirecciones">Direcciones:</label>
-            <input type="text" id="inputDirecciones" class="form-control inputIngresar" value="${datos[4]}">
             <label for="inputTeléfono">Teléfono:</label>
-            <input type="text" id="inputTeléfono" class="form-control inputIngresar" value="${datos[5]}">
+            <input type="text" id="inputTeléfono" class="form-control inputIngresar" value="${datos[4]}">
             <label for="inputContraseña">Contraseña:</label>
-            <input type="password" id="inputContraseña" class="form-control inputIngresar" value="${datos[6]}">
+            <input type="password" id="inputContraseña" class="form-control inputIngresar" value="${datos[5]}">
             <label for="inputFechaNac">Fecha de Nacimiento:</label>
-            <input type="date" id="inputFechaNac" class="form-control inputIngresar" value="${datos[7]}">
-            <label for="inputCI">CI:</label>
-            <input type="text" id="inputCI" class="form-control inputIngresar" value="${datos[8]}">
+            <input type="date" id="inputFechaNac" class="form-control inputIngresar" value="${datos[6]}">
+            <label for="inputCi">CI:</label>
+            <input type="text" id="inputCi" class="form-control inputIngresar" value="${datos[7]}">
             `
         );
     },
@@ -216,7 +214,7 @@ const formularios = {
 }
 
 const obtenerDatos = {
-    Caracteristica: () => {
+    obtenerCaracteristica: () => {
         let urlParams = new URLSearchParams(window.location.search);
         return [
             urlParams.get('idProducto'),
@@ -225,7 +223,7 @@ const obtenerDatos = {
         ];
     },
 
-    Categoria: () => {
+    obtenerCategoria: () => {
         let urlParams = new URLSearchParams(window.location.search);
         return [
             urlParams.get('idCategoria'),
@@ -233,7 +231,7 @@ const obtenerDatos = {
         ];
     },
 
-    Categoriza: () => {
+    obtenerCategoriza: () => {
         let urlParams = new URLSearchParams(window.location.search);
         return [
             urlParams.get('idProducto'),
@@ -241,7 +239,7 @@ const obtenerDatos = {
         ];
     },
 
-    Contiene: () => {
+    obtenerContiene: () => {
         let urlParams = new URLSearchParams(window.location.search);
         return [
             urlParams.get('idPedido'),
@@ -250,7 +248,7 @@ const obtenerDatos = {
         ];
     },
 
-    Descuento: () => {
+    obtenerDescuento: () => {
         let urlParams = new URLSearchParams(window.location.search);
         return [
             urlParams.get('porcentaje'),
@@ -260,7 +258,7 @@ const obtenerDatos = {
         ];
     },
 
-    Direccion: () => {
+    obtenerDireccion: () => {
         let urlParams = new URLSearchParams(window.location.search);
         return [
             urlParams.get('email'),
@@ -268,7 +266,7 @@ const obtenerDatos = {
         ];
     },
 
-    Empresa: () => {
+    obtenerEmpresa: () => {
         let urlParams = new URLSearchParams(window.location.search);
         return [
             urlParams.get('rut'),
@@ -280,7 +278,7 @@ const obtenerDatos = {
         ];
     },
 
-    Favorito: () => {
+    obtenerFavorito: () => {
         let urlParams = new URLSearchParams(window.location.search);
         return [
             urlParams.get('email'),
@@ -288,7 +286,7 @@ const obtenerDatos = {
         ];
     },
 
-    Pedido: () => {
+    obtenerPedido: () => {
         let urlParams = new URLSearchParams(window.location.search);
         return [
             urlParams.get('estado'),
@@ -298,7 +296,7 @@ const obtenerDatos = {
         ];
     },
 
-    Producto: () => {
+    obtenerProducto: () => {
         let urlParams = new URLSearchParams(window.location.search);
         return [
             urlParams.get('rut'),
@@ -311,7 +309,7 @@ const obtenerDatos = {
         ];
     },
 
-    Tiene: () => {
+    obtenerTiene: () => {
         let urlParams = new URLSearchParams(window.location.search);
         return [
             urlParams.get('idDescuento'),
@@ -319,7 +317,7 @@ const obtenerDatos = {
         ];
     },
 
-    Usuario: () => {
+    obtenerUsuario: () => {
         let urlParams = new URLSearchParams(window.location.search);
         return [
             urlParams.get('email'),
@@ -333,7 +331,7 @@ const obtenerDatos = {
         ];
     },
 
-    Visita: () => {
+    obtenerVisita: () => {
         let urlParams = new URLSearchParams(window.location.search);
         return [
             urlParams.get('email'),
@@ -346,7 +344,8 @@ const obtenerDatos = {
 let tomarTablaDatos = () => {
     let url = new URLSearchParams(window.location.search);
     let tabla = url.get('tabla');
-    let datos = obtenerDatos.obtener[tabla.charAt(0).toUpperCase() + tabla.slice(1)];
+    let metodo = "obtener" + tabla.charAt(0).toUpperCase() + tabla.slice(1);
+    let datos = obtenerDatos[metodo]();
 
     let formulario = "imprimirFormulario" + tabla.charAt(0).toUpperCase() + tabla.slice(1);
 

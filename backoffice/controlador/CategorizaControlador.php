@@ -18,7 +18,7 @@ class CategorizaControlador {
         $modelo->setIdProducto($idProducto);
         $modelo->setIdCategoria($idCategoria);
         
-        $resultados = $modelo->store();
+        $resultados = $modelo->update();
         header('Content-Type: application/json');
         echo json_encode($resultados);
         exit;
@@ -88,7 +88,7 @@ switch($metodo) {
         $controlador->store($_POST["valores"][0], $_POST["valores"][1]);
         break;
     case "update":
-        $controlador->update($_POST["idProducto"], $_POST["idCategoria"]);
+        $controlador->update($_POST["valores"][0], $_POST["valores"][1]);
         break;
     case "destroy":
         $controlador->destroy($_POST["valores"][0], $_POST["valores"][1]);

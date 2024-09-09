@@ -52,11 +52,11 @@ class CategoriaControlador {
         $modelo = new Categoria();
         $modelo->setIdCategoria($idCategoria);
         $modelo->setNombre($nombre);
-        if ($modelo->update()) {
-            // Éxito
-        } else {
-            // Error
-        }
+
+        $resultados = $modelo->update();
+        header('Content-Type: application/json');
+        echo json_encode($resultados);
+        exit;
     }
 
     public function destroy($idCategoria) {
@@ -84,6 +84,9 @@ switch ($metodo) {
         break;
     case "destroy":
         $controlador->destroy($_POST["valores"][0]);
+        break;
+    case "update":
+        $controlador->update($_POST["valores"][0], $_POST["valores"][1]);
         break;
     default:
         break;

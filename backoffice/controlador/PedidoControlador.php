@@ -75,11 +75,9 @@ class PedidoControlador {
         $modelo->setFecha($fecha);
         $modelo->setEmail($email);
 
-        if($modelo->update()) {
-            echo json_encode(["success" => true]);
-        } else {
-            echo json_encode(["error" => "Error al actualizar el pedido."]);
-        }
+        $resultados = $modelo->update();
+        header('Content-Type: application/json');
+        echo json_encode($resultados);
         exit;
     }
 
@@ -109,6 +107,9 @@ switch($metodo) {
         break;
     case "destroy":
         $controlador->destroy($_POST["valores"][0]);
+        break;
+    case "update":
+        $controlador->update($_POST["valores"][0],$_POST["valores"][1],$_POST["valores"][2],$_POST["valores"][3],$_POST["valores"][4],$_POST["valores"][5]);
         break;
     default:
         break;

@@ -185,16 +185,13 @@ class Usuario {
             $stmt->bindValue(2, $this->nombre, PDO::PARAM_STR);
             $stmt->bindValue(3, $this->apellido, PDO::PARAM_STR);
             $stmt->bindValue(4, $this->telefono, PDO::PARAM_STR);
-            $stmt->bindValue(5, $this->contraseña, PDO::PARAM_STR);
+            $hashedPassword = password_hash($this->contraseña, PASSWORD_DEFAULT);
+            $stmt->bindValue(5, $hashedPassword, PDO::PARAM_STR);
             $stmt->bindValue(6, $this->fechaNac, PDO::PARAM_STR);
             $stmt->bindValue(7, $this->ci, PDO::PARAM_STR);
             $stmt->bindValue(8, $this->email, PDO::PARAM_STR);
 
-            if ($stmt->execute()) {
-                return true;
-            } else {
-                return false;
-            }
+            return $stmt->execute();
         } catch (PDOException $e) {
             return "Error en la consulta: " . $e->getMessage();
         }

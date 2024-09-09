@@ -90,11 +90,11 @@ class ProductoControlador {
         $modelo->setStock($stock);
         $modelo->setEstado($estado);
         $modelo->setMarca($marca);
-        if($usuario->update()) {
-            //EXITOSO
-       } else {
-           //ERROR
-       }
+        
+        $resultados = $modelo->update();
+            header('Content-Type: application/json');
+            echo json_encode($resultados);
+            exit;
     }
 
     public function destroy($id) {
@@ -122,6 +122,9 @@ switch($metodo) {
         break;
     case "destroy":
         $controlador->destroy($_POST["valores"][0]);
+        break;
+    case "update":
+        $controlador->update($_POST["valores"][0],$_POST["valores"][1],$_POST["valores"][2],$_POST["valores"][3],$_POST["valores"][4],$_POST["valores"][5],$_POST["valores"][6],$_POST["valores"][7]);
         break;
     default:
         break;

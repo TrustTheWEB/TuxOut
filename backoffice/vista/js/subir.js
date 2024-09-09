@@ -1,5 +1,4 @@
 const storeTabla = (tabla, valores) => {
-    alert(valores)
     tabla = tabla.charAt(0).toUpperCase() + tabla.slice(1);
     $.ajax({
         url: 'http://localhost/PROYECTO/TuxOut/backoffice/controlador/'+tabla+'Controlador.php', 
@@ -11,7 +10,6 @@ const storeTabla = (tabla, valores) => {
                 console.error('Error:', response.error);
             } else {
                 if(response) {
-                    alert("Ingresado Exitosamente");
                 }else {
                     console.error(response);
                 } 
@@ -24,7 +22,6 @@ const storeTabla = (tabla, valores) => {
 }
 
 const updateTabla = (tabla, valores) => {
-    alert(valores)
     tabla = tabla.charAt(0).toUpperCase() + tabla.slice(1);
     $.ajax({
         url: 'http://localhost/PROYECTO/TuxOut/backoffice/controlador/'+tabla+'Controlador.php', 
@@ -36,7 +33,6 @@ const updateTabla = (tabla, valores) => {
                 console.error('Error:', response.error);
             } else {
                 if(response) {
-                    alert("Ingresado Exitosamente");
                 }else {
                     console.error(response);
                 } 
@@ -958,9 +954,11 @@ const tomarDatosActualizar = {
         let usuario = $("#inputUsuario").val();
         let nombre = $("#inputNombre").val();
         let apellido = $("#inputApellido").val();
-        let direccion = $("#inputDireccion").val();
-        let telefono = $("#inputTelefono").val();
-        validacionTablasActualizar.validarUsuario(email, usuario, nombre, apellido, direccion, telefono);
+        let telefono = $("#inputTeléfono").val();
+        let contraseña = $("#inputContraseña").val();
+        let fechaNac = $("#inputFechaNac").val();
+        let ci = $("#inputCi").val();
+        validacionTablasActualizar.validarUsuario(email, usuario, nombre, apellido, telefono, contraseña, fechaNac, ci);
     },
 
     tomarEmpresa: () => {

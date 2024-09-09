@@ -153,7 +153,8 @@ class Empresa {
             $stmt->bindValue(2, $this->telefono, PDO::PARAM_STR);
             $stmt->bindValue(3, $this->direccion, PDO::PARAM_STR);
             $stmt->bindValue(4, $this->email, PDO::PARAM_STR);
-            $stmt->bindValue(5, $this->contraseña, PDO::PARAM_STR);
+            $stmt->bindValue(5, $this->email, PDO::PARAM_STR);
+            $hashedPassword = password_hash($this->contraseña, PASSWORD_DEFAULT);
             $stmt->bindValue(6, $this->rut, PDO::PARAM_STR);
 
             return $stmt->execute();

@@ -57,11 +57,10 @@ class TieneControlador {
         $modelo->setIdProducto($idProducto);
         $modelo->setIdDescuento($idDescuento);
 
-        if($modelo->update()) {
-            // EXITOSO
-        } else {
-            // ERROR
-        }
+        $resultados = $modelo->update();
+        header('Content-Type: application/json');
+        echo json_encode($resultados);
+        exit;
     }
 
     public function destroy($idProducto, $idDescuento) {
@@ -91,6 +90,9 @@ switch($metodo) {
         break;
     case "destroy":
         $controlador->destroy($_POST["valores"][0], $_POST["valores"][1]);
+        break;
+    case "update":
+        $controlador->update($_POST["valores"][0],$_POST["valores"][1]);
         break;
     default:
         break;

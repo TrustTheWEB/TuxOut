@@ -56,11 +56,10 @@ class FavoritoControlador {
         $modelo = new Favorito();
         $modelo->setEmail($email);
         $modelo->setIdProducto($idProducto);
-        if($modelo->update()) {
-            // Éxito
-        } else {
-            // Error
-        }
+        $resultados = $modelo->update();
+        header('Content-Type: application/json');
+        echo json_encode($resultados);
+        exit;
     }
 
     public function destroy($email, $idProducto) {
@@ -91,6 +90,9 @@ switch($metodo) {
         break;
     case "destroy":
         $controlador->destroy($_POST["valores"][0], $_POST["valores"][1]);
+        break;
+    case "update":
+        $controlador->update($_POST["valores"][0],$_POST["valores"][1]);
         break;
     default:
         break;

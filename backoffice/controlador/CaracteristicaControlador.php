@@ -53,15 +53,16 @@ class CaracteristicaControlador {
         exit;
     }
 
-    public function update($idProducto, $caracteristica) {
+    public function update($idProducto, $nombre, $valor) {
         $modelo = new Caracteristica();
         $modelo->setIdProducto($idProducto);
-        $modelo->setCaracteristica($caracteristica);
-        if($modelo->update()) {
-            // EXITOSO
-        } else {
-            // ERROR
-        }
+        $modelo->setNombre($nombre);
+        $modelo->setValor($valor);
+
+        $resultados = $modelo->update();
+        header('Content-Type: application/json');
+        echo json_encode($resultados);
+        exit;
     }
 
     public function destroy($idProducto, $nombre, $valor) {
@@ -92,6 +93,11 @@ switch($metodo) {
         break;
     case "destroy":
         $controlador->destroy($_POST["valores"][0], $_POST["valores"][1], $_POST["valores"][2]);
+        break;
+    case "update":
+        $controlador->update($_POST["valores"][0], $_POST["valores"][1], $_POST["valores"][2]);
+        break;
+    default:
         break;
     // Puedes agregar aquí otros casos para métodos como store, update y destroy
 }

@@ -63,11 +63,11 @@ class VisitaControlador {
         $modelo->setEmail($email);
         $modelo->setIdProducto($idProducto);
         $modelo->setFecha($fecha);
-        if($modelo->update()) {
-            //EXITOSO
-       } else {
-           //ERROR
-       }
+
+        $resultados = $modelo->update();
+        header('Content-Type: application/json');
+        echo json_encode($resultados);
+        exit;
     }
 
     public function destroy($email, $idProducto) {
@@ -97,6 +97,9 @@ switch($metodo) {
         break;
     case "destroy":
         $controlador->destroy($_POST["valores"][0], $_POST["valores"][1]);
+        break;
+    case "update":
+        $controlador->update($_POST["valores"][0],$_POST["valores"][1]);
         break;
     default:
         break;

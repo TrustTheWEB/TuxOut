@@ -13,6 +13,17 @@ class DireccionControlador {
         exit;
     }
 
+    public function store($email, $dir) {
+        $modelo = new Direccion();
+        $modelo->setEmail($email);
+        $modelo->setDireccion($dir);
+        
+        $resultados = $modelo->store();
+        header('Content-Type: application/json');
+        echo json_encode($resultados);
+        exit;
+    }
+
     public function show($atributo, $valor) {
         $modelo = new Direccion();
 
@@ -40,6 +51,17 @@ class DireccionControlador {
         exit;
     }
 
+    public function update($email, $dir) {
+        $modelo = new Direccion();
+        $modelo->setEmail($email);
+        $modelo->setDireccion($dir);
+        
+        $resultados = $modelo->update();
+        header('Content-Type: application/json');
+        echo json_encode($resultados);
+        exit;
+    }
+
     public function destroy($email, $dir) {
         $modelo = new Direccion();
         $modelo->setEmail($email);
@@ -50,6 +72,7 @@ class DireccionControlador {
         echo json_encode($resultados);
         exit;
     }
+    
 }
 
 $controlador = new DireccionControlador();
@@ -67,6 +90,9 @@ switch($metodo) {
         break;
     case "destroy":
         $controlador->destroy($_POST["valores"][0], $_POST["valores"][1]);
+        break;
+    case "update":
+        $controlador->update($_POST["valores"][0],$_POST["valores"][1]);
         break;
     default:
         break;

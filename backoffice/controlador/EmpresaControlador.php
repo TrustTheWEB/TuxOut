@@ -80,11 +80,11 @@ class EmpresaControlador {
         $modelo->setDireccion($direccion);
         $modelo->setEmail($email);
         $modelo->setContraseña($contraseña);
-        if($modelo->update()) {
-            //EXITOSO
-       } else {
-           //ERROR
-       }
+
+        $resultados = $modelo->update();
+            header('Content-Type: application/json');
+            echo json_encode($resultados);
+            exit;
     }
 
     public function destroy($rut) {
@@ -113,6 +113,9 @@ switch($metodo) {
         break;
     case "destroy":
         $controlador->destroy($_POST["valores"][0]);
+        break;
+    case "update":
+        $controlador->update($_POST["valores"][0],$_POST["valores"][1],$_POST["valores"][2],$_POST["valores"][3],$_POST["valores"][4],$_POST["valores"][5]);
         break;
     default:
         break;
