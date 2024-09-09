@@ -1,7 +1,7 @@
 const storeTabla = (tabla, valores) => {
     tabla = tabla.charAt(0).toUpperCase() + tabla.slice(1);
     $.ajax({
-        url: 'http://localhost/PROYECTO/TuxOut/backoffice/controlador/'+tabla+'Controlador.php', 
+        url: 'http://localhost/TuxOut/backoffice/controlador/'+tabla+'Controlador.php', 
         method: 'POST', 
         dataType: 'json', 
         data: {metodoControlador: "store", valores: valores},
@@ -24,7 +24,7 @@ const storeTabla = (tabla, valores) => {
 const updateTabla = (tabla, valores) => {
     tabla = tabla.charAt(0).toUpperCase() + tabla.slice(1);
     $.ajax({
-        url: 'http://localhost/PROYECTO/TuxOut/backoffice/controlador/'+tabla+'Controlador.php', 
+        url: 'http://localhost/TuxOut/backoffice/controlador/'+tabla+'Controlador.php', 
         method: 'POST', 
         dataType: 'json', 
         data: {metodoControlador: "update", valores: valores},
