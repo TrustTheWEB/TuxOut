@@ -15,45 +15,33 @@
 </head>
 
 <body>
-  
+
   <header>
-    <nav class="navbar navbar-expand-lg">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
       <div class="container-fluid">
         <a class="navbar-brand" href="index.html">
           <img class="logo" src="../assets/logo/logoB.png" alt="Logo">
         </a>
-        <button class="btn btn-link cerrarSesion">
-          <img src="../assets/logo/cerrar.png" alt="Cerrar Sesión" class="icono-cerrar-sesion">
-        </button>      
       </div>
     </nav>
   </header>
 
-<div class="row contenedor-proveedor m-0">
-  
-  <aside class="col-2 sidebar">
-    <nav>
-      <ul class="nav nav-pills flex-column">
-        <li class="nav-item">
-          <a class="nav-link pill-sidebar-active" href="index.html">Tablas</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link pill-sidebar" href="notificaciones.html">Notificaciones  <span class="badge text-bg-primary rounded-pill badge-noti  ms-1">1</span></a>
-        </li>
-      </ul>
-    </nav>
-  </aside>
-
-  <main class="container col-9 p-3 mt-2">
-    <section>
-      <h1 id="titulo-formulario-ingreso">Ingresar </h1>
-        <article id="formulario-ingreso">
-
-        </article>
-        <button id="btnIngresarFormularioTabla" class="btn btnIngresarBackoffice mt-3">INGRESAR</button>
+  <main class="card-center contenedor-vender">
+    <section class="form-container">
+      <article class="card m-3 p-3">
+        <div class="card-body">
+          <h5 class="card-title text-center">Login administrador</h5>
+                  <label for="inputUsuarioAdminLogin" class="form-label mt-2">Usuario:</label>
+                  <input type="text" class="form-control" id="inputUsuarioAdminLogin">
+                  <label for="inputContraseñaAdminLogin" class="form-label mt-2">Contraseña:</label>
+                  <input type="password" class="form-control" id="inputContraseñaAdminLogin">
+                  <hr>
+                  <button id="btnLoginAdmin" class="btnLoginEmpresa btn btn-primary w-100">INICIAR SESIÓN</button>
+        </div>
+      </article>
     </section>
   </main>
-</div>
+
 
   <footer class="pie">
     <a href="condiciones.html">Términos y condiciones</a> |
@@ -63,8 +51,6 @@
 
   <script src="js/jquery-3.7.1.min.js"></script>
   <script src="js/login.js"></script>
-  <script src="js/formulariosIngreso.js"></script>
-  <script src="js/subir.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
 </body>

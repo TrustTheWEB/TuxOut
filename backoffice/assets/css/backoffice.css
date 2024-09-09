@@ -32,3 +32,19 @@ table {
     color: white;
     width: 100px;
 }
+  
+  .btn.cerrarSesion {
+    position: absolute;
+    top: 50%;
+    right: 15px;
+    transform: translateY(-50%);
+    padding: 0;
+    border: none;
+    background: transparent;
+  }
+  
+  .icono-cerrar-sesion {
+    height: 30px;
+    width: 30px;
+  }
+  

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 26-08-2024 a las 03:03:12
+-- Tiempo de generación: 09-09-2024 a las 22:10:47
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -29,8 +29,8 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `caracteristica` (
   `idProducto` int(11) NOT NULL,
-  `NomCaracteristica` varchar(20) NOT NULL,
-  `ValorCaracteristica` varchar(40) NOT NULL
+  `nombre` varchar(20) NOT NULL,
+  `valor` varchar(40) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -40,8 +40,19 @@ CREATE TABLE `caracteristica` (
 --
 
 CREATE TABLE `categoria` (
-  `idProducto` int(11) NOT NULL,
-  `Categoria` varchar(20) NOT NULL
+  `idCategoria` int(11) NOT NULL,
+  `nombre` varchar(25) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `categoriza`
+--
+
+CREATE TABLE `categoriza` (
+  `idCategoria` int(11) NOT NULL,
+  `idProducto` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -53,7 +64,7 @@ CREATE TABLE `categoria` (
 CREATE TABLE `contiene` (
   `idPedido` int(11) NOT NULL,
   `idProducto` int(11) NOT NULL,
-  `Cantidad` int(10) UNSIGNED NOT NULL
+  `cantidad` int(10) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -64,11 +75,11 @@ CREATE TABLE `contiene` (
 
 CREATE TABLE `descuento` (
   `idDescuento` int(11) NOT NULL,
-  `Porcentaje` smallint(5) UNSIGNED NOT NULL,
-  `FechaInicio` date NOT NULL,
-  `FechaFin` date NOT NULL,
-  `Motivo` varchar(40) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `porcentaje` smallint(5) UNSIGNED NOT NULL,
+  `fechaInicio` date NOT NULL,
+  `fechaFin` date NOT NULL,
+  `motivo` varchar(40) NOT NULL
+) ;
 
 -- --------------------------------------------------------
 
@@ -77,8 +88,8 @@ CREATE TABLE `descuento` (
 --
 
 CREATE TABLE `direccion` (
-  `Email` varchar(255) NOT NULL,
-  `Direccion` varchar(60) NOT NULL
+  `email` varchar(255) NOT NULL,
+  `direccion` varchar(60) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -89,21 +100,12 @@ CREATE TABLE `direccion` (
 
 CREATE TABLE `empresa` (
   `RUT` varchar(20) NOT NULL,
-  `Nombre` varchar(50) NOT NULL,
-  `Telefono` varchar(20) DEFAULT NULL,
-  `Direccion` varchar(255) NOT NULL,
-  `Email` varchar(255) NOT NULL,
-  `Contraseña` varchar(255) NOT NULL
+  `nombre` varchar(50) NOT NULL,
+  `telefono` varchar(20) DEFAULT NULL,
+  `direccion` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `contraseña` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Volcado de datos para la tabla `empresa`
---
-
-INSERT INTO `empresa` (`RUT`, `Nombre`, `Telefono`, `Direccion`, `Email`, `Contraseña`) VALUES
-('0987654321', 'Empresa Ejemplo 2', '987654321', 'Dirección 2', 'email2@empresa.com', 'contraseña2'),
-('1122334455', 'Empresa Ejemplo 3', '123123123', 'Dirección 3', 'email3@empresa.com', 'contraseña3'),
-('1234567890', 'Empresa Ejemplo 1', '123456789', 'Dirección 1', 'email1@empresa.com', 'contraseña1');
 
 -- --------------------------------------------------------
 
@@ -112,7 +114,7 @@ INSERT INTO `empresa` (`RUT`, `Nombre`, `Telefono`, `Direccion`, `Email`, `Contr
 --
 
 CREATE TABLE `favorito` (
-  `Email` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
   `idProducto` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -124,11 +126,11 @@ CREATE TABLE `favorito` (
 
 CREATE TABLE `pedido` (
   `idPedido` int(11) NOT NULL,
-  `Estado` enum('carrito','procesando','pagado','entregado') NOT NULL,
-  `MedioPago` enum('PayPal','MercadoPago','','') NOT NULL,
-  `MontoTotal` int(10) UNSIGNED NOT NULL,
-  `Fecha` timestamp NOT NULL DEFAULT current_timestamp(),
-  `Email` varchar(255) NOT NULL
+  `estado` enum('carrito','procesando','pagado','entregado') NOT NULL,
+  `medioPago` enum('PayPal','MercadoPago','','') NOT NULL,
+  `montoTotal` int(10) UNSIGNED NOT NULL,
+  `fecha` timestamp NOT NULL DEFAULT current_timestamp(),
+  `email` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -148,16 +150,6 @@ CREATE TABLE `producto` (
   `marca` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Volcado de datos para la tabla `producto`
---
-
-INSERT INTO `producto` (`idProducto`, `RUT`, `nombre`, `descripcion`, `precio`, `stock`, `estado`, `marca`) VALUES
-(5, '1234567890', 'Producto Ejemplo 1', 'Descripcion TuxOut', 1000, 50, 'Nuevo', 'Marca Ejemplo 1'),
-(6, '0987654321', 'Producto Ejemplo 2', 'Descripcion Producto', 2000, 100, 'Usado', 'Marca Ejemplo 2'),
-(7, '1122334455', 'Producto Ejemplo 3', 'Descripción del producto ejemplo 3', 1500, 75, 'Renovado', 'Marca Ejemplo 3'),
-(8, '1234567890', 'Producto Ejemplo 1', 'Descripcion Producto', 400, 4, 'Nuevo', 'Nike');
-
 -- --------------------------------------------------------
 
 --
@@ -176,14 +168,14 @@ CREATE TABLE `tiene` (
 --
 
 CREATE TABLE `usuario` (
-  `Email` varchar(255) NOT NULL,
-  `Nickname` varchar(50) NOT NULL,
-  `Nombre` varchar(30) NOT NULL,
-  `Apellido` varchar(30) NOT NULL,
-  `Teléfono` varchar(9) DEFAULT NULL,
-  `FechaNac` date DEFAULT NULL,
-  `CI` int(10) UNSIGNED NOT NULL,
-  `Contraseña` varchar(255) NOT NULL
+  `email` varchar(255) NOT NULL,
+  `usuario` varchar(50) NOT NULL,
+  `nombre` varchar(30) NOT NULL,
+  `apellido` varchar(30) NOT NULL,
+  `telefono` varchar(9) DEFAULT NULL,
+  `fechaNac` date DEFAULT NULL,
+  `ci` varchar(15) NOT NULL,
+  `contraseña` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -193,9 +185,9 @@ CREATE TABLE `usuario` (
 --
 
 CREATE TABLE `visita` (
-  `Email` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
   `idProducto` int(11) NOT NULL,
-  `Fecha` timestamp NOT NULL DEFAULT current_timestamp()
+  `fecha` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -206,21 +198,28 @@ CREATE TABLE `visita` (
 -- Indices de la tabla `caracteristica`
 --
 ALTER TABLE `caracteristica`
-  ADD PRIMARY KEY (`idProducto`,`NomCaracteristica`,`ValorCaracteristica`);
+  ADD PRIMARY KEY (`idProducto`,`nombre`,`valor`);
 
 --
 -- Indices de la tabla `categoria`
 --
 ALTER TABLE `categoria`
-  ADD PRIMARY KEY (`idProducto`,`Categoria`);
+  ADD PRIMARY KEY (`idCategoria`);
+
+--
+-- Indices de la tabla `categoriza`
+--
+ALTER TABLE `categoriza`
+  ADD PRIMARY KEY (`idCategoria`,`idProducto`),
+  ADD KEY `categoriza_ibfk_2` (`idProducto`);
 
 --
 -- Indices de la tabla `contiene`
 --
 ALTER TABLE `contiene`
   ADD PRIMARY KEY (`idProducto`,`idPedido`) USING BTREE,
-  ADD KEY `idPedido` (`idPedido`),
-  ADD KEY `idProducto` (`idProducto`) USING BTREE;
+  ADD KEY `idProducto` (`idProducto`) USING BTREE,
+  ADD KEY `contiene_ibfk_1` (`idPedido`);
 
 --
 -- Indices de la tabla `descuento`
@@ -232,7 +231,7 @@ ALTER TABLE `descuento`
 -- Indices de la tabla `direccion`
 --
 ALTER TABLE `direccion`
-  ADD PRIMARY KEY (`Email`);
+  ADD PRIMARY KEY (`email`,`direccion`) USING BTREE;
 
 --
 -- Indices de la tabla `empresa`
@@ -244,15 +243,15 @@ ALTER TABLE `empresa`
 -- Indices de la tabla `favorito`
 --
 ALTER TABLE `favorito`
-  ADD PRIMARY KEY (`Email`,`idProducto`),
-  ADD KEY `idProducto` (`idProducto`);
+  ADD PRIMARY KEY (`email`,`idProducto`),
+  ADD KEY `favorito_ibfk_2` (`idProducto`);
 
 --
 -- Indices de la tabla `pedido`
 --
 ALTER TABLE `pedido`
   ADD PRIMARY KEY (`idPedido`),
-  ADD KEY `Email` (`Email`);
+  ADD KEY `email` (`email`);
 
 --
 -- Indices de la tabla `producto`
@@ -266,26 +265,32 @@ ALTER TABLE `producto`
 --
 ALTER TABLE `tiene`
   ADD PRIMARY KEY (`idDescuento`,`idProducto`) USING BTREE,
-  ADD KEY `idProducto` (`idProducto`);
+  ADD KEY `tiene_ibfk_2` (`idProducto`);
 
 --
 -- Indices de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  ADD PRIMARY KEY (`Email`),
-  ADD UNIQUE KEY `Nickname` (`Nickname`),
-  ADD UNIQUE KEY `CI` (`CI`);
+  ADD PRIMARY KEY (`email`),
+  ADD UNIQUE KEY `Nickname` (`usuario`),
+  ADD UNIQUE KEY `CI` (`ci`);
 
 --
 -- Indices de la tabla `visita`
 --
 ALTER TABLE `visita`
-  ADD PRIMARY KEY (`Email`,`idProducto`),
-  ADD KEY `idProducto` (`idProducto`);
+  ADD PRIMARY KEY (`email`,`idProducto`),
+  ADD KEY `visita_ibfk_2` (`idProducto`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
 --
+
+--
+-- AUTO_INCREMENT de la tabla `categoria`
+--
+ALTER TABLE `categoria`
+  MODIFY `idCategoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `descuento`
@@ -297,7 +302,7 @@ ALTER TABLE `descuento`
 -- AUTO_INCREMENT de la tabla `pedido`
 --
 ALTER TABLE `pedido`
-  MODIFY `idPedido` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idPedido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT de la tabla `producto`
@@ -313,61 +318,73 @@ ALTER TABLE `producto`
 -- Filtros para la tabla `caracteristica`
 --
 ALTER TABLE `caracteristica`
-  ADD CONSTRAINT `caracteristica_ibfk_1` FOREIGN KEY (`idProducto`) REFERENCES `producto` (`idProducto`);
+  ADD CONSTRAINT `caracteristica_ibfk_1` FOREIGN KEY (`idProducto`) REFERENCES `producto` (`idProducto`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Filtros para la tabla `categoria`
+-- Filtros para la tabla `categoriza`
 --
-ALTER TABLE `categoria`
-  ADD CONSTRAINT `categoria_ibfk_1` FOREIGN KEY (`idProducto`) REFERENCES `producto` (`idProducto`);
+ALTER TABLE `categoriza`
+  ADD CONSTRAINT `categoriza_ibfk_1` FOREIGN KEY (`idCategoria`) REFERENCES `categoria` (`idCategoria`) ON DELETE CASCADE,
+  ADD CONSTRAINT `categoriza_ibfk_2` FOREIGN KEY (`idProducto`) REFERENCES `producto` (`idProducto`) ON DELETE CASCADE;
 
 --
 -- Filtros para la tabla `contiene`
 --
 ALTER TABLE `contiene`
-  ADD CONSTRAINT `contiene_ibfk_1` FOREIGN KEY (`idPedido`) REFERENCES `pedido` (`idPedido`),
-  ADD CONSTRAINT `contiene_ibfk_2` FOREIGN KEY (`idProducto`) REFERENCES `producto` (`idProducto`);
+  ADD CONSTRAINT `contiene_ibfk_1` FOREIGN KEY (`idPedido`) REFERENCES `pedido` (`idPedido`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `contiene_ibfk_2` FOREIGN KEY (`idProducto`) REFERENCES `producto` (`idProducto`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Filtros para la tabla `descuento`
+--
+
+ALTER TABLE `descuento`
+  ADD CONSTRAINT `chk_fecha` CHECK (fechaFin >= fechaInicio),
+  ADD CONSTRAINT `chk_porcentaje` CHECK (porcentaje < 100);
 
 --
 -- Filtros para la tabla `direccion`
 --
 ALTER TABLE `direccion`
-  ADD CONSTRAINT `direccion_ibfk_1` FOREIGN KEY (`Email`) REFERENCES `usuario` (`Email`);
+  ADD CONSTRAINT `direccion_ibfk_1` FOREIGN KEY (`email`) REFERENCES `usuario` (`email`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `favorito`
 --
 ALTER TABLE `favorito`
-  ADD CONSTRAINT `favorito_ibfk_1` FOREIGN KEY (`Email`) REFERENCES `usuario` (`Email`),
-  ADD CONSTRAINT `favorito_ibfk_2` FOREIGN KEY (`idProducto`) REFERENCES `producto` (`idProducto`);
+  ADD CONSTRAINT `favorito_ibfk_1` FOREIGN KEY (`email`) REFERENCES `usuario` (`email`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `favorito_ibfk_2` FOREIGN KEY (`idProducto`) REFERENCES `producto` (`idProducto`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `pedido`
 --
 ALTER TABLE `pedido`
-  ADD CONSTRAINT `pedido_ibfk_1` FOREIGN KEY (`Email`) REFERENCES `usuario` (`Email`);
+  ADD CONSTRAINT `pedido_ibfk_1` FOREIGN KEY (`email`) REFERENCES `usuario` (`email`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Filtros para la tabla `producto`
 --
 ALTER TABLE `producto`
-  ADD CONSTRAINT `producto_ibfk_1` FOREIGN KEY (`RUT`) REFERENCES `empresa` (`RUT`);
+  ADD CONSTRAINT `producto_ibfk_1` FOREIGN KEY (`RUT`) REFERENCES `empresa` (`RUT`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Filtros para la tabla `tiene`
 --
 ALTER TABLE `tiene`
-  ADD CONSTRAINT `tiene_ibfk_1` FOREIGN KEY (`idDescuento`) REFERENCES `descuento` (`idDescuento`),
-  ADD CONSTRAINT `tiene_ibfk_2` FOREIGN KEY (`idProducto`) REFERENCES `producto` (`idProducto`);
+  ADD CONSTRAINT `tiene_ibfk_1` FOREIGN KEY (`idDescuento`) REFERENCES `descuento` (`idDescuento`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `tiene_ibfk_2` FOREIGN KEY (`idProducto`) REFERENCES `producto` (`idProducto`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `visita`
 --
 ALTER TABLE `visita`
-  ADD CONSTRAINT `visita_ibfk_1` FOREIGN KEY (`Email`) REFERENCES `usuario` (`Email`),
-  ADD CONSTRAINT `visita_ibfk_2` FOREIGN KEY (`idProducto`) REFERENCES `producto` (`idProducto`);
+  ADD CONSTRAINT `visita_ibfk_2` FOREIGN KEY (`idProducto`) REFERENCES `producto` (`idProducto`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `visita_ibfk_3` FOREIGN KEY (`email`) REFERENCES `usuario` (`email`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+
+

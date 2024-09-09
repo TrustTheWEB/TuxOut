@@ -10,13 +10,14 @@ const storeTabla = (tabla, valores) => {
                 console.error('Error:', response.error);
             } else {
                 if(response) {
+                    window.location.href = 'index.html';
                 }else {
                     console.error(response);
                 } 
             }
         },
         error: function(xhr, status, error) {
-            console.error('Error en la solicitud:', error);
+            console.error('Error en la solicitud:', xhr);
         }
     });
 }
@@ -33,13 +34,14 @@ const updateTabla = (tabla, valores) => {
                 console.error('Error:', response.error);
             } else {
                 if(response) {
+                    window.location.href = 'index.html';
                 }else {
                     console.error(response);
                 } 
             }
         },
         error: function(xhr, status, error) {
-            console.error('Error en la solicitud:', error);
+            console.error('Error en la solicitud:', xhr);
         }
     });
 }
@@ -293,6 +295,14 @@ const validaciones = {
 
     validarNumero: (numero) => {
         if (Number.isInteger(Number(numero)) && Number(numero) > 0) {
+            return true;
+          } else {
+            return false;
+          }
+    },
+
+    validarPorcentaje: (numero) => {
+        if (Number.isInteger(Number(numero)) && Number(numero) > 0 && Number(numero) < 100) {
             return true;
           } else {
             return false;
@@ -798,14 +808,15 @@ const validacionTablasActualizar = {
         }
     },
 
-    validarDescuento: (porcentaje, fechaInicio, fechaFin, motivo) => {
+    validarDescuento: (idDescuento, porcentaje, fechaInicio, fechaFin, motivo) => {
+        let idDescuentoValido = validaciones.validarId(idDescuento);
         let porcentajeValido = validaciones.validarPorcentaje(porcentaje);
         let fechaInicioValida = validaciones.validarFecha(fechaInicio);
         let fechaFinValida = validaciones.validarFecha(fechaFin);
         let motivoValido = validaciones.validarMotivoDescuento(motivo);
 
-        if (porcentajeValido && fechaInicioValida && fechaFinValida && motivoValido) {
-            let valores = [porcentaje, fechaInicio, fechaFin, motivo];
+        if (porcentajeValido && fechaInicioValida && fechaFinValida && motivoValido && idDescuentoValido) {
+            let valores = [idDescuento, porcentaje, fechaInicio, fechaFin, motivo];
             updateTabla("descuento", valores);
         } else {
             console.error("Los datos de descuento no son válidos");
@@ -984,11 +995,12 @@ const tomarDatosActualizar = {
     },
 
     tomarDescuento: () => {
+        let idDescuento = $("#inputIdDescuento").val();
         let porcentaje = $("#inputPorcentaje").val();
         let fechaInicio = $("#inputFechaInicio").val();
         let fechaFin = $("#inputFechaFin").val();
         let motivo = $("#inputMotivo").val();
-        validacionTablasActualizar.validarDescuento(porcentaje, fechaInicio, fechaFin, motivo);
+        validacionTablasActualizar.validarDescuento(idDescuento, porcentaje, fechaInicio, fechaFin, motivo);
     },
 
     tomarDireccion: () => {

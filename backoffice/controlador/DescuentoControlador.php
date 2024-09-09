@@ -19,11 +19,11 @@ class DescuentoControlador {
         $modelo->setFechaInicio($fechaInicio);
         $modelo->setFechaFin($fechaFin);
         $modelo->setMotivo($motivo);
-        if($modelo->store()) {
-            // EXITOSO
-        } else {
-            // ERROR
-        }
+        $resultados = $modelo->store();
+
+        header('Content-Type: application/json');
+        echo json_encode($resultados);
+        exit;
     }
 
     public function show($atributo, $valor) {

@@ -19,10 +19,12 @@
   <header>
     <nav class="navbar navbar-expand-lg">
       <div class="container-fluid">
-        <!-- Logo y vinculo a home -->
         <a class="navbar-brand" href="index.html">
           <img class="logo" src="../assets/logo/logoB.png" alt="Logo">
-        </a>      
+        </a>
+        <button class="btn btn-link cerrarSesion">
+          <img src="../assets/logo/cerrar.png" alt="Cerrar Sesión" class="icono-cerrar-sesion">
+        </button>      
       </div>
     </nav>
   </header>
@@ -33,10 +35,10 @@
     <nav>
       <ul class="nav nav-pills flex-column">
         <li class="nav-item">
-          <a class="nav-link pill-sidebar" href="index.html">Empresas</a>
+          <a class="nav-link pill-sidebar-active" href="index.html">Tablas</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link pill-sidebar-active" href="notificaciones.html">Notificaciones  <span class="badge text-bg-primary rounded-pill badge-noti-active ms-1">1</span></a>
+          <a class="nav-link pill-sidebar" href="notificaciones.html">Notificaciones  <span class="badge text-bg-primary rounded-pill badge-noti ms-1">1</span></a>
         </li>
       </ul>
     </nav>
@@ -44,7 +46,7 @@
 
   <main class="container col-9 p-3 mt-2">
     <section>
-      <h1 id="titulo-formulario-actualizacion">Ingresar </h1>
+      <h1 id="titulo-formulario-actualizacion">Editar </h1>
         <article id="formulario-actualizacion">
 
         </article>
@@ -60,6 +62,7 @@
   </footer>
 
   <script src="js/jquery-3.7.1.min.js"></script>
+  <script src="js/login.js"></script>
   <script src="js/formulariosActualizacion.js"></script>
   <script src="js/subir.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>

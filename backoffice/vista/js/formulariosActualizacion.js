@@ -4,9 +4,9 @@ const formularios = {
         $("#formulario-actualizacion").append(
             `
             <label for="inputIdProducto">ID Producto:</label>
-            <input id="inputIdProducto" class="form-control inputIngresar" value="${datos[0]}" disabled">
+            <input id="inputIdProducto" class="form-control inputIngresar" value="${datos[0]}" disabled="disabled">
             <label for="inputNombre">Nombre de la característica:</label>
-            <input type="text" id="inputNombre" class="form-control inputIngresar" value="${datos[1]}" disabled">
+            <input type="text" id="inputNombre" class="form-control inputIngresar" value="${datos[1]}" disabled="disabled">
             <label for="inputValor">Valor:</label>
             <input type="text" id="inputValor" class="form-control inputIngresar" value="${datos[2]}">
             `
@@ -18,7 +18,7 @@ const formularios = {
         $("#formulario-actualizacion").append(
             `
             <label for="inputIdCategoria">ID Categoría:</label>
-            <input id="inputIdCategoria" class="form-control inputIngresar" value="${datos[0]}" disabled">
+            <input id="inputIdCategoria" class="form-control inputIngresar" value="${datos[0]}" disabled="disabled">
             <label for="inputNombre">Nombre:</label>
             <input type="text" id="inputNombre" class="form-control inputIngresar" value="${datos[1]}">
             `
@@ -30,9 +30,9 @@ const formularios = {
         $("#formulario-actualizacion").append(
             `
             <label for="inputIdProducto">ID Producto:</label>
-            <input id="inputIdProducto" class="form-control inputIngresar" value="${datos[0]}" disabled">
+            <input id="inputIdProducto" class="form-control inputIngresar" value="${datos[0]}" disabled="disabled">
             <label for="inputIdCategoria">ID Categoría:</label>
-            <input id="inputIdCategoria" class="form-control inputIngresar" value="${datos[1]}" disabled">
+            <input id="inputIdCategoria" class="form-control inputIngresar" value="${datos[1]}" disabled="disabled">
             `
         );
     },
@@ -42,9 +42,9 @@ const formularios = {
         $("#formulario-actualizacion").append(
             `
             <label for="inputIdPedido">ID Pedido:</label>
-            <input id="inputIdPedido" class="form-control inputIngresar" value="${datos[0]}" disabled">
+            <input id="inputIdPedido" class="form-control inputIngresar" value="${datos[0]}" disabled="disabled">
             <label for="inputIdProducto">ID Producto:</label>
-            <input id="inputIdProducto" class="form-control inputIngresar" value="${datos[1]}" disabled">
+            <input id="inputIdProducto" class="form-control inputIngresar" value="${datos[1]}" disabled="disabled">
             <label for="inputCantidad">Cantidad:</label>
             <input type="number" id="inputCantidad" class="form-control inputIngresar" value="${datos[2]}">
             `
@@ -56,13 +56,13 @@ const formularios = {
         $("#formulario-actualizacion").append(
             `
             <label for="inputIdDescuento">ID Descuento:</label>
-            <input id="inputIdDescuento" class="form-control inputIngresar" value="${datos[0]}" disabled">
+            <input id="inputIdDescuento" class="form-control inputIngresar" value="${datos[0]}" disabled="disabled">
             <label for="inputPorcentaje">Porcentaje:</label>
             <input type="number" id="inputPorcentaje" class="form-control inputIngresar" value="${datos[1]}">
             <label for="inputFechaInicio">Fecha Inicio:</label>
-            <input type="date" id="inputFechaInicio" class="form-control inputIngresar" value="${datos[2]}" disabled">
+            <input type="date" id="inputFechaInicio" class="form-control inputIngresar" value="${datos[2]}">
             <label for="inputFechaFin">Fecha Fin:</label>
-            <input type="date" id="inputFechaFin" class="form-control inputIngresar" value="${datos[3]}" disabled">
+            <input type="date" id="inputFechaFin" class="form-control inputIngresar" value="${datos[3]}">
             <label for="inputMotivo">Motivo:</label>
             <input type="text" id="inputMotivo" class="form-control inputIngresar" value="${datos[4]}">
             `
@@ -74,7 +74,7 @@ const formularios = {
         $("#formulario-actualizacion").append(
             `
             <label for="inputEmail">Email:</label>
-            <input type="email" id="inputEmail" class="form-control inputIngresar" value="${datos[0]}" disabled">
+            <input type="email" id="inputEmail" class="form-control inputIngresar" value="${datos[0]}" disabled="disabled">
             <label for="inputDireccion">Dirección:</label>
             <input type="text" id="inputDireccion" class="form-control inputIngresar" value="${datos[1]}">
             `
@@ -86,7 +86,7 @@ const formularios = {
         $("#formulario-actualizacion").append(
             `
             <label for="inputRUT">RUT:</label>
-            <input type="text" id="inputRUT" class="form-control inputIngresar" value="${datos[0]}" disabled">
+            <input type="text" id="inputRUT" class="form-control inputIngresar" value="${datos[0]}" disabled="disabled">
             <label for="inputNombre">Nombre:</label>
             <input type="text" id="inputNombre" class="form-control inputIngresar" value="${datos[1]}">
             <label for="inputTeléfono">Teléfono:</label>
@@ -106,9 +106,9 @@ const formularios = {
         $("#formulario-actualizacion").append(
             `
             <label for="inputEmail">Email:</label>
-            <input type="email" id="inputEmail" class="form-control inputIngresar" value="${datos[0]}" disabled">
+            <input type="email" id="inputEmail" class="form-control inputIngresar" value="${datos[0]}" disabled="disabled">
             <label for="inputIdProducto">ID Producto:</label>
-            <input id="inputIdProducto" class="form-control inputIngresar" value="${datos[1]}" disabled">
+            <input id="inputIdProducto" class="form-control inputIngresar" value="${datos[1]}" disabled="disabled">
             `
         );
     },
@@ -118,7 +118,7 @@ const formularios = {
         $("#formulario-actualizacion").append(
             `
             <label for="inputIdPedido">ID Pedido:</label>
-            <input id="inputIdPedido" class="form-control inputIngresar" value="${datos[0]}" disabled">
+            <input id="inputIdPedido" class="form-control inputIngresar" value="${datos[0]}" disabled="disabled">
             <label for="inputEstado">Estado:</label>
             <select id="inputEstado" class="form-select">
                 <option value="carrito">Carrito</option>
@@ -144,7 +144,7 @@ const formularios = {
         $("#formulario-actualizacion").append(
             `
             <label for="inputIdProducto">ID Producto:</label>
-            <input type="text" id="inputIdProducto" class="form-control inputIngresar" value="${datos[0]}" disabled">
+            <input type="text" id="inputIdProducto" class="form-control inputIngresar" value="${datos[0]}" disabled="disabled">
             <label for="inputRUT">RUT:</label>
             <input type="text" id="inputRUT" class="form-control inputIngresar" value="${datos[1]}">
             <label for="inputDescripción">Descripción:</label>
@@ -168,9 +168,9 @@ const formularios = {
         $("#formulario-actualizacion").append(
             `
             <label for="inputIdDescuento">ID Descuento:</label>
-            <input id="inputIdDescuento" class="form-control inputIngresar" value="${datos[0]}" disabled">
+            <input id="inputIdDescuento" class="form-control inputIngresar" value="${datos[0]}" disabled="disabled">
             <label for="inputIdProducto">ID Producto:</label>
-            <input id="inputIdProducto" class="form-control inputIngresar" value="${datos[1]}" disabled">
+            <input id="inputIdProducto" class="form-control inputIngresar" value="${datos[1]}" disabled="disabled">
             `
         );
     },
@@ -180,7 +180,7 @@ const formularios = {
         $("#formulario-actualizacion").append(
             `
             <label for="inputEmail">Email:</label>
-            <input type="email" id="inputEmail" class="form-control inputIngresar" value="${datos[0]}" disabled">
+            <input type="email" id="inputEmail" class="form-control inputIngresar" value="${datos[0]}" disabled="disabled">
             <label for="inputUsuario">Usuario:</label>
             <input type="text" id="inputUsuario" class="form-control inputIngresar" value="${datos[1]}">
             <label for="inputNombre">Nombre:</label>
@@ -203,11 +203,11 @@ const formularios = {
         $("#formulario-actualizacion").append(
             `
             <label for="inputEmail">Email:</label>
-            <input type="email" id="inputEmail" class="form-control inputIngresar" value="${datos[0]}" disabled">
+            <input type="email" id="inputEmail" class="form-control inputIngresar" value="${datos[0]}" disabled="disabled">
             <label for="inputIdProducto">ID Producto:</label>
-            <input id="inputIdProducto" class="form-control inputIngresar" value="${datos[1]}" disabled">
+            <input id="inputIdProducto" class="form-control inputIngresar" value="${datos[1]}" disabled="disabled">
             <label for="inputFecha">Fecha:</label>
-            <input type="date" id="inputFecha" class="form-control inputIngresar" value="${datos[2]}" disabled">
+            <input type="date" id="inputFecha" class="form-control inputIngresar" value="${datos[2]}" disabled="disabled">
             `
         );
     }    
@@ -251,6 +251,7 @@ const obtenerDatos = {
     obtenerDescuento: () => {
         let urlParams = new URLSearchParams(window.location.search);
         return [
+            urlParams.get('idDescuento'),
             urlParams.get('porcentaje'),
             urlParams.get('fechaInicio'),
             urlParams.get('fechaFin'),
