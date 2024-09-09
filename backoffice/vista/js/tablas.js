@@ -3,7 +3,7 @@
 const indexEmpresa = () => {
  
     $.ajax({
-        url: 'http://localhost/PROYECTO/TuxOut/backoffice/controlador/EmpresaControlador.php', 
+        url: 'http://localhost/TuxOut/backoffice/controlador/EmpresaControlador.php', 
         method: 'POST', 
         dataType: 'json', 
         data: {metodoControlador: "index"},
@@ -22,7 +22,7 @@ const indexEmpresa = () => {
 
 const showEmpresa = (atributo, valor) => {
     $.ajax({
-        url: 'http://localhost/PROYECTO/TuxOut/backoffice/controlador/EmpresaControlador.php', 
+        url: 'http://localhost/TuxOut/backoffice/controlador/EmpresaControlador.php', 
         method: 'POST', 
         dataType: 'json', 
         data: {metodoControlador: "show", atributo: atributo, valor: valor},
@@ -106,7 +106,7 @@ const cargarAtributosEmpresa = () => {
 const indexProducto = () => {
  
     $.ajax({
-        url: 'http://localhost/PROYECTO/TuxOut/backoffice/controlador/ProductoControlador.php', 
+        url: 'http://localhost/TuxOut/backoffice/controlador/ProductoControlador.php', 
         method: 'POST', 
         dataType: 'json', 
         data: {metodoControlador: "index"},
@@ -125,7 +125,7 @@ const indexProducto = () => {
 
 const showProducto = (atributo, valor) => {
     $.ajax({
-        url: 'http://localhost/PROYECTO/TuxOut/backoffice/controlador/ProductoControlador.php', 
+        url: 'http://localhost/TuxOut/backoffice/controlador/ProductoControlador.php', 
         method: 'POST', 
         dataType: 'json', 
         data: {metodoControlador: "show", atributo: atributo, valor: valor},
@@ -216,7 +216,7 @@ const cargarAtributosProducto = () => {
 
 const indexContiene = () => {
     $.ajax({
-        url: 'http://localhost/PROYECTO/TuxOut/backoffice/controlador/ContieneControlador.php',
+        url: 'http://localhost/TuxOut/backoffice/controlador/ContieneControlador.php',
         method: 'POST',
         dataType: 'json',
         data: { metodoControlador: "index" },
@@ -235,7 +235,7 @@ const indexContiene = () => {
 
 const showContiene = (atributo, valor) => {
     $.ajax({
-        url: 'http://localhost/PROYECTO/TuxOut/backoffice/controlador/ContieneControlador.php',
+        url: 'http://localhost/TuxOut/backoffice/controlador/ContieneControlador.php',
         method: 'POST',
         dataType: 'json',
         data: { metodoControlador: "show", atributo: atributo, valor: valor },
@@ -304,7 +304,7 @@ const cargarAtributosContiene = () => {
 
 const indexPedido = () => {
     $.ajax({
-        url: 'http://localhost/PROYECTO/TuxOut/backoffice/controlador/PedidoControlador.php',
+        url: 'http://localhost/TuxOut/backoffice/controlador/PedidoControlador.php',
         method: 'POST',
         dataType: 'json',
         data: {metodoControlador: "index"},
@@ -323,7 +323,7 @@ const indexPedido = () => {
 
 const showPedido = (atributo, valor) => {
     $.ajax({
-        url: 'http://localhost/PROYECTO/TuxOut/backoffice/controlador/PedidoControlador.php',
+        url: 'http://localhost/TuxOut/backoffice/controlador/PedidoControlador.php',
         method: 'POST',
         dataType: 'json',
         data: {metodoControlador: "show", atributo: atributo, valor: valor},
@@ -404,7 +404,7 @@ const cargarAtributosPedido = () => {
 
 const indexUsuario = () => {
     $.ajax({
-        url: 'http://localhost/PROYECTO/TuxOut/backoffice/controlador/UsuarioControlador.php', 
+        url: 'http://localhost/TuxOut/backoffice/controlador/UsuarioControlador.php', 
         method: 'POST', 
         dataType: 'json', 
         data: {metodoControlador: "index"},
@@ -423,7 +423,7 @@ const indexUsuario = () => {
 
 const showUsuario = (atributo, valor) => {
     $.ajax({
-        url: 'http://localhost/PROYECTO/TuxOut/backoffice/controlador/UsuarioControlador.php', 
+        url: 'http://localhost/TuxOut/backoffice/controlador/UsuarioControlador.php', 
         method: 'POST', 
         dataType: 'json', 
         data: {metodoControlador: "show", atributo: atributo, valor: valor},
@@ -512,7 +512,7 @@ const cargarAtributosUsuario = () => {
 
 const indexCategoria = () => {
     $.ajax({
-        url: 'http://localhost/PROYECTO/TuxOut/backoffice/controlador/CategoriaControlador.php',
+        url: 'http://localhost/TuxOut/backoffice/controlador/CategoriaControlador.php',
         method: 'POST',
         dataType: 'json',
         data: { metodoControlador: "index" },
@@ -531,7 +531,7 @@ const indexCategoria = () => {
 
 const showCategoria = (atributo, valor) => {
     $.ajax({
-        url: 'http://localhost/PROYECTO/TuxOut/backoffice/controlador/CategoriaControlador.php',
+        url: 'http://localhost/TuxOut/backoffice/controlador/CategoriaControlador.php',
         method: 'POST',
         dataType: 'json',
         data: { metodoControlador: "show", atributo: atributo, valor: valor },
@@ -596,7 +596,7 @@ const cargarAtributosCategoria = () => {
 
 const indexCaracteristica = () => {
     $.ajax({
-        url: 'http://localhost/PROYECTO/TuxOut/backoffice/controlador/CaracteristicaControlador.php', 
+        url: 'http://localhost/TuxOut/backoffice/controlador/CaracteristicaControlador.php', 
         method: 'POST', 
         dataType: 'json', 
         data: {metodoControlador: "index"},
@@ -615,7 +615,7 @@ const indexCaracteristica = () => {
 
 const showCaracteristica = (atributo, valor) => {
     $.ajax({
-        url: 'http://localhost/PROYECTO/TuxOut/backoffice/controlador/CaracteristicaControlador.php', 
+        url: 'http://localhost/TuxOut/backoffice/controlador/CaracteristicaControlador.php', 
         method: 'POST', 
         dataType: 'json', 
         data: {metodoControlador: "show", atributo: atributo, valor: valor},
@@ -685,7 +685,7 @@ const cargarAtributosCaracteristica = () => {
 
 const indexDescuento = () => {
     $.ajax({
-        url: 'http://localhost/PROYECTO/TuxOut/backoffice/controlador/DescuentoControlador.php',
+        url: 'http://localhost/TuxOut/backoffice/controlador/DescuentoControlador.php',
         method: 'POST',
         dataType: 'json',
         data: { metodoControlador: "index" },
@@ -704,7 +704,7 @@ const indexDescuento = () => {
 
 const showDescuento = (atributo, valor) => {
     $.ajax({
-        url: 'http://localhost/PROYECTO/TuxOut/backoffice/controlador/DescuentoControlador.php',
+        url: 'http://localhost/TuxOut/backoffice/controlador/DescuentoControlador.php',
         method: 'POST',
         dataType: 'json',
         data: { metodoControlador: "show", atributo: atributo, valor: valor },
@@ -787,7 +787,7 @@ const cargarAtributosDescuento = () => {
 
 const indexVisita = () => {
     $.ajax({
-        url: 'http://localhost/PROYECTO/TuxOut/backoffice/controlador/VisitaControlador.php',
+        url: 'http://localhost/TuxOut/backoffice/controlador/VisitaControlador.php',
         method: 'POST',
         dataType: 'json',
         data: {metodoControlador: "index"},
@@ -806,7 +806,7 @@ const indexVisita = () => {
 
 const showVisita = (atributo, valor) => {
     $.ajax({
-        url: 'http://localhost/PROYECTO/TuxOut/backoffice/controlador/VisitaControlador.php',
+        url: 'http://localhost/TuxOut/backoffice/controlador/VisitaControlador.php',
         method: 'POST',
         dataType: 'json',
         data: {metodoControlador: "show", atributo: atributo, valor: valor},
@@ -881,7 +881,7 @@ const cargarAtributosVisita = () => {
 
 const indexFavorito = () => {
     $.ajax({
-        url: 'http://localhost/PROYECTO/TuxOut/backoffice/controlador/FavoritoControlador.php',
+        url: 'http://localhost/TuxOut/backoffice/controlador/FavoritoControlador.php',
         method: 'POST',
         dataType: 'json',
         data: { metodoControlador: "index" },
@@ -900,7 +900,7 @@ const indexFavorito = () => {
 
 const showFavorito = (atributo, valor) => {
     $.ajax({
-        url: 'http://localhost/PROYECTO/TuxOut/backoffice/controlador/FavoritoControlador.php',
+        url: 'http://localhost/TuxOut/backoffice/controlador/FavoritoControlador.php',
         method: 'POST',
         dataType: 'json',
         data: { metodoControlador: "show", atributo: atributo, valor: valor },
@@ -965,7 +965,7 @@ const cargarAtributosFavorito = () => {
 
 const indexDireccion = () => {
     $.ajax({
-        url: 'http://localhost/PROYECTO/TuxOut/backoffice/controlador/DireccionControlador.php',
+        url: 'http://localhost/TuxOut/backoffice/controlador/DireccionControlador.php',
         method: 'POST',
         dataType: 'json',
         data: { metodoControlador: "index" },
@@ -984,7 +984,7 @@ const indexDireccion = () => {
 
 const showDireccion = (atributo, valor) => {
     $.ajax({
-        url: 'http://localhost/PROYECTO/TuxOut/backoffice/controlador/DireccionControlador.php',
+        url: 'http://localhost/TuxOut/backoffice/controlador/DireccionControlador.php',
         method: 'POST',
         dataType: 'json',
         data: { metodoControlador: "show", atributo: atributo, valor: valor },
@@ -1050,7 +1050,7 @@ const cargarAtributosDireccion = () => {
 
 const indexTiene = () => {
     $.ajax({
-        url: 'http://localhost/PROYECTO/TuxOut/backoffice/controlador/TieneControlador.php',
+        url: 'http://localhost/TuxOut/backoffice/controlador/TieneControlador.php',
         method: 'POST',
         dataType: 'json',
         data: { metodoControlador: "index" },
@@ -1069,7 +1069,7 @@ const indexTiene = () => {
 
 const showTiene = (atributo, valor) => {
     $.ajax({
-        url: 'http://localhost/PROYECTO/TuxOut/backoffice/controlador/TieneControlador.php',
+        url: 'http://localhost/TuxOut/backoffice/controlador/TieneControlador.php',
         method: 'POST',
         dataType: 'json',
         data: { metodoControlador: "show", atributo: atributo, valor: valor },
@@ -1134,7 +1134,7 @@ const cargarAtributosTiene = () => {
 
 const indexCategoriza = () => {
     $.ajax({
-        url: 'http://localhost/PROYECTO/TuxOut/backoffice/controlador/CategorizaControlador.php',
+        url: 'http://localhost/TuxOut/backoffice/controlador/CategorizaControlador.php',
         method: 'POST',
         dataType: 'json',
         data: { metodoControlador: "index" },
@@ -1153,7 +1153,7 @@ const indexCategoriza = () => {
 
 const showCategoriza = (atributo, valor) => {
     $.ajax({
-        url: 'http://localhost/PROYECTO/TuxOut/backoffice/controlador/CategorizaControlador.php',
+        url: 'http://localhost/TuxOut/backoffice/controlador/CategorizaControlador.php',
         method: 'POST',
         dataType: 'json',
         data: { metodoControlador: "show", atributo: atributo, valor: valor },
@@ -1439,7 +1439,7 @@ const eliminarDato = (tabla, $botonEliminar) => {
     }
 
     $.ajax({
-        url: 'http://localhost/PROYECTO/TuxOut/backoffice/controlador/'+tabla+'Controlador.php',
+        url: 'http://localhost/TuxOut/backoffice/controlador/'+tabla+'Controlador.php',
         method: 'POST',
         dataType: 'json',
         data: {metodoControlador: "destroy", valores: valores},
