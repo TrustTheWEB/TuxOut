@@ -10,15 +10,13 @@ class VisitaControlador {
 
         header('Content-Type: application/json');
         echo json_encode($resultados);
-            
         exit;
     }
 
-    public function store($email, $idProducto, $fecha) {
+    public function store($email, $idProducto) {
         $modelo = new Visita();
         $modelo->setEmail($email);
         $modelo->setIdProducto($idProducto);
-        $modelo->setFecha($fecha);
         
         $resultados = $modelo->store();
         header('Content-Type: application/json');
@@ -99,7 +97,7 @@ switch($metodo) {
         $controlador->destroy($_POST["valores"][0], $_POST["valores"][1]);
         break;
     case "update":
-        $controlador->update($_POST["valores"][0],$_POST["valores"][1]);
+        $controlador->update($_POST["valores"][0],$_POST["valores"][1],$_POST["valores"][2]);
         break;
     default:
         break;

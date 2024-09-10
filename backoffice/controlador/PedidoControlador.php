@@ -13,12 +13,11 @@ class PedidoControlador {
         exit;
     }
 
-    public function store($estado, $medioPago, $montoTotal, $fecha, $email) {
+    public function store($estado, $medioPago, $montoTotal, $email) {
         $modelo = new Pedido();
         $modelo->setEstado($estado);
         $modelo->setMedioPago($medioPago);
         $modelo->setMontoTotal($montoTotal);
-        $modelo->setFecha($fecha);
         $modelo->setEmail($email);
 
         $resultados = $modelo->store();
@@ -103,7 +102,7 @@ switch($metodo) {
         $controlador->show($_POST["atributo"], $_POST["valor"]);
         break;
     case "store":
-        $controlador->store($_POST["valores"][0],$_POST["valores"][1],$_POST["valores"][2],$_POST["valores"][3],$_POST["valores"][4]);
+        $controlador->store($_POST["valores"][0],$_POST["valores"][1],$_POST["valores"][2],$_POST["valores"][3]);
         break;
     case "destroy":
         $controlador->destroy($_POST["valores"][0]);

@@ -52,12 +52,11 @@ class Visita {
 
     public function store() {
         try {
-            $query = "INSERT INTO visita (email, idProducto, fecha) VALUES (?, ?, ?)";
+            $query = "INSERT INTO visita (email, idProducto) VALUES (?, ?)";
             $stmt = $this->conexion->prepare($query);
 
             $stmt->bindValue(1, $this->email, PDO::PARAM_STR);
             $stmt->bindValue(2, $this->idProducto, PDO::PARAM_INT);
-            $stmt->bindValue(3, $this->fecha, PDO::PARAM_STR);
 
             return $stmt->execute();
         } catch (PDOException $e) {

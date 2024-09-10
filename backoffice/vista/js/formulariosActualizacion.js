@@ -119,25 +119,33 @@ const formularios = {
             `
             <label for="inputIdPedido">ID Pedido:</label>
             <input id="inputIdPedido" class="form-control inputIngresar" value="${datos[0]}" disabled="disabled">
+            
             <label for="inputEstado">Estado:</label>
             <select id="inputEstado" class="form-select">
-                <option value="carrito">Carrito</option>
-                <option value="procesando">Procesando</option>
-                <option value="pagado">Pagado</option>
-                <option value="entregado">Entregado</option>
+                <option value="carrito" ${datos[1] === 'carrito' ? 'selected' : ''}>Carrito</option>
+                <option value="procesando" ${datos[1] === 'procesando' ? 'selected' : ''}>Procesando</option>
+                <option value="pagado" ${datos[1] === 'pagado' ? 'selected' : ''}>Pagado</option>
+                <option value="entregado" ${datos[1] === 'entregado' ? 'selected' : ''}>Entregado</option>
             </select>
+            
             <label for="inputMedioPago">Medio de Pago:</label>
             <select id="inputMedioPago" class="form-select">
-                <option value="PayPal">PayPal</option>
-                <option value="MercadoPago">MercadoPago</option>
+                <option value="PayPal" ${datos[2] === 'PayPal' ? 'selected' : ''}>PayPal</option>
+                <option value="MercadoPago" ${datos[2] === 'MercadoPago' ? 'selected' : ''}>MercadoPago</option>
             </select>
+            
             <label for="inputMontoTotal">Monto Total:</label>
             <input type="number" id="inputMontoTotal" class="form-control inputIngresar" value="${datos[3]}">
+
+            <label for="inputFecha">Fecha:</label>
+            <input type="datetime-local" id="inputFecha" class="form-control inputIngresar" value="${datos[4]}">
+            
             <label for="inputEmail">Email:</label>
-            <input type="email" id="inputEmail" class="form-control inputIngresar" value="${datos[4]}">
+            <input type="email" id="inputEmail" class="form-control inputIngresar" value="${datos[5]}">
             `
         );
     },
+    
 
     imprimirFormularioProducto: (datos) => {
         $("#titulo-formulario-actualizacion").append("producto");
@@ -147,16 +155,20 @@ const formularios = {
             <input type="text" id="inputIdProducto" class="form-control inputIngresar" value="${datos[0]}" disabled="disabled">
             <label for="inputRUT">RUT:</label>
             <input type="text" id="inputRUT" class="form-control inputIngresar" value="${datos[1]}">
-            <label for="inputDescripción">Descripción:</label>
-            <input type="text" id="inputDescripción" class="form-control inputIngresar" value="${datos[2]}">
-            <label for="inputEstado">Estado:</label>
-            <input type="text" id="inputEstado" class="form-control inputIngresar" value="${datos[3]}">
-            <label for="inputPrecio">Precio:</label>
-            <input type="number" id="inputPrecio" class="form-control inputIngresar" value="${datos[4]}">
             <label for="inputNombre">Nombre:</label>
             <input type="text" id="inputNombre" class="form-control inputIngresar" value="${datos[5]}">
+            <label for="inputDescripción">Descripción:</label>
+            <input type="text" id="inputDescripción" class="form-control inputIngresar" value="${datos[2]}">
+            <label for="inputPrecio">Precio:</label>
+            <input type="number" id="inputPrecio" class="form-control inputIngresar" value="${datos[4]}">
             <label for="inputStock">Stock:</label>
             <input type="number" id="inputStock" class="form-control inputIngresar" value="${datos[6]}">
+            <label for="inputEstado">Estado:</label>
+            <select id="inputEstado" class="form-control inputIngresar">
+                <option value="Renovado" ${datos[3] === 'Renovado' ? 'selected' : ''}>Renovado</option>
+                <option value="Nuevo" ${datos[3] === 'Nuevo' ? 'selected' : ''}>Nuevo</option>
+                <option value="Usado" ${datos[3] === 'Usado' ? 'selected' : ''}>Usado</option>
+            </select>
             <label for="inputMarca">Marca:</label>
             <input type="text" id="inputMarca" class="form-control inputIngresar" value="${datos[7]}">
             `
@@ -207,7 +219,7 @@ const formularios = {
             <label for="inputIdProducto">ID Producto:</label>
             <input id="inputIdProducto" class="form-control inputIngresar" value="${datos[1]}" disabled="disabled">
             <label for="inputFecha">Fecha:</label>
-            <input type="date" id="inputFecha" class="form-control inputIngresar" value="${datos[2]}" disabled="disabled">
+            <input type="datetime-local" id="inputFecha" class="form-control inputIngresar" value="${datos[2]}">
             `
         );
     }    
@@ -290,9 +302,11 @@ const obtenerDatos = {
     obtenerPedido: () => {
         let urlParams = new URLSearchParams(window.location.search);
         return [
+            urlParams.get('idPedido'),
             urlParams.get('estado'),
             urlParams.get('medioPago'),
             urlParams.get('montoTotal'),
+            urlParams.get('fecha'),
             urlParams.get('email')
         ];
     },
@@ -300,6 +314,7 @@ const obtenerDatos = {
     obtenerProducto: () => {
         let urlParams = new URLSearchParams(window.location.search);
         return [
+            urlParams.get('idProducto'),
             urlParams.get('rut'),
             urlParams.get('descripcion'),
             urlParams.get('estado'),

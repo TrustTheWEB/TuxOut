@@ -81,14 +81,13 @@ class Pedido {
 
     public function store() {
         try {
-            $query = "INSERT INTO " . $this->tabla . " (estado, medioPago, montoTotal, fecha, email) VALUES (?, ?, ?, ?, ?)";
+            $query = "INSERT INTO " . $this->tabla . " (estado, medioPago, montoTotal, email) VALUES (?, ?, ?, ?)";
             $stmt = $this->conn->prepare($query);
 
             $stmt->bindValue(1, $this->estado, PDO::PARAM_STR);
             $stmt->bindValue(2, $this->medioPago, PDO::PARAM_STR);
             $stmt->bindValue(3, $this->montoTotal, PDO::PARAM_STR);
-            $stmt->bindValue(4, $this->fecha, PDO::PARAM_STR);
-            $stmt->bindValue(5, $this->email, PDO::PARAM_STR);
+            $stmt->bindValue(4, $this->email, PDO::PARAM_STR);
 
             return $stmt->execute();
         } catch (PDOException $e) {

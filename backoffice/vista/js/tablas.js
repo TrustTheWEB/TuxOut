@@ -175,7 +175,7 @@ const imprimirProducto = (resultado) => {
                     <td>${item["stock"] || ''}</td>
                     <td>${item["estado"] || ''}</td>
                     <td>${item["marca"] || ''}</td>
-                    <td> <a class="btn editar" href="editar.html?tabla=producto&idProducto=${item["idProducto"]}">EDITAR</a> <button class="btn eliminar" data-idProducto="${item["idProducto"]}">ELIMINAR</button> </td>
+                    <td> <a class="btn editar" href="editar.html?tabla=producto&idProducto=${item["idProducto"]}&rut=${item["RUT"]}&descripcion=${item["descripcion"]}&estado=${item["estado"]}&precio=${item["precio"]}&nombre=${item["nombre"]}&stock=${item["stock"]}&marca=${item["marca"]}">EDITAR</a> <button class="btn eliminar" data-idProducto="${item["idProducto"]}">ELIMINAR</button> </td>
                 </tr>`
             );
         });
@@ -190,7 +190,7 @@ const imprimirProducto = (resultado) => {
                 <td>${resultado["stock"] || ''}</td>
                 <td>${resultado["estado"] || ''}</td>
                 <td>${resultado["marca"] || ''}</td>
-                <td> <a class="btn editar" href="editar.html?tabla=producto&idProducto=${resultado["idProducto"]}">EDITAR</a> <button class="btn eliminar" data-idProducto="${resultado["idProducto"]}">ELIMINAR</button> </td>
+                <td> <a class="btn editar" href="editar.html?tabla=producto&idProducto=${resultado["idProducto"]}&rut=${resultado["RUT"]}&descripcion=${resultado["descripcion"]}&estado=${resultado["estado"]}&precio=${resultado["precio"]}&nombre=${resultado["nombre"]}&stock=${resultado["stock"]}&marca=${resultado["marca"]}">EDITAR</a> <button class="btn eliminar" data-idProducto="${resultado["idProducto"]}">ELIMINAR</button> </td>
             </tr>`
         );
     }

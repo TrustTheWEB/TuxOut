@@ -139,16 +139,20 @@ const formularios = {
             `
             <label for="inputRUT">RUT:</label>
             <input type="text" id="inputRUT" class="form-control inputIngresar">
-            <label for="inputDescripción">Descripción:</label>
-            <input type="text" id="inputDescripción" class="form-control inputIngresar">
-            <label for="inputEstado">Estado:</label>
-            <input type="text" id="inputEstado" class="form-control inputIngresar">
-            <label for="inputPrecio">Precio:</label>
-            <input type="number" id="inputPrecio" class="form-control inputIngresar">
             <label for="inputNombre">Nombre:</label>
             <input type="text" id="inputNombre" class="form-control inputIngresar">
+            <label for="inputDescripción">Descripción:</label>
+            <input type="text" id="inputDescripción" class="form-control inputIngresar">
+            <label for="inputPrecio">Precio:</label>
+            <input type="number" id="inputPrecio" class="form-control inputIngresar">
             <label for="inputStock">Stock:</label>
             <input type="number" id="inputStock" class="form-control inputIngresar">
+            <label for="inputEstado">Estado:</label>
+            <select id="inputEstado" class="form-control inputIngresar">
+            <option value="renovado">Renovado</option>
+            <option value="nuevo">Nuevo</option>
+            <option value="usado">Usado</option>
+            </select>
             <label for="inputMarca">Marca:</label>
             <input type="text" id="inputMarca" class="form-control inputIngresar">
             `
@@ -199,8 +203,6 @@ const formularios = {
             <input type="email" id="inputEmail" class="form-control inputIngresar">
             <label for="inputIdProducto">idProducto:</label>
             <input id="inputIdProducto" class="form-control inputIngresar">
-            <label for="inputFecha">Fecha:</label>
-            <input type="date" id="inputFecha" class="form-control inputIngresar">
             `
         );
     },

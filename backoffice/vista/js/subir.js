@@ -216,8 +216,75 @@ const validaciones = {
         return true;
     },
 
+    validarFechaHora: (timestamp) => {
+        // Separa la fecha y la hora
+        const [fecha, hora] = timestamp.split('T');
+        if (!fecha || !hora) {
+            return false;
+        }
+
+    
+        // Separa fecha en año, mes y día
+        const [año, mes, dia] = fecha.split('-').map(Number);
+        // Separa hora en horas, minutos y segundos
+        const [horas, minutos, segundos] = hora.split(':').map(Number);
+    
+        // Validación del año
+        if (año < 1900 || año > 2999) {
+            return false;
+        }
+    
+        // Validación del mes
+        if (mes < 1 || mes > 12) {
+            return false;
+        }
+    
+        // Determina si el año es bisiesto
+        const esBisiesto = (año % 4 === 0 && año % 100 !== 0) || (año % 400 === 0);
+    
+        // Validación del día
+        if (mes === 2) {
+            if (esBisiesto) {
+                if (dia < 1 || dia > 29) {
+                    return false;
+                }
+            } else {
+                if (dia < 1 || dia > 28) {
+                    return false;
+                }
+            }
+        } else if ([4, 6, 9, 11].includes(mes)) {
+            if (dia < 1 || dia > 30) {
+                return false;
+            }
+        } else {
+            if (dia < 1 || dia > 31) {
+                return false;
+            }
+        }
+    
+
+        // Validación de la hora
+        if (horas < 0 || horas > 23) {
+            return false;
+        }
+    
+        // Validación de los minutos
+        if (minutos < 0 || minutos > 59) {
+            return false;
+        }
+    
+        // Validación de los segundos
+        if (segundos < 0 || segundos > 59) {
+            return false;
+        }
+    
+        
+        return true;
+    },
+
     validarRUT: (rut) => {
-        const caracteresPermitidosRUT = "0123456789";
+        const caracteresPermitidosRUT = "0123456789.-";
         if (rut.length < 8) {
             return false;
         }
@@ -360,7 +427,7 @@ const validaciones = {
             return false;
         }
 
-        const caracteresPermitidosNombre = "áéíóúabcdefghijklmnopqrstuvwxyzÁÉÍÓÚABCDEFGHIJKLMNOPQRSTUVWXYZ ";
+        const caracteresPermitidosNombre = "áéíóúabcdefghijklmnopqrstuvwxyzÁÉÍÓÚABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890-.,:;+ ";
         if (nombre.length > 20) {
             return false;
         }
@@ -398,7 +465,7 @@ const validaciones = {
             return false;
         }
 
-        const caracteresPermitidosNombre = "áéíóúabcdefghijklmnopqrstuvwxyzÁÉÍÓÚABCDEFGHIJKLMNOPQRSTUVWXYZ ";
+        const caracteresPermitidosNombre = "áéíóúabcdefghijklmnopqrstuvwxyzÁÉÍÓÚABCDEFGHIJKLMNOPQRSTUVWXYZ 0123456789-.;:_+%";
         if (nombre.length > 320) {
             return false;
         }
@@ -451,6 +518,7 @@ const validaciones = {
     },
 
     validarEstadoPedido: (estado) => {
+        estado = estado.toLowerCase();
         if (estado === "carrito" || estado === "procesando" || estado === "pagado" || estado === "entregado") {
           return true;
         } else {
@@ -459,6 +527,7 @@ const validaciones = {
       },
 
       validarEstadoProducto: (estado) => {
+        estado = estado.toLowerCase();
         if (estado === "nuevo" || estado === "usado" || estado === "renovado") {
           return true;
         } else {
@@ -558,6 +627,7 @@ const validacionTablasIngresar = {
             storeTabla("empresa", valores);
         } else {
             console.error("Los datos de empresa no son válidos");
+            console.error(rutValido +" "+ nombreValido +" "+ telefonoValido +" "+ direccionValida +" "+ emailValido +" "+ contraseñaValida)
         }
     },
 
@@ -597,7 +667,7 @@ const validacionTablasIngresar = {
         let marcaValida = validaciones.validarMarcaProducto(marca);
 
         if (rutValido && descripcionValida && estadoValido && precioValido && nombreValido && stockValido && marcaValida) {
-            let valores = [rut, descripcion, estado, precio, nombre, stock, marca];
+            let valores = [rut, nombre, descripcion, precio, stock, estado, marca];
             storeTabla("producto", valores);
         } else {
             console.error("Los datos de producto no son válidos");
@@ -609,7 +679,7 @@ const validacionTablasIngresar = {
         let idProductoValido = validaciones.validarId(idProducto);
 
         if (idDescuentoValido && idProductoValido) {
-            let valores = [idDescuento, idProducto];
+            let valores = [idProducto, idDescuento];
             storeTabla("tiene", valores);
         } else {
             console.error("Los datos de tiene no son válidos");
@@ -634,13 +704,12 @@ const validacionTablasIngresar = {
         }
     },
 
-    validarVisita: (email, idProducto, fecha) => {
+    validarVisita: (email, idProducto) => {
         let emailValido = validaciones.validarEmail(email);
         let idProductoValido = validaciones.validarId(idProducto);
-        let fechaValida = validaciones.validarFecha(fecha);
 
-        if (emailValido && idProductoValido && fechaValida) {
-            let valores = [email, idProducto, fecha];
+        if (emailValido && idProductoValido) {
+            let valores = [email, idProducto];
             storeTabla("visita", valores);
         } else {
             console.error("Los datos de visita no son válidos");
@@ -863,21 +932,24 @@ const validacionTablasActualizar = {
         }
     },
 
-    validarPedido: (estado, medioPago, montoTotal, email) => {
+    validarPedido: (idPedido, estado, medioPago, montoTotal, fecha, email) => {
+        let idPedidoValido = validaciones.validarId(idPedido);
         let estadoValido = validaciones.validarEstadoPedido(estado);
         let medioPagoValido = validaciones.validarMedioPago(medioPago);
         let montoTotalValido = validaciones.validarNumero(montoTotal);
+        let fechaValida = validaciones.validarFechaHora(fecha);
         let emailValido = validaciones.validarEmail(email);
 
-        if (estadoValido && medioPagoValido && montoTotalValido && emailValido) {
-            let valores = [estado, medioPago, montoTotal, email];
+        if (estadoValido && idPedidoValido && fechaValida && medioPagoValido && montoTotalValido && emailValido) {
+            let valores = [idPedido, estado, medioPago, montoTotal, fecha, email];
             updateTabla("pedido", valores);
         } else {
             console.error("Los datos de pedido no son válidos");
         }
     },
 
-    validarProducto: (rut, descripcion, estado, precio, nombre, stock, marca) => {
+    validarProducto: (idProducto, rut, descripcion, estado, precio, nombre, stock, marca) => {
+        let idProductoValido = validaciones.validarId(idProducto);
         let rutValido = validaciones.validarId(rut);
         let descripcionValida = validaciones.validarDescripcionProducto(descripcion);
         let estadoValido = validaciones.validarEstadoProducto(estado);
@@ -886,11 +958,11 @@ const validacionTablasActualizar = {
         let stockValido = validaciones.validarNumero(stock);
         let marcaValida = validaciones.validarMarcaProducto(marca);
 
-        if (rutValido && descripcionValida && estadoValido && precioValido && nombreValido && stockValido && marcaValida) {
-            let valores = [rut, descripcion, estado, precio, nombre, stock, marca];
+        if (idProductoValido && rutValido && descripcionValida && estadoValido && precioValido && nombreValido && stockValido && marcaValida) {
+            let valores = [idProducto, rut, nombre, descripcion, precio, stock, estado, marca];
             updateTabla("producto", valores);
         } else {
-            console.error("Los datos de producto no son válidos");
+            console.error("Los datos de producto no son válidos");    
         }
     },
 
@@ -927,7 +999,7 @@ const validacionTablasActualizar = {
     validarVisita: (email, idProducto, fecha) => {
         let emailValido = validaciones.validarEmail(email);
         let idProductoValido = validaciones.validarId(idProducto);
-        let fechaValida = validaciones.validarFecha(fecha);
+        let fechaValida = validaciones.validarFechaHora(fecha);
 
         if (emailValido && idProductoValido && fechaValida) {
             let valores = [email, idProducto, fecha];
@@ -954,10 +1026,14 @@ const tomarDatosActualizar = {
 
     tomarProducto: () => {
         let idProducto = $("#inputIdProducto").val();
-        let nombre = $("#inputNombre").val();
-        let descripcion = $("#inputDescripcion").val();
+        let rut = $("#inputRUT").val();
+        let descripcion = $("#inputDescripción").val();
+        let estado = $("#inputEstado").val();
         let precio = $("#inputPrecio").val();
-        validacionTablasActualizar.validarProducto(idProducto, nombre, descripcion, precio);
+        let nombre = $("#inputNombre").val();
+        let stock = $("#inputStock").val();
+        let marca = $("#inputMarca").val();
+        validacionTablasActualizar.validarProducto(idProducto, rut, descripcion, estado, precio, nombre, stock, marca);
     },
 
     tomarUsuario: () => {
@@ -1016,11 +1092,13 @@ const tomarDatosActualizar = {
     },
 
     tomarPedido: () => {
+        let idPedido = $("#inputIdPedido").val()
         let estado = $("#inputEstado").val();
         let medioPago = $("#inputMedioPago").val();
         let montoTotal = $("#inputMontoTotal").val();
+        let fecha = $("#inputFecha").val();
         let email = $("#inputEmail").val();
-        validacionTablasActualizar.validarPedido(estado, medioPago, montoTotal, email);
+        validacionTablasActualizar.validarPedido(idPedido, estado, medioPago, montoTotal, fecha, email);
     },
 
     tomarTiene: () => {

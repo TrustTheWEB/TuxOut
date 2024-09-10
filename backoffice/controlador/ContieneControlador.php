@@ -13,10 +13,11 @@ class ContieneControlador {
         exit;
     }
 
-    public function store($idProducto, $idPedido) {
+    public function store($idPedido, $idProducto, $cantidad) {
         $modelo = new Contiene();
         $modelo->setIdProducto($idProducto);
         $modelo->setIdPedido($idPedido);
+        $modelo->setCantidad($cantidad);
         
         $resultados = $modelo->store();
         header('Content-Type: application/json');
@@ -56,6 +57,7 @@ class ContieneControlador {
         $modelo = new Contiene();
         $modelo->setIdProducto($idProducto);
         $modelo->setIdPedido($idPedido);
+        $modelo->setCantidad($cantidad);
         $resultados = $modelo->update();
         header('Content-Type: application/json');
         echo json_encode($resultados);
@@ -85,10 +87,10 @@ switch($metodo) {
         $controlador->show($_POST["atributo"],$_POST["valor"]);
         break;
     case "store":
-        $controlador->store($_POST["valores"][0], $_POST["valores"][1]);
+        $controlador->store($_POST["valores"][0], $_POST["valores"][1], $_POST["valores"][2]);
         break;
     case "update":
-        $controlador->update($_POST["valores"][0], $_POST["valores"][1]);
+        $controlador->update($_POST["valores"][0], $_POST["valores"][1], $_POST["valores"][2]);
         break;
     case "destroy":
         $controlador->destroy($_POST["valores"][0], $_POST["valores"][1]);

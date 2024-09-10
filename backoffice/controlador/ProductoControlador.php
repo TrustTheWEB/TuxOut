@@ -82,8 +82,8 @@ class ProductoControlador {
 
     public function update($idProducto, $rut, $nombre, $descripcion, $precio, $stock, $estado, $marca) {
         $modelo = new Producto();
-        $idProducto->setIdProducto($idProducto);
-        $rut->setNombre($rut);
+        $modelo->setIdProducto($idProducto);
+        $modelo->setRut($rut);
         $modelo->setNombre($nombre);
         $modelo->setDescripcion($descripcion);
         $modelo->setPrecio($precio);
