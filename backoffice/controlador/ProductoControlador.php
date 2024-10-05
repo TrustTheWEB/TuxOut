@@ -13,15 +13,15 @@ class ProductoControlador {
         exit;
     }
 
-    public function store($rut, $nombre, $descripcion, $precio, $stock, $estado, $marca) {
+    public function store($valores) {
         $modelo = new Producto();
-        $modelo->setRut($rut);
-        $modelo->setNombre($nombre);
-        $modelo->setDescripcion($descripcion);
-        $modelo->setPrecio($precio);
-        $modelo->setStock($stock);
-        $modelo->setEstado($estado);
-        $modelo->setMarca($marca);
+        $modelo->setRut($valores[0]);
+        $modelo->setNombre($valores[1]);
+        $modelo->setDescripcion($valores[2]);
+        $modelo->setPrecio($valores[3]);
+        $modelo->setStock($valores[4]);
+        $modelo->setEstado($valores[5]);
+        $modelo->setMarca($valores[6]);
         
         $resultados = $modelo->store();
         header('Content-Type: application/json');
@@ -29,7 +29,9 @@ class ProductoControlador {
         exit;
     }
 
-    public function show($atributo, $valor) {
+    public function show($valores) {
+        $atributo = $valores[0];
+        $valor = $valores[1];
         $modelo = new Producto();
 
         if (empty($valor)) {
@@ -41,7 +43,7 @@ class ProductoControlador {
             $modelo->setIdProducto($valor);
             break;
             
-        case "RUT":
+        case "rut":
             $modelo->setRut($valor);
             break;
     
@@ -80,16 +82,16 @@ class ProductoControlador {
         exit;
     }
 
-    public function update($idProducto, $rut, $nombre, $descripcion, $precio, $stock, $estado, $marca) {
+    public function update($valores) {
         $modelo = new Producto();
-        $modelo->setIdProducto($idProducto);
-        $modelo->setRut($rut);
-        $modelo->setNombre($nombre);
-        $modelo->setDescripcion($descripcion);
-        $modelo->setPrecio($precio);
-        $modelo->setStock($stock);
-        $modelo->setEstado($estado);
-        $modelo->setMarca($marca);
+        $modelo->setIdProducto($valores[0]);
+        $modelo->setRut($valores[1]);
+        $modelo->setNombre($valores[2]);
+        $modelo->setDescripcion($valores[3]);
+        $modelo->setPrecio($valores[4]);
+        $modelo->setStock($valores[5]);
+        $modelo->setEstado($valores[6]);
+        $modelo->setMarca($valores[7]);
         
         $resultados = $modelo->update();
             header('Content-Type: application/json');
@@ -97,37 +99,14 @@ class ProductoControlador {
             exit;
     }
 
-    public function destroy($id) {
+    public function destroy($valores) {
         $modelo = new Producto();
-        $modelo->setIdProducto($id);
+        $modelo->setIdProducto($valores[0]);
         $resultados = $modelo->destroy();
         header('Content-Type: application/json');
         echo json_encode($resultados);
         exit;
     }
-}
-
-$controlador = new ProductoControlador();
-$metodo = $_POST["metodoControlador"];
-
-switch($metodo) {
-    case "index":
-        $controlador->index();
-        break;
-    case "show": 
-        $controlador->show($_POST["atributo"],$_POST["valor"]);
-        break;
-    case "store":
-        $controlador->store($_POST["valores"][0],$_POST["valores"][1],$_POST["valores"][2],$_POST["valores"][3],$_POST["valores"][4],$_POST["valores"][5],$_POST["valores"][6]);
-        break;
-    case "destroy":
-        $controlador->destroy($_POST["valores"][0]);
-        break;
-    case "update":
-        $controlador->update($_POST["valores"][0],$_POST["valores"][1],$_POST["valores"][2],$_POST["valores"][3],$_POST["valores"][4],$_POST["valores"][5],$_POST["valores"][6],$_POST["valores"][7]);
-        break;
-    default:
-        break;
 }
 
 ?>

@@ -13,12 +13,12 @@ class DescuentoControlador {
         exit;
     }
 
-    public function store($porcentaje, $fechaInicio, $fechaFin, $motivo) {
+    public function store($valores) {
         $modelo = new Descuento();
-        $modelo->setPorcentaje($porcentaje);
-        $modelo->setFechaInicio($fechaInicio);
-        $modelo->setFechaFin($fechaFin);
-        $modelo->setMotivo($motivo);
+        $modelo->setPorcentaje($valores[0]);
+        $modelo->setFechaInicio($valores[1]);
+        $modelo->setFechaFin($valores[2]);
+        $modelo->setMotivo($valores[3]);
         $resultados = $modelo->store();
 
         header('Content-Type: application/json');
@@ -26,7 +26,9 @@ class DescuentoControlador {
         exit;
     }
 
-    public function show($atributo, $valor) {
+    public function show($valores) {
+        $atributo = $valores[0];
+        $valor = $valores[1];
         $modelo = new Descuento();
 
         if (empty($valor)) {
@@ -60,13 +62,13 @@ class DescuentoControlador {
         exit;
     }
 
-    public function update($idDescuento, $porcentaje, $fechaInicio, $fechaFin, $motivo) {
+    public function update($valores) {
         $modelo = new Descuento();
-        $modelo->setIdDescuento($idDescuento);
-        $modelo->setPorcentaje($porcentaje);
-        $modelo->setFechaInicio($fechaInicio);
-        $modelo->setFechaFin($fechaFin);
-        $modelo->setMotivo($motivo);
+        $modelo->setIdDescuento($valores[0]);
+        $modelo->setPorcentaje($valores[1]);
+        $modelo->setFechaInicio($valores[2]);
+        $modelo->setFechaFin($valores[3]);
+        $modelo->setMotivo($valores[4]);
 
         $resultados = $modelo->update();
         header('Content-Type: application/json');
@@ -74,37 +76,14 @@ class DescuentoControlador {
         exit;
     }
 
-    public function destroy($idDescuento) {
+    public function destroy($valores) {
         $modelo = new Descuento();
-        $modelo->setIdDescuento($idDescuento);
+        $modelo->setIdDescuento($valores[0]);
         $resultados = $modelo->destroy();
         header('Content-Type: application/json');
         echo json_encode($resultados);
         exit;
     }
-}
-
-$controlador = new DescuentoControlador();
-$metodo = $_POST["metodoControlador"];
-
-switch($metodo) {
-    case "index":
-        $controlador->index();
-        break;
-    case "show": 
-        $controlador->show($_POST["atributo"], $_POST["valor"]);
-        break;
-    case "store":
-        $controlador->store($_POST["valores"][0],$_POST["valores"][1],$_POST["valores"][2],$_POST["valores"][3]);
-        break;
-    case "destroy":
-        $controlador->destroy($_POST["valores"][0]);
-        break;
-    case "update":
-        $controlador->update($_POST["valores"][0],$_POST["valores"][1],$_POST["valores"][2],$_POST["valores"][3],$_POST["valores"][4]);
-        break;
-    default:
-        break;
 }
 
 ?>

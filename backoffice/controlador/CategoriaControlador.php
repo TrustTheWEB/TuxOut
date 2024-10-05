@@ -13,9 +13,9 @@ class CategoriaControlador {
         exit;
     }
 
-    public function store($nombre) {
+    public function store($valores) {
         $modelo = new Categoria();
-        $modelo->setNombre($nombre);
+        $modelo->setNombre($valores[0]);
         $resultados = $modelo->store();
 
         header('Content-Type: application/json');
@@ -23,7 +23,9 @@ class CategoriaControlador {
         exit;
     }
 
-    public function show($atributo, $valor) {
+    public function show($valores) {
+        $atributo = $valores[0];
+        $valor = $valores[1];
         $modelo = new Categoria();
 
         if (empty($valor)) {
@@ -48,10 +50,10 @@ class CategoriaControlador {
         exit;
     }
 
-    public function update($idCategoria, $nombre) {
+    public function update($valores) {
         $modelo = new Categoria();
-        $modelo->setIdCategoria($idCategoria);
-        $modelo->setNombre($nombre);
+        $modelo->setIdCategoria($valores[0]);
+        $modelo->setNombre($valores[1]);
 
         $resultados = $modelo->update();
         header('Content-Type: application/json');
@@ -59,9 +61,9 @@ class CategoriaControlador {
         exit;
     }
 
-    public function destroy($idCategoria) {
+    public function destroy($valores) {
         $modelo = new Categoria();
-        $modelo->setIdCategoria($idCategoria);
+        $modelo->setIdCategoria($valores[0]);
         $resultados = $modelo->destroy();
         header('Content-Type: application/json');
         echo json_encode($resultados);
@@ -69,26 +71,4 @@ class CategoriaControlador {
     }
 }
 
-$controlador = new CategoriaControlador();
-$metodo = $_POST["metodoControlador"];
-
-switch ($metodo) {
-    case "index":
-        $controlador->index();
-        break;
-    case "show":
-        $controlador->show($_POST["atributo"], $_POST["valor"]);
-        break;
-    case "store":
-        $controlador->destroy($_POST["valores"][0]);
-        break;
-    case "destroy":
-        $controlador->destroy($_POST["valores"][0]);
-        break;
-    case "update":
-        $controlador->update($_POST["valores"][0], $_POST["valores"][1]);
-        break;
-    default:
-        break;
-}
 ?>

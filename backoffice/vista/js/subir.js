@@ -1,10 +1,10 @@
 const storeTabla = (tabla, valores) => {
-    tabla = tabla.charAt(0).toUpperCase() + tabla.slice(1);
+    let controlador = tabla.charAt(0).toUpperCase() + tabla.slice(1) + "Controlador";
     $.ajax({
-        url: 'http://localhost/TuxOut/backoffice/controlador/'+tabla+'Controlador.php', 
+        url: 'http://localhost/TuxOut/backoffice/core/Enrutador.php', 
         method: 'POST', 
         dataType: 'json', 
-        data: {metodoControlador: "store", valores: valores},
+        data: {accion: "store", controlador: controlador, valores: valores},
         success: function(response) {
             if (response.error) {
                 console.error('Error:', response.error);
@@ -23,12 +23,12 @@ const storeTabla = (tabla, valores) => {
 }
 
 const updateTabla = (tabla, valores) => {
-    tabla = tabla.charAt(0).toUpperCase() + tabla.slice(1);
+    let controlador = tabla.charAt(0).toUpperCase() + tabla.slice(1) + "Controlador";
     $.ajax({
-        url: 'http://localhost/TuxOut/backoffice/controlador/'+tabla+'Controlador.php', 
+        url: 'http://localhost/TuxOut/backoffice/core/Enrutador.php', 
         method: 'POST', 
         dataType: 'json', 
-        data: {metodoControlador: "update", valores: valores},
+        data: {accion: "update", controlador: controlador, valores: valores},
         success: function(response) {
             if (response.error) {
                 console.error('Error:', response.error);
@@ -106,7 +106,7 @@ const validaciones = {
 
     validarTelefono: (telefono) => {
         const caracteresPermitidosTelefono = "0123456789-+";
-        if (telefono.length > 15 || telefono.length < 8) {
+        if (telefono.length > 20 || telefono.length < 8) {
             return false;
         }
 
@@ -299,7 +299,7 @@ const validaciones = {
     },
 
     validarDireccion: (dir) => {
-        const caracteresPermitidosDir = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789.- ';
+        const caracteresPermitidosDir = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789.,- ';
         if (dir.length > 40) {
             return false;
         }
@@ -760,8 +760,8 @@ const tomarDatosIngresar = {
     tomarEmpresa: () => {
         let rut = $("#inputRUT").val();
         let nombre = $("#inputNombre").val();
-        let telefono = $("#inputTeléfono").val();
-        let direccion = $("#inputDirección").val();
+        let telefono = $("#inputTelefono").val();
+        let direccion = $("#inputDireccion").val();
         let email = $("#inputEmail").val();
         let contraseña = $("#inputContraseña").val();
         validacionTablasIngresar.validarEmpresa(rut, nombre, telefono, direccion, email, contraseña);
@@ -803,7 +803,7 @@ const tomarDatosIngresar = {
         let usuario = $("#inputUsuario").val();
         let nombre = $("#inputNombre").val();
         let apellido = $("#inputApellido").val();
-        let telefono = $("#inputTeléfono").val();
+        let telefono = $("#inputTelefono").val();
         let contraseña = $("#inputContraseña").val();
         let fechaNac = $("#inputFechaNac").val();
         let ci = $("#inputCi").val();
@@ -1041,7 +1041,7 @@ const tomarDatosActualizar = {
         let usuario = $("#inputUsuario").val();
         let nombre = $("#inputNombre").val();
         let apellido = $("#inputApellido").val();
-        let telefono = $("#inputTeléfono").val();
+        let telefono = $("#inputTelefono").val();
         let contraseña = $("#inputContraseña").val();
         let fechaNac = $("#inputFechaNac").val();
         let ci = $("#inputCi").val();

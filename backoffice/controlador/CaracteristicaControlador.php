@@ -13,11 +13,11 @@ class CaracteristicaControlador {
         exit;
     }
 
-    public function store($idProducto, $nombre, $valor) {
+    public function store($valores) {
         $modelo = new Caracteristica();
-        $modelo->setIdProducto($idProducto);
-        $modelo->setNombre($nombre);
-        $modelo->setValor($valor);
+        $modelo->setIdProducto($valores[0]);
+        $modelo->setNombre($valores[1]);
+        $modelo->setValor($valores[2]);
 
         $resultados = $modelo->store();
         header('Content-Type: application/json');
@@ -25,7 +25,9 @@ class CaracteristicaControlador {
         exit;
     }
 
-    public function show($atributo, $valor) {
+    public function show($valores) {
+        $atributo = $valores[0];
+        $valor = $valores[1];
         $modelo = new Caracteristica();
 
         if (empty($valor)) {
@@ -53,11 +55,11 @@ class CaracteristicaControlador {
         exit;
     }
 
-    public function update($idProducto, $nombre, $valor) {
+    public function update($valores) {
         $modelo = new Caracteristica();
-        $modelo->setIdProducto($idProducto);
-        $modelo->setNombre($nombre);
-        $modelo->setValor($valor);
+        $modelo->setIdProducto($valores[0]);
+        $modelo->setNombre($valores[1]);
+        $modelo->setValor($valores[2]);
 
         $resultados = $modelo->update();
         header('Content-Type: application/json');
@@ -65,41 +67,17 @@ class CaracteristicaControlador {
         exit;
     }
 
-    public function destroy($idProducto, $nombre, $valor) {
+    public function destroy($valores) {
         $modelo = new Caracteristica();
-        $modelo->setIdProducto($idProducto);
-        $modelo->setNombre($nombre);
-        $modelo->setValor($valor);
+        $modelo->setIdProducto($valores[0]);
+        $modelo->setNombre($valores[1]);
+        $modelo->setValor($valores[2]);
         
         $resultados = $modelo->destroy();
         header('Content-Type: application/json');
         echo json_encode($resultados);
         exit;
     }
-}
-
-$controlador = new CaracteristicaControlador();
-$metodo = $_POST["metodoControlador"];
-
-switch($metodo) {
-    case "index":
-        $controlador->index();
-        break;
-    case "show": 
-        $controlador->show($_POST["atributo"], $_POST["valor"]);
-        break;
-    case "store";
-        $controlador->store($_POST["valores"][0], $_POST["valores"][1], $_POST["valores"][2]);
-        break;
-    case "destroy":
-        $controlador->destroy($_POST["valores"][0], $_POST["valores"][1], $_POST["valores"][2]);
-        break;
-    case "update":
-        $controlador->update($_POST["valores"][0], $_POST["valores"][1], $_POST["valores"][2]);
-        break;
-    default:
-        break;
-    // Puedes agregar aquí otros casos para métodos como store, update y destroy
 }
 
 ?>

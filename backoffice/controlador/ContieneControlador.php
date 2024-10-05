@@ -13,11 +13,11 @@ class ContieneControlador {
         exit;
     }
 
-    public function store($idPedido, $idProducto, $cantidad) {
+    public function store($valores) {
         $modelo = new Contiene();
-        $modelo->setIdProducto($idProducto);
-        $modelo->setIdPedido($idPedido);
-        $modelo->setCantidad($cantidad);
+        $modelo->setIdProducto($valores[0]);
+        $modelo->setIdPedido($valores[1]);
+        $modelo->setCantidad($valores[2]);
         
         $resultados = $modelo->store();
         header('Content-Type: application/json');
@@ -25,7 +25,9 @@ class ContieneControlador {
         exit;
     }
 
-    public function show($atributo, $valor) {
+    public function show($valores) {
+        $atributo = $valores[0];
+        $valor = $valores[1];
         $modelo = new Contiene();
 
         if (empty($valor)) {
@@ -53,48 +55,27 @@ class ContieneControlador {
         exit;
     }
 
-    public function update($idProducto, $idPedido) {
+    public function update($valores) {
         $modelo = new Contiene();
-        $modelo->setIdProducto($idProducto);
-        $modelo->setIdPedido($idPedido);
-        $modelo->setCantidad($cantidad);
+        $modelo->setIdProducto($valores[0]);
+        $modelo->setIdPedido($valores[1]);
+        $modelo->setCantidad($valores[2]);
         $resultados = $modelo->update();
         header('Content-Type: application/json');
         echo json_encode($resultados);
         exit;
     }
 
-    public function destroy($idProducto, $idPedido) {
+    public function destroy($valores) {
         $modelo = new Contiene();
-        $modelo->setIdProducto($idProducto);
-        $modelo->setIdPedido($idPedido);
+        $modelo->setIdProducto($valores[0]);
+        $modelo->setIdPedido($valores[1]);
         $resultados = $modelo->destroy();
 
         header('Content-Type: application/json');
         echo json_encode($resultados);
         exit;
     }
-}
-
-$controlador = new ContieneControlador();
-$metodo = $_POST["metodoControlador"];
-
-switch($metodo) {
-    case "index":
-        $controlador->index();
-        break;
-    case "show": 
-        $controlador->show($_POST["atributo"],$_POST["valor"]);
-        break;
-    case "store":
-        $controlador->store($_POST["valores"][0], $_POST["valores"][1], $_POST["valores"][2]);
-        break;
-    case "update":
-        $controlador->update($_POST["valores"][0], $_POST["valores"][1], $_POST["valores"][2]);
-        break;
-    case "destroy":
-        $controlador->destroy($_POST["valores"][0], $_POST["valores"][1]);
-        break;
 }
 
 ?>

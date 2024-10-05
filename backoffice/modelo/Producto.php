@@ -137,7 +137,7 @@ class Producto {
                 $parametro = $this->idProducto;
                 $tipoDato = PDO::PARAM_INT;
                 break;
-            case "RUT":
+            case "rut":
                 $parametro = $this->rut;
                 $tipoDato = PDO::PARAM_STR;
                 break;

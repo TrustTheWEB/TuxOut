@@ -13,16 +13,16 @@ class UsuarioControlador {
         exit;
     }
 
-    public function store($email, $usuario, $nombre, $apellido, $telefono, $contraseña, $fechaNac, $ci) {
+    public function store($valores) {
         $modelo = new Usuario();
-        $modelo->setEmail($email);
-        $modelo->setUsuario($usuario);
-        $modelo->setNombre($nombre);
-        $modelo->setApellido($apellido);
-        $modelo->setTelefono($telefono);
-        $modelo->setContraseña($contraseña);
-        $modelo->setFechaNac($fechaNac);
-        $modelo->setCI($ci);
+        $modelo->setEmail($valores[0]);
+        $modelo->setUsuario($valores[1]);
+        $modelo->setNombre($valores[2]);
+        $modelo->setApellido($valores[3]);
+        $modelo->setTelefono($valores[4]);
+        $modelo->setContraseña($valores[5]);
+        $modelo->setFechaNac($valores[6]);
+        $modelo->setCI($valores[7]);
 
         $resultados = $modelo->store();
         header('Content-Type: application/json');
@@ -30,7 +30,9 @@ class UsuarioControlador {
         exit;
     }
 
-    public function show($atributo, $valor) {
+    public function show($valores) {
+        $atributo = $valores[0];
+        $valor = $valores[1];
         $modelo = new Usuario();
 
         if (empty($valor)) {
@@ -81,16 +83,16 @@ class UsuarioControlador {
         exit;
     }
 
-    public function update($email, $usuario, $nombre, $apellido, $telefono, $contraseña, $fechaNac, $ci) {
+    public function update($valores) {
         $modelo = new Usuario();
-        $modelo->setEmail($email);
-        $modelo->setUsuario($usuario);
-        $modelo->setNombre($nombre);
-        $modelo->setApellido($apellido);
-        $modelo->setTelefono($telefono);
-        $modelo->setContraseña($contraseña);
-        $modelo->setFechaNac($fechaNac);
-        $modelo->setCI($ci);
+        $modelo->setEmail($valores[0]);
+        $modelo->setUsuario($valores[1]);
+        $modelo->setNombre($valores[2]);
+        $modelo->setApellido($valores[3]);
+        $modelo->setTelefono($valores[4]);
+        $modelo->setContraseña($valores[5]);
+        $modelo->setFechaNac($valores[6]);
+        $modelo->setCI($valores[7]);
 
         $resultados = $modelo->update();
         header('Content-Type: application/json');
@@ -98,9 +100,9 @@ class UsuarioControlador {
         exit;
     }
 
-    public function destroy($email) {
+    public function destroy($valores) {
         $modelo = new Usuario();
-        $modelo->setEmail($email);
+        $modelo->setEmail($valores[0]);
 
         $resultados = $modelo->destroy();
         header('Content-Type: application/json');
@@ -109,27 +111,4 @@ class UsuarioControlador {
     }
 }
 
-$controlador = new UsuarioControlador();
-$metodo = $_POST["metodoControlador"];
-
-switch($metodo) {
-    case "index":
-        $controlador->index();
-        break;
-    case "show":
-        $controlador->show($_POST["atributo"], $_POST["valor"]);
-        break;
-    case "store":
-            $controlador->store($_POST["valores"][0],$_POST["valores"][1],$_POST["valores"][2],$_POST["valores"][3],$_POST["valores"][4],$_POST["valores"][5],$_POST["valores"][6],$_POST["valores"][7]);
-            break;
-    case "destroy":
-        $controlador->destroy($_POST["valores"][0]);
-        break;
-    case "update":
-        $controlador->update($_POST["valores"][0],$_POST["valores"][1],$_POST["valores"][2],$_POST["valores"][3],$_POST["valores"][4],$_POST["valores"][5],$_POST["valores"][6],$_POST["valores"][7]);
-        break;
-    default:
-        break;
-    // Agrega más casos según lo necesites
-}
 ?>

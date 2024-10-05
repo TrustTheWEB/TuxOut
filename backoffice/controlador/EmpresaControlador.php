@@ -13,14 +13,14 @@ class EmpresaControlador {
         exit;
     }
 
-    public function store($rut, $nombre, $telefono, $direccion, $email, $contraseña) {
+    public function store($valores) {
         $modelo = new Empresa();
-        $modelo->setRut($rut);
-        $modelo->setNombre($nombre);
-        $modelo->setTelefono($telefono);
-        $modelo->setDireccion($direccion);
-        $modelo->setEmail($email);
-        $modelo->setContraseña($contraseña);
+        $modelo->setRut($valores[0]);
+        $modelo->setNombre($valores[1]);
+        $modelo->setTelefono($valores[2]);
+        $modelo->setDireccion($valores[3]);
+        $modelo->setEmail($valores[4]);
+        $modelo->setContraseña($valores[5]);
         
         $resultados = $modelo->store();
         header('Content-Type: application/json');
@@ -28,15 +28,17 @@ class EmpresaControlador {
         exit;
     }
 
-    public function show($atributo, $valor) {
+    public function show($valores) {
+        $atributo = $valores[0];
+        $valor = $valores[1];
         $modelo = new Empresa();
 
         if (empty($valor)) {
-            throw new Exception("El valor para '$atributo' está vacío o es nulo.");
+            throw new Exception("El valor para '$atributo' esta vacio o es nulo.");
         }
 
         switch($atributo) {
-        case "RUT":
+        case "rut":
             $modelo->setRut($valor);
             break;
     
@@ -72,14 +74,14 @@ class EmpresaControlador {
         exit;
     }
 
-    public function update($rut, $nombre, $telefono, $direccion, $email, $contraseña) {
+    public function update($valores) {
         $modelo = new Empresa();
-        $modelo->setRut($rut);
-        $modelo->setNombre($nombre);
-        $modelo->setTelefono($telefono);
-        $modelo->setDireccion($direccion);
-        $modelo->setEmail($email);
-        $modelo->setContraseña($contraseña);
+        $modelo->setRut($valores[0]);
+        $modelo->setNombre($valores[1]);
+        $modelo->setTelefono($valores[2]);
+        $modelo->setDireccion($valores[3]);
+        $modelo->setEmail($valores[4]);
+        $modelo->setContraseña($valores[5]);
 
         $resultados = $modelo->update();
             header('Content-Type: application/json');
@@ -87,9 +89,9 @@ class EmpresaControlador {
             exit;
     }
 
-    public function destroy($rut) {
+    public function destroy($valores) {
         $modelo = new Empresa();
-        $modelo->setRut($rut);
+        $modelo->setRut($valores[0]);
         $resultados = $modelo->destroy();
         
         header('Content-Type: application/json');
@@ -98,27 +100,5 @@ class EmpresaControlador {
     }
 }
 
-$controlador = new EmpresaControlador();
-$metodo = $_POST["metodoControlador"];
-
-switch($metodo) {
-    case "index":
-        $controlador->index();
-        break;
-    case "show": 
-        $controlador->show($_POST["atributo"],$_POST["valor"]);
-        break;
-    case "store":
-        $controlador->store($_POST["valores"][0],$_POST["valores"][1],$_POST["valores"][2],$_POST["valores"][3],$_POST["valores"][4],$_POST["valores"][5]);
-        break;
-    case "destroy":
-        $controlador->destroy($_POST["valores"][0]);
-        break;
-    case "update":
-        $controlador->update($_POST["valores"][0],$_POST["valores"][1],$_POST["valores"][2],$_POST["valores"][3],$_POST["valores"][4],$_POST["valores"][5]);
-        break;
-    default:
-        break;
-}
 
 ?>

@@ -89,10 +89,10 @@ const formularios = {
             <input type="text" id="inputRUT" class="form-control inputIngresar" value="${datos[0]}" disabled="disabled">
             <label for="inputNombre">Nombre:</label>
             <input type="text" id="inputNombre" class="form-control inputIngresar" value="${datos[1]}">
-            <label for="inputTeléfono">Teléfono:</label>
-            <input type="text" id="inputTeléfono" class="form-control inputIngresar" value="${datos[2]}">
-            <label for="inputDirección">Dirección:</label>
-            <input type="text" id="inputDirección" class="form-control inputIngresar" value="${datos[3]}">
+            <label for="inputTelefono">Teléfono:</label>
+            <input type="text" id="inputTelefono" class="form-control inputIngresar" value="${datos[2]}">
+            <label for="inputDireccion">Dirección:</label>
+            <input type="text" id="inputDireccion" class="form-control inputIngresar" value="${datos[3]}">
             <label for="inputEmail">Email:</label>
             <input type="email" id="inputEmail" class="form-control inputIngresar" value="${datos[4]}">
             <label for="inputContraseña">Contraseña:</label>
@@ -199,8 +199,8 @@ const formularios = {
             <input type="text" id="inputNombre" class="form-control inputIngresar" value="${datos[2]}">
             <label for="inputApellido">Apellido:</label>
             <input type="text" id="inputApellido" class="form-control inputIngresar" value="${datos[3]}">
-            <label for="inputTeléfono">Teléfono:</label>
-            <input type="text" id="inputTeléfono" class="form-control inputIngresar" value="${datos[4]}">
+            <label for="inputTelefono">Teléfono:</label>
+            <input type="text" id="inputTelefono" class="form-control inputIngresar" value="${datos[4]}">
             <label for="inputContraseña">Contraseña:</label>
             <input type="password" id="inputContraseña" class="form-control inputIngresar" value="${datos[5]}">
             <label for="inputFechaNac">Fecha de Nacimiento:</label>

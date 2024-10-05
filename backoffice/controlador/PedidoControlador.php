@@ -13,12 +13,12 @@ class PedidoControlador {
         exit;
     }
 
-    public function store($estado, $medioPago, $montoTotal, $email) {
+    public function store($valores) {
         $modelo = new Pedido();
-        $modelo->setEstado($estado);
-        $modelo->setMedioPago($medioPago);
-        $modelo->setMontoTotal($montoTotal);
-        $modelo->setEmail($email);
+        $modelo->setEstado($valores[0]);
+        $modelo->setMedioPago($valores[1]);
+        $modelo->setMontoTotal($valores[2]);
+        $modelo->setEmail($valores[3]);
 
         $resultados = $modelo->store();
         header('Content-Type: application/json');
@@ -26,7 +26,9 @@ class PedidoControlador {
         exit;
     }
 
-    public function show($atributo, $valor) {
+    public function show($valores) {
+        $atributo = $valores[0];
+        $valor = $valores[1];
         $modelo = new Pedido();
     
         switch($atributo) {
@@ -65,14 +67,14 @@ class PedidoControlador {
         exit;
     }
 
-    public function update($idPedido, $estado, $medioPago, $montoTotal, $fecha, $email) {
+    public function update($valores) {
         $modelo = new Pedido();
-        $modelo->setIdPedido($idPedido);
-        $modelo->setEstado($estado);
-        $modelo->setMedioPago($medioPago);
-        $modelo->setMontoTotal($montoTotal);
-        $modelo->setFecha($fecha);
-        $modelo->setEmail($email);
+        $modelo->setIdPedido($valores[0]);
+        $modelo->setEstado($valores[1]);
+        $modelo->setMedioPago($valores[2]);
+        $modelo->setMontoTotal($valores[3]);
+        $modelo->setFecha($valores[4]);
+        $modelo->setEmail($valores[5]);
 
         $resultados = $modelo->update();
         header('Content-Type: application/json');
@@ -80,39 +82,15 @@ class PedidoControlador {
         exit;
     }
 
-    public function destroy($idPedido) {
+    public function destroy($valores) {
         $modelo = new Pedido();
-        $modelo->setIdPedido($idPedido);
+        $modelo->setIdPedido($valores[0]);
 
         $resultados = $modelo->destroy();
         header('Content-Type: application/json');
         echo json_encode($resultados);
         exit;
     }
-}
-
-$controlador = new PedidoControlador();
-$metodo = $_POST["metodoControlador"];
-
-switch($metodo) {
-    case "index":
-        $controlador->index();
-        break;
-    case "show": 
-        $controlador->show($_POST["atributo"], $_POST["valor"]);
-        break;
-    case "store":
-        $controlador->store($_POST["valores"][0],$_POST["valores"][1],$_POST["valores"][2],$_POST["valores"][3]);
-        break;
-    case "destroy":
-        $controlador->destroy($_POST["valores"][0]);
-        break;
-    case "update":
-        $controlador->update($_POST["valores"][0],$_POST["valores"][1],$_POST["valores"][2],$_POST["valores"][3],$_POST["valores"][4],$_POST["valores"][5]);
-        break;
-    default:
-        break;
-    // Otros métodos pueden ser añadidos aquí
 }
 
 ?>

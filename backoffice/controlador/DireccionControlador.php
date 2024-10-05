@@ -13,10 +13,10 @@ class DireccionControlador {
         exit;
     }
 
-    public function store($email, $dir) {
+    public function store($valores) {
         $modelo = new Direccion();
-        $modelo->setEmail($email);
-        $modelo->setDireccion($dir);
+        $modelo->setEmail($valores[0]);
+        $modelo->setDireccion($valores[1]);
         
         $resultados = $modelo->store();
         header('Content-Type: application/json');
@@ -24,7 +24,9 @@ class DireccionControlador {
         exit;
     }
 
-    public function show($atributo, $valor) {
+    public function show($valores) {
+        $atributo = $valores[0];
+        $valor = $valores[1];
         $modelo = new Direccion();
 
         if (empty($valor)) {
@@ -51,10 +53,10 @@ class DireccionControlador {
         exit;
     }
 
-    public function update($email, $dir) {
+    public function update($valores) {
         $modelo = new Direccion();
-        $modelo->setEmail($email);
-        $modelo->setDireccion($dir);
+        $modelo->setEmail($valores[0]);
+        $modelo->setDireccion($valores[1]);
         
         $resultados = $modelo->update();
         header('Content-Type: application/json');
@@ -62,10 +64,10 @@ class DireccionControlador {
         exit;
     }
 
-    public function destroy($email, $dir) {
+    public function destroy($valores) {
         $modelo = new Direccion();
-        $modelo->setEmail($email);
-        $modelo->setDireccion($dir);
+        $modelo->setEmail($valores[0]);
+        $modelo->setDireccion($valores[1]);
         
         $resultados = $modelo->destroy();
         header('Content-Type: application/json');
@@ -73,29 +75,6 @@ class DireccionControlador {
         exit;
     }
     
-}
-
-$controlador = new DireccionControlador();
-$metodo = $_POST["metodoControlador"];
-
-switch($metodo) {
-    case "index":
-        $controlador->index();
-        break;
-    case "show":
-        $controlador->show($_POST["atributo"], $_POST["valor"]);
-        break;
-    case "store":
-        $controlador->store($_POST["valores"][0],$_POST["valores"][1]);
-        break;
-    case "destroy":
-        $controlador->destroy($_POST["valores"][0], $_POST["valores"][1]);
-        break;
-    case "update":
-        $controlador->update($_POST["valores"][0],$_POST["valores"][1]);
-        break;
-    default:
-        break;
 }
 
 ?>

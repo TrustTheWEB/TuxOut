@@ -13,10 +13,10 @@ class CategorizaControlador {
         exit;
     }
 
-    public function store($idProducto, $idCategoria) {
+    public function store($valores) {
         $modelo = new Categoriza();
-        $modelo->setIdProducto($idProducto);
-        $modelo->setIdCategoria($idCategoria);
+        $modelo->setIdProducto($valores[0]);
+        $modelo->setIdCategoria($valores[1]);
         
         $resultados = $modelo->store();
         header('Content-Type: application/json');
@@ -24,7 +24,9 @@ class CategorizaControlador {
         exit;
     }
 
-    public function show($atributo, $valor) {
+    public function show($valores) {
+        $atributo = $valores[0];
+        $valor = $valores[1];
         $modelo = new Categoriza();
 
         if (empty($valor)) {
@@ -52,10 +54,10 @@ class CategorizaControlador {
         exit;
     }
 
-    public function update($idProducto, $idCategoria) {
+    public function update($valores) {
         $modelo = new Categoriza();
-        $modelo->setIdProducto($idProducto);
-        $modelo->setIdCategoria($idCategoria);
+        $modelo->setIdProducto($valores[0]);
+        $modelo->setIdCategoria($valores[1]);
         if($modelo->update()) {
             //EXITOSO
        } else {
@@ -63,36 +65,15 @@ class CategorizaControlador {
        }
     }
 
-    public function destroy($idProducto, $idCategoria) {
+    public function destroy($valores) {
         $modelo = new Categoriza();
-        $modelo->setIdProducto($idProducto);
-        $modelo->setIdCategoria($idCategoria);
+        $modelo->setIdProducto($valores[0]);
+        $modelo->setIdCategoria($valores[1]);
         $resultados = $modelo->destroy();
         header('Content-Type: application/json');
         echo json_encode($resultados);
         exit;
     }
-}
-
-$controlador = new CategorizaControlador();
-$metodo = $_POST["metodoControlador"];
-
-switch($metodo) {
-    case "index":
-        $controlador->index();
-        break;
-    case "show": 
-        $controlador->show($_POST["atributo"],$_POST["valor"]);
-        break;
-    case "store":
-        $controlador->store($_POST["valores"][0], $_POST["valores"][1]);
-        break;
-    case "update":
-        $controlador->update($_POST["valores"][0], $_POST["valores"][1]);
-        break;
-    case "destroy":
-        $controlador->destroy($_POST["valores"][0], $_POST["valores"][1]);
-        break;
 }
 
 ?>
