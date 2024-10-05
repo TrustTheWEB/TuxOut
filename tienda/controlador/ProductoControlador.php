@@ -107,6 +107,16 @@ class ProductoControlador {
         echo json_encode($resultados);
         exit;
     }
+
+//funciones extra
+
+    public function indexInicio() {
+        $modelo = new Producto();
+        $resultados = $modelo->indexInicio();
+        header('Content-Type: application/json');
+        echo json_encode($resultados);
+        exit;
+    }
 }
 
 ?>

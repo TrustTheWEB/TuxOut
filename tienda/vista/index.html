@@ -29,12 +29,12 @@
 
         <div class="collapse navbar-collapse m-2" id="navbarSupportedContent">
           <!-- Barra de busqueda -->
-          <form class="d-flex" action="productos.html">
-            <input class="form-control me-2" type="search" placeholder="Buscar producto...">
-            <button class="btn btn-outline-success btn-barra" type="submit">
+           <form class="d-flex">
+            <input class="form-control me-2 inputBuscarPrincipal" type="search" placeholder="Buscar producto...">
+            <button class="btn btn-outline-success btn-barra" type="button" id="botonBuscarPrincipal">
               <img class="lupa" src="../assets/logo/lupa.png" alt="Buscar">
             </button>
-          </form>
+           </form>
 
           <!--Boton de usuario (se activaría cuando se inicie sesion), pudiendo redirigirse a demas paginas -->
           <div class="dropdown">
@@ -149,26 +149,15 @@
     </nav>
   </header>
   
-  <aside class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+  <aside class="offcanvas offcanvas-start asideMenu" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
     <nav>
         <div class="offcanvas-header">
-          <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Bienvenido, usuario</h5>
+          <h5 class="offcanvas-title tituloMenu" id="offcanvasNavbarLabel">Bienvenido, usuario</h5>
           <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
         <div class="offcanvas-body">
-          <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-            <li class="nav-item">
-              <a class="nav-link" href="productos.html">categoría</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="productos.html">categoría</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="productos.html">categoría</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="productos.html">categoría</a>
-            </li>
+          <ul class="navbar-nav justify-content-end flex-grow-1 pe-3" id="barraMenu">
+            
           </ul>
         </div>
     </nav>
@@ -205,276 +194,6 @@
       <span class="carousel-control-next-icon" aria-hidden="true"></span>
     </button>
     </section>
-
-  <section class="carousel-container">
-    <div id="carouselExampleCards" class="carousel slide carousel-fade" data-bs-ride="carousel">
-        <div class="carousel-inner">
-            <div class="carousel">
-                <div class="row row-cols-3 row-cols-lg-6">
-                    <div class="col card-margin mb-4">
-                        <article class="card pt-2">
-                            <a href="abrirProducto.html">
-                                <img src="../assets/img/iphone.jpg" class="card-img-top" alt="celular">
-                            </a>
-                            <div class="card-body pt-0 pb-1 contenedor-producto">
-                                <div class="card-texto">
-                                    <h5 class="card-title m-0 card-title-producto id-producto" data-id-producto="1">iPhone 1 128GB 4GB RAM 5000mhA</h5>
-                                    <p class="precio-anterior m-0">$50.00</p>
-                                    <p class="precio-nuevo m-0">$25.000</p>
-                                    <p class="precio-descuento m-0">%50 OFF</p>
-                                </div>
-                                <button class="btn btn-primary   agregar-carrito">Agregar al carrito</button>
-                            </div>
-                            <div class="botonFavorito">
-                                <button class="btn btn-favorite">
-                                    <img src="../assets/logo/favorito.png" alt="favorito">
-                                </button>
-                            </div>
-                        </article>
-                    </div>
-                    <div class="col card-margin mb-4">
-                        <article class="card pt-2">
-                            <a href="abrirProducto.html">
-                                <img src="../assets/img/iphone.jpg" class="card-img-top" alt="celular">
-                            </a>
-                            <div class="card-body pt-0 pb-1 contenedor-producto">
-                                <div class="card-texto">
-                                    <h5 class="card-title card-title-producto id-producto" data-id-producto="2">iPhone 2</h5>
-                                    <p class="precio-anterior m-0">$50.00</p>
-                                    <p class="precio-nuevo m-0">$25.000</p>
-                                    <p class="precio-descuento m-0">%50 OFF</p>
-                                </div>
-                                <button class="btn btn-primary   agregar-carrito">Agregar al carrito</button>
-                            </div>
-                            <div class="botonFavorito">
-                                <button class="btn btn-favorite">
-                                    <img src="../assets/logo/favorito.png" alt="favorito">
-                                </button>
-                            </div>
-                        </article>
-                    </div>
-                    <div class="col card-margin mb-4">
-                        <article class="card pt-2">
-                            <a href="abrirProducto.html">
-                                <img src="../assets/img/iphone.jpg" class="card-img-top" alt="celular">
-                            </a>
-                            <div class="card-body pt-0 pb-1 contenedor-producto">
-                                <div class="card-texto">
-                                    <h5 class="card-title card-title-producto id-producto" data-id-producto="3">iPhone 3</h5>
-                                    <p class="precio-anterior m-0">$50.00</p>
-                                    <p class="precio-nuevo m-0">$25.000</p>
-                                    <p class="precio-descuento m-0">%50 OFF</p>
-                                </div>
-                                <button class="btn btn-primary   agregar-carrito">Agregar al carrito</button>
-                            </div>
-                            <div class="botonFavorito">
-                                <button class="btn btn-favorite">
-                                    <img src="../assets/logo/favorito.png" alt="favorito">
-                                </button>
-                            </div>
-                        </article>
-                    </div>
-                    <div class="col card-margin mb-4">
-                        <article class="card pt-2">
-                            <a href="abrirProducto.html">
-                                <img src="../assets/img/iphone.jpg" class="card-img-top" alt="celular">
-                            </a>
-                            <div class="card-body pt-0 pb-1 contenedor-producto">
-                                <div class="card-texto">
-                                    <h5 class="card-title card-title-producto id-producto" data-id-producto="4">iPhone 4</h5>
-                                    <p class="precio-anterior m-0"></p>
-                                    <p class="precio-nuevo m-0">$25.000</p>
-                                    <p class="precio-descuento m-0"></p>
-                                </div>
-                                <button class="btn btn-primary   agregar-carrito">Agregar al carrito</button>
-                            </div>
-                            <div class="botonFavorito">
-                                <button class="btn btn-favorite">
-                                    <img src="../assets/logo/favorito.png" alt="favorito">
-                                </button>
-                            </div>
-                        </article>
-                    </div>
-                    <div class="col card-margin mb-4">
-                        <article class="card pt-2">
-                            <a href="abrirProducto.html">
-                                <img src="../assets/img/iphone.jpg" class="card-img-top" alt="celular">
-                            </a>
-                            <div class="card-body pt-0 pb-1 contenedor-producto">
-                                <div class="card-texto">
-                                    <h5 class="card-title card-title-producto id-producto" data-id-producto="5">iPhone 5</h5>
-                                    <p class="precio-anterior m-0">$50.00</p>
-                                    <p class="precio-nuevo m-0">$25.000</p>
-                                    <p class="precio-descuento m-0">%50 OFF</p>
-                                </div>
-                                <button class="btn btn-primary   agregar-carrito">Agregar al carrito</button>
-                            </div>
-                            <div class="botonFavorito">
-                                <button class="btn btn-favorite">
-                                    <img src="../assets/logo/favorito.png" alt="favorito">
-                                </button>
-                            </div>
-                        </article>
-                    </div>
-                    <div class="col card-margin mb-4">
-                        <article class="card pt-2">
-                            <a href="abrirProducto.html">
-                                <img src="../assets/img/iphone.jpg" class="card-img-top" alt="celular">
-                            </a>
-                            <div class="card-body pt-0 pb-1 contenedor-producto">
-                                <div class="card-texto">
-                                    <h5 class="card-title card-title-producto id-producto" data-id-producto="6">iPhone 6</h5>
-                                    <p class="precio-anterior m-0">$50.00</p>
-                                    <p class="precio-nuevo m-0">$25.000</p>
-                                    <p class="precio-descuento m-0">%50 OFF</p>
-                                </div>
-                                <button class="btn btn-primary   agregar-carrito">Agregar al carrito</button>
-                            </div>
-                            <div class="botonFavorito">
-                                <button class="btn btn-favorite">
-                                    <img src="../assets/logo/favorito.png" alt="favorito">
-                                </button>
-                            </div>
-                        </article>
-                    </div>
-                    <div class="col card-margin mb-4">
-                        <article class="card pt-2">
-                            <a href="abrirProducto.html">
-                                <img src="../assets/img/iphone.jpg" class="card-img-top" alt="celular">
-                            </a>
-                            <div class="card-body pt-0 pb-1 contenedor-producto">
-                                <div class="card-texto">
-                                    <h5 class="card-title card-title-producto id-producto" data-id-producto="7">iPhone 7</h5>
-                                    <p class="precio-anterior m-0">$50.00</p>
-                                    <p class="precio-nuevo m-0">$25.000</p>
-                                    <p class="precio-descuento m-0">%50 OFF</p>
-                                </div>
-                                <button class="btn btn-primary   agregar-carrito">Agregar al carrito</button>
-                            </div>
-                            <div class="botonFavorito">
-                                <button class="btn btn-favorite">
-                                    <img src="../assets/logo/favorito.png" alt="favorito">
-                                </button>
-                            </div>
-                        </article>
-                    </div>
-                    <div class="col card-margin mb-4">
-                        <article class="card pt-2">
-                            <a href="abrirProducto.html">
-                                <img src="../assets/img/iphone.jpg" class="card-img-top" alt="celular">
-                            </a>
-                            <div class="card-body pt-0 pb-1 contenedor-producto">
-                                <div class="card-texto">
-                                    <h5 class="card-title card-title-producto id-producto" data-id-producto="8">iPhone 8</h5>
-                                    <p class="precio-anterior m-0">$50.00</p>
-                                    <p class="precio-nuevo m-0">$25.000</p>
-                                    <p class="precio-descuento m-0">%50 OFF</p>
-                                </div>
-                                <button class="btn btn-primary   agregar-carrito">Agregar al carrito</button>
-                            </div>
-                            <div class="botonFavorito">
-                                <button class="btn btn-favorite">
-                                    <img src="../assets/logo/favorito.png" alt="favorito">
-                                </button>
-                            </div>
-                        </article>
-                    </div>
-                    <div class="col card-margin mb-4">
-                        <article class="card pt-2">
-                            <a href="abrirProducto.html">
-                                <img src="../assets/img/iphone.jpg" class="card-img-top" alt="celular">
-                            </a>
-                            <div class="card-body pt-0 pb-1 contenedor-producto">
-                                <div class="card-texto">
-                                    <h5 class="card-title card-title-producto id-producto" data-id-producto="9">iPhone 9</h5>
-                                    <p class="precio-anterior m-0">$50.00</p>
-                                    <p class="precio-nuevo m-0">$25.000</p>
-                                    <p class="precio-descuento m-0">%50 OFF</p>
-                                </div>
-                                <button class="btn btn-primary   agregar-carrito">Agregar al carrito</button>
-                            </div>
-                            <div class="botonFavorito">
-                                <button class="btn btn-favorite">
-                                    <img src="../assets/logo/favorito.png" alt="favorito">
-                                </button>
-                            </div>
-                        </article>
-                    </div>
-                    <div class="col card-margin mb-4">
-                        <article class="card pt-2">
-                            <a href="abrirProducto.html">
-                                <img src="../assets/img/iphone.jpg" class="card-img-top" alt="celular">
-                            </a>
-                            <div class="card-body pt-0 pb-1 contenedor-producto">
-                                <div class="card-texto">
-                                    <h5 class="card-title card-title-producto id-producto" data-id-producto="10">iPhone 10</h5>
-                                    <p class="precio-anterior m-0"></p>
-                                    <p class="precio-nuevo m-0">$25.000</p>
-                                    <p class="precio-descuento m-0"></p>
-                                </div>
-                                <button class="btn btn-primary agregar-carrito">Agregar al carrito</button>
-                            </div>
-                        </article>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-  </section>
-  <hr>
-  <section class="container">
-    <h3>Categorías que te pueden interesar</h3>
-    <div class="row row-cols-md-2 row-cols-lg-3 g-4">
-      <div class="miniCat-container">
-        <article class="card" >
-          <div class="card-body">
-            <h5 class="card-title">Accesorios para computadoras</h5>
-          </div>
-          <img src="../assets/img/xiaomi.jpg" class="card-img-bottom" alt="celular">
-        </article>
-      </div>
-      <div class="miniCat-container">
-        <article class="card">
-          <div class="card-body">
-            <h5 class="card-title">Accesorios para computadoras</h5>
-          </div>
-          <img src="../assets/img/xiaomi.jpg" class="card-img-bottom" alt="celular">
-        </article>
-      </div>
-      <div class="miniCat-container">
-        <article class="card">
-          <div class="card-body">
-            <h5 class="card-title">Accesorios para computadoras</h5>
-          </div>
-          <img src="../assets/img/xiaomi.jpg" class="card-img-bottom" alt="celular">
-        </article>
-      </div>
-      <div class="miniCat-container">
-        <article class="card">
-          <div class="card-body">
-            <h5 class="card-title">Accesorios para computadoras</h5>
-          </div>
-          <img src="../assets/img/xiaomi.jpg" class="card-img-bottom" alt="celular">
-        </article>
-      </div>
-      <div class="miniCat-container">
-        <article class="card">
-          <div class="card-body">
-            <h5 class="card-title">Accesorios para computadoras</h5>
-          </div>
-          <img src="../assets/img/xiaomi.jpg" class="card-img-bottom" alt="celular">
-        </article>
-      </div>
-      <div class="miniCat-container">
-        <article class="card">
-          <div class="card-body">
-            <h5 class="card-title">Accesorios para computadoras</h5>
-          </div>
-          <img src="../assets/img/xiaomi.jpg" class="card-img-bottom" alt="celular">
-        </article>
-      </div>
-    </div>
-  </section>
   </main>
 
 <footer class="pie">
@@ -482,8 +201,10 @@
   <a href="ayuda.html">Ayuda</a>
   <p>&copy; 2024-2024 Trust the WEB Company</p>
 </footer>
+
   <script src="js/jquery-3.7.1.min.js"></script>
   <script src="js/funciones.js"></script>
+  <script src="js/mostrar.js"></script>
   <script src="js/validaciones.js"></script>
   <script src="js/pagina.js"></script>
 

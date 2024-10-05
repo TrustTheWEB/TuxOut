@@ -5,7 +5,7 @@ class Enrutador {
         require_once '../controlador/' . $controlador . '.php';
         $controlador = new $controlador();
 
-        if($accion == "index") {
+        if($valores == null) {
             $controlador->$accion();
         }else {
             $controlador->$accion($valores);
