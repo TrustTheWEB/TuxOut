@@ -38,7 +38,7 @@ const quitarInputImagen = () => {
         $(`#contenedorInputImagen${imagenes}`).remove()
         imagenes--;
     
-    if(imagenes < 2) {
+    if(imagenes <= 1) {
         $("#quitarImagen").remove();
     }
 }
