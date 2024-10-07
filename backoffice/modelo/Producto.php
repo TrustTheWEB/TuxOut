@@ -121,7 +121,8 @@ class Producto {
             $stmt->bindValue(7, $this->marca, PDO::PARAM_STR);
 
             if ($stmt->execute()) {
-                return true;
+                $id = $this->conn->lastInsertId(); 
+                return $id;
             } else {
                 return false;
             }

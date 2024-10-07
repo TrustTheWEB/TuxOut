@@ -47,7 +47,10 @@ const imprimirCategoriasMenu = (resultado) => {
 
 const tomarBusqueda = () => {
     let busqueda = $(".inputBuscarPrincipal").val();
-    window.location.href = `productos.html?busqueda=${encodeURI(busqueda)}`
+    if(busqueda) {
+        window.location.href = `productos.html?busqueda=${encodeURI(busqueda)}`
+    }
+    
 
 }
 

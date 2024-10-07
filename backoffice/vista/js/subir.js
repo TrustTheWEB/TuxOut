@@ -1,3 +1,54 @@
+const validarImagen = (img) => {
+    const extensionesValidas = ['jpg', 'jpeg', 'png'];
+    const sizeMax = 4 * 1024 * 1024; //4mb máximo
+
+        const fileExtension = img.name.split('.').pop().toLowerCase();
+        const sizeImg = img.size;
+
+        if (!extensionesValidas.includes(fileExtension)) {
+            alert(`La extensión de la imagen ${img.name} no es válida, solo se permiten jpg, jpeg y png`);
+            return false;
+        }else if(sizeImg > sizeMax) {
+            alert(`La imagen ${img.name} es muy pesada, el máximo son 4MB`)
+            return false;
+        }
+
+        return true;
+}
+
+const subirImagenes = (id) => {
+    let cantImg = $("#agregarImagen").data('cant');
+    alert(cantImg)
+    if(cantImg > 5) {
+        cantImg = 5;
+    }
+
+    for(let i = 1; i <= cantImg; i++) {
+        let formData = new FormData();
+        let img = $(`#inputImagen${i}`)[0].files[0];
+        let imagenValida = validarImagen(img);
+
+        if(imagenValida) {
+            formData.append('file', img);
+            formData.append('idProducto', id);
+            formData.append('numeroImagen', i);
+    
+            $.ajax({
+                url: 'http://localhost/TuxOut/backoffice/core/Subir.php',
+                type: 'POST',
+                data: formData,
+                contentType: false,
+                processData: false,
+                error: function() {
+                    console.log('Error al subir el archivo');
+                }
+            });
+        }else {
+            
+        }
+    }
+}
+
 const storeTabla = (tabla, valores) => {
     let controlador = tabla.charAt(0).toUpperCase() + tabla.slice(1) + "Controlador";
     $.ajax({
@@ -10,7 +61,10 @@ const storeTabla = (tabla, valores) => {
                 console.error('Error:', response.error);
             } else {
                 if(response) {
-                    window.location.href = 'index.html';
+                    alert(response)
+                    if(tabla === "producto") {
+                        subirImagenes(response)
+                    }
                 }else {
                     console.error(response);
                 } 
@@ -428,7 +482,7 @@ const validaciones = {
         }
 
         const caracteresPermitidosNombre = "áéíóúabcdefghijklmnopqrstuvwxyzÁÉÍÓÚABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890-.,:;+ ";
-        if (nombre.length > 20) {
+        if (nombre.length > 150) {
             return false;
         }
 

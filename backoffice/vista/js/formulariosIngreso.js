@@ -1,3 +1,53 @@
+let imagenes = 1;
+
+const cargarPreview = (evento) => {
+    
+    let img = evento.target.files;
+    let input = evento.target.id;
+
+    $(`#${input}`).next('img').remove();
+
+    if (img.length > 0) {
+        let archivo = img[0];
+        let urlImagen = URL.createObjectURL(archivo);
+        
+        $(`#${input}`).after(`<img src="${urlImagen}" alt="Vista previa" class="imgPreview m-2 border rounded d-block">`);
+    }
+}
+
+const agregarInputImagen = () => {
+    if (imagenes < 5) {
+        imagenes++;
+        $("#formularioImagen").append(`
+            <div id="contenedorInputImagen${imagenes}">
+            <label for="inputImagen${imagenes}">Imagen ${imagenes}:</label>
+            <input type="file" class="form-control inputImagen" id="inputImagen${imagenes}" accept=".jpg, .png. jpeg">
+            </div>
+            `);
+        $('#agregarImagen').attr('data-cant', imagenes);
+        if(imagenes==2) {
+            $("#agregarImagen").after(`<button id="quitarImagen" class="mt-2 mx-2 quitarImagen">-</button>`);
+        }
+    } else {
+        alert("El límite de imágenes ha sido alcanzado");
+    }
+}
+
+const quitarInputImagen = () => {
+    if (imagenes > 1) {
+        $(`#contenedorInputImagen${imagenes}`).remove()
+        imagenes--;
+    
+    if(imagenes < 2) {
+        $("#quitarImagen").remove();
+    }
+}
+}
+
+$(document).on('click', '#quitarImagen', quitarInputImagen);
+$(document).on('click', '#agregarImagen', agregarInputImagen);
+$(document).on('change', '.inputImagen', cargarPreview);
+
 const formularios = {
     imprimirFormularioCaracteristica: () => {
         $("#titulo-formulario-ingreso").append("característica");
@@ -155,6 +205,14 @@ const formularios = {
             </select>
             <label for="inputMarca">Marca:</label>
             <input type="text" id="inputMarca" class="form-control inputIngresar">
+            <div id="formularioImagen">
+                <div id="contenedorInputImagen1">
+                    <label for="inputImagen1">Imagen:</label>
+                    <input type="file" class="form-control inputImagen" id="inputImagen1" accept=".jpg, .png. jpeg">
+                </div>
+            </div>
+            <button id="agregarImagen" class="mt-2 mx-2" data-cant="1">+</button>
+            </form>
             `
         );
     },

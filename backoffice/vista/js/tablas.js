@@ -211,7 +211,7 @@ const imprimirTablas = {
                         <td>${item["telefono"] || ''}</td>
                         <td>${item["direccion"] || ''}</td>
                         <td>${item["email"] || ''}</td>
-                        <td class="tdContra">${item["contraseña"] || ''}</td>
+                        <td class="tdLargo">${item["contraseña"] || ''}</td>
                         <td> <a class="btn editar" href="editar.html?tabla=empresa&rut=${item["RUT"]}&nombre=${(item["nombre"])}&telefono=${(item["telefono"])}&direccion=${(item["direccion"])}&email=${(item["email"])}&contraseña=${(item["contraseña"])}">EDITAR</a> <button class="btn eliminar" data-rut="${item["RUT"]}">ELIMINAR</button> </td>
                     </tr>`
                 );
@@ -224,7 +224,7 @@ const imprimirTablas = {
                     <td>${resultado["telefono"] || ''}</td>
                     <td>${resultado["direccion"] || ''}</td>
                     <td>${resultado["email"] || ''}</td>
-                    <td class="tdContra">${resultado["contraseña"] || ''}</td>
+                    <td class="tdLargo">${resultado["contraseña"] || ''}</td>
                     <td> <a class="btn editar" href="editar.html?tabla=empresa&rut=${resultado["RUT"]}&nombre=${(resultado["nombre"])}&telefono=${(resultado["telefono"])}&direccion=${(resultado["direccion"])}&email=${(resultado["email"])}&contraseña=${(resultado["contraseña"])}">EDITAR</a> <button class="btn eliminar" data-rut="${resultado["RUT"]}">ELIMINAR</button> </td>
                 </tr>`
             );
@@ -257,7 +257,7 @@ const imprimirTablas = {
                     `<tr data-fila="producto-${item["idProducto"]}">
                         <td>${item["idProducto"] || ''}</td>
                         <td>${item["RUT"] || ''}</td>
-                        <td>${item["nombre"] || ''}</td>
+                        <td class="tdLargo">${item["nombre"] || ''}</td>
                         <td>${item["descripcion"] || ''}</td>
                         <td>${item["precio"] || ''}</td>
                         <td>${item["stock"] || ''}</td>
@@ -272,7 +272,7 @@ const imprimirTablas = {
                 `<tr data-fila="producto-${resultado["idProducto"]}">
                     <td>${resultado["idProducto"] || ''}</td>
                     <td>${resultado["RUT"] || ''}</td>
-                    <td>${resultado["nombre"] || ''}</td>
+                    <td class="tdLargo">${resultado["nombre"] || ''}</td>
                     <td>${resultado["descripcion"] || ''}</td>
                     <td>${resultado["precio"] || ''}</td>
                     <td>${resultado["stock"] || ''}</td>
@@ -395,7 +395,7 @@ const imprimirTablas = {
                         <td>${item["nombre"] || ''}</td>
                         <td>${item["apellido"] || ''}</td>
                         <td>${item["telefono"] || ''}</td>
-                        <td class="tdContra">${item["contraseña"] || ''}</td>
+                        <td class="tdLargo">${item["contraseña"] || ''}</td>
                         <td>${item["fechaNac"] || ''}</td>
                         <td>${item["ci"] || ''}</td>
                         <td> <a class="btn editar" href="editar.html?tabla=usuario&email=${(item["email"])}&usuario=${(item["usuario"])}&nombre=${(item["nombre"])}&apellido=${(item["apellido"])}&telefono=${(item["telefono"])}&contraseña=${(item["contraseña"])}&fechaNac=${(item["fechaNac"])}&ci=${(item["ci"])}">EDITAR</a> <button class="btn eliminar" data-email="${item["email"]}">ELIMINAR</button> </td>
@@ -410,7 +410,7 @@ const imprimirTablas = {
                     <td>${resultado["nombre"] || ''}</td>
                     <td>${resultado["apellido"] || ''}</td>
                     <td>${resultado["telefono"] || ''}</td>
-                    <td class="tdContra">${resultado["contraseña"] || ''}</td>
+                    <td class="tdLargo">${resultado["contraseña"] || ''}</td>
                     <td>${resultado["fechaNac"] || ''}</td>
                     <td>${resultado["ci"] || ''}</td>
                     <td> <a class="btn editar" href="editar.html?tabla=usuario&email=${(resultado["email"])}&usuario=${(resultado["usuario"])}&nombre=${(resultado["nombre"])}&apellido=${(resultado["apellido"])}&telefono=${(resultado["telefono"])}&contraseña=${(resultado["contraseña"])}&fechaNac=${(resultado["fechaNac"])}&ci=${(resultado["ci"])}">EDITAR</a> <button class="btn eliminar" data-email="${resultado["email"]}">ELIMINAR</button> </td>

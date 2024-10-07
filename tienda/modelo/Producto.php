@@ -219,6 +219,39 @@ class Producto {
             return false;
         }
     }
+
+    //funciones extra
+
+    public function indexInicio() {
+        try {
+            // Preparar la consulta SQL
+            $consulta = $this->conn->prepare("
+                SELECT p.idProducto, p.nombre, p.precio, 
+                CASE WHEN d.porcentaje = 0 THEN NULL ELSE d.porcentaje END AS descuento
+                FROM producto p
+                LEFT JOIN contiene c ON p.idProducto = c.idProducto
+                LEFT JOIN tiene t ON p.idProducto = t.idProducto
+                LEFT JOIN descuento d ON t.idDescuento = d.idDescuento
+                GROUP BY p.idProducto, p.nombre, p.precio, d.porcentaje
+                ORDER BY 
+                    CASE WHEN SUM(c.cantidad) IS NOT NULL THEN 0 ELSE 1 END, 
+                    CASE WHEN d.porcentaje IS NOT NULL THEN 0 ELSE 1 END, 
+                    RAND()
+                LIMIT 20;
+            ");
+        
+            // Ejecutar la consulta
+            $consulta->execute();
+        
+            // Obtener los resultados
+            $resultados = $consulta->fetchAll(PDO::FETCH_ASSOC);
+        
+            return $resultados; // Devolver los resultados
+        
+        } catch (PDOException $e) {
+            return "Error en la consulta: " . $e->getMessage();
+        }
+    }
     
 }
 
