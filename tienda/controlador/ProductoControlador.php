@@ -22,6 +22,7 @@ class ProductoControlador {
         $modelo->setStock($valores[4]);
         $modelo->setEstado($valores[5]);
         $modelo->setMarca($valores[6]);
+        $modelo->setOculto($valores[7]);
         
         $resultados = $modelo->store();
         header('Content-Type: application/json');
@@ -70,8 +71,12 @@ class ProductoControlador {
         case "marca":
             $modelo->setMarca($valor);
             break;
+
+        case "oculto":
+            $modelo->setOculto($valor);
+            break;
         default:
-            //error
+            break;
         }
 
         $resultados = $modelo->show($atributo);
@@ -92,6 +97,7 @@ class ProductoControlador {
         $modelo->setStock($valores[5]);
         $modelo->setEstado($valores[6]);
         $modelo->setMarca($valores[7]);
+        $modelo->setOculto($valores[8]);
         
         $resultados = $modelo->update();
             header('Content-Type: application/json');
@@ -108,7 +114,7 @@ class ProductoControlador {
         exit;
     }
 
-//funciones extra
+    // funciones extra (vistas, consultas, etc)
 
     public function indexInicio() {
         $modelo = new Producto();

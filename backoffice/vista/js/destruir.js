@@ -1,7 +1,22 @@
+const eliminarImagenes = (id) => {
+    $.ajax({
+        url: 'http://localhost/TuxOut/backoffice/core/Eliminar.php',
+        type: 'POST',
+        dataType: 'json',
+        data: { idProducto: id },
+        success: function(response) {
+            console.log(response);
+        },
+        error: function() {
+            console.log('Error al eliminar el archivo');
+        }
+    });
+}
+
 const tomarTablaEliminar = (event) => {
-    event.preventDefault(); // Evita el comportamiento por defecto del botón, si es necesario
+    event.preventDefault();
     let tabla = $("#selectTabla").val();
-    let botonEliminar = $(event.currentTarget); // Obtiene el botón específico que fue clicado
+    let botonEliminar = $(event.currentTarget);
     eliminarDato(tabla, botonEliminar);
 }
 
@@ -103,11 +118,12 @@ const eliminarDato = (tabla, botonEliminar) => {
                 if(response) {
                     console.log(response);
                     let selector = '[data-fila="'+ id +'"]';
-                    
-                    
                     if ($(selector).length) {
                         console.log("Elemento encontrado:", id);
                         $(selector).remove();
+                        if(tabla === "producto") {
+                            eliminarImagenes(response);
+                        }
                     } else {
                         console.error("Elemento no encontrado:", id);
                     }

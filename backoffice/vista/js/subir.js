@@ -18,7 +18,6 @@ const validarImagen = (img) => {
 
 const subirImagenes = (id) => {
     let cantImg = $("#agregarImagen").data('cant');
-    alert(cantImg)
     if(cantImg > 5) {
         cantImg = 5;
     }
@@ -61,10 +60,10 @@ const storeTabla = (tabla, valores) => {
                 console.error('Error:', response.error);
             } else {
                 if(response) {
-                    alert(response)
                     if(tabla === "producto") {
                         subirImagenes(response)
                     }
+                    window.location.href = 'index.html';
                 }else {
                     console.error(response);
                 } 
@@ -422,6 +421,24 @@ const validaciones = {
           }
     },
 
+    validarNumero: (numero) => {
+        if (Number.isInteger(Number(numero)) && Number(numero) >= 0) {
+            return true;
+          } else {
+            return false;
+          }
+    },
+
+    validarPrecio: (numero) => {
+        numero = Number(numero);
+        
+        if (numero > 0 && Number.isFinite(numero) && Math.round(numero * 100) === numero * 100) {
+            return true;
+        } else {
+            return false;
+        }
+    },
+
     validarPorcentaje: (numero) => {
         if (Number.isInteger(Number(numero)) && Number(numero) > 0 && Number(numero) < 100) {
             return true;
@@ -700,7 +717,7 @@ const validacionTablasIngresar = {
     validarPedido: (estado, medioPago, montoTotal, email) => {
         let estadoValido = validaciones.validarEstadoPedido(estado);
         let medioPagoValido = validaciones.validarMedioPago(medioPago);
-        let montoTotalValido = validaciones.validarNumero(montoTotal);
+        let montoTotalValido = validaciones.validarPrecio(montoTotal);
         let emailValido = validaciones.validarEmail(email);
 
         if (estadoValido && medioPagoValido && montoTotalValido && emailValido) {
@@ -715,17 +732,24 @@ const validacionTablasIngresar = {
         let rutValido = validaciones.validarId(rut);
         let descripcionValida = validaciones.validarDescripcionProducto(descripcion);
         let estadoValido = validaciones.validarEstadoProducto(estado);
-        let precioValido = validaciones.validarNumero(precio);
+        let precioValido = validaciones.validarPrecio(precio);
         let nombreValido = validaciones.validarNombreProducto(nombre);
-        let stockValido = validaciones.validarNumero(stock);
+        let stockValido = validaciones.validarStock(stock);
         let marcaValida = validaciones.validarMarcaProducto(marca);
 
         if (rutValido && descripcionValida && estadoValido && precioValido && nombreValido && stockValido && marcaValida) {
             let valores = [rut, nombre, descripcion, precio, stock, estado, marca];
             storeTabla("producto", valores);
         } else {
-            console.error("Los datos de producto no son válidos");
+            if (!rutValido) console.error("RUT no es válido");
+            if (!descripcionValida) console.error("Descripción no es válida");
+            if (!estadoValido) console.error("Estado no es válido");
+            if (!precioValido) console.error("Precio no es válido");
+            if (!nombreValido) console.error("Nombre no es válido");
+            if (!stockValido) console.error("Stock no es válido");
+            if (!marcaValida) console.error("Marca no es válida");
         }
+        
     },
 
     validarTiene: (idDescuento, idProducto) => {
@@ -990,7 +1014,7 @@ const validacionTablasActualizar = {
         let idPedidoValido = validaciones.validarId(idPedido);
         let estadoValido = validaciones.validarEstadoPedido(estado);
         let medioPagoValido = validaciones.validarMedioPago(medioPago);
-        let montoTotalValido = validaciones.validarNumero(montoTotal);
+        let montoTotalValido = validaciones.validarPrecio(montoTotal);
         let fechaValida = validaciones.validarFechaHora(fecha);
         let emailValido = validaciones.validarEmail(email);
 
@@ -1007,9 +1031,9 @@ const validacionTablasActualizar = {
         let rutValido = validaciones.validarId(rut);
         let descripcionValida = validaciones.validarDescripcionProducto(descripcion);
         let estadoValido = validaciones.validarEstadoProducto(estado);
-        let precioValido = validaciones.validarNumero(precio);
+        let precioValido = validaciones.validarPrecio(precio);
         let nombreValido = validaciones.validarNombreProducto(nombre);
-        let stockValido = validaciones.validarNumero(stock);
+        let stockValido = validaciones.validarStock(stock);
         let marcaValida = validaciones.validarMarcaProducto(marca);
 
         if (idProductoValido && rutValido && descripcionValida && estadoValido && precioValido && nombreValido && stockValido && marcaValida) {

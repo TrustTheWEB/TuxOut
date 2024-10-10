@@ -15,6 +15,7 @@ class Producto {
     private $stock;
     private $estado;
     private $marca;
+    private $oculto;
 
     public function __construct() {
         $this->conn = Conexion::getInstance()->getDatabaseInstance();
@@ -92,7 +93,16 @@ class Producto {
         $this->marca = $marca;
     }
 
-    //7 metodos principales
+    //marca
+    public function getOculto() {
+        return $this->oculto;
+    }
+
+    public function setOculto($oculto) {
+        $this->oculto = $oculto;
+    }
+
+    //metodos principales
 
     public function index() {
         try {
@@ -108,7 +118,7 @@ class Producto {
 
     public function store() { //create - store
         try {
-            $query = "INSERT INTO " . $this->tabla . " (RUT, nombre, descripcion, precio, stock, estado, marca) VALUES (?, ?, ?, ?, ?, ?, ?)";
+            $query = "INSERT INTO " . $this->tabla . " (RUT, nombre, descripcion, precio, stock, estado, marca, oculto) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
             $stmt = $this->conn->prepare($query);
 
@@ -119,9 +129,11 @@ class Producto {
             $stmt->bindValue(5, $this->stock, PDO::PARAM_INT);
             $stmt->bindValue(6, $this->estado, PDO::PARAM_STR);
             $stmt->bindValue(7, $this->marca, PDO::PARAM_STR);
+            $stmt->bindValue(8, $this->oculto, PDO::PARAM_INT);
 
             if ($stmt->execute()) {
-                return true;
+                $id = $this->conn->lastInsertId(); 
+                return $id;
             } else {
                 return false;
             }
@@ -165,6 +177,10 @@ class Producto {
                 $parametro = $this->marca;
                 $tipoDato = PDO::PARAM_STR;
                 break;
+            case "oculto":
+                $parametro = $this->oculto;
+                $tipoDato = PDO::PARAM_INT;
+                break;
             default:
                 throw new Exception("Tipo de condición no reconocida");
         }
@@ -186,7 +202,7 @@ class Producto {
     }
 
     public function update() { //edit - update
-        $query = "UPDATE " . $this->tabla . " SET RUT=?, nombre=?, descripcion=?, precio=?, stock=?, estado=?, marca=? WHERE idProducto=?";
+        $query = "UPDATE " . $this->tabla . " SET RUT=?, nombre=?, descripcion=?, precio=?, stock=?, estado=?, marca=?, oculto=? WHERE idProducto=?";
 
         $stmt = $this->conn->prepare($query);
 
@@ -197,7 +213,8 @@ class Producto {
         $stmt->bindValue(5, $this->stock, PDO::PARAM_INT);
         $stmt->bindValue(6, $this->estado, PDO::PARAM_STR);
         $stmt->bindValue(7, $this->marca, PDO::PARAM_STR);
-        $stmt->bindValue(8, $this->idProducto, PDO::PARAM_INT);
+        $stmt->bindValue(8, $this->oculto, PDO::PARAM_INT);
+        $stmt->bindValue(9, $this->idProducto, PDO::PARAM_INT);
 
         if ($stmt->execute()) {
             return true;
@@ -214,40 +231,22 @@ class Producto {
         $stmt->bindValue(1, $this->idProducto, PDO::PARAM_INT);
 
         if ($stmt->execute()) {
-            return true;
+            $id = $this->idProducto; 
+            return $id;
         } else {
             return false;
         }
     }
 
-    //funciones extra
-
     public function indexInicio() {
         try {
-            // Preparar la consulta SQL
-            $consulta = $this->conn->prepare("
-                SELECT p.idProducto, p.nombre, p.precio, 
-                CASE WHEN d.porcentaje = 0 THEN NULL ELSE d.porcentaje END AS descuento
-                FROM producto p
-                LEFT JOIN contiene c ON p.idProducto = c.idProducto
-                LEFT JOIN tiene t ON p.idProducto = t.idProducto
-                LEFT JOIN descuento d ON t.idDescuento = d.idDescuento
-                GROUP BY p.idProducto, p.nombre, p.precio, d.porcentaje
-                ORDER BY 
-                    CASE WHEN SUM(c.cantidad) IS NOT NULL THEN 0 ELSE 1 END, 
-                    CASE WHEN d.porcentaje IS NOT NULL THEN 0 ELSE 1 END, 
-                    RAND()
-                LIMIT 20;
-            ");
-        
-            // Ejecutar la consulta
+            $consulta = $this->conn->prepare("SELECT * FROM vistaProducto 
+                ORDER BY (descuento * 100 + cantidadVendida * 10 + promedioCalificacion * 5 + RAND()) DESC
+                LIMIT 20;");
             $consulta->execute();
-        
-            // Obtener los resultados
             $resultados = $consulta->fetchAll(PDO::FETCH_ASSOC);
-        
-            return $resultados; // Devolver los resultados
-        
+
+            return $resultados;
         } catch (PDOException $e) {
             return "Error en la consulta: " . $e->getMessage();
         }

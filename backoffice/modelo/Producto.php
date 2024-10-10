@@ -15,6 +15,7 @@ class Producto {
     private $stock;
     private $estado;
     private $marca;
+    private $oculto;
 
     public function __construct() {
         $this->conn = Conexion::getInstance()->getDatabaseInstance();
@@ -92,7 +93,16 @@ class Producto {
         $this->marca = $marca;
     }
 
-    //7 metodos principales
+    //marca
+    public function getOculto() {
+        return $this->oculto;
+    }
+
+    public function setOculto($oculto) {
+        $this->oculto = $oculto;
+    }
+
+    //metodos principales
 
     public function index() {
         try {
@@ -108,7 +118,7 @@ class Producto {
 
     public function store() { //create - store
         try {
-            $query = "INSERT INTO " . $this->tabla . " (RUT, nombre, descripcion, precio, stock, estado, marca) VALUES (?, ?, ?, ?, ?, ?, ?)";
+            $query = "INSERT INTO " . $this->tabla . " (RUT, nombre, descripcion, precio, stock, estado, marca, oculto) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
             $stmt = $this->conn->prepare($query);
 
@@ -119,6 +129,7 @@ class Producto {
             $stmt->bindValue(5, $this->stock, PDO::PARAM_INT);
             $stmt->bindValue(6, $this->estado, PDO::PARAM_STR);
             $stmt->bindValue(7, $this->marca, PDO::PARAM_STR);
+            $stmt->bindValue(8, $this->oculto, PDO::PARAM_INT);
 
             if ($stmt->execute()) {
                 $id = $this->conn->lastInsertId(); 
@@ -166,6 +177,10 @@ class Producto {
                 $parametro = $this->marca;
                 $tipoDato = PDO::PARAM_STR;
                 break;
+            case "oculto":
+                $parametro = $this->oculto;
+                $tipoDato = PDO::PARAM_INT;
+                break;
             default:
                 throw new Exception("Tipo de condición no reconocida");
         }
@@ -187,7 +202,7 @@ class Producto {
     }
 
     public function update() { //edit - update
-        $query = "UPDATE " . $this->tabla . " SET RUT=?, nombre=?, descripcion=?, precio=?, stock=?, estado=?, marca=? WHERE idProducto=?";
+        $query = "UPDATE " . $this->tabla . " SET RUT=?, nombre=?, descripcion=?, precio=?, stock=?, estado=?, marca=?, oculto=? WHERE idProducto=?";
 
         $stmt = $this->conn->prepare($query);
 
@@ -198,7 +213,8 @@ class Producto {
         $stmt->bindValue(5, $this->stock, PDO::PARAM_INT);
         $stmt->bindValue(6, $this->estado, PDO::PARAM_STR);
         $stmt->bindValue(7, $this->marca, PDO::PARAM_STR);
-        $stmt->bindValue(8, $this->idProducto, PDO::PARAM_INT);
+        $stmt->bindValue(8, $this->oculto, PDO::PARAM_INT);
+        $stmt->bindValue(9, $this->idProducto, PDO::PARAM_INT);
 
         if ($stmt->execute()) {
             return true;
@@ -215,7 +231,8 @@ class Producto {
         $stmt->bindValue(1, $this->idProducto, PDO::PARAM_INT);
 
         if ($stmt->execute()) {
-            return true;
+            $id = $this->idProducto; 
+            return $id;
         } else {
             return false;
         }

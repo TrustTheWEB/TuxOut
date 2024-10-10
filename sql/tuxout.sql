@@ -1,25 +1,12 @@
--- phpMyAdmin SQL Dump
--- version 5.2.1
--- https://www.phpmyadmin.net/
---
--- Servidor: 127.0.0.1
--- Tiempo de generación: 09-09-2024 a las 22:10:47
--- Versión del servidor: 10.4.32-MariaDB
--- Versión de PHP: 8.2.12
-
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
 
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
-
 --
 -- Base de datos: `tuxout`
 --
+
+CREATE DATABASE IF NOT EXISTS tuxout;
 
 -- --------------------------------------------------------
 
@@ -53,6 +40,19 @@ CREATE TABLE `categoria` (
 CREATE TABLE `categoriza` (
   `idCategoria` int(11) NOT NULL,
   `idProducto` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `comenta`
+--
+
+CREATE TABLE `comenta` (
+  `email` varchar(255) NOT NULL,
+  `idProducto` int(11) NOT NULL,
+  `calificacion` decimal(2,1) NOT NULL,
+  `comentario` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -104,7 +104,8 @@ CREATE TABLE `empresa` (
   `telefono` varchar(20) DEFAULT NULL,
   `direccion` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
-  `contraseña` varchar(255) NOT NULL
+  `contraseña` varchar(255) NOT NULL,
+  `suspendido` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -144,10 +145,11 @@ CREATE TABLE `producto` (
   `RUT` varchar(20) NOT NULL,
   `nombre` varchar(150) NOT NULL,
   `descripcion` varchar(500) DEFAULT NULL,
-  `precio` int(10) UNSIGNED NOT NULL,
+  `precio` decimal(10,2) UNSIGNED NOT NULL,
   `stock` int(10) UNSIGNED NOT NULL,
   `estado` enum('Nuevo','Renovado','Usado') NOT NULL,
-  `marca` varchar(100) NOT NULL
+  `marca` varchar(100) NOT NULL,
+  `oculto` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -212,6 +214,13 @@ ALTER TABLE `categoria`
 ALTER TABLE `categoriza`
   ADD PRIMARY KEY (`idCategoria`,`idProducto`),
   ADD KEY `categoriza_ibfk_2` (`idProducto`);
+
+--
+-- Indices de la tabla `comenta`
+--
+ALTER TABLE `comenta`
+  ADD PRIMARY KEY (`email`,`idProducto`),
+  ADD KEY `idProducto` (`idProducto`);
 
 --
 -- Indices de la tabla `contiene`
@@ -290,7 +299,7 @@ ALTER TABLE `visita`
 -- AUTO_INCREMENT de la tabla `categoria`
 --
 ALTER TABLE `categoria`
-  MODIFY `idCategoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `idCategoria` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `descuento`
@@ -302,13 +311,13 @@ ALTER TABLE `descuento`
 -- AUTO_INCREMENT de la tabla `pedido`
 --
 ALTER TABLE `pedido`
-  MODIFY `idPedido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `idPedido` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `producto`
 --
 ALTER TABLE `producto`
-  MODIFY `idProducto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `idProducto` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Restricciones para tablas volcadas
@@ -326,6 +335,13 @@ ALTER TABLE `caracteristica`
 ALTER TABLE `categoriza`
   ADD CONSTRAINT `categoriza_ibfk_1` FOREIGN KEY (`idCategoria`) REFERENCES `categoria` (`idCategoria`) ON DELETE CASCADE,
   ADD CONSTRAINT `categoriza_ibfk_2` FOREIGN KEY (`idProducto`) REFERENCES `producto` (`idProducto`) ON DELETE CASCADE;
+
+--
+-- Filtros para la tabla `comenta`
+--
+ALTER TABLE `comenta`
+  ADD CONSTRAINT `comenta_ibfk_1` FOREIGN KEY (`email`) REFERENCES `usuario` (`email`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `comenta_ibfk_2` FOREIGN KEY (`idProducto`) REFERENCES `producto` (`idProducto`);
 
 --
 -- Filtros para la tabla `contiene`
@@ -381,10 +397,5 @@ ALTER TABLE `visita`
   ADD CONSTRAINT `visita_ibfk_2` FOREIGN KEY (`idProducto`) REFERENCES `producto` (`idProducto`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `visita_ibfk_3` FOREIGN KEY (`email`) REFERENCES `usuario` (`email`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-
 
 
