@@ -20,90 +20,114 @@ const tomarTablaEliminar = (event) => {
     eliminarDato(tabla, botonEliminar);
 }
 
+const generarId = {
+    generarIdCaracteristica: (botonEliminar) => {
+        let idProducto = botonEliminar.data('idproducto');
+        let nombre = botonEliminar.data('nombre');
+        let valor = botonEliminar.data('valor');
+        let id = `caracteristica-${idProducto}-${nombre}-${valor}`;
+        let valores = [idProducto, nombre, valor];
+        return [id, valores];
+    },
+
+    generarIdCategoria: (botonEliminar) => {
+        let idCategoria = botonEliminar.data('idcategoria');
+        let id = `categoria-${idCategoria}`;
+        let valores = [idCategoria];
+        return [id, valores];
+    },
+
+    generarIdCategoriza: (botonEliminar) => {
+        let idCategoria = botonEliminar.data('idcategoria');
+        let idProducto = botonEliminar.data('idproducto');
+        let id = `categoriza-${idCategoria}-${idProducto}`;
+        let valores = [idCategoria, idProducto];
+        return [id, valores];
+    },
+
+    generarIdContiene: (botonEliminar) => {
+        let idPedido = botonEliminar.data('idpedido');
+        let idProducto = botonEliminar.data('idproducto');
+        let id = `contiene-${idPedido}-${idProducto}`;
+        let valores = [idProducto, idPedido];
+        return [id, valores];
+    },
+
+    generarIdDescuento: (botonEliminar) => {
+        let idDescuento = botonEliminar.data('iddescuento');
+        let id = `descuento-${idDescuento}`;
+        let valores = [idDescuento];
+        return [id, valores];
+    },
+
+    generarIdDireccion: (botonEliminar) => {
+        let direccion = botonEliminar.data('direccion');
+        let email = botonEliminar.data('email');
+        let id = `direccion-${email}-${direccion}`;
+        let valores = [email, direccion];
+        return [id, valores];
+    },
+
+    generarIdEmpresa: (botonEliminar) => {
+        let rut = botonEliminar.data('rut');
+        let id = `empresa-${rut}`;
+        let valores = [rut];
+        return [id, valores];
+    },
+
+    generarIdFavorito: (botonEliminar) => {
+        let idProducto = botonEliminar.data('idproducto');
+        let email = botonEliminar.data('email');
+        let id = `favorito-${idProducto}-${email}`;
+        let valores = [idProducto, email];
+        return [id, valores];
+    },
+
+    generarIdPedido: (botonEliminar) => {
+        let idPedido = botonEliminar.data('idpedido');
+        let id = `pedido-${idPedido}`;
+        let valores = [idPedido];
+        return [id, valores];
+    },
+
+    generarIdProducto: (botonEliminar) => {
+        let idProducto = botonEliminar.data('idproducto');
+        let id = `producto-${idProducto}`;
+        let valores = [idProducto];
+        return [id, valores];
+    },
+
+    generarIdTiene: (botonEliminar) => {
+        let idProducto = botonEliminar.data('idproducto');
+        let idDescuento = botonEliminar.data('iddescuento');
+        let id = `tiene-${idProducto}-${idDescuento}`;
+        let valores = [idProducto, idDescuento];
+        return [id, valores];
+    },
+
+    generarIdUsuario: (botonEliminar) => {
+        let email = botonEliminar.data('email');
+        let id = `usuario-${email}`;
+        let valores = [email];
+        return [id, valores];
+    },
+
+    generarIdVisita: (botonEliminar) => {
+        let email = botonEliminar.data('email');
+        let idProducto = botonEliminar.data('idproducto');
+        let id = `visita-${email}-${idProducto}`;
+        let valores = [email, idProducto];
+        return [id, valores];
+    }
+};
 
 const eliminarDato = (tabla, botonEliminar) => {
-    let valores = [];
-    let id = "";
 
-    let idProducto, nombre, valor, idCategoria, idPedido, idDescuento, direccion, email, rut;
+    let datos = generarId[`generarId${tabla.charAt(0).toUpperCase() + tabla.slice(1)}`](botonEliminar);
+    let id = datos[0];
+    let valores = datos[1];
 
-    switch (tabla) {
-        case 'caracteristica':
-            idProducto = botonEliminar.data('idproducto');
-            nombre = botonEliminar.data('nombre');
-            valor = botonEliminar.data('valor');
-            id = ""+tabla+"-"+idProducto+"-"+nombre+"-"+valor;
-            valores = [idProducto, nombre, valor];
-            break;
-        case 'categoria':
-            idCategoria = botonEliminar.data('idcategoria');
-            id = ""+tabla+"-"+idCategoria;
-            valores = [idCategoria];
-            break;
-        case 'categoriza':
-            idCategoria = botonEliminar.data('idcategoria');
-            idProducto = botonEliminar.data('idproducto');
-            id = ""+tabla+"-"+idCategoria+"-"+idProducto;
-            valores = [idCategoria, idProducto];
-            break;
-        case 'contiene':
-            idPedido = botonEliminar.data('idpedido');
-            idProducto = botonEliminar.data('idproducto');
-            id = ""+tabla+"-"+idPedido+"-"+idProducto;
-            valores = [idProducto, idPedido];
-            break;
-        case 'descuento':
-            idDescuento = botonEliminar.data('iddescuento');
-            id = ""+tabla+"-"+idDescuento;
-            valores = [idDescuento];
-            break;
-        case 'direccion':
-            direccion = botonEliminar.data('direccion');
-            email = botonEliminar.data('email');
-            id = ""+tabla+"-"+email+"-"+direccion;
-            valores = [email, direccion];
-            break;
-        case 'empresa':
-            rut = botonEliminar.data('rut');
-            id = ""+tabla+"-"+rut;
-            valores = [rut];
-            break;
-        case 'favorito':
-            idProducto = botonEliminar.data('idproducto');
-            email = botonEliminar.data('email');
-            id = ""+tabla+"-"+idProducto+"-"+email;
-            valores = [idProducto, email];
-            break;
-        case 'pedido':
-            idPedido = botonEliminar.data('idpedido');
-            id = ""+tabla+"-"+idPedido;
-            valores = [idPedido];
-            break;
-        case 'producto':
-            idProducto = botonEliminar.data('idproducto');
-            id = ""+tabla+"-"+idProducto;
-            valores = [idProducto];
-            break;
-        case 'tiene':
-            idProducto = botonEliminar.data('idproducto');
-            idDescuento = botonEliminar.data('iddescuento');
-            id = ""+tabla+"-"+idProducto+"-"+idDescuento;
-            valores = [idProducto, idDescuento];
-            break;
-        case 'usuario':
-            email = botonEliminar.data('email');
-            id = ""+tabla+"-"+email;
-            valores = [email];
-            break;
-        case 'visita':
-            email = botonEliminar.data('email');
-            idProducto = botonEliminar.data('idproducto');
-            id = ""+tabla+"-"+email+"-"+idProducto;
-            valores = [email, idProducto];
-            break;
-        default:
-            console.log("Selección no válida");
-    }
+    console.log(valores, id)
 
     let controlador = tabla.charAt(0).toUpperCase() + tabla.slice(1) + "Controlador";
     $.ajax({

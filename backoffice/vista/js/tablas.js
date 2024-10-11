@@ -72,6 +72,7 @@ const cargarAtributos = {
                     <option value="stock">Stock</option>
                     <option value="estado">Estado</option>
                     <option value="marca">Marca</option>
+                    <option value="oculto">Oculto</option>
             `);
             $("#btnIngresarTabla").attr("href","ingresar.html?tabla=producto");
     },
@@ -243,6 +244,7 @@ const imprimirTablas = {
                     <th>Stock</th>
                     <th>Estado</th>
                     <th>Marca</th>
+                    <th>Oculto</th>
                     <th>Acciones</th>
                 </tr>
             </thead>
@@ -253,6 +255,8 @@ const imprimirTablas = {
     
         if (Array.isArray(resultado)) {
             resultado.forEach(item => {
+                let oculto = item["oculto"];
+                oculto = oculto == 1 ? oculto = "checked" : oculto = "";
                 $('#tablaBody').append(
                     `<tr data-fila="producto-${item["idProducto"]}">
                         <td>${item["idProducto"] || ''}</td>
@@ -260,14 +264,17 @@ const imprimirTablas = {
                         <td class="tdLargo">${item["nombre"] || ''}</td>
                         <td>${item["descripcion"] || ''}</td>
                         <td>${item["precio"] || ''}</td>
-                        <td>${item["stock"] || ''}</td>
+                        <td>${item["stock"]}</td>
                         <td>${item["estado"] || ''}</td>
                         <td>${item["marca"] || ''}</td>
-                        <td> <a class="btn editar" href="editar.html?tabla=producto&idProducto=${item["idProducto"]}&rut=${item["RUT"]}&descripcion=${item["descripcion"]}&estado=${item["estado"]}&precio=${item["precio"]}&nombre=${item["nombre"]}&stock=${item["stock"]}&marca=${item["marca"]}">EDITAR</a> <button class="btn eliminar" data-idProducto="${item["idProducto"]}">ELIMINAR</button> </td>
+                        <td><input type="checkbox" id="checkOcultar_${item["idProducto"]}" class="checkOcultar" ${oculto}></td>
+                        <td> <a class="btn editar" href="editar.html?tabla=producto&idProducto=${item["idProducto"]}&rut=${item["RUT"]}&descripcion=${item["descripcion"]}&estado=${item["estado"]}&precio=${item["precio"]}&nombre=${item["nombre"]}&stock=${item["stock"]}&marca=${item["marca"]}&oculto=${item["oculto"]}">EDITAR</a> <button class="btn eliminar" data-idProducto="${item["idProducto"]}">ELIMINAR</button> </td>
                     </tr>`
                 );
             });
         } else {
+            let oculto = resultado["oculto"];
+            oculto = oculto == 1 ? oculto = "checked" : oculto = "";
             $('#tablaBody').append(
                 `<tr data-fila="producto-${resultado["idProducto"]}">
                     <td>${resultado["idProducto"] || ''}</td>
@@ -275,10 +282,11 @@ const imprimirTablas = {
                     <td class="tdLargo">${resultado["nombre"] || ''}</td>
                     <td>${resultado["descripcion"] || ''}</td>
                     <td>${resultado["precio"] || ''}</td>
-                    <td>${resultado["stock"] || ''}</td>
+                    <td>${resultado["stock"]}</td>
                     <td>${resultado["estado"] || ''}</td>
                     <td>${resultado["marca"] || ''}</td>
-                    <td> <a class="btn editar" href="editar.html?tabla=producto&idProducto=${resultado["idProducto"]}&rut=${resultado["RUT"]}&descripcion=${resultado["descripcion"]}&estado=${resultado["estado"]}&precio=${resultado["precio"]}&nombre=${resultado["nombre"]}&stock=${resultado["stock"]}&marca=${resultado["marca"]}">EDITAR</a> <button class="btn eliminar" data-idProducto="${resultado["idProducto"]}">ELIMINAR</button> </td>
+                    <td><input type="checkbox" id="checkOcultar_${resultado["idProducto"]}" class="checkOcultar" ${oculto}></td>
+                    <td> <a class="btn editar" href="editar.html?tabla=producto&idProducto=${resultado["idProducto"]}&rut=${resultado["RUT"]}&descripcion=${resultado["descripcion"]}&estado=${resultado["estado"]}&precio=${resultado["precio"]}&nombre=${resultado["nombre"]}&stock=${resultado["stock"]}&marca=${resultado["marca"]}&oculto=${resultado["oculto"]}">EDITAR</a> <button class="btn eliminar" data-idProducto="${resultado["idProducto"]}">ELIMINAR</button> </td>
                 </tr>`
             );
         }
@@ -750,6 +758,49 @@ const tomarTablaAtributo = () => {
 
     showTabla(tabla, valores);
 }
+
+const ocultar = (idProducto, oculto) => {
+
+    $.ajax({
+        url: 'http://localhost/TuxOut/backoffice/core/Enrutador.php', 
+        method: 'POST', 
+        dataType: 'json', 
+        data: {accion: "ocultar", controlador: "ProductoControlador", valores: [idProducto, oculto]},
+        success: function(response) {
+            if (response.error) {
+                console.error('Error:', response.error);
+            } else {
+                if(response) {
+                    
+                }else {
+                    console.error(response);
+                } 
+            }
+        },
+        error: function(xhr, status, error) {
+            console.error('Error en la solicitud:', xhr);
+        }
+    });
+} 
+
+const modificarBotones = (idProducto, oculto) => {
+      let botonEditar = $(`.editar[href*="idProducto=${idProducto}"]`);
+      let href = botonEditar.attr('href');
+      href = href.replace(/oculto=\d+/, `oculto=${oculto}`);
+      botonEditar.attr('href', href);
+}
+
+const tomarIdOcultar = (evento) => {
+    let idCheck = $(evento.target).attr('id');
+    let idProducto = idCheck.split('_')[1];
+    let oculto = $(`#${idCheck}`).is(':checked') ? 1 : 0;
+    modificarBotones(idProducto, oculto);
+    ocultar(idProducto, oculto);
+}
+
+$(document).on('change', '.checkOcultar', tomarIdOcultar);
+
+
 
 $(document).ready(tomarUltimaTabla);
 $("#selectTabla").change(tomarTabla);

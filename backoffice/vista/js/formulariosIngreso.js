@@ -38,14 +38,14 @@ const quitarInputImagen = () => {
         $(`#contenedorInputImagen${imagenes}`).remove()
         imagenes--;
     
-    if(imagenes <= 1) {
-        $("#quitarImagen").remove();
+        if(imagenes <= 1) {
+            $("#quitarImagen").remove();
+        }
     }
 }
-}
 
-$(document).on('click', '#quitarImagen', quitarInputImagen);
 $(document).on('click', '#agregarImagen', agregarInputImagen);
+$(document).on('click', '#quitarImagen', quitarInputImagen);
 $(document).on('change', '.inputImagen', cargarPreview);
 
 const formularios = {
@@ -199,12 +199,15 @@ const formularios = {
             <input type="number" id="inputStock" class="form-control inputIngresar">
             <label for="inputEstado">Estado:</label>
             <select id="inputEstado" class="form-control inputIngresar">
-            <option value="renovado">Renovado</option>
             <option value="nuevo">Nuevo</option>
+            <option value="renovado">Renovado</option>
             <option value="usado">Usado</option>
             </select>
             <label for="inputMarca">Marca:</label>
             <input type="text" id="inputMarca" class="form-control inputIngresar">
+            <label class="my-2">
+                <input type="checkbox" id="inputOculto"> Oculto
+            </label>
             <div id="formularioImagen">
                 <div id="contenedorInputImagen1">
                     <label for="inputImagen1">Imagen:</label>

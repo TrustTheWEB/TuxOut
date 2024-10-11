@@ -113,6 +113,18 @@ class ProductoControlador {
         echo json_encode($resultados);
         exit;
     }
+
+    //funciones extra
+
+    public function ocultar($valores) {
+        $modelo = new Producto();
+        $modelo->setIdProducto($valores[0]);
+        $modelo->setOculto($valores[1]);
+        $resultados = $modelo->ocultar();
+        header('Content-Type: application/json');
+        echo json_encode($resultados);
+        exit;
+    }
 }
 
 ?>

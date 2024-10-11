@@ -1,3 +1,105 @@
+let imagenes = 0;
+
+const cargarPreview = (evento) => {
+    
+    let img = evento.target.files;
+    let input = evento.target.id;
+
+    $(`#${input}`).next('img').remove();
+
+    if (img.length > 0) {
+        let archivo = img[0];
+        let urlImagen = URL.createObjectURL(archivo);
+        
+        $(`#${input}`).after(`<img src="${urlImagen}" alt="Vista previa" class="imgPreview m-2 border rounded d-block">`);
+    }
+}
+
+const agregarInputImagen = () => {
+    if (imagenes < 5) {
+        imagenes++;
+        $("#formularioImagen").append(`
+            <div id="contenedorInputImagen${imagenes}">
+            <label for="inputImagen${imagenes}">Imagen ${imagenes}:</label>
+            <input type="file" class="form-control inputImagen" id="inputImagen${imagenes}" accept=".jpg, .png. jpeg">
+            </div>
+            `);
+        $('#agregarImagen').attr('data-cant', imagenes);
+        if(imagenes==2) {
+            $("#agregarImagen").after(`<button id="quitarImagen" class="mt-2 mx-2 quitarImagen">-</button>`);
+        }
+    } else {
+        alert("El límite de imágenes ha sido alcanzado");
+    }
+}
+
+const quitarInputImagen = () => {
+    if (imagenes > 1) {
+        $(`#contenedorInputImagen${imagenes}`).remove()
+        imagenes--;
+    
+        if(imagenes <= 1) {
+            $("#quitarImagen").remove();
+        }
+    }
+}
+
+const obtenerUrls = (id) => {
+    $.ajax({
+        url: 'http://localhost/TuxOut/backoffice/core/Buscar.php', 
+        method: 'POST', 
+        dataType: 'json', 
+        data: {id: id},
+        success: function(response) {
+            if (response.error) {
+                console.error('Error:', response.error);
+            } else {
+                if(response) {
+                    console.log(response)
+                    cargarImagenes(response)
+                }else {
+                    console.error(response);
+                } 
+            }
+        },
+        error: function(xhr, status, error) {
+            console.error('Error en la solicitud:', xhr);
+        }
+    });
+}
+
+const cargarImagenes = (urls) => {
+    if(urls[0] == "") {
+        $("#formularioImagen").append(`
+            <div id="contenedorInputImagen1">
+                <label for="inputImagen1">Imagen:</label>
+                <input type="file" class="form-control inputImagen" id="inputImagen1" accept=".jpg, .png. jpeg">
+            </div>
+        `);
+    }else {
+        for(let i = 0; i < urls.length ; i++) {
+            $("#formularioImagen").append(`
+                <div id="contenedorInputImagen${i+1}">
+                    <label for="inputImagen${i+1}">Imagen ${i+1}:</label>
+                    <input type="file" class="form-control inputImagen" id="inputImagen${i+1}" accept=".jpg, .png. jpeg">
+                </div>
+            `);
+            $(`#inputImagen${i+1}`).after(`<img src="${urls[i]}" alt="Vista previa" class="imgPreview m-2 border rounded d-block">`);
+            imagenes++;
+        }
+    }
+
+    if(imagenes > 0) {
+        $("#agregarImagen").after(`<button id="quitarImagen" class="mt-2 mx-2 quitarImagen">-</button>`);
+    }else {
+        imagenes = 1;
+    }
+}
+
+$(document).on('click', '#agregarImagen', agregarInputImagen);
+$(document).on('click', '#quitarImagen', quitarInputImagen);
+$(document).on('change', '.inputImagen', cargarPreview);
+
 const formularios = {
     imprimirFormularioCaracteristica: (datos) => {
         $("#titulo-formulario-actualizacion").append("característica");
@@ -148,6 +250,8 @@ const formularios = {
     
 
     imprimirFormularioProducto: (datos) => {
+        let oculto = datos[8];
+        oculto = oculto == 0 ? oculto = "" : oculto = "checked";
         $("#titulo-formulario-actualizacion").append("producto");
         $("#formulario-actualizacion").append(
             `
@@ -165,14 +269,23 @@ const formularios = {
             <input type="number" id="inputStock" class="form-control inputIngresar" value="${datos[6]}">
             <label for="inputEstado">Estado:</label>
             <select id="inputEstado" class="form-control inputIngresar">
-                <option value="Renovado" ${datos[3] === 'Renovado' ? 'selected' : ''}>Renovado</option>
                 <option value="Nuevo" ${datos[3] === 'Nuevo' ? 'selected' : ''}>Nuevo</option>
+                <option value="Renovado" ${datos[3] === 'Renovado' ? 'selected' : ''}>Renovado</option>
                 <option value="Usado" ${datos[3] === 'Usado' ? 'selected' : ''}>Usado</option>
             </select>
             <label for="inputMarca">Marca:</label>
             <input type="text" id="inputMarca" class="form-control inputIngresar" value="${datos[7]}">
+            <label class="my-2">
+                <input type="checkbox" id="inputOculto" ${oculto}> Oculto
+            </label>
+            <div id="formularioImagen">
+                
+            </div>
+            <button id="agregarImagen" class="mt-2 mx-2" data-cant="1">+</button>
+
             `
         );
+        obtenerUrls(datos[0]);
     },
 
     imprimirFormularioTiene: (datos) => {
@@ -251,6 +364,16 @@ const obtenerDatos = {
         ];
     },
 
+    obtenerComenta: () => {
+        let urlParams = new URLSearchParams(window.location.search);
+        return [
+            urlParams.get('email'),
+            urlParams.get('idProducto'),
+            urlParams.get('calificacion'),
+            urlParams.get('comentario')
+        ];
+    },
+
     obtenerContiene: () => {
         let urlParams = new URLSearchParams(window.location.search);
         return [
@@ -321,7 +444,8 @@ const obtenerDatos = {
             urlParams.get('precio'),
             urlParams.get('nombre'),
             urlParams.get('stock'),
-            urlParams.get('marca')
+            urlParams.get('marca'),
+            urlParams.get('oculto')
         ];
     },
 

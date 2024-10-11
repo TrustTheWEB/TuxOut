@@ -118,7 +118,7 @@ class Producto {
 
     public function store() { //create - store
         try {
-            $query = "INSERT INTO " . $this->tabla . " (RUT, nombre, descripcion, precio, stock, estado, marca, oculto) VALUES (?, ?, ?, ?, ?, ?, ?)";
+            $query = "INSERT INTO " . $this->tabla . " (RUT, nombre, descripcion, precio, stock, estado, marca, oculto) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
             $stmt = $this->conn->prepare($query);
 
@@ -229,6 +229,22 @@ class Producto {
         $stmt = $this->conn->prepare($query);
 
         $stmt->bindValue(1, $this->idProducto, PDO::PARAM_INT);
+
+        if ($stmt->execute()) {
+            $id = $this->idProducto; 
+            return $id;
+        } else {
+            return false;
+        }
+    }
+
+    public function ocultar() {
+        $query = "UPDATE " . $this->tabla . " SET oculto=? WHERE idProducto=?";
+
+        $stmt = $this->conn->prepare($query);
+
+        $stmt->bindValue(1, $this->oculto, PDO::PARAM_INT);
+        $stmt->bindValue(2, $this->idProducto, PDO::PARAM_INT);
 
         if ($stmt->execute()) {
             $id = $this->idProducto; 
