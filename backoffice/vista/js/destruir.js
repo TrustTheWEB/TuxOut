@@ -3,13 +3,7 @@ const eliminarImagenes = (id) => {
         url: 'http://localhost/TuxOut/backoffice/core/Eliminar.php',
         type: 'POST',
         dataType: 'json',
-        data: { idProducto: id },
-        success: function(response) {
-            console.log(response);
-        },
-        error: function() {
-            console.log('Error al eliminar el archivo');
-        }
+        data: { idProducto: id }
     });
 }
 

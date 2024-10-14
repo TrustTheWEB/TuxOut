@@ -17,6 +17,12 @@ $enrutador = new Enrutador();
 $controlador = $_POST["controlador"];
 $accion = $_POST["accion"];
 $valores = $_POST["valores"];
+
+if($controlador == "ImagenControlador") {
+    $imagen = $_FILES["file"];
+    $valores.array_push($imagen);
+}
+
 $enrutador->cargarControlador($controlador, $accion, $valores);
 
 ?>

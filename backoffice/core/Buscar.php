@@ -3,22 +3,24 @@
 class Buscar {
     public function buscarImagenes($id) {
         $urls = [];
+            
+        $directorio = '../../tienda/assets/img_productos/';
+        $directorioArchivo = realpath($directorio) . '/';
 
         for ($i = 1; $i <= 5; $i++) {
-            $extensiones = ['jpg', 'jpeg', 'png'];
-            $imagenEncontrada = false;
-
-            foreach ($extensiones as $extension) {
-                $nombreImagen = "{$id}_{$i}.{$extension}";
-                $urlImagen = "http://localhost/TuxOut/tienda/assets/img_productos/{$nombreImagen}";
-                $file_headers = @get_headers($urlImagen);    
-                if (stripos($file_headers[0],"404 Not Found") >0  || (stripos($file_headers[0], "302 Found") > 0 && stripos($file_headers[7],"404 Not Found") > 0)) {
-                
-                }else {
-                    array_push($urls, $urlImagen);
+            $patron = $directorioArchivo . $id . '_' . $i . '.jpg';
+            $url = $directorio . $id . '_' . $i . '.jpg';
+            $archivos = glob($patron);
+    
+            if (!empty($archivos)) {
+                foreach ($archivos as $archivo) {
+                    if (file_exists($archivo)) {
+                        array_push($urls, $url);
+                    }
                 }
             }
         }
+        
 
         if (empty($urls)) {
             array_push($urls, "");

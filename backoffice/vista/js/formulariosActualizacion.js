@@ -11,7 +11,9 @@ const cargarPreview = (evento) => {
         let archivo = img[0];
         let urlImagen = URL.createObjectURL(archivo);
         
-        $(`#${input}`).after(`<img src="${urlImagen}" alt="Vista previa" class="imgPreview m-2 border rounded d-block">`);
+        $(`#${input}`).after(`
+            <img src="${urlImagen}" alt="Vista previa" class="imgPreview m-2 border rounded d-block">
+            `);
     }
 }
 
@@ -73,7 +75,7 @@ const cargarImagenes = (urls) => {
         $("#formularioImagen").append(`
             <div id="contenedorInputImagen1">
                 <label for="inputImagen1">Imagen:</label>
-                <input type="file" class="form-control inputImagen" id="inputImagen1" accept=".jpg, .png. jpeg">
+                <input type="file" class="form-control inputImagen" id="inputImagen1" accept=".jpg, .png. jpeg" data-modificado="no">
             </div>
         `);
     }else {
@@ -81,24 +83,32 @@ const cargarImagenes = (urls) => {
             $("#formularioImagen").append(`
                 <div id="contenedorInputImagen${i+1}">
                     <label for="inputImagen${i+1}">Imagen ${i+1}:</label>
-                    <input type="file" class="form-control inputImagen" id="inputImagen${i+1}" accept=".jpg, .png. jpeg">
+                    <input type="file" class="form-control inputImagen" id="inputImagen${i+1}" accept=".jpg, .png. jpeg" data-modificado="no">
                 </div>
             `);
-            $(`#inputImagen${i+1}`).after(`<img src="${urls[i]}" alt="Vista previa" class="imgPreview m-2 border rounded d-block">`);
+            $(`#inputImagen${i+1}`).after(`
+                <img src="${urls[i]}" alt="Vista previa" class="imgPreview m-2 border rounded d-block">
+                `);
             imagenes++;
         }
     }
 
-    if(imagenes > 0) {
+    if(imagenes > 1) {
         $("#agregarImagen").after(`<button id="quitarImagen" class="mt-2 mx-2 quitarImagen">-</button>`);
     }else {
         imagenes = 1;
     }
 }
 
+const cambiarModificado = (event) => {
+    let input = $(event.currentTarget);
+    input.attr('data-modificado', "si")
+}
+
 $(document).on('click', '#agregarImagen', agregarInputImagen);
 $(document).on('click', '#quitarImagen', quitarInputImagen);
 $(document).on('change', '.inputImagen', cargarPreview);
+$(document).on('change', '.inputImagen', cambiarModificado);
 
 const formularios = {
     imprimirFormularioCaracteristica: (datos) => {

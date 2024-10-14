@@ -10,9 +10,11 @@ class Eliminar {
             $patron = $directorioDestino . $id . '_*.' . $extension;
             $archivos = glob($patron);
 
-            if ($archivos) {
+            if (!empty($archivos)) {
                 foreach ($archivos as $archivo) {
-                    unlink($archivo);
+                    if (file_exists($archivo)) {
+                        unlink($archivo);
+                    }
                 }
             }
         }

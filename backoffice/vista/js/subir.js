@@ -49,7 +49,23 @@ const subirImagenes = (id) => {
     }
 }
 
+const eliminarImagenes = (id) => {
+    $.ajax({
+        url: 'http://localhost/TuxOut/backoffice/core/Eliminar.php',
+        type: 'POST',
+        dataType: 'json',
+        data: { idProducto: id },
+        success: function(response) {
+            console.log(response);
+        },
+        error: function() {
+            console.log('Error al eliminar el archivo');
+        }
+    });
+}
+
 const storeTabla = (tabla, valores) => {
+    
     let controlador = tabla.charAt(0).toUpperCase() + tabla.slice(1) + "Controlador";
     $.ajax({
         url: 'http://localhost/TuxOut/backoffice/core/Enrutador.php', 
@@ -88,6 +104,10 @@ const updateTabla = (tabla, valores) => {
                 console.error('Error:', response.error);
             } else {
                 if(response) {
+                    if(tabla === "producto") {
+                        eliminarImagenes(valores[0]);
+                        subirImagenes(valores[0]);
+                    }
                     window.location.href = 'index.html';
                 }else {
                     console.error(response);
@@ -227,12 +247,14 @@ const validacionTablasIngresar = {
         let nombreValido = validaciones.validarNombreProducto(nombre);
         let stockValido = validaciones.validarStock(stock);
         let marcaValida = validaciones.validarMarcaProducto(marca);
-        let ocultoValido = validaciones.validarCheck(oculto);
+        let ocultoValido = validaciones.validarBooleano(oculto);
         oculto = !oculto ? oculto = 0 : oculto = 1;
 
         if (rutValido && descripcionValida && estadoValido && precioValido && nombreValido && stockValido && marcaValida && ocultoValido) {
             let valores = [rut, nombre, descripcion, precio, stock, estado, marca, oculto];
             storeTabla("producto", valores);
+        }else {
+            console.error("Los datos de pedido no son válidos", rutValido, descripcionValida, estadoValido, precioValido, nombreValido, stockValido, marcaValida, ocultoValido);
         }
     },
 
