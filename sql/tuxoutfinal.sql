@@ -7,6 +7,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE DATABASE IF NOT EXISTS tuxout;
+USE tuxout;
 
 -- --------------------------------------------------------
 
@@ -398,3 +399,90 @@ ALTER TABLE `visita`
   ADD CONSTRAINT `visita_ibfk_3` FOREIGN KEY (`email`) REFERENCES `usuario` (`email`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
+CREATE VIEW vistaProducto AS
+SELECT 
+    p.idProducto, 
+    p.nombre, 
+    p.descripcion, 
+    p.precio, 
+    p.stock, 
+    p.estado,
+    p.marca,
+    IFNULL(SUM(cont.cantidad), 0) AS cantidadVendida,
+    IFNULL(MAX(d.porcentaje), 0) AS descuento,
+    IFNULL(AVG(c.calificacion), 0) AS promedioCalificacion
+FROM 
+    producto p
+LEFT JOIN 
+    comenta c ON p.idProducto = c.idProducto
+LEFT JOIN 
+    contiene cont ON p.idProducto = cont.idProducto
+LEFT JOIN 
+    tiene t ON p.idProducto = t.idProducto
+LEFT JOIN 
+    descuento d ON t.idDescuento = d.idDescuento 
+    AND CURDATE() BETWEEN d.fechaInicio AND d.fechaFin
+WHERE 
+    p.oculto = 0
+    AND p.stock > 0
+GROUP BY 
+    p.idProducto;
+
+-- phpMyAdmin SQL Dump
+-- version 5.2.1
+-- https://www.phpmyadmin.net/
+--
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 09-09-2024 a las 22:55:26
+-- Versión del servidor: 10.4.32-MariaDB
+-- Versión de PHP: 8.2.12
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Base de datos: `tuxout_backoffice`
+--
+
+CREATE DATABASE IF NOT EXISTS tuxout_backoffice;
+USE tuxout_backoffice;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `admin`
+--
+
+CREATE TABLE `admin` (
+  `usuario` varchar(30) NOT NULL,
+  `contraseña` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `admin`
+--
+
+INSERT INTO `admin` (`usuario`, `contraseña`) VALUES
+('Administrador1', '$2y$10$oUzSq9q1dKnJm1RkJHvt0.hiJcoGagvQur7xHAfsdi.N2yBTU1A4O');
+
+--
+-- Índices para tablas volcadas
+--
+
+--
+-- Indices de la tabla `admin`
+--
+ALTER TABLE `admin`
+  ADD PRIMARY KEY (`usuario`);
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

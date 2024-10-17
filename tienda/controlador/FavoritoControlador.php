@@ -10,7 +10,6 @@ class FavoritoControlador {
 
         header('Content-Type: application/json');
         echo json_encode($resultados);
-        error_log(json_encode($resultados));
         exit;
     }
 

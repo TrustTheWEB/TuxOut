@@ -18,7 +18,7 @@ $controlador = $_POST["controlador"];
 $accion = $_POST["accion"];
 $valores = $_POST["valores"];
 
-if($controlador == "ImagenControlador") {
+if($controlador == "ImagenControlador" || $accion == "subir") {
     $imagen = $_FILES["file"];
     $valores.array_push($imagen);
 }

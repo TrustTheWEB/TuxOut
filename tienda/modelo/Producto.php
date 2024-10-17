@@ -251,6 +251,19 @@ class Producto {
             return "Error en la consulta: " . $e->getMessage();
         }
     }
+
+    public function showAbrir() {
+        try {
+            $consulta = $this->conn->prepare("SELECT * FROM vistaProducto WHERE idProducto = ?;");
+            $consulta->bindValue(1, $this->idProducto, PDO::PARAM_INT);
+            $consulta->execute();
+            $resultados = $consulta->fetchAll(PDO::FETCH_ASSOC);
+
+            return $resultados;
+        } catch (PDOException $e) {
+            return "Error en la consulta: " . $e->getMessage();
+        }
+    }
     
 }
 

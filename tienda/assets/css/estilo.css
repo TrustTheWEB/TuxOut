@@ -253,10 +253,6 @@ body {
 /*BOTÓN DEL CARRITO*/
 .carrito {
   border: none;
-  background-image: url(../img/carrito.png);
-  background-size: 45px;
-  background-repeat: no-repeat;
-  background-position: center;
   margin-left: 10px;
   margin-right: 20px;
   left: 15px;
@@ -269,6 +265,12 @@ body {
   margin-top: 15px;
   background-color: transparent;
   }
+  
+  .carritoSvg {
+    filter: invert(1);
+    width: 30px;
+  }
+
 .ingrese {
   background-color: #4ec3e0;
   margin-top: 0px;

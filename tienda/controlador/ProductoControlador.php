@@ -123,6 +123,15 @@ class ProductoControlador {
         echo json_encode($resultados);
         exit;
     }
+
+    public function showAbrir($idProducto) {
+        $modelo = new Producto();
+        $modelo->setIdProducto($idProducto);
+        $resultados = $modelo->showAbrir();
+        header('Content-Type: application/json');
+        echo json_encode($resultados);
+        exit;
+    }
 }
 
 ?>

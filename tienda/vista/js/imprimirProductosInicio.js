@@ -42,7 +42,7 @@ const imprimirProductos = (resultado) => {
                 
             <article class="col-5 col-lg-3 col-xl-2 card m-2 py-2">
             <div class="contenedor-img-top">    
-                <a href="abrirProducto.html" class="a-img-top">
+                <a href="abrirProducto.html?idProducto=${item['idProducto']}" class="a-img-top">
                     <img src="../assets/img_productos/${item['idProducto']}_1.jpg" class="card-img-top" alt="${item['nombre']}" onerror="this.onerror=null;this.src='../assets/img/default.png';">
                 </a>
             </div>
