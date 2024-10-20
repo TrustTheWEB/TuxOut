@@ -7,10 +7,10 @@ class Visita {
     private $idProducto;
     private $fecha;
 
-    private $conexion;
+    private $conn;
 
     public function __construct() {
-        $this->conexion = Conexion::getInstance()->getDatabaseInstance();
+        $this->conn = Conexion::getInstance()->getDatabaseInstance();
     }
 
     // Getters y Setters
@@ -42,7 +42,7 @@ class Visita {
     public function index() {
         try {
             $query = "SELECT * FROM visita";
-            $stmt = $this->conexion->prepare($query);
+            $stmt = $this->conn->prepare($query);
             $stmt->execute();
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
         } catch (PDOException $e) {
@@ -53,7 +53,7 @@ class Visita {
     public function store() {
         try {
             $query = "INSERT INTO visita (email, idProducto) VALUES (?, ?)";
-            $stmt = $this->conexion->prepare($query);
+            $stmt = $this->conn->prepare($query);
 
             $stmt->bindValue(1, $this->email, PDO::PARAM_STR);
             $stmt->bindValue(2, $this->idProducto, PDO::PARAM_INT);
@@ -84,7 +84,7 @@ class Visita {
             }
 
             $query = "SELECT * FROM visita WHERE " . $tipoCondicion . " = ?";
-            $stmt = $this->conexion->prepare($query);
+            $stmt = $this->conn->prepare($query);
             $stmt->bindValue(1, $parametro, $tipoDato);
 
             $stmt->execute();
@@ -104,7 +104,7 @@ class Visita {
     public function update() {
         try {
             $query = "UPDATE visita SET fecha = ? WHERE email = ? AND idProducto = ?";
-            $stmt = $this->conexion->prepare($query);
+            $stmt = $this->conn->prepare($query);
 
             $stmt->bindValue(1, $this->fecha, PDO::PARAM_STR);
             $stmt->bindValue(2, $this->email, PDO::PARAM_STR);
@@ -119,7 +119,7 @@ class Visita {
     public function destroy() {
         try {
             $query = "DELETE FROM visita WHERE email = ? AND idProducto = ?";
-            $stmt = $this->conexion->prepare($query);
+            $stmt = $this->conn->prepare($query);
 
             $stmt->bindValue(1, $this->email, PDO::PARAM_STR);
             $stmt->bindValue(2, $this->idProducto, PDO::PARAM_INT);

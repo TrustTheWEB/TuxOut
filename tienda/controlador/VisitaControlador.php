@@ -80,6 +80,28 @@ class VisitaControlador {
         echo json_encode($resultados);
         exit;
     }
+
+    public function actualizarFecha($valores) {
+        $modelo = new Visita();
+        $modelo->setEmail($valores[0]);
+        $modelo->setIdProducto($valores[1]);
+        
+        $resultados = $modelo->actualizarFecha();
+        header('Content-Type: application/json');
+        echo json_encode($resultados);
+        exit;
+    }
+
+    public function visitado($valores) {
+        $modelo = new Visita();
+        $modelo->setEmail($valores[0]);
+        $modelo->setIdProducto($valores[1]);
+        
+        $resultados = $modelo->visitado();
+        header('Content-Type: application/json');
+        echo json_encode($resultados);
+        exit;
+    }
 }
 
 ?>

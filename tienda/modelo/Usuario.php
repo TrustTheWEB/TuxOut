@@ -214,6 +214,65 @@ class Usuario {
             return "Error en la consulta: " . $e->getMessage();
         }
     }
+
+    public function registro() {
+        try {
+            $query = "SELECT COUNT(*) FROM " . $this->tabla . " WHERE email = ? OR usuario = ?";
+            $stmt = $this->conn->prepare($query);
+            $stmt->bindValue(1, $this->email, PDO::PARAM_STR);
+            $stmt->bindValue(2, $this->usuario, PDO::PARAM_STR);
+            $stmt->execute();
+    
+            $count = $stmt->fetchColumn();
+            if ($count > 0) {
+                $checkQuery = "SELECT email, usuario FROM " . $this->tabla . " WHERE email = ? OR usuario = ?";
+                $stmtCheck = $this->conn->prepare($checkQuery);
+                $stmtCheck->bindValue(1, $this->email, PDO::PARAM_STR);
+                $stmtCheck->bindValue(2, $this->usuario, PDO::PARAM_STR);
+                $stmtCheck->execute();
+                $result = $stmtCheck->fetch(PDO::FETCH_ASSOC);
+    
+                if ($result['email'] == $this->email) {
+                    return "email";
+                } 
+                if ($result['usuario'] == $this->usuario) {
+                    return "usuario";
+                }
+            }
+    
+            $query = "INSERT INTO " . $this->tabla . " (email, usuario, nombre, apellido, contraseña) VALUES (?, ?, ?, ?, ?)";
+            $stmt = $this->conn->prepare($query);
+    
+            $stmt->bindValue(1, $this->email, PDO::PARAM_STR);
+            $stmt->bindValue(2, $this->usuario, PDO::PARAM_STR);
+            $stmt->bindValue(3, $this->nombre, PDO::PARAM_STR);
+            $stmt->bindValue(4, $this->apellido, PDO::PARAM_STR);
+            $hashedPassword = password_hash($this->contraseña, PASSWORD_DEFAULT);
+            $stmt->bindValue(5, $hashedPassword, PDO::PARAM_STR);
+
+            return $stmt->execute();
+        } catch (PDOException $e) {
+            return "Error en la consulta: " . $e->getMessage();
+        }
+    }
+
+    public function login() {
+        try {
+            $query = "SELECT nombre, contraseña FROM " . $this->tabla . " WHERE email = ?";
+            $stmt = $this->conn->prepare($query);
+            $stmt->bindValue(1, $this->email);
+            $stmt->execute();
+            $resultado = $stmt->fetch(PDO::FETCH_ASSOC);
+        
+            if ($resultado && password_verify($this->contraseña, $resultado['contraseña'])) {
+                return $resultado['nombre']; 
+            }
+            return false;
+        } catch (PDOException $e) {
+            return "Error en la consulta: " . $e->getMessage();
+        }
+    }
+    
 }
 
 ?>

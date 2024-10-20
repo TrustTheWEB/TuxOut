@@ -2,12 +2,11 @@
 
 require_once("../config/Conexion.php");
 
-class Visita {
+class Carrito {
     private $email;
     private $idProducto;
-    private $fecha;
-    private $tabla = "visita";
-
+    private $cantidad;
+    private $tabla = "carrito";
     private $conn;
 
     public function __construct() {
@@ -31,12 +30,12 @@ class Visita {
         $this->idProducto = $idProducto;
     }
 
-    public function getFecha() {
-        return $this->fecha;
+    public function getCantidad() {
+        return $this->cantidad;
     }
 
-    public function setFecha($fecha) {
-        $this->fecha = $fecha;
+    public function setCantidad($cantidad) {
+        $this->cantidad = $cantidad;
     }
 
     // Métodos CRUD
@@ -53,11 +52,12 @@ class Visita {
 
     public function store() {
         try {
-            $query = "INSERT INTO " . $this->tabla . " (email, idProducto) VALUES (?, ?)";
+            $query = "INSERT INTO " . $this->tabla . " (email, idProducto, cantidad) VALUES (?, ?, ?)";
             $stmt = $this->conn->prepare($query);
 
             $stmt->bindValue(1, $this->email, PDO::PARAM_STR);
             $stmt->bindValue(2, $this->idProducto, PDO::PARAM_INT);
+            $stmt->bindValue(3, $this->cantidad, PDO::PARAM_INT);
 
             return $stmt->execute();
         } catch (PDOException $e) {
@@ -76,9 +76,9 @@ class Visita {
                     $parametro = $this->idProducto;
                     $tipoDato = PDO::PARAM_INT;
                     break;
-                case "fecha":
-                    $parametro = $this->fecha;
-                    $tipoDato = PDO::PARAM_STR;
+                case "cantidad":
+                    $parametro = $this->cantidad;
+                    $tipoDato = PDO::PARAM_INT;
                     break;
                 default:
                     throw new Exception("Tipo de condición no reconocida");
@@ -104,10 +104,10 @@ class Visita {
 
     public function update() {
         try {
-            $query = "UPDATE " . $this->tabla . " SET fecha = ? WHERE email = ? AND idProducto = ?";
+            $query = "UPDATE " . $this->tabla . " SET cantidad = ? WHERE email = ? AND idProducto = ?";
             $stmt = $this->conn->prepare($query);
 
-            $stmt->bindValue(1, $this->fecha, PDO::PARAM_STR);
+            $stmt->bindValue(1, $this->cantidad, PDO::PARAM_INT);
             $stmt->bindValue(2, $this->email, PDO::PARAM_STR);
             $stmt->bindValue(3, $this->idProducto, PDO::PARAM_INT);
 
@@ -131,37 +131,19 @@ class Visita {
         }
     }
 
-    public function actualizarFecha() {
+    public function verificarCarrito() {
         try {
-            $query = "UPDATE " . $this->tabla . " SET fecha = NOW() WHERE email = ? AND idProducto = ?";
+            $query = "SELECT cantidad FROM " . $this->tabla . " WHERE email = ? AND idProducto = ?";
             $stmt = $this->conn->prepare($query);
-
-            $stmt->bindValue(1, $this->email, PDO::PARAM_STR);
-            $stmt->bindValue(2, $this->idProducto, PDO::PARAM_INT);
-
-            return $stmt->execute();
-        } catch (PDOException $e) {
-            return "Error en la consulta: " . $e->getMessage();
-        }
-    }
-
-    public function visitado() {
-        try {
-            $query = "SELECT * FROM " . $this->tabla . " WHERE email = ? AND idProducto = ?";
-            $stmt = $this->conn->prepare($query);
-
-            $stmt->bindValue(1, $this->email, PDO::PARAM_STR);
-            $stmt->bindValue(2, $this->idProducto, PDO::PARAM_INT);
-
-            if($stmt->execute()) {
-                if ($stmt->rowCount() > 0) {
-                    return true;
-                } else {
-                    return "no";
-                }
-            }else {
-                return false;
+            $stmt->bindValue(1, $this->email);
+            $stmt->bindValue(2, $this->idProducto);
+            $stmt->execute();
+            $resultado = $stmt->fetch(PDO::FETCH_ASSOC);
+        
+            if ($resultado) {
+                return $resultado["cantidad"]; 
             }
+            return false;
         } catch (PDOException $e) {
             return "Error en la consulta: " . $e->getMessage();
         }

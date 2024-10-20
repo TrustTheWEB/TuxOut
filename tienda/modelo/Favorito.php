@@ -102,6 +102,24 @@ class Favorito {
             return "Error en la consulta: " . $e->getMessage();
         }
     }
+
+    public function esFavorito() {
+        try {
+            $query = "SELECT 1 FROM " . $this->tabla . " WHERE email = ? AND idProducto = ?";
+            $stmt = $this->conn->prepare($query);
+    
+            $stmt->bindValue(1, $this->email, PDO::PARAM_STR);
+            $stmt->bindValue(2, $this->idProducto, PDO::PARAM_INT);
+    
+            $stmt->execute();
+            return $stmt->fetch() ? true : false;
+        } catch (PDOException $e) {
+            return false;
+        }
+    }
 }
+
+
+
 
 ?>

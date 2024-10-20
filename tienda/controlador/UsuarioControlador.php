@@ -109,6 +109,31 @@ class UsuarioControlador {
         echo json_encode($resultados);
         exit;
     }
+
+    public function registro($valores) {
+        $modelo = new Usuario();
+        $modelo->setEmail($valores[0]);
+        $modelo->setUsuario($valores[1]);
+        $modelo->setNombre($valores[2]);
+        $modelo->setApellido($valores[3]);
+        $modelo->setContraseña($valores[4]);
+    
+        $resultados = $modelo->registro();
+        header('Content-Type: application/json');
+        echo json_encode($resultados);
+        exit;
+    }
+
+    public function login($valores) {
+        $modelo = new Usuario();
+        $modelo->setEmail($valores[0]);
+        $modelo->setContraseña($valores[1]);
+    
+        $resultados = $modelo->login();
+        header('Content-Type: application/json');
+        echo json_encode($resultados);
+        exit;
+    }
 }
 
 ?>
