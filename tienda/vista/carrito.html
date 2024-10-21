@@ -36,19 +36,17 @@
                 <i class="bi bi-search"></i>
               </button>
            </form>     
-           <button type="button" class="carrito btn-carrito ms-4 ms-lg-0" data-bs-toggle="modal" data-bs-target="#exampleModal">
+           <button type="button" class="carrito btn-carrito ms-4 ms-lg-2" data-bs-target="#carritoModal">
             <i class="bi bi-cart4"></i>
         </button> 
         </div>
       </div>
 
-
-
-  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal fade" id="carritoModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h4 class="modal-title fs-5" id="exampleModalLabel">Mi carrito</h4>
+          <h4 class="modal-title fs-5" id="carritoModalLabel">Mi carrito</h4>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <article class="modal-body">
@@ -69,7 +67,7 @@
     <!-- Barra de navegacion inferior con la capacidad de desplegar la barra lateral -->
     <nav class="navbar" id="subnav">
       <form class="container-fluid justify-content-start" id="subnav-form">
-        <button class="btn" id="botonMenu" type="button" onclick="toggleOffcanvas()">≡ Menú</button>
+        <button class="btn" id="botonMenu" type="button">≡ Menú</button>
         <a class="btn" id="vender" href="vender.html">Vender</a>
       </form>
     </nav>
@@ -89,144 +87,43 @@
     </nav>
   </aside>
 
+  <div class="alerta-principal alert alert-primary alert-dismissible fade show" role="alert">
+    <strong class="alerta-principal-texto"></strong>
+    <button type="button" class="btn-close btn-close-principal" aria-label="Close"></button>
+  </div>
+  <div class="alerta-error alert alert-warning alert-dismissible fade show" role="alert">
+    <strong class="alerta-error-texto"></strong>
+    <button type="button" class="btn-close btn-close-error" aria-label="Close"></button>
+  </div>
+
   <main class="container">
-    <section class="row justify-content-evenly">
-      <h1 class="my-3 ps-5 ms-4">Carrito</h1>
-
-      <section class="col-7">
-        <article class="card px-3 mb-3">
-          <div class="row my-3">
-            <div class="col-3">
-              <img src="../assets/img/iphone.jpg" class="rounded border img-carrito m-0" alt="iPhone">
+    <section class="row mt-3">
+      <h1 class="mb-3">Carrito</h1>
+      <div class="col col-12 col-lg-8">
+        <section class="row justify-content-between" id="section-carrito">
+          
+        </section>
+      </div>
+      <div class="col-12 col-lg-4 ">
+        <section class="row">
+          <article class="card p-4 card-carrito-total">
+            <div class="card-body p-1">
+              <h4 class="card-title">Resumen</h4>  
+              <p class="subtotal-carrito-p mb-1">iPhone 15, 64GB, Color Gris, Unlocked: </p>
+              <p class="subtotal-carrito-precio mb-3">$25.000</p>
+              <p class="subtotal-carrito-p mb-1">iPhone 15, 64GB, Color Gris, Unlocked: </p>
+              <p class="subtotal-carrito-precio mb-3">$25.000</p>
+              <p class="subtotal-carrito-p mb-1">iPhone 15, 64GB, Color Gris, Unlocked: </p>
+              <p class="subtotal-carrito-precio mb-3">$25.000</p>
             </div>
-            <div class="col-6 p-1 card-body">
-              <div class="card-carrito">
-                <h4 class="card-title titulo-carrito">iPhone 15, 64GB, Color Gris, Unlocked</h4>
-              </div>
-              <hr>
-              <div class="row justify-content-between pe-4">
-                <div class="col-6">
-                  <div class="border rounded-pill botonera-carrito-cant row text-center">
-                    <button class="col-4 btn-carrito-restar">-</button>
-                    <p class="col-4 m-0 btn-carrito-cant pt-1">1</p>
-                    <button class="col-4 btn-carrito-sumar">+</button>
-                  </div>
-                </div>
-                <button class="btn-carrito-eliminar col-1">
-                  <img src="../assets/logo/eliminar.png" class="img-carrito-eliminar">
-                </button>
-              </div>
-              </div>
-            <div class="col-3 m-0 py-3 ps-4">
-              <p class="precio-anterior m-0">$50.00</p>
-              <p class="precio-nuevo m-0">$25.000</p>
-              <p class="precio-descuento m-0">%50 OFF</p>
-            </div>
-          </div>
-        </article>
-
-        <article class="card px-3 mb-3">
-          <div class="row my-3">
-            <div class="col-3">
-              <img src="../assets/img/iphone.jpg" class="rounded border img-carrito m-0" alt="iPhone">
-            </div>
-            <div class="col-6 p-1 card-body">
-              <div class="card-carrito">
-                <h4 class="card-title titulo-carrito">iPhone 15, 64GB, Color Gris, Unlocked</h4>
-              </div>
-              <hr>
-              <div class="row justify-content-between pe-4">
-                <div class="col-6">
-                  <div class="border rounded-pill botonera-carrito-cant row text-center">
-                    <button class="col-4 btn-carrito-restar">-</button>
-                    <p class="col-4 m-0 btn-carrito-cant pt-1">1</p>
-                    <button class="col-4 btn-carrito-sumar">+</button>
-                  </div>
-                </div>
-                <button class="btn-carrito-eliminar col-1">
-                  <img src="../assets/logo/eliminar.png" class="img-carrito-eliminar">
-                </button>
-              </div>
-              </div>
-            <div class="col-3 m-0 py-3 ps-4">
-              <p class="precio-anterior m-0">$50.00</p>
-              <p class="precio-nuevo m-0">$25.000</p>
-              <p class="precio-descuento m-0">%50 OFF</p>
-            </div>
-          </div>
-        </article>
-
-        <article class="card px-3 mb-3">
-          <div class="row my-3">
-            <div class="col-3">
-              <img src="../assets/img/iphone.jpg" class="rounded border img-carrito m-0" alt="iPhone">
-            </div>
-            <div class="col-6 p-1 card-body">
-              <div class="card-carrito">
-                <h4 class="card-title titulo-carrito">iPhone 15, 64GB, Color Gris, Unlocked</h4>
-              </div>
-              <hr>
-              <div class="row justify-content-between pe-4">
-                <div class="col-6">
-                  <div class="border rounded-pill botonera-carrito-cant row text-center">
-                    <button class="col-4 btn-carrito-restar">-</button>
-                    <p class="col-4 m-0 btn-carrito-cant pt-1">1</p>
-                    <button class="col-4 btn-carrito-sumar">+</button>
-                  </div>
-                </div>
-                <button class="btn-carrito-eliminar col-1">
-                  <img src="../assets/logo/eliminar.png" class="img-carrito-eliminar">
-                </button>
-              </div>
-              </div>
-            <div class="col-3 m-0 py-3 ps-4">
-              <p class="precio-anterior m-0">$50.00</p>
-              <p class="precio-nuevo m-0">$25.000</p>
-              <p class="precio-descuento m-0">%50 OFF</p>
-            </div>
-          </div>
-        </article>
-      </section>
-      
-      <article class="card col-3 p-4 card-carrito-total">
-        <div class="card-body p-1">
-          <h4 class="card-title">Resumen</h4>  
-          <p class="subtotal-carrito-p mb-1">iPhone 15, 64GB, Color Gris, Unlocked: </p>
-          <p class="subtotal-carrito-precio mb-3">$25.000</p>
-          <p class="subtotal-carrito-p mb-1">iPhone 15, 64GB, Color Gris, Unlocked: </p>
-          <p class="subtotal-carrito-precio mb-3">$25.000</p>
-          <p class="subtotal-carrito-p mb-1">iPhone 15, 64GB, Color Gris, Unlocked: </p>
-          <p class="subtotal-carrito-precio mb-3">$25.000</p>
-        </div>
-        <p><b>Total: </b>$75.000</p>
-        <button class="btn btn-card-comprar">
-          COMPRAR
-        </button>
-      </article>
-
+            <p><b>Total: </b>$75.000</p>
+            <button class="btn btn-card-comprar">
+              COMPRAR
+          </article>
+        </section>
+      </div>
     </section>
   </main>
-
-  
-
-    <!-- <main>
-      <div class="contenedorPantalla">
-        <div class="contenedorCarrito">
-          <article class="contenidoCarrito">
-            <h4>Carrito</h4>
-            <hr>
-            <section class="item1">
-              <img src="../assets/img/iphone.jpg">
-              <p>Nombre del producto</p>
-              <hr id="barrasubtotal">
-              <p id="subtotal">Subtotal (*producto):</p>
-              <p class="precio">US$100</p>
-            </section>
-          </article>
-        </div>
-        <a href="facturacion.html" class="continuarcompra">Continuar compra</a>
-      </div>
-    </main> -->
 
   <footer class="pie">
     <a href="condiciones.html">Términos y condiciones</a> |
@@ -234,7 +131,8 @@
     <p>&copy; 2024-2024 Trust the WEB Company</p>
   </footer>
     <script src="js/jquery-3.7.1.min.js"></script>
-    <script src="js/pagina.js"></script>
+    <script src="js/pagina.js" type="module"></script>
+    <script src="js/abrirCarrito.js" type="module"></script>
     <script src="js/login.js" type="module"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
       integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"

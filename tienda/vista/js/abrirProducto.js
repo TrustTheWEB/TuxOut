@@ -1,3 +1,6 @@
+import Alerta from './Alerta.js';
+const alerta = new Alerta();
+
 const cargarHistorial = (idProducto) => {
     let logeado = localStorage.getItem("logueado");
 
@@ -179,7 +182,7 @@ const imprimirProductoAbrir = (resultado) => {
     `);
     $(".id-producto").attr("data-id-producto", resultado['idProducto']);
     imprimirEstrellas(resultado['promedioCalificacion'], ".calificacion-total");
-    calificacion = Number(resultado['promedioCalificacion']).toFixed(1);
+    let calificacion = Number(resultado['promedioCalificacion']).toFixed(1);
     $(".calificacion-total").append(`   (${calificacion})`);
 }
 

@@ -1,3 +1,6 @@
+import Alerta from './Alerta.js';
+const alerta = new Alerta();
+
 import Validaciones from './Validaciones.js';
 const validaciones = new Validaciones();
 
@@ -16,28 +19,28 @@ const tomarDatosRegistroUsuario = () => {
 
     try {
         if(!usuarioValido) {
-            throw new Error("El nombre de usuario ingresado no es válido.");
+            throw new Error("el nombre de usuario ingresado no es válido.");
         }
 
         if(!nombreValido) {
-            throw new Error("El nombre ingresado no es válido.");
+            throw new Error("el nombre ingresado no es válido.");
         }
     
         if(!apellidoValido) {
-            throw new Error("El apellido ingresado no es válido.");
+            throw new Error("el apellido ingresado no es válido.");
         }
     
         if(!emailValido) {
-            throw new Error("El email ingresado no es válido.");
+            throw new Error("el email ingresado no es válido.");
         }
     
         if(!contraValido) {
-            throw new Error("La contraseña ingresado no es válido.");
+            throw new Error("la contraseña ingresado no es válido.");
         }
 
         registrarUsuario(email, usuario, nombre, apellido, contra); 
     }catch (e) {
-        alert(e);
+        alerta.alertar(e);
     }
   
 }
@@ -54,16 +57,16 @@ const registrarUsuario = (email, usuario, nombre, apellido, contra) => {
             } else {
                 if(response) { 
                     if(response == "email") {
-                        alert("Ese correo ya está en uso")
+                        alerta.alertar("Ese correo ya está en uso")
                     }else if (response == "usuario") {
-                        alert("Ese usuario ya existe")
+                        alerta.alertar("Ese usuario ya existe")
                     }else if (response == true) {
                         localStorage.setItem("logueado", true);
                         localStorage.setItem("email", email);
                         localStorage.setItem("nombre", nombre)
                         window.location.href = 'index.html'; 
                     }else {
-                        alert("Registro fallido")
+                        alerta.alertar("Registro fallido")
                         console.log(response)
                     }
                 }
@@ -91,7 +94,7 @@ const loginUsuario = (email, contra) => {
                     localStorage.setItem("nombre", response)
                     window.location.href = 'index.html';
                 }else {
-                    alert("Correo o contraseña incorrectos.")
+                    alerta.alertar("Correo o contraseña incorrectos.")
                 }
             }
         },
@@ -111,16 +114,16 @@ const tomarDatosLoginUsuario = () => {
     try {
     
         if(!emailValido) {
-            throw new Error("El email ingresado no es válido.");
+            throw new Error("el email ingresado no es válido.");
         }
     
         if(!contraValido) {
-            throw new Error("La contraseña ingresado no es válido.");
+            throw new Error("la contraseña ingresado no es válido");
         }
 
         loginUsuario(email, contra); 
     }catch (e) {
-        alert(e);
+        alerta.alertar(e);
     }
   
 }
@@ -129,10 +132,10 @@ const tomarDatosLoginUsuario = () => {
 const cargarPanelUsuario = (email) => {
     $(".barra-header").after(
         `
-    <span class="me-3 nombre-usuario-header">${localStorage.getItem("nombre")}</span>
+    <span class="mx-4 nombre-usuario-header">${localStorage.getItem("nombre")}</span>
     <div class="nav-item dropdown ms-auto">
             <button class="btn btn-secondary dropdown-toggle usuario mt-3 mt-lg-0" type="button" data-bs-toggle="dropdown" aria-expanded="false"></button>
-            <ul class="dropdown-menu contenidoUsuario">
+            <ul class="dropdown-menu dropdown-menu dropdown-menu-lg-end contenidoUsuario">
               <li class="p-1"><a class="dropdown-item" href="usuario.html">Mis datos</a></li>
               <li class="p-1"><a class="dropdown-item" href="direcciones.html">Direcciones</a></li>
               <li class="p-1"><a class="dropdown-item" href="compras.html">Mis compras</a></li>
@@ -149,7 +152,7 @@ const cargarPanelUsuario = (email) => {
 const cargarFormulariosLogin = () => {
     $(".barra-header").after(
     `
-    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+    <ul class="navbar-nav mb-2 mb-lg-0">
         <li class="nav-item dropdown">
               <button type="button" class="btn botn-primary dropdown-toggle dropdown-toggle-none-caret" id="crear" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">Crear una cuenta</button>
               <ul class="dropdown-menu dropdown-menu-login dropdown-menu-end" aria-labelledby="crear">
@@ -198,7 +201,6 @@ const cargarFormulariosLogin = () => {
 
 const tomarUsuarioLogueado = () => {
     let logueado = localStorage.getItem("logueado");
-    console.log(logueado)
     if(logueado == "true") {
         cargarPanelUsuario(localStorage.getItem("email"));
     }else {

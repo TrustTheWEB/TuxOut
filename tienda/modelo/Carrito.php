@@ -148,6 +148,91 @@ class Carrito {
             return "Error en la consulta: " . $e->getMessage();
         }
     }
+
+    public function showCarritoPreview() {
+        try {
+            $query = "SELECT idProducto, nombre, precio, descuento, cantidad FROM vistaCarritoPreview WHERE email = ?";
+            $stmt = $this->conn->prepare($query);
+            $stmt->bindValue(1, $this->email);
+            $stmt->execute();
+
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        } catch (PDOException $e) {
+            return "Error en la consulta: " . $e->getMessage();
+        }
+    }
+
+    public function sumarCantidad() {
+        try {
+            $query = "
+                UPDATE " . $this->tabla . " c
+                JOIN Producto p ON c.idProducto = p.idProducto
+                SET c.cantidad = 
+                    CASE 
+                        WHEN c.cantidad + 1 > p.stock THEN p.stock
+                        ELSE c.cantidad + 1
+                    END
+                WHERE c.email = ? AND c.idProducto = ?";
+    
+            $stmt = $this->conn->prepare($query);
+    
+            $stmt->bindValue(1, $this->email, PDO::PARAM_STR);
+            $stmt->bindValue(2, $this->idProducto, PDO::PARAM_INT);
+    
+            $stmt->execute();
+    
+            if ($stmt->rowCount() > 0) {
+                $query = "SELECT cantidad FROM " . $this->tabla . " WHERE email = ? AND idProducto = ?";
+                $stmt = $this->conn->prepare($query);
+                $stmt->bindValue(1, $this->email, PDO::PARAM_STR);
+                $stmt->bindValue(2, $this->idProducto, PDO::PARAM_INT);
+                $stmt->execute();
+                $result = $stmt->fetch(PDO::FETCH_ASSOC);
+                return $result['cantidad'];
+            } else {
+                return false;
+            }
+        } catch (PDOException $e) {
+            return "Error en la consulta: " . $e->getMessage();
+        }
+    }    
+
+    public function restarCantidad() {
+        try {
+            $query = "
+                UPDATE " . $this->tabla . " c
+                SET c.cantidad = 
+                    CASE 
+                        WHEN c.cantidad - 1 < 1 THEN 1
+                        ELSE c.cantidad - 1
+                    END
+                WHERE c.email = ? AND c.idProducto = ?";
+    
+            $stmt = $this->conn->prepare($query);
+    
+            $stmt->bindValue(1, $this->email, PDO::PARAM_STR);
+            $stmt->bindValue(2, $this->idProducto, PDO::PARAM_INT);
+    
+            $stmt->execute();
+    
+            if ($stmt->rowCount() > 0) {
+                $query = "SELECT cantidad FROM " . $this->tabla . " WHERE email = ? AND idProducto = ?";
+                $stmt = $this->conn->prepare($query);
+                $stmt->bindValue(1, $this->email, PDO::PARAM_STR);
+                $stmt->bindValue(2, $this->idProducto, PDO::PARAM_INT);
+                $stmt->execute();
+                $result = $stmt->fetch(PDO::FETCH_ASSOC);
+                return $result['cantidad'];
+            } else {
+                return false;
+            }
+        } catch (PDOException $e) {
+            return "Error en la consulta: " . $e->getMessage();
+        }
+    }
+    
+    
 }
 
 ?>

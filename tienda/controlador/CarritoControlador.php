@@ -92,6 +92,39 @@ class CarritoControlador {
         echo json_encode($resultados);
         exit;
     }
+
+    public function showCarritoPreview($valores) {
+        $modelo = new Carrito();
+        $modelo->setEmail($valores[0]);
+        
+        $resultados = $modelo->showCarritoPreview();
+        header('Content-Type: application/json');
+        echo json_encode($resultados);
+        exit;
+    }
+
+    public function sumarCantidad($valores) {
+        $modelo = new Carrito();
+        $modelo->setEmail($valores[0]);
+        $modelo->setIdProducto($valores[1]);
+        
+        $resultados = $modelo->sumarCantidad();
+        header('Content-Type: application/json');
+        echo json_encode($resultados);
+        exit;
+    }
+
+    public function restarCantidad($valores) {
+        $modelo = new Carrito();
+        $modelo->setEmail($valores[0]);
+        $modelo->setIdProducto($valores[1]);
+        
+        $resultados = $modelo->restarCantidad();
+        header('Content-Type: application/json');
+        echo json_encode($resultados);
+        exit;
+    }
+
 }
 
 ?>

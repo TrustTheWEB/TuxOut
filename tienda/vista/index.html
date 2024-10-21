@@ -36,19 +36,17 @@
                 <i class="bi bi-search"></i>
               </button>
            </form>     
-           <button type="button" class="carrito btn-carrito ms-4 ms-lg-0" data-bs-toggle="modal" data-bs-target="#exampleModal">
+           <button type="button" class="carrito btn-carrito ms-4 ms-lg-2" data-bs-target="#carritoModal">
             <i class="bi bi-cart4"></i>
         </button> 
         </div>
       </div>
 
-
-
-  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal fade" id="carritoModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h4 class="modal-title fs-5" id="exampleModalLabel">Mi carrito</h4>
+          <h4 class="modal-title fs-5" id="carritoModalLabel">Mi carrito</h4>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <article class="modal-body">
@@ -69,7 +67,7 @@
     <!-- Barra de navegacion inferior con la capacidad de desplegar la barra lateral -->
     <nav class="navbar" id="subnav">
       <form class="container-fluid justify-content-start" id="subnav-form">
-        <button class="btn" id="botonMenu" type="button" onclick="toggleOffcanvas()">≡ Menú</button>
+        <button class="btn" id="botonMenu" type="button">≡ Menú</button>
         <a class="btn" id="vender" href="vender.html">Vender</a>
       </form>
     </nav>
@@ -88,6 +86,15 @@
         </div>
     </nav>
   </aside>
+
+  <div class="alerta-principal alert alert-primary alert-dismissible fade show" role="alert">
+    <strong class="alerta-principal-texto"></strong>
+    <button type="button" class="btn-close btn-close-principal" aria-label="Close"></button>
+  </div>
+  <div class="alerta-error alert alert-warning alert-dismissible fade show" role="alert">
+    <strong class="alerta-error-texto"></strong>
+    <button type="button" class="btn-close btn-close-error" aria-label="Close"></button>
+  </div>
 
   <main>
     <section id="carouselExampleIndicators" class="carousel slide">
@@ -131,10 +138,10 @@
   <p>&copy; 2024-2024 Trust the WEB Company</p>
 </footer>
 
-  <script src="js/jquery-3.7.1.min.js"></script>
-  <script src="js/imprimirProductosInicio.js"></script>
+  <script src="js/jquery-3.7.1.min.js" type="module"></script>
+  <script src="js/imprimirProductosInicio.js" type="module"></script>
   <script src="js/login.js" type="module"></script>
-  <script src="js/pagina.js"></script>
+  <script src="js/pagina.js" type="module"></script>
 
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
     integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"

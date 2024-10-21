@@ -1,10 +1,11 @@
-
+import Alerta from './Alerta.js';
+const alerta = new Alerta();
 
 $(".mostrarPassEditarUsuario").click(function() {
   mostrarContraseña("#contraseñaEditarUsuario")
 });
 
-//menu desplegable
+/* //menu desplegable
 
 function toggleOffcanvas() {
     var offcanvas = document.getElementById('offcanvasNavbar');
@@ -15,7 +16,7 @@ function toggleOffcanvas() {
   
   $('.usuario').click(function() {
     $('.contenidoUsuario').toggle();
-  })
+  }) */
 
 //ocultar contraseña
 
@@ -79,8 +80,42 @@ const imprimirCategoriasMenu = (resultado) => {
 
 $("#botonMenu").click(tomarCategorias);
 
-const mostrarProductos = () => {
 
+const tomarProductosCarrito = () => {
+  
+  let logueado = localStorage.getItem("logueado");
+  if(logueado == "true") {
+    const modal = new bootstrap.Modal(document.getElementById('carritoModal'));
+    modal.show();
+    let email = localStorage.getItem("email");
+    $.ajax({
+      url: 'http://localhost/TuxOut/tienda/core/Enrutador.php', 
+      method: 'POST', 
+      dataType: 'json', 
+      data: {accion: "showCarritoPreview", controlador: "CarritoControlador", valores: [email]},
+      success: function(response) {
+          if (response.error) {
+              console.error('Error:', response.error);
+          } else {
+              if(response) { 
+                mostrarProductosCarrito(response);
+              }
+          }
+      },
+      error: function(xhr, status, error) {
+          console.error('Error en la solicitud:', xhr, error, status);
+      }
+  });   
+  }else {
+    alerta.alertar("Debes crearte una cuenta");
+  }
+}
+
+const mostrarProductosCarrito = (productos) => {
+  $("#carrito-vista-previa").html("");
+  productos.forEach(producto => {
+    $("#carrito-vista-previa").append(`${producto['nombre']} - ${producto['precio']} - Cantidad: ${producto['cantidad']} <br>`)
+  });
 }
 
 const modificarCarrito = (email, idProducto, cantidad) => {
@@ -94,7 +129,7 @@ const modificarCarrito = (email, idProducto, cantidad) => {
             console.error('Error:', response.error);
         } else {
             if(response) { 
-              console.log("modificado");
+              alerta.confirmar("Producto agregado al carrito");
             }
         }
     },
@@ -115,7 +150,7 @@ const agregarCarrito = (email, idProducto) => {
             console.error('Error:', response.error);
         } else {
             if(response) { 
-              console.log("agregado");
+              alerta.confirmar("Producto agregado al carrito");
             }
         }
     },
@@ -138,7 +173,6 @@ const verificarCarrito = (idProducto, email) => {
             if(!response) {
                 agregarCarrito(email, idProducto)
               }else if (response) {
-                console.log(response)
                 modificarCarrito(email, idProducto, response)
               }
             }
@@ -156,11 +190,25 @@ const tomarProducto = (evento) => {
     let email = localStorage.getItem("email");
     verificarCarrito(idProducto, email);
   }else {
-    alert("debes crearte una cuenta")
+    alerta.alertar("Debes crearte una cuenta para añadir productos al carrito")
   }
 }
 
+function toggleOffcanvas() {
+  var offcanvas = document.getElementById('offcanvasNavbar');
+  var offcanvasInstance = new bootstrap.Offcanvas(offcanvas);
+
+  offcanvasInstance.toggle();
+}
+
+$('.usuario').click(function() {
+  $('.contenidoUsuario').toggle();
+})
+
+$("#botonMenu").click(toggleOffcanvas)
+$(".btn-close-error").click(alerta.ocultarError)
+$(".btn-close-principal").click(alerta.ocultarPrincipal)
 $(document).on('click', '.agregar-carrito', tomarProducto);
-$(".carrito").click(mostrarProductos);
+$(".carrito").click(tomarProductosCarrito);
 
 

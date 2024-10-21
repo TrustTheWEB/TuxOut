@@ -1,3 +1,6 @@
+import Alerta from './Alerta.js';
+const alerta = new Alerta();
+
 const tomarDatos = () => {
     tomarProductos();
 
@@ -179,7 +182,7 @@ const tomarProductoFavorito = (evento) => {
         }
         
     }else {
-        alert("Debes crearte una cuenta para agregar productos a favorito");
+        Alerta.alertar("Debes crearte una cuenta para agregar productos a favorito");
     }
     
 }

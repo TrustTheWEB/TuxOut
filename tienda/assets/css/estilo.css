@@ -191,18 +191,18 @@ body {
  
 }
 .contenidoUsuario a:hover, .contenidoUsuario button:hover {
-  background-color: #4ec3e0;
-  color: #16161f;
+  background-color: #3a3a4d;
+  color: #6edaf5;
 }
 
 .contenidoUsuario a:active, .contenidoUsuario button:active {
-  background-color: #4ec3e0;
-  color: #16161f;
+  background-color: #2a2a35;
+  color: #58cbe7;
 }
 
 .contenidoUsuario a:focus, .contenidoUsuario button:focus {
-  background-color: #4ec3e0;
-  color: #16161f;
+  background-color: #2a2a35;
+  color: #58cbe7;
 }
 #contenedor-bienvenida {
   display: none;
@@ -369,7 +369,7 @@ body {
   text-align: center;
 }
 
-#exampleModal{
+#carritoModal{
   margin-top:100px;
 }
 
@@ -478,8 +478,8 @@ body {
 
 /* CARRITO */
 
-.img-carrito {
-  width: 120px;
+/* .img-carrito {
+  width: 60px;
 }
 
 .titulo-carrito {
@@ -541,7 +541,83 @@ body {
 .subtotal-carrito-precio {
   font-size: 14px;
   font-weight: bold;
+} */
+
+.img-carrito {
+  width: 120px;
 }
+
+.botonera-carrito {
+  padding-bottom: 2px;
+}
+
+.boton-eliminar-carrito,
+.boton-eliminar-carrito:focus
+.boton-eliminar-carrito:active {
+  border: none;
+  background: none;
+  outline: none;
+}
+
+.boton-eliminar-carrito:hover {
+  color: #288096;
+}
+
+.bi-trash-fill {
+  font-size: 27px;
+}
+
+.boton-carrito {
+  display: inline;
+  padding: 10px 17px !important;
+}
+
+.boton-carrito-restar {
+  border: none;
+  background: #dddde2;
+  border-top-left-radius: 1rem;
+  border-bottom-left-radius: 1rem;
+}
+
+.boton-carrito-sumar {
+  border: none;
+  background: #dddde2;
+  border-top-right-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+}
+
+.boton-carrito-numero {
+  margin-bottom: 0 !important;
+}
+
+.boton-carrito-sumar:hover, .boton-carrito-restar:hover{
+  background: #6edaf5;
+}
+
+.titulo-carrito {
+  padding-left: 16px;
+  overflow: hidden;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.precio-viejo-carrito {
+  font-size: 16px;
+  text-decoration: line-through;
+}
+
+.precio-nuevo-carrito {
+  font-size: 24px;
+  line-height: 16px;
+  font-weight: bold;
+}
+
+.descuento-carrito {
+  font-size: 20px;
+  font-weight: bold;
+  color: rgb(10, 119, 95);
+}
+
 
 /* Usuario */
 
@@ -898,3 +974,11 @@ body {
   color: #f7f7ff !important;
   font-size: 20px;
 }
+
+.alert {
+  position: fixed;
+  top: 0;
+  display: none;
+}
+
+/* carrito nuevo */
