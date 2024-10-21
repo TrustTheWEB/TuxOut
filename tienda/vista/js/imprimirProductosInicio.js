@@ -6,9 +6,10 @@ const tomarDatos = () => {
 
     let logueado = localStorage.getItem("logueado");
     if(logueado == "true") {
-        tomarFavoritos(localStorage.getItem("email"));
+        setTimeout(() => {
+            tomarFavoritos(localStorage.getItem("email"));
+        }, 100);
     }
-    
 }
 
 const tomarProductos = () => {
@@ -172,17 +173,15 @@ const tomarProductoFavorito = (evento) => {
     let idProducto = $(evento.currentTarget).data('id-producto');
     let logueado = localStorage.getItem("logueado");
     let favorito = $(evento.currentTarget).data('favorito');
-
-    if(logueado) {
+    if(logueado == "true") {
         let email = localStorage.getItem("email");
         if(favorito) {
             eliminarFavorito(email, idProducto);
         }else {
             agregarFavorito(email, idProducto);   
         }
-        
     }else {
-        Alerta.alertar("Debes crearte una cuenta para agregar productos a favorito");
+        alerta.alertar("Debes crearte una cuenta para agregar productos a favorito");
     }
     
 }
