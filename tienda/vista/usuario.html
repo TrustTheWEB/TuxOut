@@ -96,54 +96,45 @@
     <button type="button" class="btn-close btn-close-error" aria-label="Close"></button>
   </div>
   
-  <main class="container">
+  <main class="container justify-content-center">
     
-    <section class="row mb-3">
+    <section class="row mb-3 justify-content-center text-center">
       <h1 class="my-3">Mis Datos</h1>
-      <article class="col-3 text-center">
-        <div class="d-flex justify-content-center">
-          <div class="position-relative">
-            <h4>Foto de Perfil</h4>
-            <img src="../assets/img/usuario.png" alt="foto de perfil" class="circle foto-perfil">
-            <button class="btn btn-guardar position-absolute bottom-0 end-0 p-2">
-              <img src="../assets/logo/editar.png" alt="editar" class="logo-editar">
-            </button>
-          </div>
-        </div>
-      </article>
-      <span class="separador col-1"></span>
-      <article class="col-8 pe-5">
+      <article class="col-12 col-lg-6 pe-5 justify-content-center text-start">
         <h4>Datos Personales</h4>
-        <form action="usuario.html">
+        <form>
           <label class="d-block form-label" for="emailUsuario">Email: </label>
-          <input class="d-block form-control mb-3 w-75" type="email" id="emailUsuario" disabled="true" value="example@gmail.com">
-
-          <label class="d-block form-label" for="nombreEditarUsuario">Nombre: </label>
-          <input class="d-block form-control mb-3 w-75" type="text" id="nombreEditarUsuario" value="Nombre">
-
-          <label class="d-block form-label" for="apellidoEditarUsuario">Apellido: </label>
-          <input class="d-block form-control mb-3 w-75" type="text" id="apellidoEditarUsuario" value="Apellido">
+          <input class="d-block form-control mb-3" type="email" id="emailUsuario" disabled="true">
 
           <label class="d-block form-label" for="usuarioEditarUsuario">Nombre de Usuario: </label>
-          <input class="d-block form-control mb-3 w-75" type="text" id="usuarioEditarUsuario" value="UsuarioNickname">
+          <input class="d-block form-control mb-3" type="text" id="usuarioEditarUsuario" placeholder="Usuario">
+
+          <label class="d-block form-label" for="nombreEditarUsuario">Nombre: </label>
+          <input class="d-block form-control mb-3" type="text" id="nombreEditarUsuario" placeholder="Nombre">
+
+          <label class="d-block form-label" for="apellidoEditarUsuario">Apellido: </label>
+          <input class="d-block form-control mb-3" type="text" id="apellidoEditarUsuario" placeholder="Apellido">
 
           <label class="d-block form-label" for="telefonoEditarUsuario">Teléfono: </label>
-          <input class="d-block form-control mb-3 w-75" type="text" id="telefonoEditarUsuario" value="099555666">
+          <input class="d-block form-control mb-3" type="text" id="telefonoEditarUsuario" placeholder="Número de teléfono">
 
-          <label class="d-block form-label" for="contraseñaEditarUsuario">Contraseña: </label>
-          <div class="input-group w-75 mb-3">
-            <input class="d-block form-control" type="password" id="contraseñaEditarUsuario" value="password">
-            <button class="btn boton-mostrar mostrarPassEditarUsuario" type="button"><img src="../assets/logo/mostrar.svg" alt="mostrar"></button>
-          </div>
+          <label class="d-block form-label" for="ciEditarUsuario">CI: </label>
+          <input class="d-block form-control mb-3" type="text" id="ciEditarUsuario" placeholder="Cédula de Identidad">
 
           <label class="d-block form-label" for="fechaEditarUsuario">Fecha de Nacimiento: </label>
-          <input class="d-block form-control mb-3 w-75" type="Date" id="fechaEditarUsuario" value="2020-08-01">
+          <input class="d-block form-control mb-3" type="Date" id="fechaEditarUsuario">
 
-          <button class="btn btn-guardar w-75" id="btnGuardarCambios" type="button">Guardar</button>
+          <button class="btn btn-guardar d-block w-100" id="btnGuardarCambios" type="button">Guardar</button>
         </form>
       </article>
     </section>
   </main>
+
+   <!-- <label class="d-block form-label" for="contraseñaEditarUsuario">Contraseña: </label>
+          <div class="input-group mb-3">
+            <input class="d-block form-control" type="password" id="contraseñaEditarUsuario" value="password">
+            <button class="btn boton-mostrar mostrarPassEditarUsuario" type="button"><img src="../assets/logo/mostrar.svg" alt="mostrar"></button>
+          </div> -->
 
   <footer class="pie">
     <a href="condiciones.html">Términos y condiciones</a> |

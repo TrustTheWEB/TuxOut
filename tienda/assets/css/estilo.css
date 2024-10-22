@@ -930,4 +930,34 @@ body {
   display: none;
 }
 
-/* carrito nuevo */
+.categorias-toggle {
+  display: block;
+  width: 100%;
+  background-color: inherit;
+  border: none;
+  padding: 10px 15px;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.categorias-toggle:hover {
+  text-decoration: none;
+  background-color: #f8f9fa;
+}
+
+/* Estilo para la lista interna */
+.categorias-list {
+  padding-left: 20px;
+  list-style-type: none;
+}
+
+/* Estilo para los items dentro de la categoría */
+.categorias-list .nav-item {
+  padding: 5px 0;
+}
+
+.categorias-list .nav-link {
+  padding: 5px 15px;
+  color: inherit;
+}

@@ -63,7 +63,7 @@ const registrarUsuario = (email, usuario, nombre, apellido, contra) => {
                     }else if (response == true) {
                         localStorage.setItem("logueado", true);
                         localStorage.setItem("email", email);
-                        localStorage.setItem("nombre", nombre)
+                        localStorage.setItem("usuario", usuario)
                         window.location.href = 'index.html'; 
                     }else {
                         alerta.alertar("Registro fallido")
@@ -91,7 +91,7 @@ const loginUsuario = (email, contra) => {
                 if(response) { 
                     localStorage.setItem("logueado", true);
                     localStorage.setItem("email", email);
-                    localStorage.setItem("nombre", response)
+                    localStorage.setItem("usuario", response)
                     window.location.href = 'index.html';
                 }else {
                     alerta.alertar("Correo o contraseña incorrectos.")
@@ -132,10 +132,9 @@ const tomarDatosLoginUsuario = () => {
 const cargarPanelUsuario = (email) => {
     $(".barra-header").after(
         `
-    <span class="mx-4 nombre-usuario-header">${localStorage.getItem("nombre")}</span>
     <div class="nav-item dropdown ms-auto">
-            <button class="btn btn-secondary dropdown-toggle usuario mt-3 mt-lg-0" type="button" data-bs-toggle="dropdown" aria-expanded="false"></button>
-            <ul class="dropdown-menu dropdown-menu dropdown-menu-lg-end contenidoUsuario">
+            <button class="btn btn-secondary dropdown-toggle usuario mt-3 mb-2 mb-lg-0 mt-lg-0" type="button" data-bs-toggle="dropdown" aria-expanded="false"></button>
+            <ul class="dropdown-menu dropdown-menu contenidoUsuario">
               <li class="p-1"><a class="dropdown-item" href="usuario.html">Mis datos</a></li>
               <li class="p-1"><a class="dropdown-item" href="direcciones.html">Direcciones</a></li>
               <li class="p-1"><a class="dropdown-item" href="compras.html">Mis compras</a></li>
@@ -144,6 +143,7 @@ const cargarPanelUsuario = (email) => {
               <li class="p-1"><button class="dropdown-item" id="cerrar-sesion">Cerrar sesión</button></li>
             </ul>
     </div>
+    <span class="mx-4 d-block d-lg-inline nombre-usuario-header">${localStorage.getItem("usuario")}</span>
     `
     )
     
@@ -212,7 +212,7 @@ const tomarUsuarioLogueado = () => {
 const cerrarSesion = () => {
     localStorage.setItem("logueado", false);
     localStorage.setItem("email", undefined);
-    localStorage.setItem("nombre", undefined);
+    localStorage.setItem("usuario", undefined);
     window.location.href = 'index.html';
 }
 

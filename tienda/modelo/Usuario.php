@@ -258,16 +258,36 @@ class Usuario {
 
     public function login() {
         try {
-            $query = "SELECT nombre, contraseña FROM " . $this->tabla . " WHERE email = ?";
+            $query = "SELECT usuario, contraseña FROM " . $this->tabla . " WHERE email = ?";
             $stmt = $this->conn->prepare($query);
             $stmt->bindValue(1, $this->email);
             $stmt->execute();
             $resultado = $stmt->fetch(PDO::FETCH_ASSOC);
         
             if ($resultado && password_verify($this->contraseña, $resultado['contraseña'])) {
-                return $resultado['nombre']; 
+                return $resultado['usuario']; 
             }
             return false;
+        } catch (PDOException $e) {
+            return "Error en la consulta: " . $e->getMessage();
+        }
+    }
+
+    public function updateSinContra() {
+        try {
+            $query = "UPDATE " . $this->tabla . " SET usuario=?, nombre=?, apellido=?, telefono=?, ci=?, fechaNac=? WHERE email=?";
+
+            $stmt = $this->conn->prepare($query);
+            
+            $stmt->bindValue(1, $this->usuario, PDO::PARAM_STR);
+            $stmt->bindValue(2, $this->nombre, PDO::PARAM_STR);
+            $stmt->bindValue(3, $this->apellido, PDO::PARAM_STR);
+            $stmt->bindValue(4, $this->telefono, PDO::PARAM_STR);
+            $stmt->bindValue(5, $this->ci, PDO::PARAM_STR);
+            $stmt->bindValue(6, $this->fechaNac, PDO::PARAM_STR);
+            $stmt->bindValue(7, $this->email, PDO::PARAM_STR);
+
+            return $stmt->execute();
         } catch (PDOException $e) {
             return "Error en la consulta: " . $e->getMessage();
         }

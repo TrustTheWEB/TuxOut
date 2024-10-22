@@ -72,6 +72,26 @@ class Validaciones {
         return true;
     };
 
+    validarTelefonoNull = (telefono) => {
+        
+        if(!telefono) {
+            return true;
+        }
+
+        const caracteresPermitidosTelefono = "0123456789-+";
+        if (telefono.length > 20 || telefono.length < 8) {
+            return false;
+        }
+
+        for (let i = 0; i < telefono.length; i++) {
+            if (!caracteresPermitidosTelefono.includes(telefono[i])) {
+                return false;
+            }
+        }
+
+        return true;
+    };
+
     validarEmail = (email) => {
         if (email == null || email == undefined || email == "") {
             return false;
@@ -118,6 +138,11 @@ class Validaciones {
     };
 
     validarFecha = (fecha) => {
+
+        if(!fecha) {
+            return true;
+        }
+
         const caracteresPermitidosFecha = "0123456789-";
 
         let partes = fecha.split('-');
@@ -137,6 +162,63 @@ class Validaciones {
         let bisiesto = false;
 
         if (año > 2999 || año < 1900) {
+            return false;
+        }
+
+        if ((año % 4 == 0 && año % 100 != 0) || año % 400 == 0) {
+            bisiesto = true;
+        }
+
+        if (mes > 12 || mes < 0) {
+            return false;
+        }
+
+        if (mes == 2 && bisiesto) {
+            if (dia > 30 || dia < 0) {
+                return false;
+            }
+        } else if (mes == 2 && !bisiesto) {
+            if (dia > 29 || dia < 0) {
+                return false;
+            }
+        } else if (mes == 1 || mes == 3 || mes == 5 || mes == 7 || mes == 8 || mes == 10 || mes == 12) {
+            if (dia > 31 || dia < 0) {
+                return false;
+            }
+        } else {
+            if (dia > 30 || dia < 0) {
+                return false;
+            }
+        }
+
+        return true;
+    };
+
+    validarFechaNac = (fecha) => {
+
+        if(!fecha) {
+            return true;
+        }
+
+        const caracteresPermitidosFecha = "0123456789-";
+
+        let partes = fecha.split('-');
+        if (partes.length != 3) {
+            return false;
+        }
+
+        for (let i = 0; i < fecha.length; i++) {
+            if (!caracteresPermitidosFecha.includes(fecha[i])) {
+                return false;
+            }
+        }
+
+        let año = Number(partes[0]);
+        let mes = Number(partes[1]);
+        let dia = Number(partes[2]);
+        let bisiesto = false;
+
+        if (año > 2023 || año < 1900) {
             return false;
         }
 
@@ -259,18 +341,6 @@ class Validaciones {
 
         for (let i = 0; i < dir.length; i++) {
             if (!caracteresPermitidosDir.includes(dir[i])) {
-                return false;
-            }
-        }
-
-        return true;
-    };
-
-    validarCi = (ci) => {
-        const caracteresPermitidosCi = "0123456789";
-
-        for (let i = 0; i < ci.length; i++) {
-            if (!caracteresPermitidosCi.includes(ci[i])) {
                 return false;
             }
         }
@@ -519,6 +589,45 @@ class Validaciones {
             return true;
         }else {
             return false;
+        }
+      };
+
+      validation_digit = (ci) => {
+        var a = 0;
+        var i = 0;
+        if(ci.length <= 6){
+          for(i = ci.length; i < 7; i++){
+            ci = '0' + ci;
+          }
+        }
+        for(i = 0; i < 7; i++){
+          a += (parseInt("2987634"[i]) * parseInt(ci[i])) % 10;
+        }
+        if(a%10 === 0){
+          return 0;
+        }else{
+          return 10 - a % 10;
+        }
+      };
+      
+    validate_ci = (ci) => {
+        ci = this.clean_ci(ci);
+        var dig = ci[ci.length - 1];
+        ci = ci.replace(/[0-9]$/, '');
+        return (dig == this.validation_digit(ci));
+      };
+
+      
+      clean_ci = (ci) => {
+        return ci.replace(/\D/g, '');
+      };
+
+      validarCiNull = (ci) => {
+        if(!ci) {
+            return true;
+        }else {
+            let valido = this.validate_ci(ci);
+            return valido;
         }
       };
 

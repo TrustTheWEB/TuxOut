@@ -5,19 +5,6 @@ $(".mostrarPassEditarUsuario").click(function() {
   mostrarContraseña("#contraseñaEditarUsuario")
 });
 
-/* //menu desplegable
-
-function toggleOffcanvas() {
-    var offcanvas = document.getElementById('offcanvasNavbar');
-    var offcanvasInstance = new bootstrap.Offcanvas(offcanvas);
-
-    offcanvasInstance.toggle();
-  }
-  
-  $('.usuario').click(function() {
-    $('.contenidoUsuario').toggle();
-  }) */
-
 //ocultar contraseña
 
 function mostrarContraseña(id) {

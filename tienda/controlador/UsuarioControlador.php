@@ -134,6 +134,22 @@ class UsuarioControlador {
         echo json_encode($resultados);
         exit;
     }
+
+    public function updateSinContra($valores) {
+        $modelo = new Usuario();
+        $modelo->setEmail($valores[0]);
+        $modelo->setUsuario($valores[1]);
+        $modelo->setNombre($valores[2]);
+        $modelo->setApellido($valores[3]);
+        $modelo->setTelefono($valores[4]);
+        $modelo->setCI($valores[5]);
+        $modelo->setFechaNac($valores[6]);
+
+        $resultados = $modelo->updateSinContra();
+        header('Content-Type: application/json');
+        echo json_encode($resultados);
+        exit;
+    }
 }
 
 ?>
