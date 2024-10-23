@@ -103,6 +103,25 @@ class Categoria {
             return "Error en la consulta: " . $e->getMessage();
         }
     }
+
+    public function busquedaCategoria() {
+        try {
+            $query = "SELECT v.idProducto, v.nombre, v.precio, v.descuento FROM vistaproducto v 
+                        JOIN categoriza z 
+                        ON z.idProducto = v.idProducto
+                        JOIN categoria c 
+                        ON c.idCategoria = z.idCategoria
+                        WHERE c.nombre = ?;";
+            $stmt = $this->conn->prepare($query);
+            $stmt->bindValue(1, $this->nombre, PDO::PARAM_INT);
+            if($stmt->execute()) {
+                return $stmt->fetchAll(PDO::FETCH_ASSOC);
+            }
+        } catch (PDOException $e) {
+                return "Error en la consulta: " . $e->getMessage();
+        }
+
+    }
 }
 
 ?>

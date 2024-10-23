@@ -57,7 +57,7 @@ const imprimirCategoriasMenu = (resultado) => {
       $("#barraMenu").append(`
           
           <li class="nav-item">
-            <a class="nav-link categoriaAside" href="productos.html?categoria=${categoria}">${categoria}</a>
+            <a class="nav-link categoriaAside" href="productos.html?tipo=categoria&categoria=${categoria}">${categoria}</a>
           </li>
 
           `)

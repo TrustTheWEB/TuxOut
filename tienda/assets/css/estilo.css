@@ -852,20 +852,20 @@ body {
 }
 
 .a-img-top {
-  width: 200px;
-  height: 200px;
+  width: 180px;
+  height: 180px;
   overflow: hidden;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.card-img-top {
+/* .card-img-top {
     width: auto;
     height: 100%;
     object-fit: cover;
     margin-bottom: 4px;
-  }
+  } */
   
   
 .img-abrir {
@@ -960,4 +960,12 @@ body {
 .categorias-list .nav-link {
   padding: 5px 15px;
   color: inherit;
+}
+
+#contenedorProductosInicio {
+  width: 120%;
+}
+
+.card-producto {
+  width: 200px !important;
 }

@@ -69,6 +69,15 @@ class CategoriaControlador {
         echo json_encode($resultados);
         exit;
     }
+
+    public function busquedaCategoria($valores) {
+        $modelo = new Categoria();
+        $modelo->setNombre($valores[0]);
+        $resultados = $modelo->busquedaCategoria();
+        header('Content-Type: application/json');
+        echo json_encode($resultados);
+        exit;
+    }
 }
 
 ?>

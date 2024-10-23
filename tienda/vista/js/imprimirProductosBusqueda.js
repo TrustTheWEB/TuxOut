@@ -1,18 +1,31 @@
-import Alerta from './Alerta.js';
-const alerta = new Alerta();
+const tomarBusqueda = () => {
+    let urlParams = new URLSearchParams(window.location.search);
+    let tipo = urlParams.get('tipo');
 
-const tomarProductos = () => {
+    console.log(tipo)
+
+    switch(tipo) {
+        case "categoria":
+            tomarProdutosCategoria(urlParams.get('categoria'))
+        break;
+        default:
+            imprimirErrorBusqueda();
+    }
+}
+
+const tomarProdutosCategoria = (categoria) => {
     $.ajax({
         url: 'http://localhost/TuxOut/tienda/core/Enrutador.php', 
         method: 'POST', 
         dataType: 'json', 
-        data: {accion: "indexInicio", controlador: "ProductoControlador", valores: null},
+        data: {accion: "busquedaCategoria", controlador: "CategoriaControlador", valores: [categoria]},
         success: function(response) {
             if (response.error) {
                 console.error('Error:', response.error);
             } else {
                 if(response) {
-                    imprimirProductos(response);
+                    imprimirResultados(response);
+                    
                 }else {
                     console.error(response);
                 } 
@@ -24,8 +37,7 @@ const tomarProductos = () => {
     });
 }
 
-const imprimirProductos = (resultado) => {
-
+const imprimirResultados = (resultado) => {
     if (Array.isArray(resultado)) {
         resultado.forEach(item => {
             
@@ -37,10 +49,9 @@ const imprimirProductos = (resultado) => {
             precioNuevo = "$" + precioNuevo;
             descuento = descuento == 0 ? "‎" : descuento + "% OFF";
 
-            $("#contenedorProductosInicio").append(`
+            $("#contenedorProductosBusqueda").append(`
                 
-            <div class="col-6 col-md-4 col-lg-3 col-xl-2 m-xl-2 card-producto">
-            <article class="card h-100 p-2">
+            <article class="col-5 col-lg-3 card m-2 py-2 d-inline-flex">
             <div class="contenedor-img-top">    
                 <a href="abrirProducto.html?idProducto=${item['idProducto']}" class="a-img-top">
                     <img src="../assets/img_productos/${item['idProducto']}_1.jpg" class="card-img-top" alt="${item['nombre']}" onerror="this.onerror=null;this.src='../assets/img/default.png';">
@@ -57,10 +68,9 @@ const imprimirProductos = (resultado) => {
                     <i class="bi bi-heart logo-favorito" id="heart${item["idProducto"]}"></i>
                 </button>
             </article>
-            <div>
             `)
     });
     }
 }
 
-$(document).ready(tomarProductos);
+$(document).ready(tomarBusqueda);
