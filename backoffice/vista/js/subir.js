@@ -1,67 +1,16 @@
 import Validaciones from './Validaciones.js';
 const validaciones = new Validaciones();
 
-const validarImagen = (img) => {
-    const extensionesValidas = ['jpg', 'jpeg', 'png'];
-    const sizeMax = 4 * 1024 * 1024; 
+const tomarImagenes = (response) => {
+    alert(response)
 
-        const fileExtension = img.name.split('.').pop().toLowerCase();
-        const sizeImg = img.size;
+    let imagenes
 
-        if (!extensionesValidas.includes(fileExtension)) {
-            alert(`La extensión de la imagen ${img.name} no es válida, solo se permiten jpg, jpeg y png`);
-            return false;
-        }else if(sizeImg > sizeMax) {
-            alert(`La imagen ${img.name} es muy pesada, el máximo son 4MB`)
-            return false;
-        }
-
-        return true;
-}
-
-const subirImagenes = (id) => {
-    let cantImg = $("#agregarImagen").data('cant');
-    if(cantImg > 5) {
-        cantImg = 5;
+    for(let i = 1; i <= 5; i++) {
+        imagenes = $(`#inputImagen${i}`).val();
     }
 
-    for(let i = 1; i <= cantImg; i++) {
-        let formData = new FormData();
-        let img = $(`#inputImagen${i}`)[0].files[0];
-        let imagenValida = validarImagen(img);
-
-        if(imagenValida) {
-            formData.append('file', img);
-            formData.append('idProducto', id);
-            formData.append('numeroImagen', i);
-    
-            $.ajax({
-                url: 'http://localhost/TuxOut/backoffice/core/Subir.php',
-                type: 'POST',
-                data: formData,
-                contentType: false,
-                processData: false,
-                error: function() {
-                    console.log('Error al subir el archivo');
-                }
-            });
-        }
-    }
-}
-
-const eliminarImagenes = (id) => {
-    $.ajax({
-        url: 'http://localhost/TuxOut/backoffice/core/Eliminar.php',
-        type: 'POST',
-        dataType: 'json',
-        data: { idProducto: id },
-        success: function(response) {
-            console.log(response);
-        },
-        error: function() {
-            console.log('Error al eliminar el archivo');
-        }
-    });
+    console.log(imagenes)
 }
 
 const storeTabla = (tabla, valores) => {
@@ -78,9 +27,11 @@ const storeTabla = (tabla, valores) => {
             } else {
                 if(response) {
                     if(tabla === "producto") {
-                        subirImagenes(response)
+                        tomarImagenes(response)
+                    }else {
+                        
+                        window.location.href = 'index.html';
                     }
-                    window.location.href = 'index.html';
                 }else {
                     console.error(response);
                 } 
@@ -646,6 +597,12 @@ const tomarDatosActualizar = {
     },
 
     tomarCategoriza: () => {
+        let idProducto = $("#inputIdProducto").val();
+        let idCategoria = $("#inputIdCategoria").val();
+        validacionTablasActualizar.validarCategoriza(idProducto, idCategoria);
+    },
+
+    tomarComenta: () => {
         let idProducto = $("#inputIdProducto").val();
         let idCategoria = $("#inputIdCategoria").val();
         validacionTablasActualizar.validarCategoriza(idProducto, idCategoria);

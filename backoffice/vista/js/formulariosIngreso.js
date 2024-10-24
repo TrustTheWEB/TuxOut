@@ -63,6 +63,20 @@ const formularios = {
         );
     },
 
+    imprimirFormularioCarrito: () => {
+        $("#titulo-formulario-ingreso").append("carrito");
+        $("#formulario-ingreso").append(
+            `
+            <label for="inputEmail">Email:</label>
+            <input type="email" id="inputEmail" class="form-control inputIngresar">
+            <label for="inputIdProducto">idProducto:</label>
+            <input id="inputIdProducto" class="form-control inputIngresar">
+            <label for="inputCantidad">Cantidad:</label>
+            <input type="number" id="inputCantidad" class="form-control inputIngresar">
+            `
+        );
+    },
+
     imprimirFormularioCategoria: () => {
         $("#titulo-formulario-ingreso").append("categoría");
         $("#formulario-ingreso").append(
@@ -81,6 +95,22 @@ const formularios = {
             <input id="inputIdProducto" class="form-control inputIngresar">
             <label for="inputIdCategoria">idCategoria:</label>
             <input id="inputIdCategoria" class="form-control inputIngresar">
+            `
+        );
+    },
+
+    imprimirFormularioComenta: () => {
+        $("#titulo-formulario-ingreso").append("comenta");
+        $("#formulario-ingreso").append(
+            `
+            <label for="inputEmail">Email:</label>
+            <input type="email" id="inputEmail" class="form-control inputIngresar">
+            <label for="inputIdProducto">idProducto:</label>
+            <input id="inputIdProducto" class="form-control inputIngresar">
+            <label for="inputCalificacion">Calificación:</label>
+            <input type="number" id="inputCalificacion" class="form-control inputIngresar">
+            <label for="inputComentario">Comentario:</label>
+            <input type="text" id="inputComentario" class="form-control inputIngresar">
             `
         );
     },
