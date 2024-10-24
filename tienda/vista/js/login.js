@@ -1,4 +1,4 @@
-import Alerta from './alerta.js';
+import Alerta from './Alerta.js';
 const alerta = new Alerta();
 
 import Validaciones from './Validaciones.js';
