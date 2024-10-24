@@ -167,7 +167,7 @@ class Carrito {
         try {
             $query = "
                 UPDATE " . $this->tabla . " c
-                JOIN Producto p ON c.idProducto = p.idProducto
+                JOIN producto p ON c.idProducto = p.idProducto
                 SET c.cantidad = 
                     CASE 
                         WHEN c.cantidad + 1 > p.stock THEN p.stock
