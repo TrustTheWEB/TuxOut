@@ -19,6 +19,8 @@ SET time_zone = "+00:00";
 
 --
 -- Base de datos: `tuxout_backoffice`
+
+CREATE DATABASE IF NOT EXISTS tuxout_backoffice;
 --
 
 -- --------------------------------------------------------
