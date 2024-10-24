@@ -1,3 +1,5 @@
+//
+
 class Validaciones {
 
     validarNombreUsuario = (nombre) => {
