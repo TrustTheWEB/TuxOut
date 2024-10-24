@@ -1,4 +1,4 @@
-import Alerta from './Alerta.js';
+import Alerta from './alerta.js';
 const alerta = new Alerta();
 
 $(".mostrarPassEditarUsuario").click(function() {

@@ -1,7 +1,7 @@
-import Alerta from './Alerta.js';
+import Alerta from './alerta.js';
 const alerta = new Alerta();
 
-import Validaciones from './Validaciones.js';
+import Validaciones from './validaciones.js';
 const validaciones = new Validaciones();
 
 const tomarDatosRegistroUsuario = () => {
