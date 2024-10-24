@@ -260,7 +260,7 @@ class Producto {
 
     public function indexInicio() {
         try {
-            $consulta = $this->conn->prepare("SELECT * FROM vistaProducto 
+            $consulta = $this->conn->prepare("SELECT * FROM vistaproducto 
                 ORDER BY (descuento * 100 + cantidadVendida * 10 + promedioCalificacion * 5 + RAND()) DESC
                 LIMIT 20;");
             $consulta->execute();
@@ -274,7 +274,7 @@ class Producto {
 
     public function showAbrir() {
         try {
-            $consulta = $this->conn->prepare("SELECT * FROM vistaProducto WHERE idProducto = ?;");
+            $consulta = $this->conn->prepare("SELECT * FROM vistaproducto WHERE idProducto = ?;");
             $consulta->bindValue(1, $this->idProducto, PDO::PARAM_INT);
             $consulta->execute();
             $resultados = $consulta->fetchAll(PDO::FETCH_ASSOC);

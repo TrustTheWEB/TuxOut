@@ -151,7 +151,7 @@ class Carrito {
 
     public function showCarritoPreview() {
         try {
-            $query = "SELECT idProducto, nombre, precio, descuento, cantidad FROM vistaCarritoPreview WHERE email = ?";
+            $query = "SELECT idProducto, nombre, precio, descuento, cantidad FROM vistacarritopreview WHERE email = ?";
             $stmt = $this->conn->prepare($query);
             $stmt->bindValue(1, $this->email);
             $stmt->execute();
