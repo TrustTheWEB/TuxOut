@@ -969,3 +969,12 @@ body {
 .card-producto {
   width: 200px !important;
 }
+
+#tituloBusqueda {
+  font-size: 20px;
+}
+
+.ordenar-por {
+  margin-top: 7px;
+  font-size: 15px;
+}

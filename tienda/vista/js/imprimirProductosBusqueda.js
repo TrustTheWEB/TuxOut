@@ -1,30 +1,36 @@
 const tomarBusqueda = () => {
     let urlParams = new URLSearchParams(window.location.search);
     let tipo = urlParams.get('tipo');
+    let filtro = $("#selectBusqueda").val();
 
-    console.log(tipo)
+    if(filtro != "populares" && filtro != "menorPrecio" && filtro != "mayorPrecio" && filtro != "calificados") {
+        filtro = "populares"
+    }
 
     switch(tipo) {
         case "categoria":
-            tomarProdutosCategoria(urlParams.get('categoria'))
-        break;
+            tomarProdutosCategoria(urlParams.get('categoria'), filtro)
+            break;
+        case "barra":
+            tomarProdutosBusqueda(urlParams.get('busqueda'), filtro);
+            break;
         default:
             imprimirErrorBusqueda();
     }
 }
 
-const tomarProdutosCategoria = (categoria) => {
+const tomarProdutosBusqueda = (busqueda, filtro) => {
     $.ajax({
         url: 'http://localhost/TuxOut/tienda/core/Enrutador.php', 
         method: 'POST', 
         dataType: 'json', 
-        data: {accion: "busquedaCategoria", controlador: "CategoriaControlador", valores: [categoria]},
+        data: {accion: "busquedaProducto", controlador: "ProductoControlador", valores: [busqueda, filtro]},
         success: function(response) {
             if (response.error) {
                 console.error('Error:', response.error);
             } else {
                 if(response) {
-                    imprimirResultados(response);
+                    imprimirResultados(response, busqueda);
                     
                 }else {
                     console.error(response);
@@ -37,7 +43,32 @@ const tomarProdutosCategoria = (categoria) => {
     });
 }
 
-const imprimirResultados = (resultado) => {
+const tomarProdutosCategoria = (categoria, filtro) => {
+    $.ajax({
+        url: 'http://localhost/TuxOut/tienda/core/Enrutador.php', 
+        method: 'POST', 
+        dataType: 'json', 
+        data: {accion: "busquedaCategoria", controlador: "CategoriaControlador", valores: [categoria, filtro]},
+        success: function(response) {
+            if (response.error) {
+                console.error('Error:', response.error);
+            } else {
+                if(response) {
+                    imprimirResultados(response, categoria);
+                }else {
+                    console.error(response);
+                } 
+            }
+        },
+        error: function(xhr, status, error) {
+            console.error('Error en la solicitud:', xhr, error, status);
+        }
+    });
+}
+
+const imprimirResultados = (resultado, busqueda) => {
+    $("#tituloBusqueda").html(`Resultados para: ${busqueda}`);
+    $("#contenedorProductosBusqueda").html("");
     if (Array.isArray(resultado)) {
         resultado.forEach(item => {
             
@@ -48,10 +79,10 @@ const imprimirResultados = (resultado) => {
             precio = descuento == 0 ? "" : "$" + precio;
             precioNuevo = "$" + precioNuevo;
             descuento = descuento == 0 ? "‎" : descuento + "% OFF";
-
             $("#contenedorProductosBusqueda").append(`
                 
-            <article class="col-5 col-lg-3 card m-2 py-2 d-inline-flex">
+            <div class="col-6 col-md-4 col-lg-3 col-xl-3 m-xl-2 card-producto">
+            <article class="card h-100 p-2">
             <div class="contenedor-img-top">    
                 <a href="abrirProducto.html?idProducto=${item['idProducto']}" class="a-img-top">
                     <img src="../assets/img_productos/${item['idProducto']}_1.jpg" class="card-img-top" alt="${item['nombre']}" onerror="this.onerror=null;this.src='../assets/img/default.png';">
@@ -68,9 +99,11 @@ const imprimirResultados = (resultado) => {
                     <i class="bi bi-heart logo-favorito" id="heart${item["idProducto"]}"></i>
                 </button>
             </article>
+            <div>
             `)
     });
     }
 }
 
 $(document).ready(tomarBusqueda);
+$("#selectBusqueda").change(tomarBusqueda);

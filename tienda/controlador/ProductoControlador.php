@@ -132,6 +132,16 @@ class ProductoControlador {
         echo json_encode($resultados);
         exit;
     }
+
+    public function busquedaProducto($valores) {
+        $modelo = new Producto();
+        $modelo->setBusqueda($valores[0]);
+        $modelo->setFiltro($valores[1]);
+        $resultados = $modelo->busquedaProducto();
+        header('Content-Type: application/json');
+        echo json_encode($resultados);
+        exit;
+    }
 }
 
 ?>

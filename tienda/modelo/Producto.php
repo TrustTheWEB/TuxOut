@@ -16,6 +16,8 @@ class Producto {
     private $estado;
     private $marca;
     private $oculto;
+    private $busqueda;
+    private $filtro;
 
     public function __construct() {
         $this->conn = Conexion::getInstance()->getDatabaseInstance();
@@ -100,6 +102,24 @@ class Producto {
 
     public function setOculto($oculto) {
         $this->oculto = $oculto;
+    }
+
+    //busqueda
+    public function getBusqueda() {
+        return $this->busqueda;
+    }
+
+    public function setBusqueda($busqueda) {
+        $this->busqueda = $busqueda;
+    }
+
+    //filtro
+    public function getFiltro() {
+        return $this->filtro;
+    }
+
+    public function setFiltro($filtro) {
+        $this->filtro = $filtro;
     }
 
     //metodos principales
@@ -256,6 +276,52 @@ class Producto {
         try {
             $consulta = $this->conn->prepare("SELECT * FROM vistaProducto WHERE idProducto = ?;");
             $consulta->bindValue(1, $this->idProducto, PDO::PARAM_INT);
+            $consulta->execute();
+            $resultados = $consulta->fetchAll(PDO::FETCH_ASSOC);
+
+            return $resultados;
+        } catch (PDOException $e) {
+            return "Error en la consulta: " . $e->getMessage();
+        }
+    }
+
+    public function busquedaProducto() {
+
+        switch($this->filtro) {
+            case "populares":
+                $filtro = "cantidadVendida DESC";
+                break;
+            case "menorPrecio":
+                $filtro = "(p.precio - (p.precio * descuento / 100))";
+                break;
+            case "mayorPrecio":
+                $filtro = "(p.precio - (p.precio * descuento / 100)) DESC";
+                break;
+            case "calificados":
+                $filtro = "promedioCalificacion";
+                break;
+            default:
+                $filtro = "cantidadVendida DESC";
+                break;
+        }
+
+        try {
+            $consulta = $this->conn->prepare("SELECT v.* FROM vistaproducto v 
+                JOIN producto p
+                ON p.idProducto = v.idProducto
+                LEFT JOIN categoriza z
+                ON z.idProducto = p.idProducto
+                LEFT JOIN categoria c
+                ON c.idCategoria = z.idCategoria 
+                WHERE p.nombre LIKE ? 
+                OR p.descripcion LIKE ? 
+                OR p.marca LIKE ? 
+                OR c.nombre LIKE ?
+                ORDER BY " . $filtro);
+            $consulta->bindValue(1, "%{$this->busqueda}%", PDO::PARAM_STR);
+            $consulta->bindValue(2, "%{$this->busqueda}%", PDO::PARAM_STR);
+            $consulta->bindValue(3, "%{$this->busqueda}%", PDO::PARAM_STR);
+            $consulta->bindValue(4, "%{$this->busqueda}%", PDO::PARAM_STR);
             $consulta->execute();
             $resultados = $consulta->fetchAll(PDO::FETCH_ASSOC);
 

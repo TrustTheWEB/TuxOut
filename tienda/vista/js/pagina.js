@@ -170,6 +170,14 @@ const verificarCarrito = (idProducto, email) => {
 });   
 }
 
+const tomarDatosBarra = () => {
+  let busqueda = $(".inputBuscarPrincipal").val();
+
+  if(busqueda) {
+    window.location.href = `productos.html?tipo=barra&busqueda=${busqueda}`;
+  }
+}
+
 const tomarProducto = (evento) => {
   let logueado = localStorage.getItem("logueado");
   if(logueado == "true") {
@@ -197,5 +205,5 @@ $(".btn-close-error").click(alerta.ocultarError)
 $(".btn-close-principal").click(alerta.ocultarPrincipal)
 $(document).on('click', '.agregar-carrito', tomarProducto);
 $(".carrito").click(tomarProductosCarrito);
-
+$("#botonBuscarPrincipal").click(tomarDatosBarra)
 
