@@ -20,9 +20,9 @@ class UsuarioControlador {
         $modelo->setNombre($valores[2]);
         $modelo->setApellido($valores[3]);
         $modelo->setTelefono($valores[4]);
-        $modelo->setContraseña($valores[5]);
-        $modelo->setFechaNac($valores[6]);
-        $modelo->setCI($valores[7]);
+        $modelo->setFechaNac($valores[5]);
+        $modelo->setCI($valores[6]);
+        $modelo->setContraseña($valores[7]);
 
         $resultados = $modelo->store();
         header('Content-Type: application/json');

@@ -96,6 +96,7 @@ const validacionTablasIngresar = {
         try {
 
             for (let i = 0; i < valores.length; i++) {
+                console.log(valores[i])
                 if (!validaciones[i](valores[i])) {
                     throw new Error(mensajesError[i]); 
                 }
