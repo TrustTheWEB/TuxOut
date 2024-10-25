@@ -1,63 +1,15 @@
-.tdLargo {
-    word-break:break-all;
-}
+/* backoffice */
 
 .btn.eliminar {
-    color: rgb(226, 56, 56);
-    font-weight: bold;
-    font-size: 12px;
-}
-
-.btn.editar {
-    color: #58cbe7;
-    font-weight: bold;
-    font-size: 12px;
-}
-
-table {
-    font-size: 12px;
-}
-
-#btnSeleccionarAtributo {
-    padding: 6px !important;
-    font-size: 14px !important;
-    background-color: rgb(222, 226, 226);
-    width: 100px;
-}
-
-.btnIngresarBackoffice {
-    padding: 6px !important;
-    font-size: 14px !important;
-    background-color: #58cbe7;
-    color: white;
-    width: 100px;
-}
-  
-  .btn.cerrarSesion {
-    position: absolute;
-    top: 50%;
-    right: 15px;
-    transform: translateY(-50%);
-    padding: 0;
-    border: none;
-    background: transparent;
+    color: #e43746;
   }
   
-  .icono-cerrar-sesion {
-    height: 30px;
-    width: 30px;
+  .btn.editar {
+    color: #2cb0d1;
   }
-  
-  #agregarImagen, #quitarImagen{
-  height: 40px;
-  width: 40px;
-  background-color: rgb(236, 236, 236) ;
-  border-radius: 50%;
+
+  .bi-cerrar {
+    color: aliceblue;
+    font-size: 25px;
+    text-decoration: none;
   }
-  
-  .imgPreview {
-    height: 100px;
-    border: 1px #111118;
-  }
-  
-  

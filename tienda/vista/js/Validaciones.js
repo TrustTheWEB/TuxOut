@@ -633,6 +633,15 @@ class Validaciones {
         }
       };
 
+      validarCalificacion = (numero) => {
+        let num = Number(numero);
+        if (num >= 0 && num <= 5 && (Number.isInteger(num) || num % 1 === 0.5)) {
+            return true;
+        } else {
+            return false;
+        }
+    };
+
 };
 
 export default Validaciones;

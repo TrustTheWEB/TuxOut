@@ -25,6 +25,7 @@ const tomarProductos = () => {
 }
 
 const imprimirProductos = (resultado) => {
+    console.log(resultado)
 
     if (Array.isArray(resultado)) {
         resultado.forEach(item => {

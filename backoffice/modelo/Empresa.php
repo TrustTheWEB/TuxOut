@@ -13,6 +13,7 @@ class Empresa {
     private $direccion;
     private $email;
     private $contraseña;
+    private $suspendido;
 
     public function __construct() {
         $this->conn = Conexion::getInstance()->getDatabaseInstance();
@@ -67,6 +68,14 @@ class Empresa {
         $this->contraseña = $contraseña;
     }
 
+    public function getSuspendido() {
+        return $this->suspendido;
+    }
+    
+    public function setSuspendido($suspendido) {
+        $this->suspendido = $suspendido;
+    }    
+
     // Métodos CRUD
 
     public function index() {
@@ -81,7 +90,7 @@ class Empresa {
 
     public function store() {
         try {
-            $query = "INSERT INTO " . $this->tabla . " (rut, nombre, telefono, direccion, email, contraseña) VALUES (?, ?, ?, ?, ?, ?)";
+            $query = "INSERT INTO " . $this->tabla . " (rut, nombre, telefono, direccion, email, contraseña, suspendido) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
             $stmt = $this->conn->prepare($query);
 
@@ -92,6 +101,7 @@ class Empresa {
             $stmt->bindValue(5, $this->email, PDO::PARAM_STR);
             $hashedPassword = password_hash($this->contraseña, PASSWORD_DEFAULT);
             $stmt->bindValue(6, $hashedPassword, PDO::PARAM_STR);
+            $stmt->bindValue(7, $this->suspendido, PDO::PARAM_INT);
 
             return $stmt->execute();
 
@@ -145,7 +155,7 @@ class Empresa {
 
     public function update() {
         try {
-            $query = "UPDATE " . $this->tabla . " SET nombre=?, telefono=?, direccion=?, email=?, contraseña=? WHERE rut=?";
+            $query = "UPDATE " . $this->tabla . " SET nombre=?, telefono=?, direccion=?, email=?, suspendido=? WHERE rut=?";
 
             $stmt = $this->conn->prepare($query);
 
@@ -153,8 +163,7 @@ class Empresa {
             $stmt->bindValue(2, $this->telefono, PDO::PARAM_STR);
             $stmt->bindValue(3, $this->direccion, PDO::PARAM_STR);
             $stmt->bindValue(4, $this->email, PDO::PARAM_STR);
-            $stmt->bindValue(5, $this->email, PDO::PARAM_STR);
-            $hashedPassword = password_hash($this->contraseña, PASSWORD_DEFAULT);
+            $stmt->bindValue(5, $this->suspendido, PDO::PARAM_INT);
             $stmt->bindValue(6, $this->rut, PDO::PARAM_STR);
 
             return $stmt->execute();
@@ -164,6 +173,23 @@ class Empresa {
         }
     }
 
+    public function updateContra() {
+        try {
+            $query = "UPDATE " . $this->tabla . " SET contraseña=? WHERE rut=?";
+
+            $stmt = $this->conn->prepare($query);
+
+            $hashedPassword = password_hash($this->contraseña, PASSWORD_DEFAULT);
+            $stmt->bindValue(1, $hashedPassword, PDO::PARAM_STR);
+            $stmt->bindValue(2, $this->rut, PDO::PARAM_STR);
+
+            return $stmt->execute();
+
+        } catch (PDOException $e) {
+            return "Error en la consulta: " . $e->getMessage();
+        }
+    }
+    
     public function destroy() {
         try {
             $query = "DELETE FROM " . $this->tabla . " WHERE rut = ?";
@@ -175,6 +201,22 @@ class Empresa {
 
         } catch (PDOException $e) {
             return "Error en la consulta: " . $e->getMessage();
+        }
+    }
+
+    public function suspender() {
+        $query = "UPDATE " . $this->tabla . " SET suspendido=? WHERE rut=?";
+
+        $stmt = $this->conn->prepare($query);
+
+        $stmt->bindValue(1, $this->suspendido, PDO::PARAM_INT);
+        $stmt->bindValue(2, $this->rut, PDO::PARAM_STR);
+
+        if ($stmt->execute()) {
+            $rut = $this->rut; 
+            return $rut;
+        } else {
+            return false;
         }
     }
     

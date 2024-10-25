@@ -17,8 +17,8 @@
 
   <header>
     <h1 class="oculto">TuxOut</h1>
-    <nav class="navbar navbar-expand-lg">
-      <div class="container-fluid">
+    <nav class="navbar navbar-expand-lg m-0 p-0">
+      <div class="container encabezado">
         <!-- Logo y vinculo a home -->
         <a class="navbar-brand" href="index.html">
           <img class="logo" src="../assets/logo/logo.png" alt="Logo">
@@ -28,9 +28,9 @@
           <span class="navbar-toggler-icon"></span>
         </button>
 
-        <div class="collapse navbar-collapse m-2" id="navbarSupportedContent">
+        <div class="collapse navbar-collapse m-2 justify-content-center" id="navbarSupportedContent">
           <!-- Barra de busqueda -->
-           <form class="d-flex barra-header">
+           <form class="d-inline-flex w-100 barra-header justify-content-center">
               <input class="form-control me-2 inputBuscarPrincipal" type="search" placeholder="Buscar producto...">
               <button class="btn btn-outline-success btn-barra" type="button" id="botonBuscarPrincipal">
                 <i class="bi bi-search"></i>
@@ -65,8 +65,8 @@
     </nav>
 
     <!-- Barra de navegacion inferior con la capacidad de desplegar la barra lateral -->
-    <nav class="navbar" id="subnav">
-      <form class="container-fluid justify-content-start" id="subnav-form">
+    <nav class="navbar m-0 p-0" id="subnav">
+      <form class="container encabezado justify-content-start" id="subnav-form">
         <button class="btn" id="botonMenu" type="button">≡ Menú</button>
         <a class="btn" id="vender" href="vender.html">Vender</a>
       </form>
@@ -97,12 +97,12 @@
   </div>
 
   <main>
-    <section id="carouselExampleIndicators" class="carousel slide">
+    <section id="carouselPrincipal" class="carousel slide">
     <ul class="carousel-indicators">
-      <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"></li>
-      <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"></li>
-      <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"></li>
-      <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3"></li>
+      <li data-bs-target="#carouselPrincipal" data-bs-slide-to="0" class="active"></li>
+      <li data-bs-target="#carouselPrincipal" data-bs-slide-to="1"></li>
+      <li data-bs-target="#carouselPrincipal" data-bs-slide-to="2"></li>
+      <li data-bs-target="#carouselPrincipal" data-bs-slide-to="3"></li>
     </ul>
     <div class="carousel-inner">
       <div class="carousel-item active">
@@ -119,16 +119,18 @@
       </div>
     </div>
     <button class="carousel-control-prev custom-carousel-button" type="button"
-      data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+      data-bs-target="#carouselPrincipal" data-bs-slide="prev">
       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
     </button>
     <button class="carousel-control-next custom-carousel-button" type="button"
-      data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+      data-bs-target="#carouselPrincipal" data-bs-slide="next">
       <span class="carousel-control-next-icon" aria-hidden="true"></span>
     </button>
     </section>
+
     <section class="container">
-      <div id="contenedorProductosInicio" class="row justify-content-center g-2 g-xl-0">
+      <div id="contenedorProductosInicio" class="row justify-content-center my-2 g-2 g-xl-0">
+        
       </div>
     </section>
   </main>

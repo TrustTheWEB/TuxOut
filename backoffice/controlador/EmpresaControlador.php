@@ -21,6 +21,7 @@ class EmpresaControlador {
         $modelo->setDireccion($valores[3]);
         $modelo->setEmail($valores[4]);
         $modelo->setContraseña($valores[5]);
+        $modelo->setSuspendido($valores[6]);
         
         $resultados = $modelo->store();
         header('Content-Type: application/json');
@@ -61,6 +62,10 @@ class EmpresaControlador {
         case "contraseña":
             $modelo->setContraseña($valor);
             break;
+
+        case "suspendido":
+            $modelo->setSuspendido($valor);
+            break;
     
         default:
             //error
@@ -81,7 +86,7 @@ class EmpresaControlador {
         $modelo->setTelefono($valores[2]);
         $modelo->setDireccion($valores[3]);
         $modelo->setEmail($valores[4]);
-        $modelo->setContraseña($valores[5]);
+        $modelo->setSuspendido($valores[5]);
 
         $resultados = $modelo->update();
             header('Content-Type: application/json');
@@ -93,6 +98,17 @@ class EmpresaControlador {
         $modelo = new Empresa();
         $modelo->setRut($valores[0]);
         $resultados = $modelo->destroy();
+        
+        header('Content-Type: application/json');
+        echo json_encode($resultados);
+        exit;
+    }
+
+    public function suspender($valores) {
+        $modelo = new Empresa();
+        $modelo->setRut($valores[0]);
+        $modelo->setSuspendido($valores[1]);
+        $resultados = $modelo->suspender();
         
         header('Content-Type: application/json');
         echo json_encode($resultados);

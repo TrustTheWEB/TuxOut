@@ -171,8 +171,11 @@ const formularios = {
             <input type="text" id="inputDireccion" class="form-control inputIngresar">
             <label for="inputEmail">Email:</label>
             <input type="email" id="inputEmail" class="form-control inputIngresar">
-            <label for="inputContraseña">Contraseña:</label>
-            <input type="password" id="inputContraseña" class="form-control inputIngresar">
+            <label for="inputContra">Contraseña:</label>
+            <input type="password" id="inputContra" class="form-control inputIngresar">
+            <label class="my-2">
+                <input type="checkbox" id="inputSuspendido"> Oculto
+            </label>
             `
         );
     },
@@ -195,7 +198,6 @@ const formularios = {
             `
             <label for="inputEstado">Estado:</label>
             <select id="inputEstado" class="form-select">
-                <option value="carrito">Carrito</option>
                 <option value="procesando">Procesando</option>
                 <option value="pagado">Pagado</option>
                 <option value="entregado">Entregado</option>
@@ -221,8 +223,8 @@ const formularios = {
             <input type="text" id="inputRUT" class="form-control inputIngresar">
             <label for="inputNombre">Nombre:</label>
             <input type="text" id="inputNombre" class="form-control inputIngresar">
-            <label for="inputDescripción">Descripción:</label>
-            <input type="text" id="inputDescripción" class="form-control inputIngresar">
+            <label for="inputDescripcion">Descripción:</label>
+            <input type="text" id="inputDescripcion" class="form-control inputIngresar">
             <label for="inputPrecio">Precio:</label>
             <input type="number" id="inputPrecio" class="form-control inputIngresar">
             <label for="inputStock">Stock:</label>
@@ -276,12 +278,12 @@ const formularios = {
             <input type="text" id="inputApellido" class="form-control inputIngresar">
             <label for="inputTelefono">Teléfono:</label>
             <input type="text" id="inputTelefono" class="form-control inputIngresar">
-            <label for="inputContraseña">Contraseña:</label>
-            <input type="password" id="inputContraseña" class="form-control inputIngresar">
             <label for="inputFechaNac">Fecha de nacimiento:</label>
             <input type="date" id="inputFechaNac" class="form-control inputIngresar">
             <label for="inputCi">Cédula de Identidad:</label>
             <input type="text" id="inputCi" class="form-control inputIngresar">
+            <label for="inputContra">Contraseña:</label>
+            <input type="password" id="inputContra" class="form-control inputIngresar">
             `
         );
     },

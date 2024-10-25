@@ -1,115 +1,3 @@
-let imagenes = 0;
-
-const cargarPreview = (evento) => {
-    
-    let img = evento.target.files;
-    let input = evento.target.id;
-
-    $(`#${input}`).next('img').remove();
-
-    if (img.length > 0) {
-        let archivo = img[0];
-        let urlImagen = URL.createObjectURL(archivo);
-        
-        $(`#${input}`).after(`
-            <img src="${urlImagen}" alt="Vista previa" class="imgPreview m-2 border rounded d-block">
-            `);
-    }
-}
-
-const agregarInputImagen = () => {
-    if (imagenes < 5) {
-        imagenes++;
-        $("#formularioImagen").append(`
-            <div id="contenedorInputImagen${imagenes}">
-            <label for="inputImagen${imagenes}">Imagen ${imagenes}:</label>
-            <input type="file" class="form-control inputImagen" id="inputImagen${imagenes}" accept=".jpg, .png. jpeg">
-            </div>
-            `);
-        $('#agregarImagen').attr('data-cant', imagenes);
-        if(imagenes==2) {
-            $("#agregarImagen").after(`<button id="quitarImagen" class="mt-2 mx-2 quitarImagen">-</button>`);
-        }
-    } else {
-        alert("El límite de imágenes ha sido alcanzado");
-    }
-}
-
-const quitarInputImagen = () => {
-    if (imagenes > 1) {
-        $(`#contenedorInputImagen${imagenes}`).remove()
-        imagenes--;
-    
-        if(imagenes <= 1) {
-            $("#quitarImagen").remove();
-        }
-    }
-}
-
-const obtenerUrls = (id) => {
-    $.ajax({
-        url: 'http://localhost/TuxOut/backoffice/core/Buscar.php', 
-        method: 'POST', 
-        dataType: 'json', 
-        data: {id: id},
-        success: function(response) {
-            if (response.error) {
-                console.error('Error:', response.error);
-            } else {
-                if(response) {
-                    console.log(response)
-                    cargarImagenes(response)
-                }else {
-                    console.error(response);
-                } 
-            }
-        },
-        error: function(xhr, status, error) {
-            console.error('Error en la solicitud:', xhr);
-        }
-    });
-}
-
-const cargarImagenes = (urls) => {
-    if(urls[0] == "") {
-        $("#formularioImagen").append(`
-            <div id="contenedorInputImagen1">
-                <label for="inputImagen1">Imagen:</label>
-                <input type="file" class="form-control inputImagen" id="inputImagen1" accept=".jpg, .png. jpeg" data-modificado="no">
-            </div>
-        `);
-    }else {
-        for(let i = 0; i < urls.length ; i++) {
-            $("#formularioImagen").append(`
-                <div id="contenedorInputImagen${i+1}">
-                    <label for="inputImagen${i+1}">Imagen ${i+1}:</label>
-                    <input type="file" class="form-control inputImagen" id="inputImagen${i+1}" accept=".jpg, .png. jpeg" data-modificado="no">
-                </div>
-            `);
-            $(`#inputImagen${i+1}`).after(`
-                <img src="${urls[i]}" alt="Vista previa" class="imgPreview m-2 border rounded d-block">
-                `);
-            imagenes++;
-        }
-    }
-
-    if(imagenes > 1) {
-        $("#agregarImagen").after(`<button id="quitarImagen" class="mt-2 mx-2 quitarImagen">-</button>`);
-    }else {
-        imagenes = 1;
-    }
-}
-
-const cambiarModificado = (event) => {
-    let input = $(event.currentTarget);
-    input.attr('data-modificado', "si")
-}
-
-$(document).on('click', '#agregarImagen', agregarInputImagen);
-$(document).on('click', '#quitarImagen', quitarInputImagen);
-$(document).on('change', '.inputImagen', cargarPreview);
-$(document).on('change', '.inputImagen', cambiarModificado);
-
 const formularios = {
     imprimirFormularioCaracteristica: (datos) => {
         $("#titulo-formulario-actualizacion").append("característica");
@@ -194,6 +82,8 @@ const formularios = {
     },
 
     imprimirFormularioEmpresa: (datos) => {
+        let suspendido = datos[5];
+        suspendido = suspendido == 0 ? suspendido = "" : suspendido = "checked";
         $("#titulo-formulario-actualizacion").append("empresa");
         $("#formulario-actualizacion").append(
             `
@@ -207,8 +97,21 @@ const formularios = {
             <input type="text" id="inputDireccion" class="form-control inputIngresar" value="${datos[3]}">
             <label for="inputEmail">Email:</label>
             <input type="email" id="inputEmail" class="form-control inputIngresar" value="${datos[4]}">
-            <label for="inputContraseña">Contraseña:</label>
-            <input type="password" id="inputContraseña" class="form-control inputIngresar" value="${datos[5]}">
+            <label class="my-2">
+                <input type="checkbox" id="inputSuspendido" ${suspendido}> Suspendido
+            </label>
+            `
+        );
+    },
+
+    imprimirFormularioContraEmpresa: (datos) => {
+        $("#titulo-formulario-actualizacion").append("contraseña de empresa");
+        $("#formulario-actualizacion").append(
+            `
+            <label for="inputRUT">RUT:</label>
+            <input type="text" id="inputRUT" class="form-control inputIngresar" value="${datos[0]}" disabled="disabled">
+            <label for="inputContra">Contraseña nueva:</label>
+            <input type="password" id="inputContra" class="form-control inputIngresar" value="">
             `
         );
     },
@@ -234,7 +137,6 @@ const formularios = {
             
             <label for="inputEstado">Estado:</label>
             <select id="inputEstado" class="form-select">
-                <option value="carrito" ${datos[1] === 'carrito' ? 'selected' : ''}>Carrito</option>
                 <option value="procesando" ${datos[1] === 'procesando' ? 'selected' : ''}>Procesando</option>
                 <option value="pagado" ${datos[1] === 'pagado' ? 'selected' : ''}>Pagado</option>
                 <option value="entregado" ${datos[1] === 'entregado' ? 'selected' : ''}>Entregado</option>
@@ -271,8 +173,8 @@ const formularios = {
             <input type="text" id="inputRUT" class="form-control inputIngresar" value="${datos[1]}">
             <label for="inputNombre">Nombre:</label>
             <input type="text" id="inputNombre" class="form-control inputIngresar" value="${datos[5]}">
-            <label for="inputDescripción">Descripción:</label>
-            <input type="text" id="inputDescripción" class="form-control inputIngresar" value="${datos[2]}">
+            <label for="inputDescripcion">Descripción:</label>
+            <input type="text" id="inputDescripcion" class="form-control inputIngresar" value="${datos[2]}">
             <label for="inputPrecio">Precio:</label>
             <input type="number" id="inputPrecio" class="form-control inputIngresar" value="${datos[4]}">
             <label for="inputStock">Stock:</label>
@@ -295,7 +197,6 @@ const formularios = {
 
             `
         );
-        obtenerUrls(datos[0]);
     },
 
     imprimirFormularioTiene: (datos) => {
@@ -324,15 +225,26 @@ const formularios = {
             <input type="text" id="inputApellido" class="form-control inputIngresar" value="${datos[3]}">
             <label for="inputTelefono">Teléfono:</label>
             <input type="text" id="inputTelefono" class="form-control inputIngresar" value="${datos[4]}">
-            <label for="inputContraseña">Contraseña:</label>
-            <input type="password" id="inputContraseña" class="form-control inputIngresar" value="${datos[5]}">
             <label for="inputFechaNac">Fecha de Nacimiento:</label>
-            <input type="date" id="inputFechaNac" class="form-control inputIngresar" value="${datos[6]}">
+            <input type="date" id="inputFechaNac" class="form-control inputIngresar" value="${datos[5]}">
             <label for="inputCi">CI:</label>
-            <input type="text" id="inputCi" class="form-control inputIngresar" value="${datos[7]}">
+            <input type="text" id="inputCi" class="form-control inputIngresar" value="${datos[6]}">
             `
         );
     },
+
+    imprimirFormularioContraUsuario: (datos) => {
+        $("#titulo-formulario-actualizacion").append("contraseña de usuario");
+        $("#formulario-actualizacion").append(
+            `
+            <label for="inputEmail">Email:</label>
+            <input type="email" id="inputEmail" class="form-control inputIngresar" value="${datos[0]}" disabled="disabled">
+            <label for="inputContra">Contraseña nueva:</label>
+            <input type="password" id="inputContra" class="form-control inputIngresar" value="">
+            `
+        );
+    },
+
     imprimirFormularioVisita: (datos) => {
         $("#titulo-formulario-actualizacion").append("visita");
         $("#formulario-actualizacion").append(
@@ -420,9 +332,17 @@ const obtenerDatos = {
             urlParams.get('telefono'),
             urlParams.get('direccion'),
             urlParams.get('email'),
-            urlParams.get('contraseña')
+            urlParams.get('suspendido')
         ];
     },
+    
+    obtenerContraEmpresa: () => {
+        let urlParams = new URLSearchParams(window.location.search);
+        return [
+            urlParams.get('rut')
+        ];
+    },
+
 
     obtenerFavorito: () => {
         let urlParams = new URLSearchParams(window.location.search);
@@ -475,9 +395,15 @@ const obtenerDatos = {
             urlParams.get('nombre'),
             urlParams.get('apellido'),
             urlParams.get('telefono'),
-            urlParams.get('contraseña'),
             urlParams.get('fechaNac'),
             urlParams.get('ci')
+        ];
+    },
+
+    obtenerContraUsuario: () => {
+        let urlParams = new URLSearchParams(window.location.search);
+        return [
+            urlParams.get('email')
         ];
     },
 

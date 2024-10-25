@@ -177,7 +177,7 @@ class Usuario {
 
     public function update() {
         try {
-            $query = "UPDATE " . $this->tabla . " SET usuario=?, nombre=?, apellido=?, telefono=?, contraseña=?, fechaNac=?, ci=? WHERE email=?";
+            $query = "UPDATE " . $this->tabla . " SET usuario=?, nombre=?, apellido=?, telefono=?, fechaNac=?, ci=? WHERE email=?";
 
             $stmt = $this->conn->prepare($query);
 
@@ -185,11 +185,24 @@ class Usuario {
             $stmt->bindValue(2, $this->nombre, PDO::PARAM_STR);
             $stmt->bindValue(3, $this->apellido, PDO::PARAM_STR);
             $stmt->bindValue(4, $this->telefono, PDO::PARAM_STR);
+            $stmt->bindValue(5, $this->fechaNac, PDO::PARAM_STR);
+            $stmt->bindValue(6, $this->ci, PDO::PARAM_STR);
+            $stmt->bindValue(7, $this->email, PDO::PARAM_STR);
+
+            return $stmt->execute();
+        } catch (PDOException $e) {
+            return "Error en la consulta: " . $e->getMessage();
+        }
+    }
+
+    public function updateContra() {
+        try {
+            $query = "UPDATE " . $this->tabla . " SET contraseña=? WHERE email=?";
+
+            $stmt = $this->conn->prepare($query);
             $hashedPassword = password_hash($this->contraseña, PASSWORD_DEFAULT);
-            $stmt->bindValue(5, $hashedPassword, PDO::PARAM_STR);
-            $stmt->bindValue(6, $this->fechaNac, PDO::PARAM_STR);
-            $stmt->bindValue(7, $this->ci, PDO::PARAM_STR);
-            $stmt->bindValue(8, $this->email, PDO::PARAM_STR);
+            $stmt->bindValue(1, $hashedPassword, PDO::PARAM_STR);
+            $stmt->bindValue(2, $this->email, PDO::PARAM_STR);
 
             return $stmt->execute();
         } catch (PDOException $e) {

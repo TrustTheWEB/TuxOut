@@ -10,9 +10,12 @@ body {
     height: 50px; 
   }
 
-.container-fluid{
+header {
   background-color: #111118;
-  margin-top: -10px;
+}
+
+.encabezado {
+  background-color: #111118;
   height: auto;
 }
 
@@ -65,10 +68,6 @@ body {
   margin: 0;
 }
 
-#carouselExampleIndicators{
-  top:-10px;
-}
-
 #subnav{
   padding-bottom: 0;
   margin-bottom: 8px;
@@ -118,10 +117,6 @@ body {
 
 .btn-barra:hover{
   background-color: #58cbe7 !important;
-}
-
-.barra-header{
-  width: 94%;
 }
 
 .botn-primary{
@@ -298,6 +293,11 @@ body {
   justify-content: center;
   align-items: center;
 }
+
+.contenedor-carousel {
+  background-color: #16161f;
+}
+
 .col.card-margin {
   margin-left: 30px;
   min-width: 100px;

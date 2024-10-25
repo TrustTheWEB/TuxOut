@@ -90,11 +90,21 @@ class UsuarioControlador {
         $modelo->setNombre($valores[2]);
         $modelo->setApellido($valores[3]);
         $modelo->setTelefono($valores[4]);
-        $modelo->setContraseña($valores[5]);
-        $modelo->setFechaNac($valores[6]);
-        $modelo->setCI($valores[7]);
+        $modelo->setFechaNac($valores[5]);
+        $modelo->setCI($valores[6]);
 
         $resultados = $modelo->update();
+        header('Content-Type: application/json');
+        echo json_encode($resultados);
+        exit;
+    }
+
+    public function updateContra($valores) {
+        $modelo = new Usuario();
+        $modelo->setEmail($valores[0]);
+        $modelo->setContraseña($valores[1]);
+
+        $resultados = $modelo->updateContra();
         header('Content-Type: application/json');
         echo json_encode($resultados);
         exit;

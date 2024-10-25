@@ -229,7 +229,12 @@ const imprimirTablas = {
                     <td>${item["idProducto"] || ''}</td>
                     <td>${item["nombre"] || ''}</td>
                     <td>${item["valor"] || ''}</td>
-                    <td> <a class="btn editar" href="editar.html?tabla=caracteristica&idProducto=${(item["idProducto"])}&nombre=${(item["nombre"])}&valor=${(item["valor"])}">EDITAR</a> <button class="btn eliminar" data-idproducto="${item["idProducto"]}" data-nombre="${item["nombre"]}" data-valor="${item["valor"]}">ELIMINAR</button> </td>
+                    <td>
+                        <div class="btn-group">
+                            <a class="btn editar border" href="editar.html?tabla=caracteristica&idProducto=${(item["idProducto"])}&nombre=${(item["nombre"])}&valor=${(item["valor"])}">EDITAR</a>
+                            <button class="btn eliminar border" data-idproducto="${item["idProducto"]}" data-nombre="${item["nombre"]}" data-valor="${item["valor"]}">ELIMINAR</button>
+                        </div>
+                    </td>
                 </tr>`
             );
         });
@@ -260,8 +265,10 @@ const imprimirTablas = {
                     <td>${item["idProducto"] || ''}</td>
                     <td>${item["cantidad"]}</td>
                     <td>
-                        <a class="btn editar" href="editar.html?tabla=carrito&email=${item["email"]}&idProducto=${item["idProducto"]}&cantidad=${item["cantidad"]}">EDITAR</a>
-                        <button class="btn eliminar" data-email="${item["email"]}" data-idproducto="${item["idProducto"]}">ELIMINAR</button>
+                        <div class="btn-group">
+                            <a class="btn editar border" href="editar.html?tabla=carrito&email=${item["email"]}&idProducto=${item["idProducto"]}&cantidad=${item["cantidad"]}">EDITAR</a>
+                            <button class="btn eliminar border" data-email="${item["email"]}" data-idproducto="${item["idProducto"]}">ELIMINAR</button>
+                        </div>
                     </td>
                 </tr>`
             );
@@ -290,7 +297,12 @@ const imprimirTablas = {
                 `<tr data-fila="categoria-${item["idCategoria"]}">
                     <td>${item["idCategoria"] || ''}</td>
                     <td>${item["nombre"] || ''}</td>
-                    <td> <a class="btn editar" href="editar.html?tabla=categoria&idCategoria=${(item["idCategoria"])}&nombre=${(item["nombre"])}">EDITAR</a> <button class="btn eliminar" data-idcategoria="${item["idCategoria"]}">ELIMINAR</button> </td>
+                    <td>
+                        <div class="btn-group">
+                            <a class="btn editar border" href="editar.html?tabla=categoria&idCategoria=${(item["idCategoria"])}&nombre=${(item["nombre"])}">EDITAR</a>
+                            <button class="btn eliminar border" data-idcategoria="${item["idCategoria"]}">ELIMINAR</button>
+                        </div>
+                    </td>
                 </tr>`
             );
         });
@@ -318,7 +330,12 @@ const imprimirTablas = {
                     `<tr data-fila="categoriza-${item["idCategoria"]}-${item["idProducto"]}">
                         <td>${item["idCategoria"] || ''}</td>
                         <td>${item["idProducto"] || ''}</td>
-                        <td> <a class="btn editar" href="editar.html?tabla=categoriza&idCategoria=${item["idCategoria"]}&idProducto=${item["idProducto"]}">EDITAR</a> <button class="btn eliminar" data-idcategoria="${item["idCategoria"]}" data-idproducto="${item["idProducto"]}">ELIMINAR</button> </td>
+                        <td>
+                            <div class="btn-group">
+                                <a class="btn editar border" href="editar.html?tabla=categoriza&idCategoria=${item["idCategoria"] || ''}&idProducto=${item["idProducto"] || ''}">EDITAR</a>
+                                <button class="btn eliminar border" data-idcategoria="${item["idCategoria"]}" data-idproducto="${item["idProducto"]}">ELIMINAR</button>
+                            </div>
+                        </td>
                     </tr>`
                 );
             });
@@ -351,8 +368,10 @@ const imprimirTablas = {
                     <td>${item["calificacion"] || ''}</td>
                     <td>${item["comentario"] || ''}</td>
                     <td>
-                        <a class="btn editar" href="editar.html?tabla=comenta&email=${item["email"]}&idProducto=${item["idProducto"]}&calificacion=${item["calificacion"]}&comentario=${item["comentario"]}">EDITAR</a>
-                        <button class="btn eliminar" data-email="${item["email"]}" data-idproducto="${item["idProducto"]}">ELIMINAR</button>
+                        <div class="btn-group">
+                            <a class="btn editar border" href="editar.html?tabla=comenta&email=${item["email"] || ''}&idProducto=${item["idProducto"] || ''}&calificacion=${item["calificacion"] || ''}&comentario=${item["comentario"] || ''}">EDITAR</a>
+                            <button class="btn eliminar border" data-email="${item["email"]}" data-idproducto="${item["idProducto"]}">ELIMINAR</button>
+                        </div>
                     </td>
                 </tr>`
             );
@@ -382,7 +401,12 @@ const imprimirTablas = {
                         <td>${item["idPedido"] || ''}</td>
                         <td>${item["idProducto"] || ''}</td>
                         <td>${item["cantidad"] || ''}</td>
-                        <td> <a class="btn editar" href="editar.html?tabla=contiene&idPedido=${item["idPedido"]}&idProducto=${item["idProducto"]}&cantidad=${(item["cantidad"])}">EDITAR</a> <button class="btn eliminar" data-idpedido="${item["idPedido"]}" data-idproducto="${item["idProducto"]}">ELIMINAR</button> </td>
+                        <td>
+                            <div class="btn-group">
+                                <a class="btn editar border" href="editar.html?tabla=contiene&idPedido=${item["idPedido"] || ''}&idProducto=${item["idProducto"] || ''}&cantidad=${item["cantidad"] || ''}">EDITAR</a>
+                                <button class="btn eliminar border" data-idpedido="${item["idPedido"]}" data-idproducto="${item["idProducto"]}">ELIMINAR</button>
+                            </div>
+                        </td>
                     </tr>`
                 );
             });
@@ -415,9 +439,11 @@ const imprimirTablas = {
                         <td>${item["fechaInicio"] || ''}</td>
                         <td>${item["fechaFin"] || ''}</td>
                         <td>${item["motivo"] || ''}</td>
-                        <td> 
-                            <a class="btn editar" href="editar.html?tabla=descuento&idDescuento=${item["idDescuento"]}&porcentaje=${item["porcentaje"]}&fechaInicio=${item["fechaInicio"]}&fechaFin=${item["fechaFin"]}&motivo=${item["motivo"]}">EDITAR</a> 
-                            <button class="btn eliminar" data-iddescuento="${item["idDescuento"]}">ELIMINAR</button> 
+                        <td>
+                            <div class="btn-group">
+                                <a class="btn editar border" href="editar.html?tabla=descuento&idDescuento=${item["idDescuento"] || ''}&porcentaje=${item["porcentaje"] || ''}&fechaInicio=${item["fechaInicio"] || ''}&fechaFin=${item["fechaFin"] || ''}&motivo=${item["motivo"] || ''}">EDITAR</a>
+                                <button class="btn eliminar border" data-iddescuento="${item["idDescuento"]}">ELIMINAR</button>
+                            </div>
                         </td>
                     </tr>`
                 );
@@ -445,7 +471,12 @@ const imprimirTablas = {
                     `<tr data-fila="direccion-${item["email"]}-${(item["direccion"])}">
                         <td>${item["email"] || ''}</td>
                         <td>${item["direccion"] || ''}</td>
-                        <td> <a class="btn editar" href="editar.html?tabla=direccion&email=${item["email"]}&direccion=${(item["direccion"])}">EDITAR</a> <button class="btn eliminar" data-email="${item["email"]}" data-direccion="${(item["direccion"])}">ELIMINAR</button> </td>
+                        <td>
+                            <div class="btn-group">
+                                <a class="btn editar border" href="editar.html?tabla=direccion&email=${item["email"] || ''}&direccion=${item["direccion"] || ''}">EDITAR</a>
+                                <button class="btn eliminar border" data-email="${item["email"] || ''}" data-direccion="${item["direccion"] || ''}">ELIMINAR</button>
+                            </div>
+                        </td>
                     </tr>`
                 );
             });
@@ -474,8 +505,10 @@ const imprimirTablas = {
             resultado = [resultado];
         }
             resultado.forEach(item => {
+
                 let suspendido = item["suspendido"];
                 suspendido = suspendido == 1 ? suspendido = "checked" : suspendido = "";
+                console.log(suspendido)
                 $('#tablaBody').append(
                     `<tr data-fila="empresa-${item["RUT"]}">
                         <td>${item["RUT"] || ''}</td>
@@ -485,7 +518,13 @@ const imprimirTablas = {
                         <td>${item["email"] || ''}</td>
                         <td class="tdLargo">${item["contraseña"] || ''}</td>
                         <td><input type="checkbox" id="checkSuspender_${item["RUT"]}" class="checkSuspender" ${suspendido}></td>
-                        <td> <a class="btn editar" href="editar.html?tabla=empresa&rut=${item["RUT"]}&nombre=${(item["nombre"])}&telefono=${(item["telefono"])}&direccion=${(item["direccion"])}&email=${(item["email"])}&contraseña=${(item["contraseña"])}">EDITAR</a> <button class="btn eliminar" data-rut="${item["RUT"]}">ELIMINAR</button> </td>
+                        <td>
+                            <div class="btn-group">
+                                <a class="btn editar border" href="editar.html?tabla=empresa&rut=${item["RUT"] || ''}&nombre=${item["nombre"] || ''}&telefono=${item["telefono"] || ''}&direccion=${item["direccion"] || ''}&email=${item["email"] || ''}&suspendido=${item["suspendido"]}">EDITAR</a>
+                                <a class="btn editar border" href="editar.html?tabla=contraEmpresa&rut=${item["RUT"]}">CONTRASEÑA</a>
+                                <button class="btn eliminar border" data-rut="${item["RUT"]}">ELIMINAR</button>
+                            </div>
+                        </td>
                     </tr>`
                 );
             });
@@ -512,7 +551,12 @@ const imprimirTablas = {
                     `<tr data-fila="favorito-${item["email"]}-${item["idProducto"]}">
                         <td>${item["email"] || ''}</td>
                         <td>${item["idProducto"] || ''}</td>
-                        <td> <a class="btn editar" href="editar.html?tabla=favorito&email=${item["email"]}&idProducto=${item["idProducto"]}">EDITAR</a> <button class="btn eliminar" data-email="${item["email"]}" data-idproducto="${item["idProducto"]}">ELIMINAR</button> </td>
+                        <td>
+                            <div class="btn-group">
+                                <a class="btn editar border" href="editar.html?tabla=favorito&email=${item["email"]}&idProducto=${item["idProducto"]}">EDITAR</a>
+                                <button class="btn eliminar border border" data-email="${item["email"]}" data-idproducto="${item["idProducto"]}">ELIMINAR</button> 
+                            </div>
+                        </td>
                     </tr>`
                 );
             });
@@ -547,7 +591,12 @@ const imprimirTablas = {
                         <td>${item["montoTotal"] || ''}</td>
                         <td>${item["fecha"] || ''}</td>
                         <td>${item["email"] || ''}</td>
-                        <td> <a class="btn editar" href="editar.html?tabla=pedido&idPedido=${item["idPedido"]}&estado=${(item["estado"])}&medioPago=${(item["medioPago"])}&montoTotal=${(item["montoTotal"])}&fecha=${(item["fecha"])}&email=${(item["email"])}">EDITAR</a> <button class="btn eliminar" data-idpedido="${item["idPedido"]}">ELIMINAR</button> </td>
+                        <td>
+                            <div class="btn-group"> 
+                                <a class="btn editar border" href="editar.html?tabla=pedido&idPedido=${item["idPedido"]}&estado=${(item["estado"])}&medioPago=${(item["medioPago"])}&montoTotal=${(item["montoTotal"])}&fecha=${(item["fecha"])}&email=${(item["email"])}">EDITAR</a> 
+                                <button class="btn eliminar border" data-idpedido="${item["idPedido"]}">ELIMINAR</button>
+                            </div>
+                        </td>
                     </tr>`
                 );
             });
@@ -591,7 +640,12 @@ const imprimirTablas = {
                         <td>${item["estado"] || ''}</td>
                         <td>${item["marca"] || ''}</td>
                         <td><input type="checkbox" id="checkOcultar_${item["idProducto"]}" class="checkOcultar" ${oculto}></td>
-                        <td> <a class="btn editar" href="editar.html?tabla=producto&idProducto=${item["idProducto"]}&rut=${item["RUT"]}&descripcion=${item["descripcion"]}&estado=${item["estado"]}&precio=${item["precio"]}&nombre=${item["nombre"]}&stock=${item["stock"]}&marca=${item["marca"]}&oculto=${item["oculto"]}">EDITAR</a> <button class="btn eliminar" data-idProducto="${item["idProducto"]}">ELIMINAR</button> </td>
+                        <td>
+                            <div class="btn-group">
+                                <a class="btn editar border" href="editar.html?tabla=producto&idProducto=${item["idProducto"]}&rut=${item["RUT"]}&descripcion=${item["descripcion"]}&estado=${item["estado"]}&precio=${item["precio"]}&nombre=${item["nombre"]}&stock=${item["stock"]}&marca=${item["marca"]}&oculto=${item["oculto"]}">EDITAR</a>
+                                <button class="btn eliminar border" data-idproducto="${item["idProducto"]}">ELIMINAR</button>
+                            </div>
+                        </td>
                     </tr>`
                 );
             });
@@ -618,7 +672,12 @@ const imprimirTablas = {
                     `<tr data-fila="tiene-${item["idProducto"]}-${item["idDescuento"]}">
                         <td>${item["idProducto"] || ''}</td>
                         <td>${item["idDescuento"] || ''}</td>
-                        <td> <a class="btn editar" href="editar.html?tabla=tiene&idProducto=${item["idProducto"]}&idDescuento=${item["idDescuento"]}">EDITAR</a> <button class="btn eliminar" data-idproducto="${item["idProducto"]}" data-iddescuento="${item["idDescuento"]}">ELIMINAR</button> </td>
+                        <td>
+                            <div class="btn-group">
+                                <a class="btn editar border" href="editar.html?tabla=tiene&idProducto=${item["idProducto"]}&idDescuento=${item["idDescuento"]}">EDITAR</a>
+                                <button class="btn eliminar border" data-idproducto="${item["idProducto"]}" data-iddescuento="${item["idDescuento"]}">ELIMINAR</button>
+                            </div>
+                        </td>
                     </tr>`
                 );
             });
@@ -657,7 +716,13 @@ const imprimirTablas = {
                         <td class="tdLargo">${item["contraseña"] || ''}</td>
                         <td>${item["fechaNac"] || ''}</td>
                         <td>${item["ci"] || ''}</td>
-                        <td> <a class="btn editar" href="editar.html?tabla=usuario&email=${(item["email"])}&usuario=${(item["usuario"])}&nombre=${(item["nombre"])}&apellido=${(item["apellido"])}&telefono=${(item["telefono"])}&contraseña=${(item["contraseña"])}&fechaNac=${(item["fechaNac"])}&ci=${(item["ci"])}">EDITAR</a> <button class="btn eliminar" data-email="${item["email"]}">ELIMINAR</button> </td>
+                        <td>
+                            <div class="btn-group">
+                                <a class="btn editar border" href="editar.html?tabla=usuario&email=${item["email"] || ''}&usuario=${item["usuario"]}&nombre=${item["nombre"] || ''}&apellido=${item["apellido"] || ''}&telefono=${item["telefono"] || ''}&fechaNac=${item["fechaNac"] || ''}&ci=${item["ci"] || ''}">EDITAR</a>
+                                <a class="btn editar border" href="editar.html?tabla=contraUsuario&email=${item["email"]}">CONTRASEÑA</a>
+                                <button class="btn eliminar border" data-email="${item["email"]}">ELIMINAR</button>
+                            </div>
+                        </td>
                     </tr>`
                 );
             });
@@ -687,8 +752,10 @@ const imprimirTablas = {
                         <td>${item["idProducto"] || ''}</td>
                         <td>${item["fecha"] || ''}</td>
                         <td>
-                            <a class="btn editar" href="editar.html?tabla=visita&email=${item["email"]}&idProducto=${item["idProducto"]}&fecha=${item["fecha"]}">EDITAR</a>
-                            <button class="btn eliminar" data-email="${item["email"]}" data-idproducto="${item["idProducto"]}">ELIMINAR</button>
+                            <div class="btn-group">
+                                <a class="btn editar border" href="editar.html?tabla=visita&email=${item["email"]}&idProducto=${item["idProducto"]}&fecha=${item["fecha"]}">EDITAR</a>
+                                <button class="btn eliminar border" data-email="${item["email"]}" data-idproducto="${item["idProducto"]}">ELIMINAR</button>
+                            </div>
                         </td>
                     </tr>`
                 );
@@ -752,22 +819,63 @@ const ocultar = (idProducto, oculto) => {
     });
 } 
 
-const modificarBotones = (idProducto, oculto) => {
+const suspender = (rut, suspendido) => {
+
+    $.ajax({
+        url: 'http://localhost/TuxOut/backoffice/core/Enrutador.php', 
+        method: 'POST', 
+        dataType: 'json', 
+        data: {accion: "suspender", controlador: "EmpresaControlador", valores: [rut, suspendido]},
+        success: function(response) {
+            if (response.error) {
+                console.error('Error:', response.error);
+            } else {
+                if(response) {
+                    
+                }else {
+                    console.error(response);
+                } 
+            }
+        },
+        error: function(xhr, status, error) {
+            console.error('Error en la solicitud:', xhr);
+        }
+    });
+} 
+
+const modificarBotonesOculto = (idProducto, oculto) => {
       let botonEditar = $(`.editar[href*="idProducto=${idProducto}"]`);
       let href = botonEditar.attr('href');
       href = href.replace(/oculto=\d+/, `oculto=${oculto}`);
       botonEditar.attr('href', href);
 }
 
+const modificarBotonesSuspendido = (rut, suspendido) => {
+    let botonEditar = $(`.editar[href*="rut=${rut}"]`);
+    let href = botonEditar.attr('href');
+    href = href.replace(/suspendido=\d+/, `suspendido=${suspendido}`);
+    botonEditar.attr('href', href);
+}
+
 const tomarIdOcultar = (evento) => {
     let idCheck = $(evento.target).attr('id');
     let idProducto = idCheck.split('_')[1];
     let oculto = $(`#${idCheck}`).is(':checked') ? 1 : 0;
-    modificarBotones(idProducto, oculto);
+    modificarBotonesOculto(idProducto, oculto);
     ocultar(idProducto, oculto);
 }
 
+const tomarRutSuspender = (evento) => {
+    let idCheck = $(evento.target).attr('id');
+    let rut = idCheck.split('_')[1];
+    let suspendido = $(`#${idCheck}`).is(':checked') ? 1 : 0;
+    console.log(rut, suspendido)
+    modificarBotonesSuspendido(rut, suspendido);
+    suspender(rut, suspendido);
+}
+
 $(document).on('change', '.checkOcultar', tomarIdOcultar);
+$(document).on('change', '.checkSuspender', tomarRutSuspender);
 $(document).ready(tomarUltimaTabla);
 
 $("#selectTabla").change(tomarTabla);
