@@ -22,7 +22,7 @@ class UsuarioControlador {
         $modelo->setTelefono($valores[4]);
         $modelo->setFechaNac($valores[5]);
         $modelo->setCI($valores[6]);
-        $modelo->setContraseña($valores[7]);
+        $modelo->setContra($valores[7]);
 
         $resultados = $modelo->store();
         header('Content-Type: application/json');
@@ -61,7 +61,7 @@ class UsuarioControlador {
                 break;
 
             case "contraseña":
-                $modelo->setContraseña($valor);
+                $modelo->setContra($valor);
                 break;
 
             case "fechaNac":
@@ -102,7 +102,7 @@ class UsuarioControlador {
     public function updateContra($valores) {
         $modelo = new Usuario();
         $modelo->setEmail($valores[0]);
-        $modelo->setContraseña($valores[1]);
+        $modelo->setContra($valores[1]);
 
         $resultados = $modelo->updateContra();
         header('Content-Type: application/json');

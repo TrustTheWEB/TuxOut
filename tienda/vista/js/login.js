@@ -137,7 +137,7 @@ const cargarPanelUsuario = (email) => {
             <ul class="dropdown-menu dropdown-menu contenidoUsuario">
               <li class="p-1"><a class="dropdown-item" href="usuario.html">Mis datos</a></li>
               <li class="p-1"><a class="dropdown-item" href="direcciones.html">Direcciones</a></li>
-              <li class="p-1"><a class="dropdown-item" href="compras.html">Mis compras</a></li>
+              <li class="p-1"><a class="dropdown-item" href="pedidos.html">Pedidos</a></li>
               <li class="p-1"><a class="dropdown-item" href="productos.html?tipo=favoritos">Favoritos</a></li>
               <li class="p-1"><a class="dropdown-item" href="historial.html">Historial</a></li>
               <li><hr></li>

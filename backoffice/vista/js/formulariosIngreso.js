@@ -125,6 +125,13 @@ const formularios = {
             <input id="inputIdProducto" class="form-control inputIngresar">
             <label for="inputCantidad">Cantidad:</label>
             <input type="number" id="inputCantidad" class="form-control inputIngresar">
+            <label for="inputPrecioHistorico">Precio Histórico:</label>
+            <input type="number" id="inputPrecioHistorico" class="form-control inputIngresar">
+            <label for="inputEstado">Estado:</label>
+            <select id="inputEstado" class="form-select">
+                <option value="preparando">Preparando</option>
+                <option value="entregado">Entregado</option>
+            </select>
             `
         );
     },
@@ -174,7 +181,7 @@ const formularios = {
             <label for="inputContra">Contraseña:</label>
             <input type="password" id="inputContra" class="form-control inputIngresar">
             <label class="my-2">
-                <input type="checkbox" id="inputSuspendido"> Oculto
+                <input type="checkbox" id="inputSuspendido"> Suspendido
             </label>
             `
         );
@@ -200,15 +207,12 @@ const formularios = {
             <select id="inputEstado" class="form-select">
                 <option value="procesando">Procesando</option>
                 <option value="pagado">Pagado</option>
-                <option value="entregado">Entregado</option>
             </select>
             <label for="inputMedioPago">medioPago:</label>
             <select id="inputMedioPago" class="form-select">
                 <option value="PayPal">PayPal</option>
                 <option value="MercadoPago">MercadoPago</option>
             </select>
-            <label for="inputMontoTotal">montoTotal:</label>
-            <input type="number" id="inputMontoTotal" class="form-control inputIngresar">
             <label for="inputEmail">Email:</label>
             <input type="email" id="inputEmail" class="form-control inputIngresar">
             `

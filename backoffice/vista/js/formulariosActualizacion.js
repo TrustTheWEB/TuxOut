@@ -47,6 +47,13 @@ const formularios = {
             <input id="inputIdProducto" class="form-control inputIngresar" value="${datos[1]}" disabled="disabled">
             <label for="inputCantidad">Cantidad:</label>
             <input type="number" id="inputCantidad" class="form-control inputIngresar" value="${datos[2]}">
+            <label for="inputPrecioHistorico">Precio Histórico:</label>
+            <input type="number" id="inputPrecioHistorico" class="form-control inputIngresar" value="${datos[4]}">
+            <label for="inputEstado">Estado:</label>
+            <select id="inputEstado" class="form-select">
+                <option value="preparando" ${datos[1] === 'preparando' ? 'selected' : ''}>Preparando</option>
+                <option value="entregado" ${datos[1] === 'entregado' ? 'selected' : ''}>Entregado</option>
+            </select>
             `
         );
     },
@@ -139,7 +146,6 @@ const formularios = {
             <select id="inputEstado" class="form-select">
                 <option value="procesando" ${datos[1] === 'procesando' ? 'selected' : ''}>Procesando</option>
                 <option value="pagado" ${datos[1] === 'pagado' ? 'selected' : ''}>Pagado</option>
-                <option value="entregado" ${datos[1] === 'entregado' ? 'selected' : ''}>Entregado</option>
             </select>
             
             <label for="inputMedioPago">Medio de Pago:</label>
@@ -147,15 +153,12 @@ const formularios = {
                 <option value="PayPal" ${datos[2] === 'PayPal' ? 'selected' : ''}>PayPal</option>
                 <option value="MercadoPago" ${datos[2] === 'MercadoPago' ? 'selected' : ''}>MercadoPago</option>
             </select>
-            
-            <label for="inputMontoTotal">Monto Total:</label>
-            <input type="number" id="inputMontoTotal" class="form-control inputIngresar" value="${datos[3]}">
 
             <label for="inputFecha">Fecha:</label>
-            <input type="datetime-local" id="inputFecha" class="form-control inputIngresar" value="${datos[4]}">
+            <input type="datetime-local" id="inputFecha" class="form-control inputIngresar" value="${datos[3]}">
             
             <label for="inputEmail">Email:</label>
-            <input type="email" id="inputEmail" class="form-control inputIngresar" value="${datos[5]}">
+            <input type="email" id="inputEmail" class="form-control inputIngresar" value="${datos[4]}">
             `
         );
     },
@@ -301,7 +304,9 @@ const obtenerDatos = {
         return [
             urlParams.get('idPedido'),
             urlParams.get('idProducto'),
-            urlParams.get('cantidad')
+            urlParams.get('cantidad'),
+            urlParams.get('precioHistorico'),
+            urlParams.get('estado')
         ];
     },
 
@@ -358,7 +363,6 @@ const obtenerDatos = {
             urlParams.get('idPedido'),
             urlParams.get('estado'),
             urlParams.get('medioPago'),
-            urlParams.get('montoTotal'),
             urlParams.get('fecha'),
             urlParams.get('email')
         ];

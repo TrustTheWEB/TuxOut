@@ -970,19 +970,19 @@ header {
   width: 200px !important;
 }
 
-#tituloBusqueda {
-  font-size: 20px;
-}
-
 .ordenar-por {
   margin-top: 7px;
   font-size: 15px;
 }
 
-#tituloHistorial {
-  font-size: 20px;
+#tituloHistorial, #tituloPedidos, #tituloBusqueda {
+  font-size: 30px;
 }
 
 .fecha-visitado {
   font-size: 10px;
 }
+
+/* .td-pedidos {
+  line-height: 40px;
+} */

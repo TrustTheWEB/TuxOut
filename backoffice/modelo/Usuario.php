@@ -12,7 +12,7 @@ class Usuario {
     private $nombre;
     private $apellido;
     private $telefono;
-    private $contraseña;
+    private $contra;
     private $fechaNac;
     private $ci;
 
@@ -61,12 +61,12 @@ class Usuario {
         $this->telefono = $telefono;
     }
 
-    public function getContraseña() {
-        return $this->contraseña;
+    public function getContra() {
+        return $this->contra;
     }
 
-    public function setContraseña($contraseña) {
-        $this->contraseña = $contraseña;
+    public function setContra($contra) {
+        $this->contra = $contra;
     }
 
     public function getFechaNac() {
@@ -110,7 +110,7 @@ class Usuario {
             $stmt->bindValue(3, $this->nombre, PDO::PARAM_STR);
             $stmt->bindValue(4, $this->apellido, PDO::PARAM_STR);
             $stmt->bindValue(5, $this->telefono, PDO::PARAM_STR);
-            $hashedPassword = password_hash($this->contraseña, PASSWORD_DEFAULT);
+            $hashedPassword = password_hash($this->contra, PASSWORD_DEFAULT);
             $stmt->bindValue(6, $hashedPassword, PDO::PARAM_STR);
             $stmt->bindValue(7, $this->fechaNac, PDO::PARAM_STR);
             $stmt->bindValue(8, $this->ci, PDO::PARAM_STR);
@@ -144,7 +144,7 @@ class Usuario {
                 $tipoDato = PDO::PARAM_STR;
                 break;
             case "contraseña":
-                $parametro = $this->contraseña;
+                $parametro = $this->contra;
                 $tipoDato = PDO::PARAM_STR;
                 break;
             case "fechaNac":
@@ -200,7 +200,7 @@ class Usuario {
             $query = "UPDATE " . $this->tabla . " SET contraseña=? WHERE email=?";
 
             $stmt = $this->conn->prepare($query);
-            $hashedPassword = password_hash($this->contraseña, PASSWORD_DEFAULT);
+            $hashedPassword = password_hash($this->contra, PASSWORD_DEFAULT);
             $stmt->bindValue(1, $hashedPassword, PDO::PARAM_STR);
             $stmt->bindValue(2, $this->email, PDO::PARAM_STR);
 

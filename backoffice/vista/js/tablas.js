@@ -99,6 +99,8 @@ const cargarAtributos = {
             <option value="idPedido">IdPedido</option>
             <option value="idProducto">IdProducto</option>
             <option value="cantidad">Cantidad</option>
+            <option value="precioHistorico">Precio Histórico</option>
+            <option value="estado">Estado</option>
         `);
         $("#btnIngresarTabla").attr("href","ingresar.html?tabla=contiene");
     },
@@ -149,7 +151,6 @@ const cargarAtributos = {
             <option value="idPedido">ID Pedido</option>
             <option value="estado">Estado</option>
             <option value="medioPago">Medio de Pago</option>
-            <option value="montoTotal">Monto Total</option>
             <option value="fecha">Fecha</option>
             <option value="email">Email</option>
         `);
@@ -588,12 +589,11 @@ const imprimirTablas = {
                         <td>${item["idPedido"] || ''}</td>
                         <td>${item["estado"] || ''}</td>
                         <td>${item["medioPago"] || ''}</td>
-                        <td>${item["montoTotal"] || ''}</td>
                         <td>${item["fecha"] || ''}</td>
                         <td>${item["email"] || ''}</td>
                         <td>
                             <div class="btn-group"> 
-                                <a class="btn editar border" href="editar.html?tabla=pedido&idPedido=${item["idPedido"]}&estado=${(item["estado"])}&medioPago=${(item["medioPago"])}&montoTotal=${(item["montoTotal"])}&fecha=${(item["fecha"])}&email=${(item["email"])}">EDITAR</a> 
+                                <a class="btn editar border" href="editar.html?tabla=pedido&idPedido=${item["idPedido"]}&estado=${(item["estado"])}&medioPago=${(item["medioPago"])}&fecha=${(item["fecha"])}&email=${(item["email"])}">EDITAR</a> 
                                 <button class="btn eliminar border" data-idpedido="${item["idPedido"]}">ELIMINAR</button>
                             </div>
                         </td>

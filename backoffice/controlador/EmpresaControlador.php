@@ -20,7 +20,7 @@ class EmpresaControlador {
         $modelo->setTelefono($valores[2]);
         $modelo->setDireccion($valores[3]);
         $modelo->setEmail($valores[4]);
-        $modelo->setContraseña($valores[5]);
+        $modelo->setContra($valores[5]);
         $modelo->setSuspendido($valores[6]);
         
         $resultados = $modelo->store();
@@ -60,7 +60,7 @@ class EmpresaControlador {
             break;
     
         case "contraseña":
-            $modelo->setContraseña($valor);
+            $modelo->setContra($valor);
             break;
 
         case "suspendido":
