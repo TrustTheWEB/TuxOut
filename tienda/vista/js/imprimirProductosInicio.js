@@ -3,7 +3,7 @@ const alerta = new Alerta();
 
 const tomarProductos = () => {
     $.ajax({
-        url: 'http://localhost/TuxOut/tienda/core/Enrutador.php', 
+        url: '/TuxOut/tienda/core/Enrutador.php', 
         method: 'POST', 
         dataType: 'json', 
         data: {accion: "indexInicio", controlador: "ProductoControlador", valores: null},

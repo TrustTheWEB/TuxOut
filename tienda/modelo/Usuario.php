@@ -292,6 +292,76 @@ class Usuario {
             return "Error en la consulta: " . $e->getMessage();
         }
     }
+
+    public function busquedaFavoritos($filtro) {
+
+        switch($filtro) {
+            case "populares":
+                $filtro = "cantidadVendida DESC";
+                break;
+            case "menorPrecio":
+                $filtro = "(p.precio - (p.precio * descuento / 100))";
+                break;
+            case "mayorPrecio":
+                $filtro = "(p.precio - (p.precio * descuento / 100)) DESC";
+                break;
+            case "calificados":
+                $filtro = "promedioCalificacion";
+                break;
+            default:
+                $filtro = "cantidadVendida DESC";
+                break;
+        }
+
+        try {
+            $consulta = $this->conn->prepare("SELECT v.* FROM vistaproducto v 
+                JOIN producto p
+                ON p.idProducto = v.idProducto
+                JOIN favorito f
+                ON f.idProducto = p.idProducto
+                WHERE f.email = ? 
+                ORDER BY " . $filtro);
+            $consulta->bindValue(1, $this->email, PDO::PARAM_STR);
+            $consulta->execute();
+            $resultados = $consulta->fetchAll(PDO::FETCH_ASSOC);
+
+            return $resultados;
+        } catch (PDOException $e) {
+            return "Error en la consulta: " . $e->getMessage();
+        }
+    }
+
+    public function busquedaHistorial($filtro) {
+
+        switch($filtro) {
+            case "recientes":
+                $filtro = "h.fecha DESC";
+                break;
+            case "antiguos":
+                $filtro = "h.fecha";
+                break;
+            default:
+                $filtro = "h.fecha DESC";
+                break;
+        }
+
+        try {
+            $consulta = $this->conn->prepare("SELECT v.*, h.fecha FROM vistaproducto v 
+                JOIN producto p
+                ON p.idProducto = v.idProducto
+                JOIN visita h
+                ON h.idProducto = p.idProducto
+                WHERE h.email = ? 
+                ORDER BY " . $filtro);
+            $consulta->bindValue(1, $this->email, PDO::PARAM_STR);
+            $consulta->execute();
+            $resultados = $consulta->fetchAll(PDO::FETCH_ASSOC);
+
+            return $resultados;
+        } catch (PDOException $e) {
+            return "Error en la consulta: " . $e->getMessage();
+        }
+    }
     
 }
 

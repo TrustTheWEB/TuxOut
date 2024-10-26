@@ -9,7 +9,7 @@ const cargarHistorial = (idProducto) => {
         let visitado = false;
     
         $.ajax({
-            url: 'http://localhost/TuxOut/tienda/core/Enrutador.php', 
+            url: '/TuxOut/tienda/core/Enrutador.php', 
             method: 'POST', 
             dataType: 'json', 
             data: {accion: "visitado", controlador: "VisitaControlador", valores: [email, idProducto]},
@@ -37,7 +37,7 @@ const ingresarHistorial = (email, idProducto, visitado) => {
 
     if(visitado) {
         $.ajax({
-            url: 'http://localhost/TuxOut/tienda/core/Enrutador.php', 
+            url: '/TuxOut/tienda/core/Enrutador.php', 
             method: 'POST', 
             dataType: 'json', 
             data: {accion: "actualizarFecha", controlador: "VisitaControlador", valores: [email, idProducto]},
@@ -56,7 +56,7 @@ const ingresarHistorial = (email, idProducto, visitado) => {
         });   
     }else {
         $.ajax({
-            url: 'http://localhost/TuxOut/tienda/core/Enrutador.php', 
+            url: '/TuxOut/tienda/core/Enrutador.php', 
             method: 'POST', 
             dataType: 'json', 
             data: {accion: "store", controlador: "VisitaControlador", valores: [email, idProducto]},
@@ -90,7 +90,7 @@ const tomarProductoAbrir = () => {
 
 const cargarCaracteristicas = (idProducto) => {
     $.ajax({
-        url: 'http://localhost/TuxOut/tienda/core/Enrutador.php', 
+        url: '/TuxOut/tienda/core/Enrutador.php', 
         method: 'POST', 
         dataType: 'json', 
         data: {accion: "show", controlador: "CaracteristicaControlador", valores: ["idProducto", idProducto]},
@@ -113,7 +113,7 @@ const cargarCaracteristicas = (idProducto) => {
 
 const cargarComentarios = (idProducto) => {
     $.ajax({
-        url: 'http://localhost/TuxOut/tienda/core/Enrutador.php', 
+        url: '/TuxOut/tienda/core/Enrutador.php', 
         method: 'POST', 
         dataType: 'json', 
         data: {accion: "show", controlador: "ComentaControlador", valores: ["idProducto", idProducto]},
@@ -228,7 +228,7 @@ const cargarImagenes = (idProducto) => {
 const imagenExiste = (url) => {
     return new Promise((resolve, reject) => {
         $.ajax({
-            url: 'http://localhost/TuxOut/tienda/core/Enrutador.php', 
+            url: '/TuxOut/tienda/core/Enrutador.php', 
             method: 'POST', 
             dataType: 'json', 
             data: {accion: "imagenExiste", controlador: "ImagenControlador", valores: url},
@@ -271,7 +271,7 @@ const imprimirImagenGrande = (url) => {
 
 const cargarProducto = (idProducto) => {
     $.ajax({
-        url: 'http://localhost/TuxOut/tienda/core/Enrutador.php', 
+        url: '/TuxOut/tienda/core/Enrutador.php', 
         method: 'POST', 
         dataType: 'json', 
         data: {accion: "showAbrir", controlador: "ProductoControlador", valores: idProducto},

@@ -8,7 +8,7 @@ const tomarDatosUsuario = () => {
     if(logueado) {
         let email = localStorage.getItem("email");
         $.ajax({
-            url: 'http://localhost/TuxOut/tienda/core/Enrutador.php', 
+            url: '/TuxOut/tienda/core/Enrutador.php', 
             method: 'POST', 
             dataType: 'json', 
             data: {accion: "show", controlador: "UsuarioControlador", valores: ["email", email]},
@@ -31,7 +31,7 @@ const tomarDatosUsuario = () => {
 const actualizarUsuario = (usuario,nombre,apellido,telefono,ci,fechaNac) => {
     let email = localStorage.getItem("email");
     $.ajax({
-        url: 'http://localhost/TuxOut/tienda/core/Enrutador.php', 
+        url: '/TuxOut/tienda/core/Enrutador.php', 
         method: 'POST', 
         dataType: 'json', 
         data: {accion: "updateSinContra", controlador: "UsuarioControlador", valores: [email, usuario, nombre, apellido, telefono, ci, fechaNac]},

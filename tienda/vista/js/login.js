@@ -47,7 +47,7 @@ const tomarDatosRegistroUsuario = () => {
 
 const registrarUsuario = (email, usuario, nombre, apellido, contra) => {
     $.ajax({
-        url: 'http://localhost/TuxOut/tienda/core/Enrutador.php', 
+        url: '/TuxOut/tienda/core/Enrutador.php', 
         method: 'POST', 
         dataType: 'json', 
         data: {accion: "registro", controlador: "UsuarioControlador", valores: [email, usuario, nombre, apellido, contra]},
@@ -80,7 +80,7 @@ const registrarUsuario = (email, usuario, nombre, apellido, contra) => {
 
 const loginUsuario = (email, contra) => {
     $.ajax({
-        url: 'http://localhost/TuxOut/tienda/core/Enrutador.php', 
+        url: '/TuxOut/tienda/core/Enrutador.php', 
         method: 'POST', 
         dataType: 'json', 
         data: {accion: "login", controlador: "UsuarioControlador", valores: [email, contra]},
@@ -138,7 +138,8 @@ const cargarPanelUsuario = (email) => {
               <li class="p-1"><a class="dropdown-item" href="usuario.html">Mis datos</a></li>
               <li class="p-1"><a class="dropdown-item" href="direcciones.html">Direcciones</a></li>
               <li class="p-1"><a class="dropdown-item" href="compras.html">Mis compras</a></li>
-              <li class="p-1"><a class="dropdown-item" href="productos.html">Favoritos</a></li>
+              <li class="p-1"><a class="dropdown-item" href="productos.html?tipo=favoritos">Favoritos</a></li>
+              <li class="p-1"><a class="dropdown-item" href="historial.html">Historial</a></li>
               <li><hr></li>
               <li class="p-1"><button class="dropdown-item" id="cerrar-sesion">Cerrar sesión</button></li>
             </ul>
@@ -222,142 +223,3 @@ $(document).ready(function() {
     $("#btnLoginUsuario").click(tomarDatosLoginUsuario);
     $("#cerrar-sesion").click(cerrarSesion);
 });
-
-/* 
-function registrarEmpresa() {
-    let rut = $("#rutSignUpEmpresa").val();
-    let nombre = $("#nombreSignUpEmpresa").val();
-    let email = $("#emailSignUpEmpresa").val();
-    let contra = $("#contraSignUpEmpresa").val();
-    let telefono = $("#telefonoSignUpEmpresa").val();
-    let dir = $("#direccionSignUpEmpresa").val();
-
-    let telefonoValido = validarTelefono(telefono);
-    let dirValido = validarDireccion(dir);
-    let rutValido = validarRUT(rut);
-    let nombreValido = validarNombre(nombre);
-    let emailValido = validarEmail(email);
-    let contraValido = validarContra(contra);
-
-
-    if(nombreValido) {
-        //se efectuarían los cambios en la base de datos
-    }else {
-        mostrarError("El nombre ingresado no es válido (Solo puede contener letras y no puede ser mayor a 20 carcteres).");
-    }
-
-    if(telefonoValido) {
-        //se efectuarían los cambios en la base de datos
-    }else {
-        mostrarError("El telefono ingresado no es válido");
-    }
-
-    if(dirValido) {
-        //se efectuarían los cambios en la base de datos
-    }else {
-        mostrarError("La dirección ingresada no es válida");
-    }
-
-    if(rutValido) {
-        //se efectuarían los cambios en la base de datos
-    }else {
-        mostrarError("El RUT ingresado no es válido")    
-    }
-
-    if(emailValido) {
-        //se efectuarían los cambios en la base de datos
-    }else {
-        mostrarError("El email ingresado no es válido.");
-    }
-
-    if(contraValido) {
-        //se efectuarían los cambios en la base de datos
-    }else {
-        mostrarError("La contraseña ingresado no es válida (No puede ser mayor a 40 carcteres).");
-    }
-
-    if(emailValido && contraValido && usuarioValido && nombreValido && apellidoValido) {
-        //iniciar sesión junto con la base de datos
-        alert("Cuenta Registrada")
-    }
-} 
-    
-function loginEmpresa() {
-
-    let email = $("#emailLoginEmpresa").val();
-    let contra = $("#contraLoginEmpresa").val();
-
-    let emailValido = validarEmail(email);
-    let contraValido = validarContra(contra);
-
-    if(emailValido) {
-        //se efectuarían los cambios en la base de datos
-    }else {
-        mostrarError("El email ingresado no es válido.");
-    }
-
-    if(contraValido) {
-        //se efectuarían los cambios en la base de datos
-    }else {
-        mostrarError("La contraseña ingresado no es válida (No puede ser mayor a 40 carcteres).");
-    }
-
-    if(emailValido && contraValido) {
-        //iniciar sesión junto con la base de datos
-        alert("Sesión iniciada")
-    }
-
-}
-
-function guardarCambiosUsuario() {
-
-    let nombre = $("#nombreEditarUsuario").val();
-    let apellido = $("#apellidoEditarUsuario").val();
-    let usuario = $("#usuarioEditarUsuario").val();
-    let telefono = $("#telefonoEditarUsuario").val();
-    let fechaNac = $("#fechaEditarUsuario").val();
-
-    let nombreValido = validarNombre(nombre);
-    let apellidoValido = validarApellido(apellido);
-    let usuarioValido = validarUsuario(usuario);
-    let telefonoValido = validarTelefono(telefono);
-    let fechaNacValido = validarFecha(fechaNac);
-
-
-    if(nombreValido) {
-        //se efectuarían los cambios en la base de datos
-    }else {
-        mostrarError("El nombre ingresado no es válido (Solo puede contener letras y no puede ser mayor a 20 carcteres).");
-    }
-
-    if(apellidoValido) {
-        //se efectuarían los cambios en la base de datos
-    }else {
-        mostrarError("El apellido ingresado no es válido (Solo puede contener letras y no puede ser mayor a 25 carcteres).");
-    }
-
-    if(usuarioValido) {
-        //se efectuarían los cambios en la base de datos
-    }else {
-        mostrarError("El usuario ingresado no es válido (Solo puede contener letras, puntos y guíones y no puede ser mayor a 25 carcteres).");
-    }
-
-    if(telefonoValido) {
-        //se efectuarían los cambios en la base de datos
-    }else {
-        mostrarError('El teléfono ingresado no es válido (solo puede contener números y "-" o "+" al principio).');
-    }
-
-    if(fechaNacValido) {
-        //se efectuarían los cambios en la base de datos
-    }else {
-        mostrarError("La fecha ingresada no es válida");
-    }
-
-    if(nombreValido && apellidoValido && telefonoValido && fechaNacValido) {
-        //Cambiar a futuro por cartel de alerta personalizado con html, css y js
-        alert("Los cambios fueron efectuados correctamente.")
-    }
-
-}*/
-

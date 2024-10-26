@@ -150,6 +150,24 @@ class UsuarioControlador {
         echo json_encode($resultados);
         exit;
     }
+
+    public function busquedaFavoritos($valores) {
+        $modelo = new Usuario();
+        $modelo->setEmail($valores[0]);
+        $resultados = $modelo->busquedaFavoritos($valores[1]);
+        header('Content-Type: application/json');
+        echo json_encode($resultados);
+        exit;
+    }
+
+    public function busquedaHistorial($valores) {
+        $modelo = new Usuario();
+        $modelo->setEmail($valores[0]);
+        $resultados = $modelo->busquedaHistorial($valores[1]);
+        header('Content-Type: application/json');
+        echo json_encode($resultados);
+        exit;
+    }
 }
 
 ?>

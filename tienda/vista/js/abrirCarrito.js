@@ -6,7 +6,7 @@ const alerta = new Alerta();
 const tomarDatosCarrito = () => {
   let email = localStorage.getItem("email");
   $.ajax({
-    url: 'http://localhost/TuxOut/tienda/core/Enrutador.php', 
+    url: '/TuxOut/tienda/core/Enrutador.php', 
     method: 'POST', 
     dataType: 'json', 
     data: {accion: "showCarritoPreview", controlador: "CarritoControlador", valores: [email]},
@@ -102,7 +102,7 @@ const imprimirDatosCarrito = (resultado) => {
 const sumarCantidad = (idProducto) => {
   let email = localStorage.getItem("email");
   $.ajax({
-    url: 'http://localhost/TuxOut/tienda/core/Enrutador.php', 
+    url: '/TuxOut/tienda/core/Enrutador.php', 
     method: 'POST', 
     dataType: 'json', 
     data: {accion: "sumarCantidad", controlador: "CarritoControlador", valores: [email, idProducto]},
@@ -126,7 +126,7 @@ const sumarCantidad = (idProducto) => {
 const restarCantidad = (idProducto) => {
   let email = localStorage.getItem("email");
   $.ajax({
-    url: 'http://localhost/TuxOut/tienda/core/Enrutador.php', 
+    url: '/TuxOut/tienda/core/Enrutador.php', 
     method: 'POST', 
     dataType: 'json', 
     data: {accion: "restarCantidad", controlador: "CarritoControlador", valores: [email, idProducto]},
@@ -150,7 +150,7 @@ const restarCantidad = (idProducto) => {
 const eliminarCarrito = (idProducto) => {
   let email = localStorage.getItem("email");
   $.ajax({
-    url: 'http://localhost/TuxOut/tienda/core/Enrutador.php', 
+    url: '/TuxOut/tienda/core/Enrutador.php', 
     method: 'POST', 
     dataType: 'json', 
     data: {accion: "destroy", controlador: "CarritoControlador", valores: [email, idProducto]},

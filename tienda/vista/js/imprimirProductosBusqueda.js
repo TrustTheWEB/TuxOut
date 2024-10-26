@@ -14,6 +14,12 @@ const tomarBusqueda = () => {
         case "barra":
             tomarProdutosBusqueda(urlParams.get('busqueda'), filtro);
             break;
+        case "favoritos":
+            tomarProdutosFavoritos(filtro);
+            break;
+        case "historial":
+            tomarProdutosHistorial(filtro);
+            break;
         default:
             imprimirErrorBusqueda();
     }
@@ -21,7 +27,7 @@ const tomarBusqueda = () => {
 
 const tomarProdutosBusqueda = (busqueda, filtro) => {
     $.ajax({
-        url: 'http://localhost/TuxOut/tienda/core/Enrutador.php', 
+        url: '/TuxOut/tienda/core/Enrutador.php', 
         method: 'POST', 
         dataType: 'json', 
         data: {accion: "busquedaProducto", controlador: "ProductoControlador", valores: [busqueda, filtro]},
@@ -30,7 +36,7 @@ const tomarProdutosBusqueda = (busqueda, filtro) => {
                 console.error('Error:', response.error);
             } else {
                 if(response) {
-                    imprimirResultados(response, busqueda);
+                    imprimirResultados(response, `Resultados para: ${busqueda}`);
                     
                 }else {
                     console.error(response);
@@ -45,7 +51,7 @@ const tomarProdutosBusqueda = (busqueda, filtro) => {
 
 const tomarProdutosCategoria = (categoria, filtro) => {
     $.ajax({
-        url: 'http://localhost/TuxOut/tienda/core/Enrutador.php', 
+        url: '/TuxOut/tienda/core/Enrutador.php', 
         method: 'POST', 
         dataType: 'json', 
         data: {accion: "busquedaCategoria", controlador: "CategoriaControlador", valores: [categoria, filtro]},
@@ -54,7 +60,55 @@ const tomarProdutosCategoria = (categoria, filtro) => {
                 console.error('Error:', response.error);
             } else {
                 if(response) {
-                    imprimirResultados(response, categoria);
+                    imprimirResultados(response, `Resultados para: ${categoria}`);
+                }else {
+                    console.error(response);
+                } 
+            }
+        },
+        error: function(xhr, status, error) {
+            console.error('Error en la solicitud:', xhr, error, status);
+        }
+    });
+}
+
+const tomarProdutosFavoritos = (filtro) => {
+    let email = localStorage.getItem("email");
+    $.ajax({
+        url: '/TuxOut/tienda/core/Enrutador.php', 
+        method: 'POST', 
+        dataType: 'json', 
+        data: {accion: "busquedaFavoritos", controlador: "UsuarioControlador", valores: [email, filtro]},
+        success: function(response) {
+            if (response.error) {
+                console.error('Error:', response.error);
+            } else {
+                if(response) {
+                    imprimirResultados(response, "Favoritos");
+                }else {
+                    console.error(response);
+                } 
+            }
+        },
+        error: function(xhr, status, error) {
+            console.error('Error en la solicitud:', xhr, error, status);
+        }
+    });
+}
+
+const tomarProdutosHistorial = (filtro) => {
+    let email = localStorage.getItem("email");
+    $.ajax({
+        url: '/TuxOut/tienda/core/Enrutador.php', 
+        method: 'POST', 
+        dataType: 'json', 
+        data: {accion: "busquedaHistorial", controlador: "UsuarioControlador", valores: [email, filtro]},
+        success: function(response) {
+            if (response.error) {
+                console.error('Error:', response.error);
+            } else {
+                if(response) {
+                    imprimirResultados(response, "Historial");
                 }else {
                     console.error(response);
                 } 
@@ -67,7 +121,7 @@ const tomarProdutosCategoria = (categoria, filtro) => {
 }
 
 const imprimirResultados = (resultado, busqueda) => {
-    $("#tituloBusqueda").html(`Resultados para: ${busqueda}`);
+    $("#tituloBusqueda").html(busqueda);
     $("#contenedorProductosBusqueda").html("");
     if (Array.isArray(resultado)) {
         resultado.forEach(item => {

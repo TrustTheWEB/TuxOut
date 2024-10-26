@@ -30,12 +30,12 @@
 
         <div class="collapse navbar-collapse m-2 justify-content-center" id="navbarSupportedContent">
           <!-- Barra de busqueda -->
-           <form class="d-inline-flex w-100 barra-header justify-content-center">
-              <input class="form-control me-2 inputBuscarPrincipal" type="search" placeholder="Buscar producto...">
+           <div class="d-inline-flex w-100 barra-header justify-content-center">
+              <input class="form-control me-2 inputBuscarPrincipal" id="barraBuscarPrincipal" type="search" placeholder="Buscar producto...">
               <button class="btn btn-outline-success btn-barra" type="button" id="botonBuscarPrincipal">
                 <i class="bi bi-search"></i>
               </button>
-           </form>     
+            </div>     
            <button type="button" class="carrito btn-carrito ms-4 ms-lg-2" data-bs-target="#carritoModal">
             <i class="bi bi-cart4"></i>
         </button> 
@@ -68,7 +68,7 @@
     <nav class="navbar m-0 p-0" id="subnav">
       <form class="container encabezado justify-content-start" id="subnav-form">
         <button class="btn" id="botonMenu" type="button">≡ Menú</button>
-        <a class="btn" id="vender" href="vender.html">Vender</a>
+        <a class="btn" id="vender" href="../../proveedores/vista/login.html">Vender</a>
       </form>
     </nav>
   </header>

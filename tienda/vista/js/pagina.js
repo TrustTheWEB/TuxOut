@@ -20,7 +20,7 @@ function mostrarContraseña(id) {
 
 const tomarCategorias = () => {
   $.ajax({
-      url: 'http://localhost/TuxOut/tienda/core/Enrutador.php', 
+      url: '/TuxOut/tienda/core/Enrutador.php', 
       method: 'POST', 
       dataType: 'json', 
       data: {accion: "index", controlador: "CategoriaControlador", valores: null},
@@ -76,7 +76,7 @@ const tomarProductosCarrito = () => {
     modal.show();
     let email = localStorage.getItem("email");
     $.ajax({
-      url: 'http://localhost/TuxOut/tienda/core/Enrutador.php', 
+      url: '/TuxOut/tienda/core/Enrutador.php', 
       method: 'POST', 
       dataType: 'json', 
       data: {accion: "showCarritoPreview", controlador: "CarritoControlador", valores: [email]},
@@ -107,7 +107,7 @@ const mostrarProductosCarrito = (productos) => {
 
 const modificarCarrito = (email, idProducto, cantidad) => {
   $.ajax({
-    url: 'http://localhost/TuxOut/tienda/core/Enrutador.php', 
+    url: '/TuxOut/tienda/core/Enrutador.php', 
     method: 'POST', 
     dataType: 'json', 
     data: {accion: "update", controlador: "CarritoControlador", valores: [email, idProducto, cantidad+1]},
@@ -128,7 +128,7 @@ const modificarCarrito = (email, idProducto, cantidad) => {
 
 const agregarCarrito = (email, idProducto) => {
   $.ajax({
-    url: 'http://localhost/TuxOut/tienda/core/Enrutador.php', 
+    url: '/TuxOut/tienda/core/Enrutador.php', 
     method: 'POST', 
     dataType: 'json', 
     data: {accion: "store", controlador: "CarritoControlador", valores: [email, idProducto, 1]},
@@ -149,7 +149,7 @@ const agregarCarrito = (email, idProducto) => {
 
 const verificarCarrito = (idProducto, email) => {
   $.ajax({
-    url: 'http://localhost/TuxOut/tienda/core/Enrutador.php', 
+    url: '/TuxOut/tienda/core/Enrutador.php', 
     method: 'POST', 
     dataType: 'json', 
     data: {accion: "verificarCarrito", controlador: "CarritoControlador", valores: [email, idProducto]},
@@ -205,5 +205,13 @@ $(".btn-close-error").click(alerta.ocultarError)
 $(".btn-close-principal").click(alerta.ocultarPrincipal)
 $(document).on('click', '.agregar-carrito', tomarProducto);
 $(".carrito").click(tomarProductosCarrito);
-$("#botonBuscarPrincipal").click(tomarDatosBarra)
+$("#botonBuscarPrincipal").click(tomarDatosBarra);
+$(document).ready(function() {
+  $('#barraBuscarPrincipal').on('keypress', function(event) {
+    if (event.which === 13) {
+      tomarDatosBarra();
+    }
+  });
+});
+
 

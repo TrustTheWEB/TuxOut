@@ -978,3 +978,11 @@ header {
   margin-top: 7px;
   font-size: 15px;
 }
+
+#tituloHistorial {
+  font-size: 20px;
+}
+
+.fecha-visitado {
+  font-size: 10px;
+}

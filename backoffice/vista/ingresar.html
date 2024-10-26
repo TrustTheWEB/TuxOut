@@ -11,49 +11,38 @@
     <link rel="stylesheet" type="text/css" href="../assets/css/estilo.css">
     <link rel="stylesheet" type="text/css" href="../assets/css/footer.css">
     <link rel="stylesheet" type="text/css" href="../assets/css/backoffice.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
 <body>
   
   <header>
-    <nav class="navbar navbar-expand-lg">
-      <div class="container-fluid">
+    <h1 class="oculto">TuxOut backoffice</h1>
+    <nav class="navbar navbar-expand-lg m-0 p-0">
+      <div class="container encabezado">
+        <!-- Logo y vinculo a home -->
         <a class="navbar-brand" href="index.html">
           <img class="logo" src="../assets/logo/logoB.png" alt="Logo">
         </a>
         <button class="btn btn-link cerrarSesion">
-          <img src="../assets/logo/cerrar.png" alt="Cerrar Sesión" class="icono-cerrar-sesion">
-        </button>      
-      </div>
+          <i class="bi bi-box-arrow-right bi-cerrar"></i>
+        </button>    
     </nav>
   </header>
 
 <div class="row contenedor-proveedor m-0">
-  
-  <aside class="col-2 sidebar">
-    <nav>
-      <ul class="nav nav-pills flex-column">
-        <li class="nav-item">
-          <a class="nav-link pill-sidebar-active" href="index.html">Tablas</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link pill-sidebar" href="notificaciones.html">Notificaciones  <span class="badge text-bg-primary rounded-pill badge-noti  ms-1">1</span></a>
-        </li>
-      </ul>
-    </nav>
-  </aside>
-
-  <main class="container col-9 p-3 mt-2">
-    <section>
-      <h1 id="titulo-formulario-ingreso">Ingresar </h1>
-        <article id="formulario-ingreso">
+  <main class="container class my-3">
+    <section class="row justify-content-center">
+      <h1 id="titulo-formulario-ingreso" class="col-12 col-lg-8">Ingresar </h1>
+        <article id="formulario-ingreso" class="col-12 col-lg-8">
           <h3>Ingrese los datos:</h3>
+
         </article>
-        <button id="btnIngresarFormularioTabla" class="btn btnIngresarBackoffice mt-2">INGRESAR</button>
+        <button id="btnIngresarFormularioTabla" class="btn btnIngresarBackoffice mt-3 col-12 col-lg-8">INGRESAR</button>
     </section>
   </main>
-</div>
+  </div>
 
   <footer class="pie">
     <a href="condiciones.html">Términos y condiciones</a> |

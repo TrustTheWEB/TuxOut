@@ -9,7 +9,7 @@ const tomarUsuario = () => {
 
 const tomarFavoritos = (email) => {
     $.ajax({
-        url: 'http://localhost/TuxOut/tienda/core/Enrutador.php', 
+        url: '/TuxOut/tienda/core/Enrutador.php', 
         method: 'POST', 
         dataType: 'json', 
         data: {accion: "show", controlador: "FavoritoControlador", valores: ["email", email]},
@@ -41,7 +41,7 @@ const mostrarFavoritos = (favoritos) => {
 
 const agregarFavorito = (email, idProducto) => {
     $.ajax({
-        url: 'http://localhost/TuxOut/tienda/core/Enrutador.php', 
+        url: '/TuxOut/tienda/core/Enrutador.php', 
         method: 'POST', 
         dataType: 'json', 
         data: {accion: "store", controlador: "FavoritoControlador", valores: [email, idProducto]},
@@ -64,7 +64,7 @@ const agregarFavorito = (email, idProducto) => {
 
 const eliminarFavorito = (email, idProducto) => {
     $.ajax({
-        url: 'http://localhost/TuxOut/tienda/core/Enrutador.php', 
+        url: '/TuxOut/tienda/core/Enrutador.php', 
         method: 'POST', 
         dataType: 'json', 
         data: {accion: "destroy", controlador: "FavoritoControlador", valores: [email, idProducto]},
@@ -121,3 +121,5 @@ $(document).ready(function () {
 });
 
 $(document).ready(tomarUsuario)
+$("#selectBusqueda").change(tomarUsuario)
+$("#selectHistorial").change(tomarUsuario);

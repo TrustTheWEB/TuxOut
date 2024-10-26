@@ -12,7 +12,7 @@ class Empresa {
     private $telefono;
     private $direccion;
     private $email;
-    private $contraseña;
+    private $contra;
     private $suspendido;
 
     public function __construct() {
@@ -60,12 +60,12 @@ class Empresa {
         $this->email = $email;
     }
 
-    public function getContraseña() {
-        return $this->contraseña;
+    public function getContra() {
+        return $this->contra;
     }
 
-    public function setContraseña($contraseña) {
-        $this->contraseña = $contraseña;
+    public function setContra($contra) {
+        $this->contra = $contra;
     }
 
     public function getSuspendido() {
@@ -99,7 +99,7 @@ class Empresa {
             $stmt->bindValue(3, $this->telefono, PDO::PARAM_STR);
             $stmt->bindValue(4, $this->direccion, PDO::PARAM_STR);
             $stmt->bindValue(5, $this->email, PDO::PARAM_STR);
-            $hashedPassword = password_hash($this->contraseña, PASSWORD_DEFAULT);
+            $hashedPassword = password_hash($this->contra, PASSWORD_DEFAULT);
             $stmt->bindValue(6, $hashedPassword, PDO::PARAM_STR);
             $stmt->bindValue(7, $this->suspendido, PDO::PARAM_INT);
 
@@ -134,7 +134,7 @@ class Empresa {
                     $tipoDato = PDO::PARAM_STR;
                     break;
                 case "contraseña":
-                    $parametro = $this->contraseña;
+                    $parametro = $this->contra;
                     $tipoDato = PDO::PARAM_STR;
                     break;
                 default:
@@ -179,7 +179,7 @@ class Empresa {
 
             $stmt = $this->conn->prepare($query);
 
-            $hashedPassword = password_hash($this->contraseña, PASSWORD_DEFAULT);
+            $hashedPassword = password_hash($this->contra, PASSWORD_DEFAULT);
             $stmt->bindValue(1, $hashedPassword, PDO::PARAM_STR);
             $stmt->bindValue(2, $this->rut, PDO::PARAM_STR);
 

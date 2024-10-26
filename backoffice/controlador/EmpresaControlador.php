@@ -94,6 +94,17 @@ class EmpresaControlador {
             exit;
     }
 
+    public function updateContra($valores) {
+        $modelo = new Empresa();
+        $modelo->setRut($valores[0]);
+        $modelo->setContra($valores[1]);
+
+        $resultados = $modelo->updateContra();
+        header('Content-Type: application/json');
+        echo json_encode($resultados);
+        exit;
+    }
+
     public function destroy($valores) {
         $modelo = new Empresa();
         $modelo->setRut($valores[0]);
