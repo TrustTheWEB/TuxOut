@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 26-10-2024 a las 07:06:57
+-- Tiempo de generación: 24-10-2024 a las 12:33:57
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -19,6 +19,8 @@ SET time_zone = "+00:00";
 
 --
 -- Base de datos: `tuxout`
+
+CREATE DATABASE IF NOT EXISTS tuxout;
 --
 
 -- --------------------------------------------------------
@@ -45,6 +47,13 @@ CREATE TABLE `carrito` (
   `cantidad` int(10) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Volcado de datos para la tabla `carrito`
+--
+
+INSERT INTO `carrito` (`email`, `idProducto`, `cantidad`) VALUES
+('juan@gmail.com', 31, 2);
+
 -- --------------------------------------------------------
 
 --
@@ -56,6 +65,14 @@ CREATE TABLE `categoria` (
   `nombre` varchar(25) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Volcado de datos para la tabla `categoria`
+--
+
+INSERT INTO `categoria` (`idCategoria`, `nombre`) VALUES
+(1, 'Electrónica'),
+(2, 'Ropa');
+
 -- --------------------------------------------------------
 
 --
@@ -66,6 +83,20 @@ CREATE TABLE `categoriza` (
   `idCategoria` int(11) NOT NULL,
   `idProducto` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `categoriza`
+--
+
+INSERT INTO `categoriza` (`idCategoria`, `idProducto`) VALUES
+(1, 25),
+(1, 26),
+(1, 28),
+(1, 30),
+(1, 31),
+(2, 24),
+(2, 27),
+(2, 29);
 
 -- --------------------------------------------------------
 
@@ -106,6 +137,13 @@ CREATE TABLE `descuento` (
   `motivo` varchar(40) NOT NULL
 ) ;
 
+--
+-- Volcado de datos para la tabla `descuento`
+--
+
+INSERT INTO `descuento` (`idDescuento`, `porcentaje`, `fechaInicio`, `fechaFin`, `motivo`) VALUES
+(1, 80, '2024-10-10', '2025-10-10', 'Descuento');
+
 -- --------------------------------------------------------
 
 --
@@ -133,6 +171,13 @@ CREATE TABLE `empresa` (
   `suspendido` tinyint(1) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Volcado de datos para la tabla `empresa`
+--
+
+INSERT INTO `empresa` (`RUT`, `nombre`, `telefono`, `direccion`, `email`, `contraseña`, `suspendido`) VALUES
+('123412341', 'Empresa', '099888333', 'Rambla Sur 668', 'empresita@gmail.com', '$2y$10$1DdcU2xZeYG79snHuhkqfetIcTF8/N6vZod.AeB.BJuQn0HuKEGIO', 1);
+
 -- --------------------------------------------------------
 
 --
@@ -144,6 +189,14 @@ CREATE TABLE `favorito` (
   `idProducto` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Volcado de datos para la tabla `favorito`
+--
+
+INSERT INTO `favorito` (`email`, `idProducto`) VALUES
+('juan@gmail.com', 34),
+('juan@gmail.com', 37);
+
 -- --------------------------------------------------------
 
 --
@@ -154,6 +207,7 @@ CREATE TABLE `pedido` (
   `idPedido` int(11) NOT NULL,
   `estado` enum('procesando','pagado','entregado') NOT NULL,
   `medioPago` enum('PayPal','MercadoPago','','') NOT NULL,
+  `montoTotal` int(10) UNSIGNED NOT NULL,
   `fecha` timestamp NOT NULL DEFAULT current_timestamp(),
   `email` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -176,6 +230,31 @@ CREATE TABLE `producto` (
   `oculto` tinyint(1) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Volcado de datos para la tabla `producto`
+--
+
+INSERT INTO `producto` (`idProducto`, `RUT`, `nombre`, `descripcion`, `precio`, `stock`, `estado`, `marca`, `oculto`) VALUES
+(24, '123412341', 'Producto B', 'Descripción del Producto B que es un poco más larga pero dentro del límite.', 299.49, 50, 'Usado', 'Marca B', 0),
+(25, '123412341', 'Producto C', NULL, 99.95, 200, 'Renovado', 'Marca C', 0),
+(26, '123412341', 'Producto D', 'Este es un producto usado de buena calidad.', 59.00, 25, 'Usado', 'Marca D', 0),
+(27, '123412341', 'Producto E', NULL, 1999.99, 5, 'Nuevo', 'Marca E', 0),
+(28, '123412341', 'Producto F', 'Este es un producto nuevo, recién salido al mercado.', 499.50, 80, 'Nuevo', 'Marca F', 0),
+(29, '123412341', 'Producto G', NULL, 29.99, 150, 'Renovado', 'Marca G', 0),
+(30, '123412341', 'Producto H', 'Descripción detallada del Producto H, que tiene características únicas.', 120.25, 300, 'Usado', 'Marca H', 0),
+(31, '123412341', 'Producto I', 'Un producto de alta calidad.', 10.99, 1000, 'Nuevo', 'Marca I', 0),
+(32, '123412341', 'Producto J', NULL, 75.49, 500, 'Nuevo', 'Marca J', 0),
+(33, '123412341', 'Producto K', 'Descripción muy detallada del Producto K.', 88.75, 20, 'Renovado', 'Marca K', 0),
+(34, '123412341', 'Producto L', 'Un producto en excelente estado.', 500.00, 60, 'Usado', 'Marca L', 0),
+(35, '123412341', 'Producto M', NULL, 750.00, 30, 'Nuevo', 'Marca M', 0),
+(36, '123412341', 'Producto N', 'Producto renovado con garantía.', 25.50, 400, 'Renovado', 'Marca N', 0),
+(37, '123412341', 'Producto O', 'Descripción breve del Producto O.', 450.00, 10, 'Usado', 'Marca O', 0),
+(38, '123412341', 'Producto P', 'Un producto muy popular entre los clientes.', 100.00, 900, 'Nuevo', 'Marca P', 0),
+(39, '123412341', 'Producto Q', NULL, 89.99, 100, 'Nuevo', 'Marca Q', 0),
+(40, '123412341', 'Producto R', 'Descripción completa del Producto R.', 199.00, 45, 'Usado', 'Marca R', 0),
+(41, '123412341', 'Producto S', 'Producto renovado con grandes descuentos.', 349.50, 75, 'Renovado', 'Marca S', 0),
+(42, '123412341', 'Producto T', NULL, 499.99, 10, 'Nuevo', 'Marca T', 0);
+
 -- --------------------------------------------------------
 
 --
@@ -186,6 +265,13 @@ CREATE TABLE `tiene` (
   `idProducto` int(11) NOT NULL,
   `idDescuento` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `tiene`
+--
+
+INSERT INTO `tiene` (`idProducto`, `idDescuento`) VALUES
+(26, 1);
 
 -- --------------------------------------------------------
 
@@ -204,6 +290,17 @@ CREATE TABLE `usuario` (
   `contraseña` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Volcado de datos para la tabla `usuario`
+--
+
+INSERT INTO `usuario` (`email`, `usuario`, `nombre`, `apellido`, `telefono`, `fechaNac`, `ci`, `contraseña`) VALUES
+('a@a.com', 'Mesi', 'Freso', 'Leso', NULL, NULL, NULL, '$2y$10$h4fm3noQoInMdpM9JoFyUuL8Ae8OJjrGDiykao3udQw6IeGTeEiHy'),
+('juan@gmail.com', 'Juan6', 'Juan', 'Pettinari', '099888555', '2002-02-21', '12345672', '$2y$10$X9vsKLEuj8Eb7.IDdPGSzugr3jTDtXYTbFZBAUSzqESuxDMFj.tlK'),
+('laura.martinez@example.com', 'FFlores9', 'Florencia', 'Flores', '099333444', '2003-02-22', '12345678', '$2y$10$zU9ga/L3K7PHWQw8wvxPWui0sKYeVBD5G38BhMM9dLxIsN.PIljiu'),
+('mauro@gmail.com', 'MauroR33', 'Mauro', 'Riela', NULL, NULL, NULL, '$2y$10$s0m5UU3WTDeaYVejYOiTQeA1kQ5S6MKzfaqeSDVfa7zL/jPO.MYqG'),
+('rodrigo@gmail.com', 'KazRevan', 'Rodrigo', 'Estevez', NULL, NULL, NULL, '$2y$10$m8VGoCvZ2xJehdyFh1AEjOe6xqxCfjAhdyr2raA4jfmtI7Sfr3A2q');
+
 -- --------------------------------------------------------
 
 --
@@ -215,6 +312,16 @@ CREATE TABLE `visita` (
   `idProducto` int(11) NOT NULL,
   `fecha` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `visita`
+--
+
+INSERT INTO `visita` (`email`, `idProducto`, `fecha`) VALUES
+('juan@gmail.com', 27, '2024-10-23 01:58:06'),
+('juan@gmail.com', 29, '2024-10-23 02:03:25'),
+('juan@gmail.com', 39, '2024-10-24 04:36:11'),
+('juan@gmail.com', 40, '2024-10-23 01:40:20');
 
 -- --------------------------------------------------------
 
@@ -383,7 +490,7 @@ ALTER TABLE `visita`
 -- AUTO_INCREMENT de la tabla `categoria`
 --
 ALTER TABLE `categoria`
-  MODIFY `idCategoria` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idCategoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `descuento`
@@ -401,7 +508,7 @@ ALTER TABLE `pedido`
 -- AUTO_INCREMENT de la tabla `producto`
 --
 ALTER TABLE `producto`
-  MODIFY `idProducto` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idProducto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
 --
 -- Restricciones para tablas volcadas
