@@ -10,6 +10,8 @@ class Contiene {
     private $idPedido;
     private $idProducto;
     private $cantidad;
+    private $precioHistorico;
+    private $estado;
 
     public function __construct() {
         $this->conn = Conexion::getInstance()->getDatabaseInstance();
@@ -42,6 +44,23 @@ class Contiene {
         $this->cantidad = $cantidad;
     }
 
+    public function getPrecioHistorico() {
+        return $this->precioHistorico;
+    }
+    
+    public function setPrecioHistorico($precioHistorico) {
+        $this->precioHistorico = $precioHistorico;
+    }
+    
+    public function getEstado() {
+        return $this->estado;
+    }
+    
+    public function setEstado($estado) {
+        $this->estado = $estado;
+    }    
+
+
     // Métodos CRUD
 
     public function index() {
@@ -57,12 +76,14 @@ class Contiene {
 
     public function store() {
         try {
-            $query = "INSERT INTO " . $this->tabla . " (idPedido, idProducto, cantidad) VALUES (?, ?, ?)";
+            $query = "INSERT INTO " . $this->tabla . " (idPedido, idProducto, cantidad, precioHistorico, estado) VALUES (?, ?, ?, ?, ?)";
             $stmt = $this->conn->prepare($query);
 
             $stmt->bindValue(1, $this->idPedido, PDO::PARAM_INT);
             $stmt->bindValue(2, $this->idProducto, PDO::PARAM_INT);
             $stmt->bindValue(3, $this->cantidad, PDO::PARAM_INT);
+            $stmt->bindValue(4, $this->precioHistorico, PDO::PARAM_INT);
+            $stmt->bindValue(5, $this->estado, PDO::PARAM_STR);
 
             return $stmt->execute();
         } catch (PDOException $e) {
@@ -79,6 +100,18 @@ class Contiene {
             case "idProducto":
                 $parametro = $this->idProducto;
                 $tipoDato = PDO::PARAM_INT;
+                break;
+            case "cantidad":
+                $parametro = $this->cantidad;
+                $tipoDato = PDO::PARAM_INT;
+                break;
+            case "precioHistorico":
+                $parametro = $this->idProducto;
+                $tipoDato = PDO::PARAM_INT;
+                break;
+            case "estado":
+                $parametro = $this->idProducto;
+                $tipoDato = PDO::PARAM_STR;
                 break;
             default:
                 throw new Exception("Tipo de condición no reconocida");
@@ -99,12 +132,14 @@ class Contiene {
     
     public function update() {
         try {
-            $query = "UPDATE " . $this->tabla . " SET cantidad = ? WHERE idPedido = ? AND idProducto = ?";
+            $query = "UPDATE " . $this->tabla . " SET cantidad = ?, precioHistorico = ?, estado = ? WHERE idPedido = ? AND idProducto = ?";
             $stmt = $this->conn->prepare($query);
 
             $stmt->bindValue(1, $this->cantidad, PDO::PARAM_INT);
-            $stmt->bindValue(2, $this->idPedido, PDO::PARAM_INT);
-            $stmt->bindValue(3, $this->idProducto, PDO::PARAM_INT);
+            $stmt->bindValue(2, $this->precioHistorico, PDO::PARAM_INT);
+            $stmt->bindValue(3, $this->estado, PDO::PARAM_INT);
+            $stmt->bindValue(4, $this->idPedido, PDO::PARAM_INT);
+            $stmt->bindValue(5, $this->idProducto, PDO::PARAM_INT);
 
             return $stmt->execute();
         } catch (PDOException $e) {

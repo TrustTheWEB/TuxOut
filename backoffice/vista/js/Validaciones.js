@@ -562,7 +562,16 @@ class Validaciones {
 
     validarEstadoPedido = (estado) => {
         estado = estado.toLowerCase();
-        if (estado === "procesando" || estado === "pagado" || estado === "entregado") {
+        if (estado === "procesando" || estado === "pagado") {
+          return true;
+        } else {
+          return false;
+        }
+      };
+
+      validarEstadoContiene = (estado) => {
+        estado = estado.toLowerCase();
+        if (estado === "preparando" || estado === "entregado") {
           return true;
         } else {
           return false;

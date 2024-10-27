@@ -1,3 +1,6 @@
+import Alerta from './Alerta.js';
+const alerta = new Alerta();
+
 const tomarUsuario = () => {
     let logueado = localStorage.getItem("logueado");
     if(logueado == "true") {

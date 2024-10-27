@@ -48,11 +48,11 @@ const formularios = {
             <label for="inputCantidad">Cantidad:</label>
             <input type="number" id="inputCantidad" class="form-control inputIngresar" value="${datos[2]}">
             <label for="inputPrecioHistorico">Precio Histórico:</label>
-            <input type="number" id="inputPrecioHistorico" class="form-control inputIngresar" value="${datos[4]}">
+            <input type="number" id="inputPrecioHistorico" class="form-control inputIngresar" value="${datos[3]}">
             <label for="inputEstado">Estado:</label>
             <select id="inputEstado" class="form-select">
-                <option value="preparando" ${datos[1] === 'preparando' ? 'selected' : ''}>Preparando</option>
-                <option value="entregado" ${datos[1] === 'entregado' ? 'selected' : ''}>Entregado</option>
+                <option value="preparando" ${datos[4] === 'preparando' ? 'selected' : ''}>Preparando</option>
+                <option value="entregado" ${datos[4] === 'entregado' ? 'selected' : ''}>Entregado</option>
             </select>
             `
         );

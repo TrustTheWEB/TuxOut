@@ -18,6 +18,8 @@ class ContieneControlador {
         $modelo->setIdProducto($valores[0]);
         $modelo->setIdPedido($valores[1]);
         $modelo->setCantidad($valores[2]);
+        $modelo->setPrecioHistorico($valores[3]);
+        $modelo->setEstado($valores[4]);
         
         $resultados = $modelo->store();
         header('Content-Type: application/json');
@@ -42,6 +44,18 @@ class ContieneControlador {
         case "idPedido":
             $modelo->setIdPedido($valor);
             break;
+
+        case "cantidad":
+            $modelo->setCantidad($valor);
+            break;
+
+        case "precioHistorico":
+            $modelo->setPrecioHistorico($valor);
+            break;
+
+        case "estado":
+            $modelo->setEstado($valor);
+            break;
     
         default:
             //error
@@ -60,6 +74,8 @@ class ContieneControlador {
         $modelo->setIdProducto($valores[0]);
         $modelo->setIdPedido($valores[1]);
         $modelo->setCantidad($valores[2]);
+        $modelo->setPrecioHistorico($valores[3]);
+        $modelo->setEstado($valores[4]);
         $resultados = $modelo->update();
         header('Content-Type: application/json');
         echo json_encode($resultados);

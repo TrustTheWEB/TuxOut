@@ -1,6 +1,9 @@
 import Validaciones from './Validaciones.js';
 const validaciones = new Validaciones();
 
+import Alerta from './Alerta.js';
+const alerta = new Alerta();
+
 let metodo = null;
 
 const tomarImagenes = (response) => {
@@ -96,7 +99,6 @@ const validacionTablasIngresar = {
         try {
 
             for (let i = 0; i < valores.length; i++) {
-                console.log(valores[i])
                 if (!validaciones[i](valores[i])) {
                     throw new Error(mensajesError[i]); 
                 }
@@ -117,7 +119,7 @@ const validacionTablasIngresar = {
             }
 
         } catch (error) {
-            console.error(error.message); 
+            alerta.alertar(error); 
         }
     },
 
@@ -176,12 +178,12 @@ const validacionTablasIngresar = {
         );
     },
 
-    validarContiene: (idPedido, idProducto, cantidad) => {
+    validarContiene: (idPedido, idProducto, cantidad, precioHistorico, estado) => {
         validacionTablasIngresar.validar(
             "contiene", 
-            [idPedido, idProducto, cantidad], 
-            [validaciones.validarId, validaciones.validarId, validaciones.validarCantidad],
-            ["ID de pedido inválido", "ID de producto inválido", "Cantidad inválida"]
+            [idPedido, idProducto, cantidad, precioHistorico, estado], 
+            [validaciones.validarId, validaciones.validarId, validaciones.validarCantidad, validaciones.validarPrecio, validaciones.validarEstadoContiene],
+            ["ID de pedido inválido", "ID de producto inválido", "Cantidad inválida", "Precio inválido", "Estado inválido"]
         );
     },
 
@@ -248,21 +250,21 @@ const validacionTablasIngresar = {
         );
     },
 
-    validarPedido: (estado, medioPago, montoTotal, email) => {
+    validarPedido: (estado, medioPago, email) => {
         validacionTablasIngresar.validar(
             "pedido", 
-            [estado, medioPago, montoTotal, email], 
-            [validaciones.validarEstadoPedido, validaciones.validarMedioPago, validaciones.validarPrecio, validaciones.validarEmail],
-            ["Estado inválido", "Medio de pago inválido", "Monto total inválido", "Email inválido"]
+            [estado, medioPago, email], 
+            [validaciones.validarEstadoPedido, validaciones.validarMedioPago, validaciones.validarEmail],
+            ["Estado inválido", "Medio de pago inválido", "Email inválido"]
         );
     },
 
-    validarPedidoUpdate: (idPedido, estado, medioPago, montoTotal, email) => {
+    validarPedidoUpdate: (idPedido, estado, medioPago, email) => {
         validacionTablasIngresar.validar(
             "pedido", 
-            [idPedido, estado, medioPago, montoTotal, email], 
-            [validaciones.validarId, validaciones.validarEstadoPedido, validaciones.validarMedioPago, validaciones.validarPrecio, validaciones.validarEmail],
-            ["ID pedido inválido", "Estado inválido", "Medio de pago inválido", "Monto total inválido", "Email inválido"]
+            [idPedido, estado, medioPago, email], 
+            [validaciones.validarId, validaciones.validarEstadoPedido, validaciones.validarMedioPago, validaciones.validarEmail],
+            ["ID pedido inválido", "Estado inválido", "Medio de pago inválido", "Email inválido"]
         );
     },
 
@@ -374,7 +376,9 @@ const tomarDatosIngresar = {
         let idPedido = $("#inputIdPedido").val();
         let idProducto = $("#inputIdProducto").val();
         let cantidad = $("#inputCantidad").val();
-        validacionTablasIngresar.validarContiene(idPedido, idProducto, cantidad);
+        let precioHistorico = $("#inputPrecioHistorico").val();
+        let estado = $("#inputEstado").val();
+        validacionTablasIngresar.validarContiene(idPedido, idProducto, cantidad, precioHistorico, estado);
     },
 
     tomarDescuento: () => {
@@ -436,18 +440,16 @@ const tomarDatosIngresar = {
     tomarPedido: () => {
         let estado = $("#inputEstado").val();
         let medioPago = $("#inputMedioPago").val();
-        let montoTotal = $("#inputMontoTotal").val();
         let email = $("#inputEmail").val();
-        validacionTablasIngresar.validarPedido(estado, medioPago, montoTotal, email);
+        validacionTablasIngresar.validarPedido(estado, medioPago, email);
     },
 
     tomarPedidoUpdate: () => {
         let idPedido = $("#inputIdPedido").val();
         let estado = $("#inputEstado").val();
         let medioPago = $("#inputMedioPago").val();
-        let montoTotal = $("#inputMontoTotal").val();
         let email = $("#inputEmail").val();
-        validacionTablasIngresar.validarPedidoUpdate(idPedido, estado, medioPago, montoTotal, email);
+        validacionTablasIngresar.validarPedidoUpdate(idPedido, estado, medioPago, email);
     },
 
     tomarProducto: () => {

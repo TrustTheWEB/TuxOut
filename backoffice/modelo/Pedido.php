@@ -10,7 +10,6 @@ class Pedido {
     private $idPedido;
     private $estado;
     private $medioPago;
-    private $montoTotal;
     private $fecha;
     private $email;
 
@@ -43,14 +42,6 @@ class Pedido {
         $this->medioPago = $medioPago;
     }
 
-    public function getMontoTotal() {
-        return $this->montoTotal;
-    }
-
-    public function setMontoTotal($montoTotal) {
-        $this->montoTotal = $montoTotal;
-    }
-
     public function getFecha() {
         return $this->fecha;
     }
@@ -81,13 +72,12 @@ class Pedido {
 
     public function store() {
         try {
-            $query = "INSERT INTO " . $this->tabla . " (estado, medioPago, montoTotal, email) VALUES (?, ?, ?, ?)";
+            $query = "INSERT INTO " . $this->tabla . " (estado, medioPago, email) VALUES (?, ?, ?)";
             $stmt = $this->conn->prepare($query);
 
             $stmt->bindValue(1, $this->estado, PDO::PARAM_STR);
             $stmt->bindValue(2, $this->medioPago, PDO::PARAM_STR);
-            $stmt->bindValue(3, $this->montoTotal, PDO::PARAM_STR);
-            $stmt->bindValue(4, $this->email, PDO::PARAM_STR);
+            $stmt->bindValue(3, $this->email, PDO::PARAM_STR);
 
             return $stmt->execute();
         } catch (PDOException $e) {
@@ -109,13 +99,9 @@ class Pedido {
                 $parametro = $this->medioPago;
                 $tipoDato = PDO::PARAM_STR;
                 break;
-            case "montoTotal":
-                $parametro = $this->montoTotal;
-                $tipoDato = PDO::PARAM_STR; // Ajusta el tipo según tu base de datos
-                break;
             case "fecha":
                 $parametro = $this->fecha;
-                $tipoDato = PDO::PARAM_STR; // Ajusta el tipo según tu base de datos
+                $tipoDato = PDO::PARAM_STR;
                 break;
             case "email":
                 $parametro = $this->email;
@@ -140,15 +126,14 @@ class Pedido {
 
     public function update() {
         try {
-            $query = "UPDATE " . $this->tabla . " SET estado=?, medioPago=?, montoTotal=?, fecha=?, email=? WHERE idPedido=?";
+            $query = "UPDATE " . $this->tabla . " SET estado=?, medioPago=?, fecha=?, email=? WHERE idPedido=?";
             $stmt = $this->conn->prepare($query);
 
             $stmt->bindValue(1, $this->estado, PDO::PARAM_STR);
             $stmt->bindValue(2, $this->medioPago, PDO::PARAM_STR);
-            $stmt->bindValue(3, $this->montoTotal, PDO::PARAM_STR);
-            $stmt->bindValue(4, $this->fecha, PDO::PARAM_STR);
-            $stmt->bindValue(5, $this->email, PDO::PARAM_STR);
-            $stmt->bindValue(6, $this->idPedido, PDO::PARAM_INT);
+            $stmt->bindValue(3, $this->fecha, PDO::PARAM_STR);
+            $stmt->bindValue(4, $this->email, PDO::PARAM_STR);
+            $stmt->bindValue(5, $this->idPedido, PDO::PARAM_INT);
 
             return $stmt->execute();
         } catch (PDOException $e) {
