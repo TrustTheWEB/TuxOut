@@ -574,7 +574,6 @@ const imprimirTablas = {
                     <th>ID Pedido</th>
                     <th>Estado</th>
                     <th>Medio de Pago</th>
-                    <th>Monto Total</th>
                     <th>Fecha</th>
                     <th>Email</th>
                     <th>Acciones</th>

@@ -15,12 +15,12 @@ class ContieneControlador {
 
     public function store($valores) {
         $modelo = new Contiene();
-        $modelo->setIdProducto($valores[0]);
-        $modelo->setIdPedido($valores[1]);
+        $modelo->setIdPedido($valores[0]);
+        $modelo->setIdProducto($valores[1]);
         $modelo->setCantidad($valores[2]);
         $modelo->setPrecioHistorico($valores[3]);
         $modelo->setEstado($valores[4]);
-        
+
         $resultados = $modelo->store();
         header('Content-Type: application/json');
         echo json_encode($resultados);

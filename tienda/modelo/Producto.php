@@ -17,7 +17,6 @@ class Producto {
     private $marca;
     private $oculto;
     private $busqueda;
-    private $filtro;
 
     public function __construct() {
         $this->conn = Conexion::getInstance()->getDatabaseInstance();
@@ -111,15 +110,6 @@ class Producto {
 
     public function setBusqueda($busqueda) {
         $this->busqueda = $busqueda;
-    }
-
-    //filtro
-    public function getFiltro() {
-        return $this->filtro;
-    }
-
-    public function setFiltro($filtro) {
-        $this->filtro = $filtro;
     }
 
     //metodos principales
@@ -285,9 +275,9 @@ class Producto {
         }
     }
 
-    public function busquedaProducto() {
+    public function busquedaProducto($filtro) {
 
-        switch($this->filtro) {
+        switch($filtro) {
             case "populares":
                 $filtro = "cantidadVendida DESC";
                 break;

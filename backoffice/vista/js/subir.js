@@ -22,7 +22,7 @@ const storeTabla = (tabla, valores) => {
     
     let controlador = tabla.charAt(0).toUpperCase() + tabla.slice(1) + "Controlador";
     $.ajax({
-        url: 'http://localhost/TuxOut/backoffice/core/Enrutador.php', 
+        url: '/TuxOut/backoffice/core/Enrutador.php', 
         method: 'POST', 
         dataType: 'json', 
         data: {accion: "store", controlador: controlador, valores: valores},
@@ -31,6 +31,7 @@ const storeTabla = (tabla, valores) => {
                 console.error('Error:', response.error);
             } else {
                 if(response) {
+                    console.log(response)
                     window.location.href = 'index.html';
                 }else {
                     console.error(response);
@@ -46,7 +47,7 @@ const storeTabla = (tabla, valores) => {
 const updateTabla = (tabla, valores) => {
     let controlador = tabla.charAt(0).toUpperCase() + tabla.slice(1) + "Controlador";
     $.ajax({
-        url: 'http://localhost/TuxOut/backoffice/core/Enrutador.php', 
+        url: '/TuxOut/backoffice/core/Enrutador.php', 
         method: 'POST', 
         dataType: 'json', 
         data: {accion: "update", controlador: controlador, valores: valores},
@@ -55,6 +56,7 @@ const updateTabla = (tabla, valores) => {
                 console.error('Error:', response.error);
             } else {
                 if(response) {
+                    console.log(response)
                     window.location.href = 'index.html';
                 }else {
                     console.error(response);
@@ -104,6 +106,7 @@ const validacionTablasIngresar = {
                 }
             }
 
+            console.log(typeof(valores[4]))
             switch (metodo) {
                 case "store":
                     storeTabla(tabla, valores);
@@ -259,12 +262,12 @@ const validacionTablasIngresar = {
         );
     },
 
-    validarPedidoUpdate: (idPedido, estado, medioPago, email) => {
+    validarPedidoUpdate: (idPedido, estado, medioPago, fecha, email) => {
         validacionTablasIngresar.validar(
             "pedido", 
-            [idPedido, estado, medioPago, email], 
-            [validaciones.validarId, validaciones.validarEstadoPedido, validaciones.validarMedioPago, validaciones.validarEmail],
-            ["ID pedido inválido", "Estado inválido", "Medio de pago inválido", "Email inválido"]
+            [idPedido, estado, medioPago, fecha, email], 
+            [validaciones.validarId, validaciones.validarEstadoPedido, validaciones.validarMedioPago, validaciones.validarFechaHora,validaciones.validarEmail],
+            ["ID pedido inválido", "Estado inválido", "Medio de pago inválido", "Fecha inválida", "Email inválido"]
         );
     },
 
@@ -448,8 +451,9 @@ const tomarDatosIngresar = {
         let idPedido = $("#inputIdPedido").val();
         let estado = $("#inputEstado").val();
         let medioPago = $("#inputMedioPago").val();
+        let fecha = $("#inputFecha").val();
         let email = $("#inputEmail").val();
-        validacionTablasIngresar.validarPedidoUpdate(idPedido, estado, medioPago, email);
+        validacionTablasIngresar.validarPedidoUpdate(idPedido, estado, medioPago, fecha, email);
     },
 
     tomarProducto: () => {

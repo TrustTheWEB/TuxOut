@@ -986,3 +986,13 @@ header {
 /* .td-pedidos {
   line-height: 40px;
 } */
+
+.imagen-detalle {
+  height: 150px;
+  width: auto;
+}
+
+.detalle-texto {
+  font-size: 15px;
+  line-height: 15px;
+}

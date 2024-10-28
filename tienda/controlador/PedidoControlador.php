@@ -85,6 +85,28 @@ class PedidoControlador {
         echo json_encode($resultados);
         exit;
     }
+
+    public function showFiltro($valores) {
+        $modelo = new Pedido();
+        $modelo->setEmail($valores[0]);
+        $resultados = $modelo->showFiltro($valores[1]);
+
+        header('Content-Type: application/json');
+        echo json_encode($resultados);
+        exit;
+    }
+
+    public function verDetalles($valores) {
+        $modelo = new Pedido();
+        $modelo->setIdPedido($valores[0]);
+        $modelo->setEmail($valores[1]);
+
+        $resultados = $modelo->verDetalles();
+        header('Content-Type: application/json');
+        echo json_encode($resultados);
+        exit;
+    }
+
 }
 
 ?>

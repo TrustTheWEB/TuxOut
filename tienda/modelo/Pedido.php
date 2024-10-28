@@ -153,6 +153,46 @@ class Pedido {
             return "Error en la consulta: " . $e->getMessage();
         }
     }
+
+    public function showFiltro($filtro) {
+
+        switch($filtro) {
+            case "recientes":
+                $filtro = "fecha DESC";
+                break;
+            case "antiguos":
+                $filtro = "fecha";
+                break;
+            default:
+                $filtro = "fecha DESC";
+                break;
+        }
+
+        try {
+            $consulta = $this->conn->prepare("SELECT * FROM pedido WHERE email = ? ORDER BY " . $filtro);
+            $consulta->bindValue(1, $this->email, PDO::PARAM_STR);
+            $consulta->execute();
+            $resultados = $consulta->fetchAll(PDO::FETCH_ASSOC);
+
+            return $resultados;
+        } catch (PDOException $e) {
+            return "Error en la consulta: " . $e->getMessage();
+        }
+    }
+
+    public function verDetalles() {
+        try {
+            $consulta = $this->conn->prepare("SELECT * FROM vistadetalles WHERE idPedido = ? AND email = ?;");
+            $consulta->bindValue(1, $this->idPedido, PDO::PARAM_INT);
+            $consulta->bindValue(2, $this->email, PDO::PARAM_STR);
+            $consulta->execute();
+            $resultados = $consulta->fetchAll(PDO::FETCH_ASSOC);
+
+            return $resultados;
+        } catch (PDOException $e) {
+            return "Error en la consulta: " . $e->getMessage();
+        }
+    }
 }
 
 ?>

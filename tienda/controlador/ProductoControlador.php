@@ -136,8 +136,7 @@ class ProductoControlador {
     public function busquedaProducto($valores) {
         $modelo = new Producto();
         $modelo->setBusqueda($valores[0]);
-        $modelo->setFiltro($valores[1]);
-        $resultados = $modelo->busquedaProducto();
+        $resultados = $modelo->busquedaProducto($valores[1]);
         header('Content-Type: application/json');
         echo json_encode($resultados);
         exit;
