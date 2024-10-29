@@ -81,6 +81,16 @@ class CarritoControlador {
         echo json_encode($resultados);
         exit;
     }
+    
+    public function destroyEmail($valores) {
+        $modelo = new Carrito();
+        $modelo->setEmail($valores[0]);
+        
+        $resultados = $modelo->destroyEmail();
+        header('Content-Type: application/json');
+        echo json_encode($resultados);
+        exit;
+    }
 
     public function verificarCarrito($valores) {
         $modelo = new Carrito();

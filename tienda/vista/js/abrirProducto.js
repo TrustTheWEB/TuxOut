@@ -164,6 +164,7 @@ const imprimirProductoAbrir = (resultado) => {
     $(".titulo-producto").html(resultado['nombre']);
     $("#p-descripcion-abrir").html(resultado['descripcion'])
     $(".agregar-carrito").attr("data-id-producto", resultado['idProducto'])
+    $(".btn-comprar").attr("href", `comprar.html?tipo=unico&idProducto=${resultado['idProducto']}`)
 
     let precio = resultado["precio"];
     let descuento = resultado["descuento"];

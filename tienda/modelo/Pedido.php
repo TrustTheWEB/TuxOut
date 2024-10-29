@@ -85,6 +85,25 @@ class Pedido {
         }
     }
 
+    public function efectuarPedido() {
+        try {
+            $query = "INSERT INTO " . $this->tabla . " (estado, medioPago, email) VALUES ('procesando', ?, ?)";
+            $stmt = $this->conn->prepare($query);
+    
+            $stmt->bindValue(1, $this->medioPago, PDO::PARAM_STR);
+            $stmt->bindValue(2, $this->email, PDO::PARAM_STR);
+    
+            if ($stmt->execute()) {
+                return $this->conn->lastInsertId();
+            } else {
+                return false;
+            }
+        } catch (PDOException $e) {
+            return "Error en la consulta: " . $e->getMessage();
+        }
+    }
+    
+
     public function show($tipoCondicion) {
         switch ($tipoCondicion) {
             case "idPedido":

@@ -202,24 +202,28 @@ class Producto {
     }
 
     public function update() { //edit - update
-        $query = "UPDATE " . $this->tabla . " SET RUT=?, nombre=?, descripcion=?, precio=?, stock=?, estado=?, marca=?, oculto=? WHERE idProducto=?";
+        try {
+            $query = "UPDATE " . $this->tabla . " SET RUT=?, nombre=?, descripcion=?, precio=?, stock=?, estado=?, marca=?, oculto=? WHERE idProducto=?";
 
-        $stmt = $this->conn->prepare($query);
+            $stmt = $this->conn->prepare($query);
 
-        $stmt->bindValue(1, $this->rut, PDO::PARAM_STR);
-        $stmt->bindValue(2, $this->nombre, PDO::PARAM_STR);
-        $stmt->bindValue(3, $this->descripcion, PDO::PARAM_STR);
-        $stmt->bindValue(4, $this->precio, PDO::PARAM_INT);
-        $stmt->bindValue(5, $this->stock, PDO::PARAM_INT);
-        $stmt->bindValue(6, $this->estado, PDO::PARAM_STR);
-        $stmt->bindValue(7, $this->marca, PDO::PARAM_STR);
-        $stmt->bindValue(8, $this->oculto, PDO::PARAM_INT);
-        $stmt->bindValue(9, $this->idProducto, PDO::PARAM_INT);
+            $stmt->bindValue(1, $this->rut, PDO::PARAM_STR);
+            $stmt->bindValue(2, $this->nombre, PDO::PARAM_STR);
+            $stmt->bindValue(3, $this->descripcion, PDO::PARAM_STR);
+            $stmt->bindValue(4, $this->precio, PDO::PARAM_INT);
+            $stmt->bindValue(5, $this->stock, PDO::PARAM_INT);
+            $stmt->bindValue(6, $this->estado, PDO::PARAM_STR);
+            $stmt->bindValue(7, $this->marca, PDO::PARAM_STR);
+            $stmt->bindValue(8, $this->oculto, PDO::PARAM_INT);
+            $stmt->bindValue(9, $this->idProducto, PDO::PARAM_INT);
 
-        if ($stmt->execute()) {
-            return true;
-        } else {
-            return false;
+            if ($stmt->execute()) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (PDOException $e) {
+            return "Error en la consulta: " . $e->getMessage();
         }
     }
 

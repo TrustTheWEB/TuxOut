@@ -131,6 +131,19 @@ class Carrito {
         }
     }
 
+    public function destroyEmail() {
+        try {
+            $query = "DELETE FROM " . $this->tabla . " WHERE email = ?";
+            $stmt = $this->conn->prepare($query);
+
+            $stmt->bindValue(1, $this->email, PDO::PARAM_STR);
+
+            return $stmt->execute();
+        } catch (PDOException $e) {
+            return "Error en la consulta: " . $e->getMessage();
+        }
+    }
+
     public function verificarCarrito() {
         try {
             $query = "SELECT cantidad FROM " . $this->tabla . " WHERE email = ? AND idProducto = ?";
@@ -151,7 +164,7 @@ class Carrito {
 
     public function showCarritoPreview() {
         try {
-            $query = "SELECT idProducto, nombre, precio, descuento, cantidad FROM vistacarritopreview WHERE email = ?";
+            $query = "SELECT * FROM vistacarritopreview WHERE email = ?";
             $stmt = $this->conn->prepare($query);
             $stmt->bindValue(1, $this->email);
             $stmt->execute();

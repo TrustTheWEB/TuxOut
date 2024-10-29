@@ -1,3 +1,10 @@
+window.addEventListener("pageshow", function() {
+    let logueado = localStorage.getItem("logueado");
+    if (logueado !== "true") {
+            window.location.href = 'index.html';
+    }
+});
+
 import Alerta from './Alerta.js';
 import Validaciones from './Validaciones.js';
 const alerta = new Alerta();

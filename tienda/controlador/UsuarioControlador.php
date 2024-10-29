@@ -168,6 +168,15 @@ class UsuarioControlador {
         echo json_encode($resultados);
         exit;
     }
+
+    public function buscarValoresNull($valores) {
+        $modelo = new Usuario();
+        $modelo->setEmail($valores[0]);
+        $resultados = $modelo->buscarValoresNull();
+        header('Content-Type: application/json');
+        echo json_encode($resultados);
+        exit;
+    }
 }
 
 ?>

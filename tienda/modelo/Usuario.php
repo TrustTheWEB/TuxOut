@@ -362,6 +362,29 @@ class Usuario {
             return "Error en la consulta: " . $e->getMessage();
         }
     }
+
+    public function buscarValoresNull() {
+        try {
+            $consulta = $this->conn->prepare("SELECT * FROM usuario WHERE email = ? AND (telefono IS NULL OR fechaNac IS NULL OR ci IS NULL OR telefono = '' OR fechaNac = '' OR ci = '');");
+            $consulta->bindValue(1, $this->email, PDO::PARAM_STR);
+            $consulta->execute();
+
+            $consulta2 = $this->conn->prepare("SELECT * FROM direccion WHERE email = ?;");
+            $consulta2->bindValue(1, $this->email, PDO::PARAM_STR);
+            $consulta2->execute();
+            
+            if ($consulta->rowCount() > 0) {
+                return "datos";
+            }else if($consulta2->rowCount() == 0) {
+                return "direcciones";
+            }else {
+                return true;
+            }
+        } catch (PDOException $e) {
+            return "Error en la consulta: " . $e->getMessage();
+        }
+    }
+     
     
 }
 

@@ -1,3 +1,10 @@
+window.addEventListener("pageshow", function() {
+    let logueado = localStorage.getItem("logueado");
+    if (logueado !== "true") {
+            window.location.href = 'index.html';
+    }
+});
+
 const tomarUsuario = () => {
     let logueado = localStorage.getItem("logueado");
     if(logueado == "true") {

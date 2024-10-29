@@ -1,3 +1,10 @@
+window.addEventListener("pageshow", function() {
+    let logueado = localStorage.getItem("logueado");
+    if (logueado !== "true") {
+            window.location.href = 'index.html';
+    }
+});
+
 const tomarDatos = () => {
     let email = localStorage.getItem('email');
     let urlParams = new URLSearchParams(window.location.search);

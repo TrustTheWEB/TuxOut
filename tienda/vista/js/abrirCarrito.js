@@ -36,11 +36,9 @@ const imprimirDatosCarrito = (resultado) => {
       let precio = resultado[i]["precio"];
       let descuento = resultado[i]["descuento"];
       let precioNuevo = descuento == 0 ? precio : (precio - (precio * (descuento / 100))).toFixed(2);
-  
-      let cantidad = resultado[i]["cantidad"];
-      let subtotal = Number(precioNuevo) * Number(cantidad);
 
-      subtotal = subtotal.toFixed(2);
+      let subtotal = resultado[i]["precioFinal"];
+      let cantidad = resultado[i]["cantidad"];
       total += Number(subtotal);
       console.log(total)
 
