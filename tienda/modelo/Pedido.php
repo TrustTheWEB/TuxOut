@@ -10,6 +10,7 @@ class Pedido {
     private $idPedido;
     private $estado;
     private $medioPago;
+    private $direccion;
     private $fecha;
     private $email;
 
@@ -42,6 +43,17 @@ class Pedido {
         $this->medioPago = $medioPago;
     }
 
+    public function getDireccion()
+    {
+        return $this->direccion;
+    }
+
+    public function setDireccion($direccion)
+    {
+        $this->direccion = $direccion;
+    }
+
+
     public function getFecha() {
         return $this->fecha;
     }
@@ -57,6 +69,7 @@ class Pedido {
     public function setEmail($email) {
         $this->email = $email;
     }
+    
 
     // Métodos CRUD
 
@@ -72,12 +85,13 @@ class Pedido {
 
     public function store() {
         try {
-            $query = "INSERT INTO " . $this->tabla . " (estado, medioPago, email) VALUES (?, ?, ?)";
+            $query = "INSERT INTO " . $this->tabla . " (estado, medioPago, direccion, email) VALUES (?, ?, ?, ?)";
             $stmt = $this->conn->prepare($query);
 
             $stmt->bindValue(1, $this->estado, PDO::PARAM_STR);
             $stmt->bindValue(2, $this->medioPago, PDO::PARAM_STR);
-            $stmt->bindValue(3, $this->email, PDO::PARAM_STR);
+            $stmt->bindValue(3, $this->direccion, PDO::PARAM_STR);
+            $stmt->bindValue(4, $this->email, PDO::PARAM_STR);
 
             return $stmt->execute();
         } catch (PDOException $e) {
@@ -87,11 +101,12 @@ class Pedido {
 
     public function efectuarPedido() {
         try {
-            $query = "INSERT INTO " . $this->tabla . " (estado, medioPago, email) VALUES ('procesando', ?, ?)";
+            $query = "INSERT INTO " . $this->tabla . " (estado, medioPago, direccion, email) VALUES ('procesando', ?, ?, ?)";
             $stmt = $this->conn->prepare($query);
     
             $stmt->bindValue(1, $this->medioPago, PDO::PARAM_STR);
-            $stmt->bindValue(2, $this->email, PDO::PARAM_STR);
+            $stmt->bindValue(2, $this->direccion, PDO::PARAM_STR);
+            $stmt->bindValue(3, $this->email, PDO::PARAM_STR);
     
             if ($stmt->execute()) {
                 return $this->conn->lastInsertId();
@@ -116,6 +131,10 @@ class Pedido {
                 break;
             case "medioPago":
                 $parametro = $this->medioPago;
+                $tipoDato = PDO::PARAM_STR;
+                break;
+            case "direccion":
+                $parametro = $this->direccion;
                 $tipoDato = PDO::PARAM_STR;
                 break;
             case "fecha":
@@ -145,14 +164,15 @@ class Pedido {
 
     public function update() {
         try {
-            $query = "UPDATE " . $this->tabla . " SET estado=?, medioPago=?, fecha=?, email=? WHERE idPedido=?";
+            $query = "UPDATE " . $this->tabla . " SET estado=?, medioPago=?, direccion=?, fecha=?, email=? WHERE idPedido=?";
             $stmt = $this->conn->prepare($query);
 
             $stmt->bindValue(1, $this->estado, PDO::PARAM_STR);
             $stmt->bindValue(2, $this->medioPago, PDO::PARAM_STR);
-            $stmt->bindValue(3, $this->fecha, PDO::PARAM_STR);
-            $stmt->bindValue(4, $this->email, PDO::PARAM_STR);
-            $stmt->bindValue(5, $this->idPedido, PDO::PARAM_INT);
+            $stmt->bindValue(3, $this->direccion, PDO::PARAM_STR);
+            $stmt->bindValue(4, $this->fecha, PDO::PARAM_STR);
+            $stmt->bindValue(5, $this->email, PDO::PARAM_STR);
+            $stmt->bindValue(6, $this->idPedido, PDO::PARAM_INT);
 
             return $stmt->execute();
         } catch (PDOException $e) {

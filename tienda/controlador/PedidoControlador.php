@@ -17,7 +17,8 @@ class PedidoControlador {
         $modelo = new Pedido();
         $modelo->setEstado($valores[0]);
         $modelo->setMedioPago($valores[1]);
-        $modelo->setEmail($valores[2]);
+        $modelo->setDireccion($valores[2]);
+        $modelo->setEmail($valores[3]);
 
         $resultados = $modelo->store();
         header('Content-Type: application/json');
@@ -41,6 +42,10 @@ class PedidoControlador {
         
             case "medioPago":
                 $modelo->setMedioPago($valor);
+                break;
+
+            case "direccion":
+                $modelo->setDireccion($valor);
                 break;
         
             case "fecha":
@@ -67,8 +72,9 @@ class PedidoControlador {
         $modelo->setIdPedido($valores[0]);
         $modelo->setEstado($valores[1]);
         $modelo->setMedioPago($valores[2]);
-        $modelo->setFecha($valores[3]);
-        $modelo->setEmail($valores[4]);
+        $modelo->setDireccion($valores[3]);
+        $modelo->setFecha($valores[4]);
+        $modelo->setEmail($valores[5]);
 
         $resultados = $modelo->update();
         header('Content-Type: application/json');
@@ -102,6 +108,18 @@ class PedidoControlador {
         $modelo->setEmail($valores[1]);
 
         $resultados = $modelo->verDetalles();
+        header('Content-Type: application/json');
+        echo json_encode($resultados);
+        exit;
+    }
+
+    public function efectuarPedido($valores) {
+        $modelo = new Pedido();
+        $modelo->setMedioPago($valores[0]);
+        $modelo->setDireccion($valores[1]);
+        $modelo->setEmail($valores[2]);
+
+        $resultados = $modelo->efectuarPedido();
         header('Content-Type: application/json');
         echo json_encode($resultados);
         exit;

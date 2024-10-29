@@ -197,11 +197,82 @@ const destruirCarrito = (email) => {
 }
 
 const efectuarPedido = (medioPago, direccion, email) => {
-    console.log(medioPago, direccion, email)
+    $.ajax({
+        url: '/TuxOut/tienda/core/Enrutador.php', 
+        method: 'POST', 
+        dataType: 'json', 
+        data: {accion: "efectuarPedido", controlador: "PedidoControlador", valores: [medioPago, direccion, email]},
+        success: function(response) {
+            if (response.error) {
+                console.error('Error:', response.error);
+            } else {
+                if(response) {
+                    tomarProductosCarrito(response, email);
+                } else{
+                    console.error(response);
+                }
+            }
+        },
+        error: function(xhr, status, error) {
+            console.error('Error en la solicitud:', xhr, error, status);
+        }
+    });
+}
+
+const tomarProductosCarrito = (idPedido, email) => {
+    
+    $.ajax({
+        url: '/TuxOut/tienda/core/Enrutador.php', 
+        method: 'POST', 
+        dataType: 'json', 
+        data: {accion: "showCarritoPreview", controlador: "CarritoControlador", valores: [email]},
+        success: function(response) {
+            if (response.error) {
+                console.error('Error:', response.error);
+            } else {
+                if(response) {
+                    agregarProductos(idPedido, response, email);
+                } else{
+                    console.error(response);
+                }
+            }
+        },
+        error: function(xhr, status, error) {
+            console.error('Error en la solicitud:', xhr, error, status);
+        }
+    });
+
+}
+
+const agregarProductos = (idPedido, productos, email) => {
+    console.log(idPedido, productos)
+    for (let i = 0 ; i < productos.length; i++) {
+        $.ajax({
+            url: '/TuxOut/tienda/core/Enrutador.php', 
+            method: 'POST', 
+            dataType: 'json', 
+            data: {accion: "store", controlador: "ContieneControlador", valores: [productos[i]['idProducto'], idPedido, productos[i]['cantidad'], productos[i]['precio'], "preparando"]},
+            success: function(response) {
+                if (response.error) {
+                    console.error('Error:', response.error);
+                } else {
+                    if(response) {
+                        destruirCarrito(email);
+                        window.location.href = 'pedidos.html?alerta=confirmar'
+                    } else{
+                        console.error(response);
+                    }
+                }
+            },
+            error: function(xhr, status, error) {
+                console.error('Error en la solicitud:', xhr, error, status);
+            }
+        });
+    }  
 }
 
 const tomarDatosPedido = () => {
-    let email = localStoragegetItem("email");
+    let email = localStorage.getItem("email");
     let direccion = $("input[name='direccion']:checked").val();
     let medioPago = $("#selectMedioPago").val();
 

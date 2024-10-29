@@ -58,6 +58,7 @@ const imprimirPedidos = (pedidos) => {
                 <td class="py-4 px-3">${pedido['idPedido']}</td>
                 <td class="py-4 px-3">${pedido['fecha']}</td>
                 <td class="py-4 px-3">${pedido['medioPago']}</td>
+                <td class="py-4 px-3">${pedido['direccion']}</td>
                 <td class="py-4 px-3"><span class="rounded ${color} text-white p-2 w-100">${estado}</span></td>
                 <td class="py-4 px-3"><a href="detallespedido.html?idPedido=${pedido['idPedido']}&fecha=${pedido['fecha']}">Ver detalles</a></td>
             </tr>

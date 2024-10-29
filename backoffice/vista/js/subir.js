@@ -253,21 +253,21 @@ const validacionTablasIngresar = {
         );
     },
 
-    validarPedido: (estado, medioPago, email) => {
+    validarPedido: (estado, medioPago, direccion, email) => {
         validacionTablasIngresar.validar(
             "pedido", 
-            [estado, medioPago, email], 
-            [validaciones.validarEstadoPedido, validaciones.validarMedioPago, validaciones.validarEmail],
-            ["Estado inválido", "Medio de pago inválido", "Email inválido"]
+            [estado, medioPago, direccion, email], 
+            [validaciones.validarEstadoPedido, validaciones.validarMedioPago, validaciones.validarDireccion, validaciones.validarEmail],
+            ["Estado inválido", "Medio de pago inválido", "Dirección inválido", "Email inválido"]
         );
     },
 
-    validarPedidoUpdate: (idPedido, estado, medioPago, fecha, email) => {
+    validarPedidoUpdate: (idPedido, estado, medioPago, direccion, fecha, email) => {
         validacionTablasIngresar.validar(
             "pedido", 
-            [idPedido, estado, medioPago, fecha, email], 
-            [validaciones.validarId, validaciones.validarEstadoPedido, validaciones.validarMedioPago, validaciones.validarFechaHora,validaciones.validarEmail],
-            ["ID pedido inválido", "Estado inválido", "Medio de pago inválido", "Fecha inválida", "Email inválido"]
+            [idPedido, estado, medioPago, direccion, fecha, email], 
+            [validaciones.validarId, validaciones.validarEstadoPedido, validaciones.validarMedioPago, validaciones.validarDireccion, validaciones.validarFechaHora,validaciones.validarEmail],
+            ["ID pedido inválido", "Estado inválido", "Medio de pago inválido", "Dirección inválido", "Fecha inválida", "Email inválido"]
         );
     },
 
@@ -443,17 +443,19 @@ const tomarDatosIngresar = {
     tomarPedido: () => {
         let estado = $("#inputEstado").val();
         let medioPago = $("#inputMedioPago").val();
+        let direccion = $("#inputDireccion").val();
         let email = $("#inputEmail").val();
-        validacionTablasIngresar.validarPedido(estado, medioPago, email);
+        validacionTablasIngresar.validarPedido(estado, medioPago, direccion, email);
     },
 
     tomarPedidoUpdate: () => {
         let idPedido = $("#inputIdPedido").val();
         let estado = $("#inputEstado").val();
         let medioPago = $("#inputMedioPago").val();
+        let direccion = $("#inputDireccion").val();
         let fecha = $("#inputFecha").val();
         let email = $("#inputEmail").val();
-        validacionTablasIngresar.validarPedidoUpdate(idPedido, estado, medioPago, fecha, email);
+        validacionTablasIngresar.validarPedidoUpdate(idPedido, estado, medioPago, direccion, fecha, email);
     },
 
     tomarProducto: () => {

@@ -208,11 +208,16 @@ const formularios = {
                 <option value="procesando">Procesando</option>
                 <option value="pagado">Pagado</option>
             </select>
+            
             <label for="inputMedioPago">medioPago:</label>
             <select id="inputMedioPago" class="form-select">
                 <option value="PayPal">PayPal</option>
                 <option value="MercadoPago">MercadoPago</option>
             </select>
+
+            <label for="inputDireccion">Dirección:</label>
+            <input type="email" id="inputDireccion" class="form-control inputIngresar">
+
             <label for="inputEmail">Email:</label>
             <input type="email" id="inputEmail" class="form-control inputIngresar">
             `

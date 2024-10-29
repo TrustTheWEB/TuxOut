@@ -154,11 +154,14 @@ const formularios = {
                 <option value="MercadoPago" ${datos[2] === 'MercadoPago' ? 'selected' : ''}>MercadoPago</option>
             </select>
 
+            <label for="inputDireccion">Dirección:</label>
+            <input type="text" id="inputDireccion" class="form-control inputIngresar" value="${datos[3]}">
+
             <label for="inputFecha">Fecha:</label>
-            <input type="datetime-local" id="inputFecha" class="form-control inputIngresar" value="${datos[3]}">
+            <input type="datetime-local" id="inputFecha" class="form-control inputIngresar" value="${datos[4]}">
             
             <label for="inputEmail">Email:</label>
-            <input type="email" id="inputEmail" class="form-control inputIngresar" value="${datos[4]}">
+            <input type="email" id="inputEmail" class="form-control inputIngresar" value="${datos[5]}">
             `
         );
     },
@@ -363,6 +366,7 @@ const obtenerDatos = {
             urlParams.get('idPedido'),
             urlParams.get('estado'),
             urlParams.get('medioPago'),
+            urlParams.get('direccion'),
             urlParams.get('fecha'),
             urlParams.get('email')
         ];

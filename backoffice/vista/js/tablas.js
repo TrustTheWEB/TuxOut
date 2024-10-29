@@ -574,6 +574,7 @@ const imprimirTablas = {
                     <th>ID Pedido</th>
                     <th>Estado</th>
                     <th>Medio de Pago</th>
+                    <th>Dirección</th>
                     <th>Fecha</th>
                     <th>Email</th>
                     <th>Acciones</th>
@@ -592,11 +593,12 @@ const imprimirTablas = {
                         <td>${item["idPedido"] || ''}</td>
                         <td>${item["estado"] || ''}</td>
                         <td>${item["medioPago"] || ''}</td>
+                        <td>${item["direccion"] || ''}</td>
                         <td>${item["fecha"] || ''}</td>
                         <td>${item["email"] || ''}</td>
                         <td>
                             <div class="btn-group"> 
-                                <a class="btn editar border" href="editar.html?tabla=pedido&idPedido=${item["idPedido"]}&estado=${(item["estado"])}&medioPago=${(item["medioPago"])}&fecha=${(item["fecha"])}&email=${(item["email"])}">EDITAR</a> 
+                                <a class="btn editar border" href="editar.html?tabla=pedido&idPedido=${item["idPedido"]}&estado=${item["estado"]}&medioPago=${item["medioPago"]}&direccion=${item["direccion"]}&fecha=${item["fecha"]}&email=${(item["email"])}">EDITAR</a> 
                                 <button class="btn eliminar border" data-idpedido="${item["idPedido"]}">ELIMINAR</button>
                             </div>
                         </td>
