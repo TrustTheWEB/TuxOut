@@ -106,7 +106,8 @@ const validacionTablasIngresar = {
                 }
             }
 
-            console.log(typeof(valores[4]))
+            console.log(valores)
+
             switch (metodo) {
                 case "store":
                     storeTabla(tabla, valores);

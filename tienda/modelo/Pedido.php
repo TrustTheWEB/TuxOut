@@ -208,7 +208,7 @@ class Pedido {
         }
 
         try {
-            $consulta = $this->conn->prepare("SELECT * FROM pedido WHERE email = ? ORDER BY " . $filtro);
+            $consulta = $this->conn->prepare("SELECT * FROM vistapedidomonto WHERE email = ? ORDER BY " . $filtro);
             $consulta->bindValue(1, $this->email, PDO::PARAM_STR);
             $consulta->execute();
             $resultados = $consulta->fetchAll(PDO::FETCH_ASSOC);

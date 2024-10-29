@@ -71,8 +71,8 @@ class ContieneControlador {
 
     public function update($valores) {
         $modelo = new Contiene();
-        $modelo->setIdProducto($valores[0]);
-        $modelo->setIdPedido($valores[1]);
+        $modelo->setIdPedido($valores[0]);
+        $modelo->setIdProducto($valores[1]);
         $modelo->setCantidad($valores[2]);
         $modelo->setPrecioHistorico($valores[3]);
         $modelo->setEstado($valores[4]);

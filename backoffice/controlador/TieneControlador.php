@@ -17,9 +17,9 @@ class TieneControlador {
 
     public function store($valores) {
         $modelo = new Tiene();
-        $modelo->setIdProducto($valores[0]);
-        $modelo->setIdDescuento($valores[1]);
-        
+        $modelo->setIdDescuento($valores[0]);
+        $modelo->setIdProducto($valores[1]);
+
         $resultados = $modelo->store();
         header('Content-Type: application/json');
         echo json_encode($resultados);

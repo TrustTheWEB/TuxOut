@@ -45,6 +45,12 @@ const imprimirDetalles = (detalles, fecha) => {
     $(".fechaPedido").html(fecha)
 
     detalles.forEach(producto => {
+
+        let vinculoCalificar = "";
+        if(producto['estado'] == "entregado") {
+            vinculoCalificar = `<a class="card-text detalle-texto" href="calificar.html?idProducto=${producto['idProducto']}">Calificar</a>`;   
+        }
+
         $("#contenedorDetalles").append(`
         <article class="card col-12 col-lg-7 mb-3">
             <div class="row g-0">
@@ -54,9 +60,10 @@ const imprimirDetalles = (detalles, fecha) => {
               <div class="col-7 col-md-8">
                 <div class="card-body">
                   <h5 class="card-title mb-4">${producto['nombre']}</h5>
-                  <p class="card-text detalle-texto">Costo: $${producto['precioHistorico']}</p>
+                  <p class="card-text detalle-texto">Precio: $${producto['precioHistorico']}</p>
                   <p class="card-text detalle-texto">Estado: ${producto['estado']}</p>
                   <p class="card-text detalle-texto">Cantidad: ${producto['cantidad']}</p>
+                  ${vinculoCalificar}
                 </div>
               </div>
             </div>

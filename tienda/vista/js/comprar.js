@@ -251,7 +251,7 @@ const agregarProductos = (idPedido, productos, email) => {
             url: '/TuxOut/tienda/core/Enrutador.php', 
             method: 'POST', 
             dataType: 'json', 
-            data: {accion: "store", controlador: "ContieneControlador", valores: [productos[i]['idProducto'], idPedido, productos[i]['cantidad'], productos[i]['precio'], "preparando"]},
+            data: {accion: "store", controlador: "ContieneControlador", valores: [productos[i]['idProducto'], idPedido, productos[i]['cantidad'], productos[i]['precioDescuento'], "preparando"]},
             success: function(response) {
                 if (response.error) {
                     console.error('Error:', response.error);
