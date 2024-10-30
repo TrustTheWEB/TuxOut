@@ -15,35 +15,16 @@ class ImagenControlador {
         exit;
     }
 
-    /* public function subirImagenes($valores) {
+    public function eliminarImagenesId($valores) {
         $modelo = new Imagen();
-        $modelo->setImagen($valores[0]);
-        $modelo->setId($valores[1]);
-        $resultados = $modelo->subirImagenes();
+        $modelo->eliminarImagenesId($valores[0]);
     }
 
-    public function buscarImagenes($valores) {
+    public function eliminarImagenNombre($valores) {
         $modelo = new Imagen();
-        $modelo->setId($valores[0]);
-        $resultados = $modelo->subirImagenes();
-
-        header('Content-Type: application/json');
-        echo json_encode($resultados);
-        exit;
+        $modelo->setNombre($valores[0]);
+        $modelo->eliminarImagenNombre();
     }
-
-    public function eliminarImagenes($valores) {
-        $modelo = new Imagen();
-        $modelo->setId($valores[0]);
-        $resultados = $modelo->eliminarImagenes();
-    }
-
-    public function eliminarImagenNum($valores) {
-        $modelo = new Imagen();
-        $modelo->setId($valores[0]);
-        $modelo->setNum($valores[1]);
-        $resultados = $modelo->eliminarImagenNum();
-    }*/
 } 
 
 ?>

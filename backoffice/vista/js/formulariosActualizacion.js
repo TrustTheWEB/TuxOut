@@ -1,3 +1,50 @@
+const cargarPreview = (evento) => {
+    
+    let img = evento.target.files;
+    let input = evento.target.id;
+
+    $(`#${input}`).attr("data-cambiado", "cambiado")
+    $(`#${input}`).next('img').remove();
+
+    if (img.length > 0) {
+        let archivo = img[0];
+        let urlImagen = URL.createObjectURL(archivo);
+        
+        $(`#${input}`).after(`<img src="${urlImagen}" alt="Vista previa" class="w-25 imgPreview m-2 border rounded d-block">`);
+    }
+}
+
+const cargarPreviewUpdate = (idProducto) => {
+    for (let i = 0; i < 5 ; i++) {
+        $(`#inputImagen${i+1}`).after(`<img src="../../tienda/assets/img_productos/${idProducto}_${i+1}.jpg" alt="Vista previa" class="w-25 imgPreview m-2 border rounded d-block" onerror="this.onerror=null;this.src='../../tienda/assets/img/default.png';">`);        
+    }
+}
+
+const quitarImagen = (event) => {
+    event.preventDefault();
+    let botonEliminar = $(event.currentTarget);
+    let numeroImagen = $(botonEliminar).attr("data-num-img");
+    let urlParams = new URLSearchParams(window.location.search);
+    let idProducto = urlParams.get('idProducto');
+    let nombre = idProducto+"_"+numeroImagen;
+    $(`#inputImagen${numeroImagen}`).attr("data-camiado", "eliminado")  
+    $(`#inputImagen${numeroImagen}`).next('img').remove();  
+    $(`#inputImagen${numeroImagen}`).after(`<img src="../../tienda/assets/img/default.png" alt="Vista previa" class="w-25 imgPreview m-2 border rounded d-block">`); 
+    destruirImagen(nombre);
+}
+
+const destruirImagen = (nombre) => {
+    $.ajax({
+        url: 'http://localhost/TuxOut/backoffice/core/Enrutador.php',
+        type: 'POST',
+        dataType: 'json',
+        data: { accion: "eliminarImagenNombre", valores: [nombre], controlador: "ImagenControlador"}
+    });
+}
+
+$(document).on('click', '.btn-eliminar-imagen', quitarImagen);
+$(document).on('change', '.inputImagen', cargarPreview);
+
 const formularios = {
     imprimirFormularioCaracteristica: (datos) => {
         $("#titulo-formulario-actualizacion").append("característica");
@@ -197,12 +244,36 @@ const formularios = {
                 <input type="checkbox" id="inputOculto" ${oculto}> Oculto
             </label>
             <div id="formularioImagen">
-                
+                <div id="contenedorInputImagen1">
+                    <label for="inputImagen1">Imagen:</label>
+                    <input type="file" class="form-control inputImagen" id="inputImagen1" accept=".jpg, .png. jpeg">
+                    <button class="btn-eliminar-imagen" data-num-img="1">x</button>
+                </div>
+                <div id="contenedorInputImagen2">
+                    <label for="inputImagen2">Imagen:</label>
+                    <input type="file" class="form-control inputImagen" id="inputImagen2" accept=".jpg, .png. jpeg">
+                    <button class="btn-eliminar-imagen" data-num-img="2">x</button>
+                </div>
+                <div id="contenedorInputImagen3">
+                    <label for="inputImagen3">Imagen:</label>
+                    <input type="file" class="form-control inputImagen" id="inputImagen3" accept=".jpg, .png. jpeg">
+                    <button class="btn-eliminar-imagen" data-num-img="3">x</button>    
+                </div>
+                <div id="contenedorInputImagen4">
+                    <label for="inputImagen4">Imagen:</label>
+                    <input type="file" class="form-control inputImagen" id="inputImagen4" accept=".jpg, .png. jpeg">
+                    <button class="btn-eliminar-imagen" data-num-img="4">x</button>
+                </div>
+                <div id="contenedorInputImagen5">
+                    <label for="inputImagen5">Imagen:</label>
+                    <input type="file" class="form-control inputImagen" id="inputImagen5" accept=".jpg, .png. jpeg">
+                    <button class="btn-eliminar-imagen"  data-num-img="5">x</button>
+                </div>
             </div>
-            <button id="agregarImagen" class="mt-2 mx-2" data-cant="1">+</button>
-
             `
         );
+
+        cargarPreviewUpdate(datos[0]);
     },
 
     imprimirFormularioTiene: (datos) => {

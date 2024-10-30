@@ -6,6 +6,42 @@ const alerta = new Alerta();
 
 let metodo = null;
 
+const validarImagenesUpdate = (idProducto) => {
+    const extensionesValidas = ['jpg', 'jpeg', 'png'];
+
+    let imagenes = [];
+    let nombres = [];
+
+    try {
+        for (let i = 1; i <= 5; i++) {
+            let inputImagen = $(`#inputImagen${i}`);
+            let cambiado = inputImagen.attr("data-cambiado")
+            if(cambiado == "cambiado") {
+                let archivo = inputImagen[0].files[0];
+
+                if (archivo) {
+                    let extension = archivo.name.split('.').pop().toLowerCase();
+
+                    if (extensionesValidas.includes(extension)) {
+                        imagenes.push(archivo);
+                        let nombre = idProducto+"_"+i;
+                        nombres.push(nombre)
+                    } else {
+                        alerta.alertar(`La imagen ${archivo.name} no es válida. Solo se permiten archivos JPG, JPEG o PNG.`);
+                    }
+                }
+            }
+        };
+
+        for (let i = 0; i < imagenes.length; i++) {
+            subirImagen(imagenes[i], nombres[i]);
+        }
+
+    } catch (error) {
+        alerta.alertar(error);
+    }
+}
+
 const validarImagenes = (idProducto) => {
     const extensionesValidas = ['jpg', 'jpeg', 'png'];
 
@@ -125,7 +161,11 @@ const updateTabla = (tabla, valores) => {
                 console.error('Error:', response.error);
             } else {
                 if(response) {
-                    window.location.href = 'index.html';
+                    if(tabla === "producto") {
+                        validarImagenesUpdate(valores[0])
+                    } else{
+                        window.location.href = 'index.html';
+                    }
                 }else {
                     console.error(response);
                 } 
@@ -149,9 +189,6 @@ const updateTabla = (tabla, valores) => {
                     console.error('Error:', response.error);
                 } else {
                     if(response) {
-                        if(tabla === "producto") {
-                            
-                        }
                         window.location.href = 'index.html';
                     }else {
                         console.error(response);

@@ -1,9 +1,9 @@
 const eliminarImagenes = (id) => {
     $.ajax({
-        url: 'http://localhost/TuxOut/backoffice/core/Eliminar.php',
+        url: 'http://localhost/TuxOut/backoffice/core/Enrutador.php',
         type: 'POST',
         dataType: 'json',
-        data: { idProducto: id }
+        data: { accion: "eliminarImagenesId", valores: [id], controlador: "ImagenControlador"}
     });
 }
 
