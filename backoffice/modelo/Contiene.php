@@ -65,7 +65,7 @@ class Contiene {
 
     public function index() {
         try {
-            $query = "SELECT * FROM " . $this->tabla;
+            $query = "SELECT * FROM " . $this->tabla . " ORDER BY idPedido";
             $stmt = $this->conn->prepare($query);
             $stmt->execute();
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -106,11 +106,11 @@ class Contiene {
                 $tipoDato = PDO::PARAM_INT;
                 break;
             case "precioHistorico":
-                $parametro = $this->idProducto;
+                $parametro = $this->precioHistorico;
                 $tipoDato = PDO::PARAM_INT;
                 break;
             case "estado":
-                $parametro = $this->idProducto;
+                $parametro = $this->estado;
                 $tipoDato = PDO::PARAM_STR;
                 break;
             default:

@@ -24,6 +24,7 @@ const indexTabla = (tabla) => {
 }
 
 const showTabla = (tabla, valores) => {
+    console.log(tabla, valores)
     let controlador = tabla.charAt(0).toUpperCase() + tabla.slice(1) + "Controlador";
     let metodo = "imprimir"+tabla.charAt(0).toUpperCase() + tabla.slice(1);
     $.ajax({

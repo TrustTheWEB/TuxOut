@@ -98,10 +98,11 @@ class Direccion {
 
     public function destroy() {
         try {
-            $query = "DELETE FROM " . $this->tabla . " WHERE email = ?";
+            $query = "DELETE FROM " . $this->tabla . " WHERE email = ? AND direccion = ?";
             $stmt = $this->conn->prepare($query);
 
             $stmt->bindValue(1, $this->email, PDO::PARAM_STR);
+            $stmt->bindValue(2, $this->direccion, PDO::PARAM_STR);
 
             return $stmt->execute();
         } catch (PDOException $e) {

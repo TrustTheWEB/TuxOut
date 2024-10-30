@@ -43,7 +43,7 @@ class CarritoControlador {
                 $modelo->setIdProducto($valor);
                 break;
 
-            case "fecha":
+            case "cantidad":
                 $modelo->setCantidad($valor);
                 break;
         

@@ -996,3 +996,26 @@ header {
   font-size: 15px;
   line-height: 15px;
 }
+
+.boton-borrar-dir {
+  position: absolute;
+  border: none;
+  background: none;
+  width: 30px;
+  bottom: 5px;
+  right: 25px;
+}
+.boton-borrar-dir:hover {
+  color: #288096;
+}
+
+#boton-agregar-dir {
+  background-color: #58cbe7 !important;
+  color: white;
+  font-size: 20px;
+  line-height: 2px;
+}
+
+.label-dir {
+  font-size: 20px;
+}
