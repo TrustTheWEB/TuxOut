@@ -17,7 +17,6 @@ class Producto {
     private $marca;
     private $oculto;
     private $busqueda;
-    private $filtro;
 
     public function __construct() {
         $this->conn = Conexion::getInstance()->getDatabaseInstance();
@@ -113,15 +112,6 @@ class Producto {
         $this->busqueda = $busqueda;
     }
 
-    //filtro
-    public function getFiltro() {
-        return $this->filtro;
-    }
-
-    public function setFiltro($filtro) {
-        $this->filtro = $filtro;
-    }
-
     //metodos principales
 
     public function index() {
@@ -205,132 +195,70 @@ class Producto {
                 throw new Exception("Tipo de condición no reconocida");
         }
     
-        $query = "SELECT * FROM " . $this->tabla . " WHERE " . $tipoCondicion . " = ?;";
+        try {
+            $query = "SELECT * FROM " . $this->tabla . " WHERE " . $tipoCondicion . " = ?;";
+            
+            $stmt = $this->conn->prepare($query);
+            $stmt->bindValue(1, $parametro, $tipoDato);
+            
+            $stmt->execute();
+            
+            $resultados = $stmt->fetchAll(PDO::FETCH_ASSOC);
         
-        $stmt = $this->conn->prepare($query);
-        $stmt->bindValue(1, $parametro, $tipoDato);
+            if (!$resultados) {
+                throw new Exception("No se encontraron resultados para la consulta: " . $query . " con el valor: " . $parametro);
+            }
         
-        $stmt->execute();
-        
-        $resultados = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    
-        if (!$resultados) {
-            throw new Exception("No se encontraron resultados para la consulta: " . $query . " con el valor: " . $parametro);
+            return $resultados;
+        } catch (PDOException $e) {
+            return "Error en la consulta: " . $e->getMessage();
         }
-    
-        return $resultados;
     }
 
     public function update() { //edit - update
-        $query = "UPDATE " . $this->tabla . " SET RUT=?, nombre=?, descripcion=?, precio=?, stock=?, estado=?, marca=?, oculto=? WHERE idProducto=?";
+        try {
+            $query = "UPDATE " . $this->tabla . " SET RUT=?, nombre=?, descripcion=?, precio=?, stock=?, estado=?, marca=?, oculto=? WHERE idProducto=?";
 
-        $stmt = $this->conn->prepare($query);
+            $stmt = $this->conn->prepare($query);
 
-        $stmt->bindValue(1, $this->rut, PDO::PARAM_STR);
-        $stmt->bindValue(2, $this->nombre, PDO::PARAM_STR);
-        $stmt->bindValue(3, $this->descripcion, PDO::PARAM_STR);
-        $stmt->bindValue(4, $this->precio, PDO::PARAM_INT);
-        $stmt->bindValue(5, $this->stock, PDO::PARAM_INT);
-        $stmt->bindValue(6, $this->estado, PDO::PARAM_STR);
-        $stmt->bindValue(7, $this->marca, PDO::PARAM_STR);
-        $stmt->bindValue(8, $this->oculto, PDO::PARAM_INT);
-        $stmt->bindValue(9, $this->idProducto, PDO::PARAM_INT);
+            $stmt->bindValue(1, $this->rut, PDO::PARAM_STR);
+            $stmt->bindValue(2, $this->nombre, PDO::PARAM_STR);
+            $stmt->bindValue(3, $this->descripcion, PDO::PARAM_STR);
+            $stmt->bindValue(4, $this->precio, PDO::PARAM_INT);
+            $stmt->bindValue(5, $this->stock, PDO::PARAM_INT);
+            $stmt->bindValue(6, $this->estado, PDO::PARAM_STR);
+            $stmt->bindValue(7, $this->marca, PDO::PARAM_STR);
+            $stmt->bindValue(8, $this->oculto, PDO::PARAM_INT);
+            $stmt->bindValue(9, $this->idProducto, PDO::PARAM_INT);
 
-        if ($stmt->execute()) {
-            return true;
-        } else {
-            return false;
+            if ($stmt->execute()) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (PDOException $e) {
+            return "Error en la consulta: " . $e->getMessage();
         }
     }
 
     public function destroy() {
-        $query = "DELETE FROM " . $this->tabla . " WHERE idProducto = ?";
-
-        $stmt = $this->conn->prepare($query);
-
-        $stmt->bindValue(1, $this->idProducto, PDO::PARAM_INT);
-
-        if ($stmt->execute()) {
-            $id = $this->idProducto; 
-            return $id;
-        } else {
-            return false;
-        }
-    }
-
-    public function indexInicio() {
         try {
-            $consulta = $this->conn->prepare("SELECT * FROM vistaproducto 
-                ORDER BY (descuento * 100 + cantidadVendida * 10 + promedioCalificacion * 5 + RAND()) DESC
-                LIMIT 20;");
-            $consulta->execute();
-            $resultados = $consulta->fetchAll(PDO::FETCH_ASSOC);
+            $query = "DELETE FROM " . $this->tabla . " WHERE idProducto = ?";
 
-            return $resultados;
+            $stmt = $this->conn->prepare($query);
+
+            $stmt->bindValue(1, $this->idProducto, PDO::PARAM_INT);
+
+            if ($stmt->execute()) {
+                $id = $this->idProducto; 
+                return $id;
+            } else {
+                return false;
+            }
         } catch (PDOException $e) {
             return "Error en la consulta: " . $e->getMessage();
         }
     }
-
-    public function showAbrir() {
-        try {
-            $consulta = $this->conn->prepare("SELECT * FROM vistaproducto WHERE idProducto = ?;");
-            $consulta->bindValue(1, $this->idProducto, PDO::PARAM_INT);
-            $consulta->execute();
-            $resultados = $consulta->fetchAll(PDO::FETCH_ASSOC);
-
-            return $resultados;
-        } catch (PDOException $e) {
-            return "Error en la consulta: " . $e->getMessage();
-        }
-    }
-
-    public function busquedaProducto() {
-
-        switch($this->filtro) {
-            case "populares":
-                $filtro = "cantidadVendida DESC";
-                break;
-            case "menorPrecio":
-                $filtro = "(p.precio - (p.precio * descuento / 100))";
-                break;
-            case "mayorPrecio":
-                $filtro = "(p.precio - (p.precio * descuento / 100)) DESC";
-                break;
-            case "calificados":
-                $filtro = "promedioCalificacion";
-                break;
-            default:
-                $filtro = "cantidadVendida DESC";
-                break;
-        }
-
-        try {
-            $consulta = $this->conn->prepare("SELECT v.* FROM vistaproducto v 
-                JOIN producto p
-                ON p.idProducto = v.idProducto
-                LEFT JOIN categoriza z
-                ON z.idProducto = p.idProducto
-                LEFT JOIN categoria c
-                ON c.idCategoria = z.idCategoria 
-                WHERE p.nombre LIKE ? 
-                OR p.descripcion LIKE ? 
-                OR p.marca LIKE ? 
-                OR c.nombre LIKE ?
-                ORDER BY " . $filtro);
-            $consulta->bindValue(1, "%{$this->busqueda}%", PDO::PARAM_STR);
-            $consulta->bindValue(2, "%{$this->busqueda}%", PDO::PARAM_STR);
-            $consulta->bindValue(3, "%{$this->busqueda}%", PDO::PARAM_STR);
-            $consulta->bindValue(4, "%{$this->busqueda}%", PDO::PARAM_STR);
-            $consulta->execute();
-            $resultados = $consulta->fetchAll(PDO::FETCH_ASSOC);
-
-            return $resultados;
-        } catch (PDOException $e) {
-            return "Error en la consulta: " . $e->getMessage();
-        }
-    }
-    
 }
 
 ?>

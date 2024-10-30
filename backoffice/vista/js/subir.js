@@ -6,16 +6,82 @@ const alerta = new Alerta();
 
 let metodo = null;
 
-const tomarImagenes = (response) => {
-    alert(response)
+const validarImagenes = (idProducto) => {
+    const extensionesValidas = ['jpg', 'jpeg', 'png'];
 
-    let imagenes
+    let imagenes = [];
 
-    for(let i = 1; i <= 5; i++) {
-        imagenes = $(`#inputImagen${i}`).val();
+    try {
+        for (let i = 1; i <= 5; i++) {
+            let inputImagen = $(`#inputImagen${i}`);
+            let archivo = inputImagen[0].files[0];
+
+            if (archivo) {
+                let extension = archivo.name.split('.').pop().toLowerCase();
+
+                if (extensionesValidas.includes(extension)) {
+                    imagenes.push(archivo);
+                } else {
+                    alerta.alertar(`La imagen ${archivo.name} no es válida. Solo se permiten archivos JPG, JPEG o PNG.`);
+                }
+            }
+        };
+
+        for (let i = 0; i < imagenes.length; i++) {
+            let nombre = idProducto+"_"+(i+1);
+            subirImagen(imagenes[i], nombre);
+        }
+
+    } catch (error) {
+        alerta.alertar(error);
+        destroyProducto(idProducto);
     }
+}
 
-    console.log(imagenes)
+const subirImagen = (imagen, nombre) => {
+    const formData = new FormData();
+    formData.append('imagen', imagen);
+    formData.append('valores[]', nombre);
+    formData.append('controlador', "ImagenControlador");
+    formData.append('accion', "subirImagen")
+
+    $.ajax({
+        url: '/TuxOut/backoffice/core/Enrutador.php',
+        type: 'POST',
+        data: formData,
+        contentType: false,
+        processData: false,
+        success: function() {
+            window.location.href = 'index.html';
+        },
+        error: function(xhr, status, error) {
+            console.error('Error en la solicitud:', xhr);
+        }
+    });
+}
+
+
+const destroyProducto = (idProducto) => {
+    $.ajax({
+        url: '/TuxOut/backoffice/core/Enrutador.php', 
+        method: 'POST', 
+        dataType: 'json', 
+        data: {accion: "destroy", controlador: "ProductoControlador", valores: [idProducto]},
+        success: function(response) {
+            if (response.error) {
+                console.error('Error:', response.error);
+            } else {
+                if(response) {
+                    console.log(response)
+                }else {
+                    console.error(response);
+                } 
+            }
+        },
+        error: function(xhr, status, error) {
+            console.error('Error en la solicitud:', xhr);
+        }
+    });
 }
 
 const storeTabla = (tabla, valores) => {
@@ -31,8 +97,11 @@ const storeTabla = (tabla, valores) => {
                 console.error('Error:', response.error);
             } else {
                 if(response) {
-                    console.log(response)
-                    window.location.href = 'index.html';
+                    if(tabla == "producto") {
+                        validarImagenes(response)
+                    }else {
+                        window.location.href = 'index.html';
+                    }
                 }else {
                     console.error(response);
                 } 
@@ -56,7 +125,6 @@ const updateTabla = (tabla, valores) => {
                 console.error('Error:', response.error);
             } else {
                 if(response) {
-                    console.log(response)
                     window.location.href = 'index.html';
                 }else {
                     console.error(response);
@@ -72,7 +140,7 @@ const updateTabla = (tabla, valores) => {
     const updateContra = (tabla, valores) => {
         let controlador = tabla.charAt(0).toUpperCase() + tabla.slice(1) + "Controlador";
         $.ajax({
-            url: 'http://localhost/TuxOut/backoffice/core/Enrutador.php', 
+            url: '/TuxOut/backoffice/core/Enrutador.php', 
             method: 'POST', 
             dataType: 'json', 
             data: {accion: "updateContra", controlador: controlador, valores: valores},
@@ -105,8 +173,6 @@ const validacionTablasIngresar = {
                     throw new Error(mensajesError[i]); 
                 }
             }
-
-            console.log(valores)
 
             switch (metodo) {
                 case "store":

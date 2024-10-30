@@ -116,7 +116,7 @@ class Producto {
         }
     }
 
-    public function store() { //create - store
+    public function store() {
         try {
             $query = "INSERT INTO " . $this->tabla . " (RUT, nombre, descripcion, precio, stock, estado, marca, oculto) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
@@ -185,20 +185,24 @@ class Producto {
                 throw new Exception("Tipo de condición no reconocida");
         }
     
-        $query = "SELECT * FROM " . $this->tabla . " WHERE " . $tipoCondicion . " = ?;";
+        try {
+            $query = "SELECT * FROM " . $this->tabla . " WHERE " . $tipoCondicion . " = ?;";
+            
+            $stmt = $this->conn->prepare($query);
+            $stmt->bindValue(1, $parametro, $tipoDato);
+            
+            $stmt->execute();
+            
+            $resultados = $stmt->fetchAll(PDO::FETCH_ASSOC);
         
-        $stmt = $this->conn->prepare($query);
-        $stmt->bindValue(1, $parametro, $tipoDato);
+            if (!$resultados) {
+                throw new Exception("No se encontraron resultados para la consulta: " . $query . " con el valor: " . $parametro);
+            }
         
-        $stmt->execute();
-        
-        $resultados = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    
-        if (!$resultados) {
-            throw new Exception("No se encontraron resultados para la consulta: " . $query . " con el valor: " . $parametro);
+            return $resultados;
+        } catch (PDOException $e) {
+            return "Error en la consulta: " . $e->getMessage();
         }
-    
-        return $resultados;
     }
 
     public function update() { //edit - update

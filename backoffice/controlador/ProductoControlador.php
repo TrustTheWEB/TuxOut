@@ -125,6 +125,8 @@ class ProductoControlador {
         echo json_encode($resultados);
         exit;
     }
+
+    
 }
 
 ?>

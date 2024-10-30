@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 30-10-2024 a las 14:03:53
+-- Tiempo de generación: 29-10-2024 a las 21:54:12
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -95,6 +95,29 @@ CREATE TABLE `contiene` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
+-- Volcado de datos para la tabla `contiene`
+--
+
+INSERT INTO `contiene` (`idPedido`, `idProducto`, `cantidad`, `precioHistorico`, `estado`) VALUES
+(11, 2, 1, 299.49, 'preparando'),
+(12, 2, 1, 299.49, 'preparando'),
+(13, 2, 1, 299.49, 'preparando'),
+(14, 2, 1, 299.49, 'preparando'),
+(11, 8, 1, 120.25, 'preparando'),
+(12, 8, 1, 120.25, 'preparando'),
+(13, 8, 1, 120.25, 'preparando'),
+(14, 8, 1, 120.25, 'preparando'),
+(11, 14, 2, 25.50, 'preparando'),
+(12, 14, 2, 25.50, 'preparando'),
+(13, 14, 2, 25.50, 'preparando'),
+(14, 14, 2, 25.50, 'preparando'),
+(11, 17, 2, 89.99, 'preparando'),
+(12, 17, 2, 89.99, 'preparando'),
+(13, 17, 2, 89.99, 'preparando'),
+(14, 17, 2, 89.99, 'preparando'),
+(10, 18, 1, 199.00, 'preparando');
+
+--
 -- Disparadores `contiene`
 --
 DELIMITER $$
@@ -131,6 +154,14 @@ CREATE TABLE `direccion` (
   `direccion` varchar(60) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Volcado de datos para la tabla `direccion`
+--
+
+INSERT INTO `direccion` (`email`, `direccion`) VALUES
+('juan@gmail.com', 'Calle 8899'),
+('juan@gmail.com', 'Rambla Sur 112');
+
 -- --------------------------------------------------------
 
 --
@@ -147,6 +178,13 @@ CREATE TABLE `empresa` (
   `suspendido` tinyint(1) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Volcado de datos para la tabla `empresa`
+--
+
+INSERT INTO `empresa` (`RUT`, `nombre`, `telefono`, `direccion`, `email`, `contraseña`, `suspendido`) VALUES
+('123412341', 'Empresa B', '22028090', 'Rambla Sur 668', 'empresita@gmail.com', '$2y$10$uNHaQKwbbcClcEs8pGbPLOTPHEsNbzm8zVaYT.yD8g6ITFAVRaxuG', 0);
+
 -- --------------------------------------------------------
 
 --
@@ -157,6 +195,17 @@ CREATE TABLE `favorito` (
   `email` varchar(255) NOT NULL,
   `idProducto` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `favorito`
+--
+
+INSERT INTO `favorito` (`email`, `idProducto`) VALUES
+('juan@gmail.com', 7),
+('juan@gmail.com', 8),
+('juan@gmail.com', 12),
+('juan@gmail.com', 14),
+('juan@gmail.com', 17);
 
 -- --------------------------------------------------------
 
@@ -172,6 +221,18 @@ CREATE TABLE `pedido` (
   `fecha` timestamp NOT NULL DEFAULT current_timestamp(),
   `email` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `pedido`
+--
+
+INSERT INTO `pedido` (`idPedido`, `estado`, `medioPago`, `direccion`, `fecha`, `email`) VALUES
+(4, 'procesando', 'PayPal', 'Calle 8899', '2024-10-29 20:08:33', 'juan@gmail.com'),
+(10, 'procesando', 'PayPal', 'Rambla Sur 112', '2024-10-29 20:42:49', 'juan@gmail.com'),
+(11, 'procesando', 'MercadoPago', 'Rambla Sur 112', '2024-10-29 20:43:47', 'juan@gmail.com'),
+(12, 'procesando', 'MercadoPago', 'Rambla Sur 112', '2024-10-29 20:49:30', 'juan@gmail.com'),
+(13, 'procesando', 'PayPal', 'Rambla Sur 112', '2024-10-29 20:50:26', 'juan@gmail.com'),
+(14, 'procesando', 'PayPal', 'Rambla Sur 112', '2024-10-29 20:51:20', 'juan@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -190,6 +251,32 @@ CREATE TABLE `producto` (
   `marca` varchar(100) NOT NULL,
   `oculto` tinyint(1) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `producto`
+--
+
+INSERT INTO `producto` (`idProducto`, `RUT`, `nombre`, `descripcion`, `precio`, `stock`, `estado`, `marca`, `oculto`) VALUES
+(1, '123412341', 'Producto A', 'Descripción del Producto A', 199.99, 8, 'Nuevo', 'Marca A', 0),
+(2, '123412341', 'Producto B', 'Descripción del Producto B que es un poco más larga pero dentro del límite.', 299.49, 7, 'Usado', 'Marca B', 0),
+(3, '123412341', 'Producto C', NULL, 99.95, 200, 'Renovado', 'Marca C', 0),
+(4, '123412341', 'Producto D', 'Este es un producto usado de buena calidad.', 59.00, 25, 'Usado', 'Marca D', 0),
+(5, '123412341', 'Producto E', NULL, 1999.99, 5, 'Nuevo', 'Marca E', 0),
+(6, '123412341', 'Producto F', 'Este es un producto nuevo, recién salido al mercado.', 499.50, 80, 'Nuevo', 'Marca F', 1),
+(7, '123412341', 'Producto G', NULL, 29.99, 150, 'Renovado', 'Marca G', 0),
+(8, '123412341', 'Producto H', 'Descripción detallada del Producto H, que tiene características únicas.', 120.25, 297, 'Usado', 'Marca H', 0),
+(9, '123412341', 'Producto I', 'Un producto de alta calidad.', 10.99, 1000, 'Nuevo', 'Marca I', 0),
+(10, '123412341', 'Producto J', NULL, 75.49, 500, 'Nuevo', 'Marca J', 1),
+(11, '123412341', 'Producto K', 'Descripción muy detallada del Producto K.', 88.75, 20, 'Renovado', 'Marca K', 0),
+(12, '123412341', 'Producto L', 'Un producto en excelente estado.', 500.00, 60, 'Usado', 'Marca L', 0),
+(13, '123412341', 'Producto M', NULL, 750.00, 30, 'Nuevo', 'Marca M', 1),
+(14, '123412341', 'Producto N', 'Producto renovado con garantía.', 25.50, 394, 'Renovado', 'Marca N', 0),
+(15, '123412341', 'Producto O', 'Descripción breve del Producto O.', 450.00, 10, 'Usado', 'Marca O', 0),
+(16, '123412341', 'Producto P', 'Un producto muy popular entre los clientes.', 100.00, 900, 'Nuevo', 'Marca P', 1),
+(17, '123412341', 'Producto Q', NULL, 89.99, 94, 'Nuevo', 'Marca Q', 0),
+(18, '123412341', 'Producto R', 'Descripción completa del Producto R.', 199.00, 45, 'Usado', 'Marca R', 0),
+(19, '123412341', 'Producto S', 'Producto renovado con grandes descuentos.', 349.50, 75, 'Renovado', 'Marca S', 1),
+(20, '123412341', 'Producto T', NULL, 499.99, 10, 'Nuevo', 'Marca T', 0);
 
 --
 -- Disparadores `producto`
@@ -234,6 +321,13 @@ CREATE TABLE `usuario` (
   `contraseña` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Volcado de datos para la tabla `usuario`
+--
+
+INSERT INTO `usuario` (`email`, `usuario`, `nombre`, `apellido`, `telefono`, `fechaNac`, `ci`, `contraseña`) VALUES
+('juan@gmail.com', 'Juan400', 'Juan', 'Pettinari', '099444555', '2003-02-21', '56748026', '$2y$10$x8Ehm1mLUAjzk825NoYV2.FcLsWAXiTmaS.gUyUOY8tMLyVBHEWLK');
+
 -- --------------------------------------------------------
 
 --
@@ -245,6 +339,19 @@ CREATE TABLE `visita` (
   `idProducto` int(11) NOT NULL,
   `fecha` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `visita`
+--
+
+INSERT INTO `visita` (`email`, `idProducto`, `fecha`) VALUES
+('juan@gmail.com', 1, '2024-10-28 02:12:08'),
+('juan@gmail.com', 2, '2024-10-28 01:31:16'),
+('juan@gmail.com', 3, '2024-10-27 22:54:32'),
+('juan@gmail.com', 4, '2024-10-29 12:05:59'),
+('juan@gmail.com', 5, '2024-10-27 22:54:29'),
+('juan@gmail.com', 8, '2024-10-27 23:05:18'),
+('juan@gmail.com', 18, '2024-10-29 12:06:30');
 
 -- --------------------------------------------------------
 
@@ -260,7 +367,6 @@ CREATE TABLE `vistacarritopreview` (
 ,`email` varchar(255)
 ,`cantidad` int(10) unsigned
 ,`descuento` decimal(5,0)
-,`precioDescuento` decimal(10,2)
 ,`precioFinal` decimal(10,2)
 );
 
@@ -278,22 +384,6 @@ CREATE TABLE `vistadetalles` (
 ,`estado` enum('preparando','entregado')
 ,`nombre` varchar(150)
 ,`email` varchar(255)
-);
-
--- --------------------------------------------------------
-
---
--- Estructura Stand-in para la vista `vistapedidomonto`
--- (Véase abajo para la vista actual)
---
-CREATE TABLE `vistapedidomonto` (
-`idPedido` int(11)
-,`estado` enum('procesando','pagado','entregado')
-,`medioPago` enum('PayPal','MercadoPago','Local')
-,`direccion` varchar(60)
-,`fecha` timestamp
-,`email` varchar(255)
-,`montoTotal` decimal(42,2)
 );
 
 -- --------------------------------------------------------
@@ -322,7 +412,7 @@ CREATE TABLE `vistaproducto` (
 --
 DROP TABLE IF EXISTS `vistacarritopreview`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vistacarritopreview`  AS SELECT `p`.`idProducto` AS `idProducto`, `p`.`nombre` AS `nombre`, `p`.`precio` AS `precio`, `p`.`stock` AS `stock`, `c`.`email` AS `email`, `c`.`cantidad` AS `cantidad`, ifnull(max(`d`.`porcentaje`),0) AS `descuento`, cast(case when ifnull(max(`d`.`porcentaje`),0) > 0 then `p`.`precio` * (1 - max(`d`.`porcentaje`) / 100) else `p`.`precio` end as decimal(10,2)) AS `precioDescuento`, cast(case when ifnull(max(`d`.`porcentaje`),0) > 0 then `p`.`precio` * (1 - max(`d`.`porcentaje`) / 100) * `c`.`cantidad` else `p`.`precio` * `c`.`cantidad` end as decimal(10,2)) AS `precioFinal` FROM (((`producto` `p` left join `tiene` `t` on(`p`.`idProducto` = `t`.`idProducto`)) join `carrito` `c` on(`p`.`idProducto` = `c`.`idProducto`)) left join `descuento` `d` on(`t`.`idDescuento` = `d`.`idDescuento` and curdate() between `d`.`fechaInicio` and `d`.`fechaFin`)) WHERE `p`.`oculto` = 0 AND `p`.`stock` > 0 GROUP BY `p`.`idProducto`, `c`.`email` ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vistacarritopreview`  AS SELECT `p`.`idProducto` AS `idProducto`, `p`.`nombre` AS `nombre`, `p`.`precio` AS `precio`, `p`.`stock` AS `stock`, `c`.`email` AS `email`, `c`.`cantidad` AS `cantidad`, ifnull(max(`d`.`porcentaje`),0) AS `descuento`, cast(case when ifnull(max(`d`.`porcentaje`),0) > 0 then `p`.`precio` * (1 - max(`d`.`porcentaje`) / 100) * `c`.`cantidad` else `p`.`precio` * `c`.`cantidad` end as decimal(10,2)) AS `precioFinal` FROM (((`producto` `p` left join `tiene` `t` on(`p`.`idProducto` = `t`.`idProducto`)) left join `carrito` `c` on(`p`.`idProducto` = `c`.`idProducto`)) left join `descuento` `d` on(`t`.`idDescuento` = `d`.`idDescuento` and curdate() between `d`.`fechaInicio` and `d`.`fechaFin`)) WHERE `p`.`oculto` = 0 AND `p`.`stock` > 0 GROUP BY `p`.`idProducto`, `c`.`email` ;
 
 -- --------------------------------------------------------
 
@@ -332,15 +422,6 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 DROP TABLE IF EXISTS `vistadetalles`;
 
 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vistadetalles`  AS   (select `c`.`idPedido` AS `idPedido`,`c`.`idProducto` AS `idProducto`,`c`.`cantidad` AS `cantidad`,`c`.`precioHistorico` AS `precioHistorico`,`c`.`estado` AS `estado`,`p`.`nombre` AS `nombre`,`u`.`email` AS `email` from (((`contiene` `c` join `producto` `p` on(`p`.`idProducto` = `c`.`idProducto`)) join `pedido` `pe` on(`pe`.`idPedido` = `c`.`idPedido`)) join `usuario` `u` on(`pe`.`email` = `u`.`email`)))  ;
-
--- --------------------------------------------------------
-
---
--- Estructura para la vista `vistapedidomonto`
---
-DROP TABLE IF EXISTS `vistapedidomonto`;
-
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vistapedidomonto`  AS SELECT `p`.`idPedido` AS `idPedido`, `p`.`estado` AS `estado`, `p`.`medioPago` AS `medioPago`, `p`.`direccion` AS `direccion`, `p`.`fecha` AS `fecha`, `p`.`email` AS `email`, sum(`c`.`precioHistorico` * `c`.`cantidad`) AS `montoTotal` FROM (`pedido` `p` left join `contiene` `c` on(`p`.`idPedido` = `c`.`idPedido`)) GROUP BY `p`.`idPedido` ;
 
 -- --------------------------------------------------------
 
@@ -478,13 +559,13 @@ ALTER TABLE `descuento`
 -- AUTO_INCREMENT de la tabla `pedido`
 --
 ALTER TABLE `pedido`
-  MODIFY `idPedido` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idPedido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT de la tabla `producto`
 --
 ALTER TABLE `producto`
-  MODIFY `idProducto` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idProducto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- Restricciones para tablas volcadas
