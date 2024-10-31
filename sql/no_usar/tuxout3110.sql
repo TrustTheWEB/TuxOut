@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 31-10-2024 a las 15:42:41
+-- Tiempo de generación: 30-10-2024 a las 14:03:53
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -95,13 +95,6 @@ CREATE TABLE `contiene` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Volcado de datos para la tabla `contiene`
---
-
-INSERT INTO `contiene` (`idPedido`, `idProducto`, `cantidad`, `precioHistorico`, `estado`) VALUES
-(2, 7, 1, 344.00, 'preparando');
-
---
 -- Disparadores `contiene`
 --
 DELIMITER $$
@@ -138,13 +131,6 @@ CREATE TABLE `direccion` (
   `direccion` varchar(60) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Volcado de datos para la tabla `direccion`
---
-
-INSERT INTO `direccion` (`email`, `direccion`) VALUES
-('example@gmail.com', 'Paloma Tompkinson 7777 esq. Palomo');
-
 -- --------------------------------------------------------
 
 --
@@ -160,13 +146,6 @@ CREATE TABLE `empresa` (
   `contraseña` varchar(255) NOT NULL,
   `suspendido` tinyint(1) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Volcado de datos para la tabla `empresa`
---
-
-INSERT INTO `empresa` (`RUT`, `nombre`, `telefono`, `direccion`, `email`, `contraseña`, `suspendido`) VALUES
-('12345678', 'Empresa', '9998887774', 'Calle 8000', 'emailempresa5@empresa.com', '$2y$10$j2rbZiUHtaFBATQXYsA06.bSvCahPwu3pY18X1im2TMJrJYd8Zo1i', 1);
 
 -- --------------------------------------------------------
 
@@ -194,13 +173,6 @@ CREATE TABLE `pedido` (
   `email` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Volcado de datos para la tabla `pedido`
---
-
-INSERT INTO `pedido` (`idPedido`, `estado`, `medioPago`, `direccion`, `fecha`, `email`) VALUES
-(2, 'procesando', 'PayPal', 'Paloma Tompkinson 7777 esq. Palomo', '2024-10-31 13:04:10', 'example@gmail.com');
-
 -- --------------------------------------------------------
 
 --
@@ -218,13 +190,6 @@ CREATE TABLE `producto` (
   `marca` varchar(100) NOT NULL,
   `oculto` tinyint(1) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Volcado de datos para la tabla `producto`
---
-
-INSERT INTO `producto` (`idProducto`, `RUT`, `nombre`, `descripcion`, `precio`, `stock`, `estado`, `marca`, `oculto`) VALUES
-(7, '12345678', 'Google Pixel', 'Celular de Google 2022', 344.00, 32, 'Nuevo', 'Google', 0);
 
 --
 -- Disparadores `producto`
@@ -269,13 +234,6 @@ CREATE TABLE `usuario` (
   `contraseña` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Volcado de datos para la tabla `usuario`
---
-
-INSERT INTO `usuario` (`email`, `usuario`, `nombre`, `apellido`, `telefono`, `fechaNac`, `ci`, `contraseña`) VALUES
-('example@gmail.com', 'JuanP', 'Juan', 'Pettinari', '098766554', '2002-02-20', '56605252', '$2y$10$ETEnfz4WFPnsPo/7RDvyj.kWOBmpOHtNqwNO79cqGlusz2np9qbL.');
-
 -- --------------------------------------------------------
 
 --
@@ -287,13 +245,6 @@ CREATE TABLE `visita` (
   `idProducto` int(11) NOT NULL,
   `fecha` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Volcado de datos para la tabla `visita`
---
-
-INSERT INTO `visita` (`email`, `idProducto`, `fecha`) VALUES
-('example@gmail.com', 7, '2024-10-31 14:07:07');
 
 -- --------------------------------------------------------
 
@@ -332,18 +283,6 @@ CREATE TABLE `vistadetalles` (
 -- --------------------------------------------------------
 
 --
--- Estructura Stand-in para la vista `vistaestadisticasmes`
--- (Véase abajo para la vista actual)
---
-CREATE TABLE `vistaestadisticasmes` (
-`rut` varchar(20)
-,`ventasMes` decimal(32,0)
-,`ingresosMes` decimal(42,2)
-);
-
--- --------------------------------------------------------
-
---
 -- Estructura Stand-in para la vista `vistapedidomonto`
 -- (Véase abajo para la vista actual)
 --
@@ -360,17 +299,6 @@ CREATE TABLE `vistapedidomonto` (
 -- --------------------------------------------------------
 
 --
--- Estructura Stand-in para la vista `vistapedidospendientes`
--- (Véase abajo para la vista actual)
---
-CREATE TABLE `vistapedidospendientes` (
-`rut` varchar(20)
-,`pedidospendientes` bigint(21)
-);
-
--- --------------------------------------------------------
-
---
 -- Estructura Stand-in para la vista `vistaproducto`
 -- (Véase abajo para la vista actual)
 --
@@ -382,11 +310,9 @@ CREATE TABLE `vistaproducto` (
 ,`stock` int(10) unsigned
 ,`estado` enum('Nuevo','Renovado','Usado')
 ,`marca` varchar(100)
-,`oculto` tinyint(1)
 ,`cantidadVendida` decimal(32,0)
 ,`descuento` decimal(5,0)
 ,`promedioCalificacion` decimal(6,5)
-,`precioDescuento` decimal(10,2)
 );
 
 -- --------------------------------------------------------
@@ -410,15 +336,6 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 -- --------------------------------------------------------
 
 --
--- Estructura para la vista `vistaestadisticasmes`
---
-DROP TABLE IF EXISTS `vistaestadisticasmes`;
-
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vistaestadisticasmes`  AS SELECT `e`.`RUT` AS `rut`, ifnull(sum(`cont`.`cantidad`),0) AS `ventasMes`, ifnull(sum(`cont`.`cantidad` * `cont`.`precioHistorico`),0) AS `ingresosMes` FROM (((`empresa` `e` left join `producto` `p` on(`e`.`RUT` = `p`.`RUT`)) left join `contiene` `cont` on(`p`.`idProducto` = `cont`.`idProducto`)) left join `pedido` `d` on(`cont`.`idPedido` = `d`.`idPedido` and month(`d`.`fecha`) = month(curdate()) and year(`d`.`fecha`) = year(curdate()))) GROUP BY `e`.`RUT` ;
-
--- --------------------------------------------------------
-
---
 -- Estructura para la vista `vistapedidomonto`
 --
 DROP TABLE IF EXISTS `vistapedidomonto`;
@@ -428,20 +345,11 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 -- --------------------------------------------------------
 
 --
--- Estructura para la vista `vistapedidospendientes`
---
-DROP TABLE IF EXISTS `vistapedidospendientes`;
-
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vistapedidospendientes`  AS SELECT `e`.`RUT` AS `rut`, ifnull(count(`cont`.`idProducto`),0) AS `pedidospendientes` FROM ((`empresa` `e` left join `producto` `p` on(`e`.`RUT` = `p`.`RUT`)) left join `contiene` `cont` on(`p`.`idProducto` = `cont`.`idProducto` and `cont`.`estado` = 'preparando')) GROUP BY `e`.`RUT` ;
-
--- --------------------------------------------------------
-
---
 -- Estructura para la vista `vistaproducto`
 --
 DROP TABLE IF EXISTS `vistaproducto`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vistaproducto`  AS SELECT `p`.`idProducto` AS `idProducto`, `p`.`nombre` AS `nombre`, `p`.`descripcion` AS `descripcion`, `p`.`precio` AS `precio`, `p`.`stock` AS `stock`, `p`.`estado` AS `estado`, `p`.`marca` AS `marca`, `p`.`oculto` AS `oculto`, ifnull(sum(`cont`.`cantidad`),0) AS `cantidadVendida`, ifnull(max(`d`.`porcentaje`),0) AS `descuento`, ifnull(avg(`c`.`calificacion`),0) AS `promedioCalificacion`, cast(ifnull(`p`.`precio` * (1 - `d`.`porcentaje` / 100),`p`.`precio`) as decimal(10,2)) AS `precioDescuento` FROM ((((`producto` `p` left join `comenta` `c` on(`p`.`idProducto` = `c`.`idProducto`)) left join `contiene` `cont` on(`p`.`idProducto` = `cont`.`idProducto`)) left join `tiene` `t` on(`p`.`idProducto` = `t`.`idProducto`)) left join `descuento` `d` on(`t`.`idDescuento` = `d`.`idDescuento` and curdate() between `d`.`fechaInicio` and `d`.`fechaFin`)) GROUP BY `p`.`idProducto` ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vistaproducto`  AS SELECT `p`.`idProducto` AS `idProducto`, `p`.`nombre` AS `nombre`, `p`.`descripcion` AS `descripcion`, `p`.`precio` AS `precio`, `p`.`stock` AS `stock`, `p`.`estado` AS `estado`, `p`.`marca` AS `marca`, ifnull(sum(`cont`.`cantidad`),0) AS `cantidadVendida`, ifnull(max(`d`.`porcentaje`),0) AS `descuento`, ifnull(avg(`c`.`calificacion`),0) AS `promedioCalificacion` FROM ((((`producto` `p` left join `comenta` `c` on(`p`.`idProducto` = `c`.`idProducto`)) left join `contiene` `cont` on(`p`.`idProducto` = `cont`.`idProducto`)) left join `tiene` `t` on(`p`.`idProducto` = `t`.`idProducto`)) left join `descuento` `d` on(`t`.`idDescuento` = `d`.`idDescuento` and curdate() between `d`.`fechaInicio` and `d`.`fechaFin`)) WHERE `p`.`oculto` = 0 AND `p`.`stock` > 0 GROUP BY `p`.`idProducto` ;
 
 --
 -- Índices para tablas volcadas
@@ -570,13 +478,13 @@ ALTER TABLE `descuento`
 -- AUTO_INCREMENT de la tabla `pedido`
 --
 ALTER TABLE `pedido`
-  MODIFY `idPedido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `idPedido` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `producto`
 --
 ALTER TABLE `producto`
-  MODIFY `idProducto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `idProducto` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Restricciones para tablas volcadas
