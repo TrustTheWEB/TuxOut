@@ -116,8 +116,9 @@ class ProductoControlador {
 
     // funciones extra (vistas, consultas, etc)
 
-    public function indexInicio() {
+    public function indexInicio($valores) {
         $modelo = new Producto();
+        $modelo->setRut($valores[0]);
         $resultados = $modelo->indexInicio();
         header('Content-Type: application/json');
         echo json_encode($resultados);
@@ -127,6 +128,7 @@ class ProductoControlador {
     public function showAbrir($idProducto) {
         $modelo = new Producto();
         $modelo->setIdProducto($idProducto);
+        
         $resultados = $modelo->showAbrir();
         header('Content-Type: application/json');
         echo json_encode($resultados);

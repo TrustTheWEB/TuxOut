@@ -11,12 +11,14 @@ const validarImagenesUpdate = (idProducto) => {
 
     let imagenes = [];
     let nombres = [];
-
+    let cambiados = 0;
     try {
         for (let i = 1; i <= 5; i++) {
             let inputImagen = $(`#inputImagen${i}`);
             let cambiado = inputImagen.attr("data-cambiado")
+            
             if(cambiado == "cambiado") {
+                cambiados++;
                 let archivo = inputImagen[0].files[0];
 
                 if (archivo) {
@@ -31,10 +33,14 @@ const validarImagenesUpdate = (idProducto) => {
                     }
                 }
             }
-        };
+        }
 
-        for (let i = 0; i < imagenes.length; i++) {
-            subirImagen(imagenes[i], nombres[i]);
+        if(cambiados<=0) {
+            window.location.href = 'index.html';
+        }else {
+            for (let i = 0; i < imagenes.length; i++) {
+                subirImagen(imagenes[i], nombres[i]);
+            }
         }
 
     } catch (error) {
@@ -94,6 +100,8 @@ const subirImagen = (imagen, nombre) => {
             console.error('Error en la solicitud:', xhr);
         }
     });
+
+    window.location.href = 'index.html';
 }
 
 

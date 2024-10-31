@@ -132,14 +132,12 @@ const loginEmpresa = (email, contra) => {
                 console.error('Error:', response.error);
             } else {
                 if(response) { 
-                    alert(response)
                     localStorage.setItem("logueadoEmpresa", true);
                     localStorage.setItem("emailEmpresa", email);
                     localStorage.setItem("rutEmpresa", response[0]);
-                    localStorage.setItem("nombreEmpresa", response[0])
+                    localStorage.setItem("nombreEmpresa", response[1])
                     window.location.href = 'index.html';
                 }else {
-                    alert("a")
                     alerta.alertar("Correo o contraseña incorrectos.")
                 }
             }

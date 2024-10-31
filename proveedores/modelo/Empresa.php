@@ -238,6 +238,35 @@ class Empresa {
             return "Error en la consulta: " . $e->getMessage();
         }
     }
+
+    public function estadisticasMes() {
+        try {
+            $consulta = $this->conn->prepare("SELECT v.* FROM vistaestadisticasmes v
+                WHERE rut = ?;");
+
+            $consulta->bindValue(1, $this->rut, PDO::PARAM_STR);
+            $consulta->execute();
+            $resultados = $consulta->fetchAll(PDO::FETCH_ASSOC);
+
+            return $resultados;
+        } catch (PDOException $e) {
+            return "Error en la consulta: " . $e->getMessage();
+        }
+    }
+
+    public function pedidosPendientes() {
+        try {
+            $consulta = $this->conn->prepare("SELECT pedidosPendientes FROM vistapedidospendientes v WHERE rut = ?;");
+
+            $consulta->bindValue(1, $this->rut, PDO::PARAM_STR);
+            $consulta->execute();
+            $resultados = $consulta->fetchAll(PDO::FETCH_ASSOC);
+
+            return $resultados;
+        } catch (PDOException $e) {
+            return "Error en la consulta: " . $e->getMessage();
+        }
+    }
     
 }
 
