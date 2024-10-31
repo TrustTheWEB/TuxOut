@@ -263,6 +263,9 @@ class Producto {
     public function indexInicio() {
         try {
             $consulta = $this->conn->prepare("SELECT * FROM vistaproducto 
+                WHERE 
+                oculto = 0 
+                AND stock > 0
                 ORDER BY (descuento * 100 + cantidadVendida * 10 + promedioCalificacion * 5 + RAND()) DESC
                 LIMIT 20;");
             $consulta->execute();
@@ -276,7 +279,9 @@ class Producto {
 
     public function showAbrir() {
         try {
-            $consulta = $this->conn->prepare("SELECT * FROM vistaproducto WHERE idProducto = ?;");
+            $consulta = $this->conn->prepare("SELECT * FROM vistaproducto WHERE idProducto = ?
+            AND oculto = 0 
+            AND stock > 0;");
             $consulta->bindValue(1, $this->idProducto, PDO::PARAM_INT);
             $consulta->execute();
             $resultados = $consulta->fetchAll(PDO::FETCH_ASSOC);
@@ -319,6 +324,9 @@ class Producto {
                 OR p.descripcion LIKE ? 
                 OR p.marca LIKE ? 
                 OR c.nombre LIKE ?
+                WHERE 
+                oculto = 0 
+                AND stock > 0
                 ORDER BY " . $filtro);
             $consulta->bindValue(1, "%{$this->busqueda}%", PDO::PARAM_STR);
             $consulta->bindValue(2, "%{$this->busqueda}%", PDO::PARAM_STR);

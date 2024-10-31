@@ -93,15 +93,22 @@ const subirImagen = (imagen, nombre) => {
         data: formData,
         contentType: false,
         processData: false,
-        success: function() {
-            window.location.href = 'index.html';
+        success: function(response) {
+            if (response.error) {
+                console.error('Error:', response.error);
+            } else {
+                if(response) { 
+                    console.log(response)
+                    window.location.href = 'index.html'
+                }else {
+                    console.error(response)
+                }
+            }
         },
         error: function(xhr, status, error) {
             console.error('Error en la solicitud:', xhr);
         }
     });
-
-    window.location.href = 'index.html';
 }
 
 
