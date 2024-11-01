@@ -69,6 +69,17 @@ class ComentaControlador {
         echo json_encode($resultados);
         exit;
     }    
+
+    public function buscarComentario($valores) {
+        $modelo = new Comenta();
+        $modelo->setIdProducto($valores[1]);
+        $modelo->setEmail($valores[0]);
+    
+        $resultados = $modelo->buscarComentario();
+        header('Content-Type: application/json');
+        echo json_encode($resultados);
+        exit;
+    }   
     
 }
 

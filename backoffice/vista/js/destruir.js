@@ -39,6 +39,14 @@ const generarId = {
         return [id, valores];
     },
 
+    generarIdComenta: (botonEliminar) => {
+        let idProducto = botonEliminar.data('idproducto');
+        let email = botonEliminar.data('email');
+        let id = `comenta-${idProducto}-${email}`;
+        let valores = [idProducto, email];
+        return [id, valores];
+    },
+
     generarIdContiene: (botonEliminar) => {
         let idPedido = botonEliminar.data('idpedido');
         let idProducto = botonEliminar.data('idproducto');

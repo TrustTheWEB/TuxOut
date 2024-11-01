@@ -1019,3 +1019,32 @@ header {
 .label-dir {
   font-size: 20px;
 }
+
+#contenedorCalificacion .rating {
+  direction: rtl;
+}
+
+#contenedorCalificacion .rating label {
+  color: #c5c5c5;
+  display: inline-block;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+#contenedorCalificacion .rating label i {
+  transition: 0.1 ease-in;
+}
+
+#contenedorCalificacion .rating label:hover i,
+#contenedorCalificacion .rating label:hover ~ label i {
+  color: #4ec3e0;
+}
+
+#contenedorCalificacion .rating .rating-radio {
+  display: none;
+}
+
+#contenedorCalificacion .rating input[type="radio"]:checked + label i,
+#contenedorCalificacion .rating input[type="radio"]:checked ~ label i {
+  color: #4ec3e0;
+}

@@ -364,7 +364,7 @@ const imprimirTablas = {
 
         resultado.forEach(item => {
             $('#tablaBody').append(
-                `<tr data-fila="comenta-${item["email"]}-${item["idProducto"]}">
+                `<tr data-fila="comenta-${item["idProducto"]}-${item["email"]}">
                     <td>${item["email"] || ''}</td>
                     <td>${item["idProducto"] || ''}</td>
                     <td>${item["calificacion"] || ''}</td>

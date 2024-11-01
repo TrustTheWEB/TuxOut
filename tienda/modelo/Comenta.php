@@ -80,7 +80,9 @@ class Comenta {
     }
     
 
+
     public function show($tipoCondicion) {
+        try {
         switch ($tipoCondicion) {
             case "idProducto":
                 $parametro = $this->idProducto;
@@ -102,7 +104,6 @@ class Comenta {
                 throw new Exception("Tipo de condición no reconocida");
         }
     
-        try {
             $query = "SELECT * FROM " . $this->tabla . " WHERE " . $tipoCondicion . " = ?";
             $stmt = $this->conn->prepare($query);
             $stmt->bindValue(1, $parametro, $tipoDato);
@@ -130,11 +131,29 @@ class Comenta {
 
     public function destroy() {
         try {
-            $query = "DELETE FROM " . $this->tabla . " WHERE idProducto = ? AND email = ?";
+            $query = "DELETE FROM " . $this->tabla . " WHERE idProducto = ? AND email = ?;";
             $stmt = $this->conn->prepare($query);
             $stmt->bindValue(1, $this->idProducto, PDO::PARAM_INT);
             $stmt->bindValue(2, $this->email, PDO::PARAM_STR);
             return $stmt->execute();
+        } catch (PDOException $e) {
+            return "Error en la consulta: " . $e->getMessage();
+        }
+    }    
+
+    public function buscarComentario() {
+        try {
+            $query = "SELECT * FROM " . $this->tabla . " WHERE email = ? AND idProducto = ?;";
+            $stmt = $this->conn->prepare($query);
+            $stmt->bindValue(1, $this->email, PDO::PARAM_STR);
+            $stmt->bindValue(2, $this->idProducto, PDO::PARAM_INT);
+            $stmt->execute();
+    
+            if ($stmt->rowCount() > 0) {
+                return $stmt->fetchAll(PDO::FETCH_ASSOC); 
+            } else {
+                return "no_existe";
+            }
         } catch (PDOException $e) {
             return "Error en la consulta: " . $e->getMessage();
         }
