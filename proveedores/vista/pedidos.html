@@ -70,12 +70,39 @@
   </div>
 
   <main class="container">
-    <section class="row mt-3 justify-content-center my-3">
-      <h2 class="col-12 col-lg-8 text-center" id="titulo-editar-producto"></h2>
-      <article class="col-12 col-lg-7" id="contenedor-abrir">
+    <section class="row justify-content-center px-2">
+        <h2 class="col-12 text-center mt-4">Pedidos</h2>
+        <div class="row col-12 my-1 justify-content-end">
+            <h5 class="col-12 col-lg-2 text-start text-lg-end ordenar-por mt-3 pt-1">Ordenar por:</h5>
+            <div class="col-12 col-lg-3 m-0 mt-3 me-0">
+                <select class="form-select form-select-sm w-100 w-lg-25" id="selectFiltro">
+                  <option value="recientes" selected>Más recientes</option>
+                  <option value="antiguos">Más antiguos</option>
+                </select>
+              </div>
+        </div>
 
-      </article>
-      <button id="btn-editar-producto" class="btn mt-3 col-12 col-lg-6 btn-card-comprar">ACTUALIZAR</button>
+        <hr class="my-2">
+      
+        <article class="row col-12 mt-4 table-responsive" id="contenedor-productos">
+            <table class="sm-table">
+                <thead>
+                    <tr>
+                        <th>Usuario</th>
+                        <th>ID Producto</th>
+                        <th>Nombre Producto</th>
+                        <th>Fecha</th>
+                        <th>Cantidad</th>
+                        <th>Costo</th>
+                        <th>Estado</th>
+                    </tr>
+                </thead>
+                <tbody id="tablaPedidos">
+
+                </tbody>
+            </table>
+        </article>
+        
     </section>
   </main>
 
@@ -88,7 +115,7 @@
   <script src="js/jquery-3.7.1.min.js" type="module"></script>
   <script src="js/login.js" type="module"></script>
   <script src="js/pagina.js" type="module"></script>
-  <script src="js/editarProducto.js" type="module"></script>
+  <script src="js/pedidos.js" type="module"></script>
 
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
     integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"

@@ -160,6 +160,49 @@ class Contiene {
             return "Error en la consulta: " . $e->getMessage();
         }
     }
+
+    public function showPedidosEmpresa($rut, $filtro) {
+        switch($filtro) {
+            case "recientes":
+                $filtro = "fecha DESC";
+                break;
+            case "antiguos":
+                $filtro = "fecha";
+                break;
+            default:
+                $filtro = "fecha DESC";
+                break;
+        }
+
+        try {
+            $consulta = $this->conn->prepare("SELECT * FROM vistapedidosempresa
+                WHERE RUT = ?
+                ORDER BY $filtro;");
+
+            $consulta->bindValue(1, $rut, PDO::PARAM_STR);
+            $consulta->execute();
+            $resultados = $consulta->fetchAll(PDO::FETCH_ASSOC);
+
+            return $resultados;
+        } catch (PDOException $e) {
+            return "Error en la consulta: " . $e->getMessage();
+        }
+    }
+
+    public function cambiarEstado() {
+        try {
+            $query = "UPDATE " . $this->tabla . " SET estado = ? WHERE idPedido = ? AND idProducto = ?";
+            $stmt = $this->conn->prepare($query);
+
+            $stmt->bindValue(1, $this->estado, PDO::PARAM_INT);
+            $stmt->bindValue(2, $this->idPedido, PDO::PARAM_INT);
+            $stmt->bindValue(3, $this->idProducto, PDO::PARAM_INT);
+
+            return $stmt->execute();
+        } catch (PDOException $e) {
+            return "Error en la consulta: " . $e->getMessage();
+        }
+    }
 }
 
 ?>

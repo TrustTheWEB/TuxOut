@@ -92,6 +92,27 @@ class ContieneControlador {
         echo json_encode($resultados);
         exit;
     }
+
+    public function showPedidosEmpresa($valores) {
+        $modelo = new Contiene();
+        $resultados = $modelo->showPedidosEmpresa($valores[0], $valores[1]);
+
+        header('Content-Type: application/json');
+        echo json_encode($resultados);
+        exit;
+    }
+
+    public function cambiarEstado($valores) {
+        $modelo = new Contiene();
+        $modelo->setIdPedido($valores[0]);
+        $modelo->setIdProducto($valores[1]);
+        $modelo->setEstado($valores[2]);
+        $resultados = $modelo->cambiarEstado();
+
+        header('Content-Type: application/json');
+        echo json_encode($resultados);
+        exit;
+    }
 }
 
 ?>

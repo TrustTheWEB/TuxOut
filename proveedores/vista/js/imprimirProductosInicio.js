@@ -70,7 +70,7 @@ const tomarEstadisticasMes = (rut) => {
 
 const imprimirEstadisticasMes = (estadisticas) => {
     $("#ventas-mes").html(estadisticas[0]['ventasMes']);
-    $("#ingresos-mes").html(estadisticas[0]['ingresosMes']);
+    $("#ingresos-mes").html("$"+estadisticas[0]['ingresosMes']);
 }
 
 const tomarMasVendidos = (rut) => {
@@ -98,7 +98,7 @@ const tomarMasVendidos = (rut) => {
 }
 
 const imprimirMasVendidos = (productos) => {
-    $(".contenedor-mas-vendidos").html(`<h3 class="mb-3 col-12 col-lg-10">Artículos más vendidos</h3>`)
+    $(".contenedor-mas-vendidos").html(`<h3 class="mb-3 mt-1 col-12 col-lg-10">Artículos más vendidos</h3>`)
     for(let i = 0; i < productos.length; i++) {
         let producto = productos[i];
         let idProducto = producto['idProducto'];
@@ -112,7 +112,7 @@ const imprimirMasVendidos = (productos) => {
         let descuentoStr = descuento == 0 ? "‎" : descuento + "% OFF";
 
         $(".contenedor-mas-vendidos").append(`
-            <article class="d-inline-flex col-12 col-lg-5 p-2">
+            <article class="col-12 col-lg-6">
                 <a href="abrirProducto.html?idProducto=${idProducto}" class="text-decoration-none">
                     <div class="card card-proveedor">
                         <div class="row">

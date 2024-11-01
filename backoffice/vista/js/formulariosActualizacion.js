@@ -1,5 +1,6 @@
 const cargarPreview = (evento) => {
     
+    evento.preventDefault();
     let img = evento.target.files;
     let input = evento.target.id;
 
