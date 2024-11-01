@@ -116,10 +116,10 @@ const imprimirMasVendidos = (productos) => {
                 <a href="abrirProducto.html?idProducto=${idProducto}" class="text-decoration-none">
                     <div class="card card-proveedor">
                         <div class="row">
-                            <div class="col-4">
+                            <div class="col-5 col-lg-4">
                                 <img src="../../tienda/assets/img_productos/${idProducto}_1.jpg" class="card-img-top img-inicio mt-xl-2 mt-xxl-1 me-3" alt="${nombre}" onerror="this.onerror=null;this.src='../assets/img/default.png';">
                             </div>
-                            <div class="col-8">
+                            <div class="col-7 col-lg-8">
                                 <div class="card-body">
                                     <h5 class="m-0 card-title card-title-proveedor-estadistica">${nombre}</h5>
                                     <p class="m-0 precio-anterior">${precioStr}</p>

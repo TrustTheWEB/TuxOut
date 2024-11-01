@@ -772,11 +772,12 @@ const imprimirTablas = {
 const tomarUltimaTabla = () => {
 
     let tabla = localStorage.getItem("ultimaTabla");
-    $("#selectTabla").val(tabla).change();
-    if(tabla === null || tabla === undefined) {
+    if(!tabla) {
         let tabla = $("#selectTabla").val();
         localStorage.setItem("ultimaTabla", tabla);
     }
+
+    $("#selectTabla").val(tabla).change();
 
     let metodo = "cargarAtributos"+tabla.charAt(0).toUpperCase() + tabla.slice(1);
     cargarAtributos[metodo]();

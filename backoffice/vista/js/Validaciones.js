@@ -580,7 +580,6 @@ class Validaciones {
 
       validarEstadoProducto = (estado) => {
         estado = estado.toLowerCase();
-        console.log(estado)
         if (estado == "nuevo" || estado == "usado" || estado == "renovado") {
           return true;
         } else {

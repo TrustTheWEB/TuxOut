@@ -135,7 +135,10 @@ const cargarComentarios = (idProducto) => {
 }
 
 const imprimirComentarios = (resultado) => {
-    console.log(resultado)
+    if(!resultado.length) {
+        $(".comentarios").append('<p class="mb-3">Este producto no ha sido calificado.</p>')
+    }
+    
     for (let i = 0 ; i < resultado.length ; i++) {
         $(".comentarios").append(`
             <div class="card ps-3 py-1 mb-3">

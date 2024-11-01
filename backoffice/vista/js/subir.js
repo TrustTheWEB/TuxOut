@@ -148,10 +148,14 @@ const storeTabla = (tabla, valores) => {
                 console.error('Error:', response.error);
             } else {
                 if(response) {
-                    if(tabla == "producto") {
-                        validarImagenes(response)
+                    if(response == true) {
+                        if(tabla === "producto") {
+                            validarImagenes(valores[0])
+                        } else{
+                            window.location.href = 'index.html';
+                        }
                     }else {
-                        window.location.href = 'index.html';
+                        alerta.alertar("Hubo un problema al ingresar.")
                     }
                 }else {
                     console.error(response);
@@ -159,7 +163,7 @@ const storeTabla = (tabla, valores) => {
             }
         },
         error: function(xhr, status, error) {
-            console.error('Error en la solicitud:', xhr);
+            alerta.alertar("Hubo un problema al ingresar.")
         }
     });
 }
@@ -176,10 +180,14 @@ const updateTabla = (tabla, valores) => {
                 console.error('Error:', response.error);
             } else {
                 if(response) {
-                    if(tabla === "producto") {
-                        validarImagenesUpdate(valores[0])
-                    } else{
-                        window.location.href = 'index.html';
+                    if(response == true) {
+                        if(tabla === "producto") {
+                            validarImagenesUpdate(valores[0])
+                        } else{
+                            window.location.href = 'index.html';
+                        }
+                    }else {
+                        alerta.alertar("Hubo un problema al actualizar.")
                     }
                 }else {
                     console.error(response);
@@ -187,7 +195,7 @@ const updateTabla = (tabla, valores) => {
             }
         },
         error: function(xhr, status, error) {
-            console.error('Error en la solicitud:', xhr);
+            alerta.alertar("Hubo un problema al actualizar.")
         }
     });
     }

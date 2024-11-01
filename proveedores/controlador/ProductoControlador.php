@@ -125,6 +125,15 @@ class ProductoControlador {
         exit;
     }
 
+    public function indexFiltro($valores) {
+        $modelo = new Producto();
+        $modelo->setRut($valores[0]);
+        $resultados = $modelo->indexFiltro($valores[1]);
+        header('Content-Type: application/json');
+        echo json_encode($resultados);
+        exit;
+    }
+
     public function showAbrir($idProducto) {
         $modelo = new Producto();
         $modelo->setIdProducto($idProducto);
@@ -137,11 +146,62 @@ class ProductoControlador {
 
     public function busquedaProducto($valores) {
         $modelo = new Producto();
-        $modelo->setBusqueda($valores[0]);
-        $modelo->setFiltro($valores[1]);
-        $resultados = $modelo->busquedaProducto();
+        $modelo->setRut($valores[0]);
+        $modelo->setBusqueda($valores[1]);
+        $resultados = $modelo->busquedaProducto($valores[2]);
         header('Content-Type: application/json');
         echo json_encode($resultados);
+        exit;
+    }
+
+    public function showFiltro($valores) {
+        $atributo = $valores[0];
+        $valor = $valores[1];
+        $modelo = new Producto();
+        $modelo->setRut($valores[2]);
+
+        switch($atributo) {
+        case "idProducto":
+            $modelo->setIdProducto($valor);
+            break;
+    
+        case "nombre":
+            $modelo->setNombre($valor);
+            break;
+    
+        case "descripcion":
+            $modelo->setDescripcion($valor);
+            break;
+    
+        case "precio":
+            $modelo->setPrecio($valor);
+            break;
+    
+        case "stock":
+            $modelo->setStock($valor);
+            break;
+    
+        case "estado":
+            $modelo->setEstado($valor);
+            break;
+    
+        case "marca":
+            $modelo->setMarca($valor);
+            break;
+
+        case "oculto":
+            $modelo->setOculto($valor);
+            break;
+
+        default:
+            break;
+        }
+
+        $resultados = $modelo->showFiltro($atributo, $valores[3]);
+
+        header('Content-Type: application/json');
+        echo json_encode($resultados);
+            
         exit;
     }
 }

@@ -292,8 +292,33 @@ class Producto {
         }
     }
 
-    public function busquedaProducto($filtro) {
+    public function indexFiltro($filtro) {
+        switch($filtro) {
+            case "menorPrecio":
+                $filtro = "precio";
+                break;
+            case "mayorPrecio":
+                $filtro = "precio DESC";
+                break;
+            default:
+                $filtro = "precio";
+                break;
+        }
 
+        try {
+            $consulta = $this->conn->prepare("SELECT * FROM producto WHERE rut = ? ORDER BY $filtro;");
+            $consulta->bindValue(1, $this->rut, PDO::PARAM_STR);
+            $consulta->execute();
+            $resultados = $consulta->fetchAll(PDO::FETCH_ASSOC);
+
+            return $resultados;
+        } catch (PDOException $e) {
+            return "Error en la consulta: " . $e->getMessage();
+        }
+    }
+
+    public function busquedaProducto($filtro) {
+        header('Content-Type: application/json');
         switch($filtro) {
             case "populares":
                 $filtro = "cantidadVendida DESC";
@@ -313,7 +338,7 @@ class Producto {
         }
 
         try {
-            $consulta = $this->conn->prepare("SELECT v.* FROM vistaproducto v 
+            $consulta = $this->conn->prepare("SELECT p.* FROM vistaproducto v 
                 JOIN producto p
                 ON p.idProducto = v.idProducto
                 LEFT JOIN categoriza z
@@ -324,17 +349,96 @@ class Producto {
                 OR p.descripcion LIKE ? 
                 OR p.marca LIKE ? 
                 OR c.nombre LIKE ?
+                AND p.rut = ?
                 ORDER BY " . $filtro);
             $consulta->bindValue(1, "%{$this->busqueda}%", PDO::PARAM_STR);
             $consulta->bindValue(2, "%{$this->busqueda}%", PDO::PARAM_STR);
             $consulta->bindValue(3, "%{$this->busqueda}%", PDO::PARAM_STR);
             $consulta->bindValue(4, "%{$this->busqueda}%", PDO::PARAM_STR);
+            $consulta->bindValue(5, $this->rut, PDO::PARAM_STR);
             $consulta->execute();
             $resultados = $consulta->fetchAll(PDO::FETCH_ASSOC);
 
             return $resultados;
-        } catch (PDOException $e) {
-            return "Error en la consulta: " . $e->getMessage();
+        } catch (Exception $e) {
+            return [
+                "success" => false,
+                "error" => "Error en la consulta: " . $e->getMessage()
+            ];
+        }
+    }
+
+    public function showFiltro($tipoCondicion, $filtro) {
+        try {
+
+        header('Content-Type: application/json');
+        switch($filtro) {
+            case "menorPrecio":
+                $filtro = "precio";
+                break;
+            case "mayorPrecio":
+                $filtro = "precio DESC";
+                break;
+            default:
+                $filtro = "precio";
+                break;
+        }
+
+        switch ($tipoCondicion) {
+            case "idProducto":
+                $parametro = $this->idProducto;
+                $tipoDato = PDO::PARAM_INT;
+                break;
+            case "nombre":
+                $parametro = $this->nombre;
+                $tipoDato = PDO::PARAM_STR;
+                break;
+            case "descripcion":
+                $parametro = $this->descripcion;
+                $tipoDato = PDO::PARAM_STR;
+                break;
+            case "precio":
+                $parametro = $this->precio;
+                $tipoDato = PDO::PARAM_INT;
+                break;
+            case "stock":
+                $parametro = $this->stock;
+                $tipoDato = PDO::PARAM_INT;
+                break;
+            case "estado":
+                $parametro = $this->estado;
+                $tipoDato = PDO::PARAM_STR;
+                break;
+            case "marca":
+                $parametro = $this->marca;
+                $tipoDato = PDO::PARAM_STR;
+                break;
+            case "oculto":
+                $parametro = $this->oculto;
+                $tipoDato = PDO::PARAM_INT;
+                break;
+            default:
+                throw new Exception("Tipo de condición no reconocida");
+        }
+    
+            $query = "SELECT * FROM " . $this->tabla . " WHERE " . $tipoCondicion . " = ? AND rut = ? ORDER BY $filtro;";
+            
+            $stmt = $this->conn->prepare($query);
+            $stmt->bindValue(1, $parametro, $tipoDato);
+            $stmt->bindValue(2, $this->rut, PDO::PARAM_STR);
+            
+            $stmt->execute();
+            
+            $resultados = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        
+            if (!$resultados) {
+                return "vacio";
+            }else {
+                return $resultados;
+            }
+            
+        } catch (Exception $e) {
+            return ["error" => $e->getMessage()];
         }
     }
     

@@ -68,7 +68,7 @@ class Imagen {
             if ($this->imagen['error'] === UPLOAD_ERR_OK) {
                 $extension = strtolower(pathinfo($this->imagen['name'], PATHINFO_EXTENSION));
                 $img = null;
-    
+        
                 switch ($extension) {
                     case 'jpg':
                     case 'jpeg':
@@ -86,38 +86,48 @@ class Imagen {
                     default:
                         throw new Exception("Formato de imagen no soportado: $extension");
                 }
-    
+        
                 if ($img === false) {
                     throw new Exception("Error al crear la imagen desde el archivo temporal.");
                 }
-    
-                if ($extension === 'png') {
-                    $ancho = imagesx($img);
-                    $alto = imagesy($img);
-    
-                    $this->imagenFinal = imagecreatetruecolor($ancho, $alto);
-                    $blanco = imagecolorallocate($this->imagenFinal, 255, 255, 255);
-                    imagefill($this->imagenFinal, 0, 0, $blanco);
-                    imagecopy($this->imagenFinal, $img, 0, 0, 0, 0, $ancho, $alto);
-    
-                    if (!imagejpeg($this->imagenFinal, $archivoDestino, 90)) {
-                        throw new Exception("Error al guardar la imagen en el directorio de destino.");
-                    }
-                    imagedestroy($this->imagenFinal);
+        
+                $ancho = imagesx($img);
+                $alto = imagesy($img);
+                $tamañoFinal = 500;
+        
+                $imagenCuadrada = imagecreatetruecolor($tamañoFinal, $tamañoFinal);
+                $blanco = imagecolorallocate($imagenCuadrada, 255, 255, 255);
+                imagefill($imagenCuadrada, 0, 0, $blanco);
+        
+                if ($ancho > $alto) {
+                    $nuevoAncho = $tamañoFinal;
+                    $nuevoAlto = ($alto / $ancho) * $tamañoFinal;
+                    $posX = 0;
+                    $posY = ($tamañoFinal - $nuevoAlto) / 2;
                 } else {
-                    if (!imagejpeg($img, $archivoDestino, 90)) {
-                        throw new Exception("Error al guardar la imagen en el directorio de destino.");
-                    }
+                    $nuevoAlto = $tamañoFinal;
+                    $nuevoAncho = ($ancho / $alto) * $tamañoFinal;
+                    $posX = ($tamañoFinal - $nuevoAncho) / 2;
+                    $posY = 0;
                 }
-    
-                return "Imagen subida exitosamente."; // Mensaje de éxito
+        
+                imagecopyresampled($imagenCuadrada, $img, $posX, $posY, 0, 0, $nuevoAncho, $nuevoAlto, $ancho, $alto);
+        
+                if (!imagejpeg($imagenCuadrada, $archivoDestino, 90)) {
+                    throw new Exception("Error al guardar la imagen en el directorio de destino.");
+                }
+        
+                imagedestroy($img);
+                imagedestroy($imagenCuadrada);
+        
+                return "Imagen subida exitosamente.";
             } else {
                 throw new Exception("Error en la carga del archivo: " . $this->imagen['error']);
             }
         } catch (Exception $e) {
-            return "Error: " . $e->getMessage(); // Retorna el mensaje de error
+            return "Error: " . $e->getMessage();
         }
-    }    
+    }         
 
     public function eliminarImagenesId($id) {
         $directorioDestino = realpath('../../tienda/assets/img_productos/') . '/';

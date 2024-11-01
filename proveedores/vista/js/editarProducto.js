@@ -4,6 +4,8 @@ const alerta = new Alerta();
 import Validaciones from './Validaciones.js';
 const validaciones = new Validaciones();
 
+
+
 const cargarPreview = (evento) => {
     
     let img = evento.target.files;
@@ -78,7 +80,7 @@ const validarImagenesUpdate = (idProducto) => {
         }
 
         if(cambiados<=0) {
-            window.location.href = `abrirProducto.html?idProducto=${idProducto}`;
+            window.history.back();
         }else {
             for (let i = 0; i < imagenes.length; i++) {
                 subirImagen(imagenes[i], nombres[i], idProducto);
@@ -104,7 +106,7 @@ const subirImagen = (imagen, nombre, idProducto) => {
         contentType: false,
         processData: false,
         success: function() {
-            window.location.href = `abrirProducto.html?idProducto=${idProducto}`;
+            window.history.back();
         },
         error: function(xhr, status, error) {
             console.error('Error en la solicitud:', xhr);
@@ -149,8 +151,6 @@ const imprimirFormulario = (datosProducto) => {
     $("#contenedor-abrir").append(`
         <label for="inputIdProducto">ID Producto:</label>
             <input type="text" id="inputIdProducto" class="form-control inputIngresar" value="${datos['idProducto']}" disabled="disabled">
-            <label for="inputRUT">RUT:</label>
-            <input type="text" id="inputRUT" class="form-control inputIngresar" value="${datos['RUT']}">
             <label for="inputNombre">Nombre:</label>
             <input type="text" id="inputNombre" class="form-control inputIngresar" value="${datos['nombre']}">
             <label for="inputDescripcion">Descripción:</label>
@@ -202,7 +202,7 @@ const imprimirFormulario = (datosProducto) => {
 
 const tomarDatosUpdate = () => {
     let idProducto = $("#inputIdProducto").val();
-    let rut = $("#inputRUT").val();
+    let rut = localStorage.getItem('rutEmpresa')
     let nombre = $("#inputNombre").val();
     let descripcion = $("#inputDescripcion").val();
     let precio = $("#inputPrecio").val();
@@ -269,7 +269,7 @@ const updateProducto = (idProducto, rut, nombre, descripcion, precio, stock, est
                 if(response) { 
                     validarImagenesUpdate(idProducto);
                 }else {
-                    console.error("response")
+                    alerta.alertar("No se ha podido actualizar");
                 }
             }
         },

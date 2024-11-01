@@ -9,7 +9,7 @@
   }
 
   .img-inicio {
-    width: 160px;
+    width: 150px;
   }
 
   .imgPreview {
@@ -24,4 +24,23 @@
     position: relative;
     left: 180px;
     bottom: 20px;
+  }
+
+  .img-inv {
+    width: 50px;
+  }
+
+  .btn-reset {
+    padding-top: 18px;
+    background: none;
+    border: none;
+    outline: none;
+  }
+
+  .btn-reset:hover {
+    color: #288096;
+  }
+
+  .btn-barra {
+    line-height: 2px;
   }

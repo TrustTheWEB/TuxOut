@@ -70,72 +70,69 @@
   </div>
 
   <main class="container">
-    <section class="row justify-content-center mt-3">
-        <article class="art-selector-abrir col-2 col-md-1">
-          <ul class="p-0" id="imagenes-chicas">
-          </ul>
-        </article>
-  
-        <article class="art-img-abrir col-8 col-md-6 col-lg-4" id="imagen-grande">
-  
+    <section class="row justify-content-center px-2">
+        <h2 class="col-12 text-center mt-4">Inventario</h2>
+        <div class="row col-12 col-lg-9 justify-content-end">
+            <div class="col-10 col-lg-11">
+                <input class="form-control me-2" type="search" placeholder="Busqueda..." id="busqueda-inv">
+            </div>
+            <button class="btn btn-outline-success btn-barra col-2 col-lg-1" type="button" id="btn-busqueda-inv">
+                <i class="bi bi-search"></i>
+            </button>
+            <h5 class="col-12 col-lg-2 text-start text-lg-end ordenar-por mt-3 pt-1">Buscar por:</h5>
+            <div class="col-12 col-lg-3 m-0 mt-3 me-0">
+                <select class="form-select form-select-sm w-100 w-lg-25" id="selectBusqueda">
+                  <option value="general" selected>Busqueda general</option>
+                  <option value="idProducto" >ID Producto</option>
+                  <option value="nombre" >Nombre</option>
+                  <option value="descripcion" >Descripción</option>
+                  <option value="precio" >Precio</option>
+                  <option value="stock" >Stock</option>
+                  <option value="estado" >Estado</option>
+                  <option value="oculto" >Oculto</option>
+                </select>
+              </div>
+            <h5 class="col-12 col-lg-2 text-start text-lg-end ordenar-por mt-3 pt-1">Ordenar por:</h5>
+            <div class="col-12 col-lg-3 m-0 mt-3 me-0">
+                <select class="form-select form-select-sm w-100 w-lg-25" id="selectFiltro">
+                  <option value="menorPrecio" selected>Menor precio</option>
+                  <option value="mayorPrecio">Mayor precio</option>
+                </select>
+              </div>
+              <button class="col-1 btn-reset" id="btn-reset">
+                <i class="bi bi-arrow-repeat"></i>
+            </button>
+        </div>
+
+        <div class="row mt-2">
+            <a href="agregarProducto.html" class="btn-agregar rounded-pill btn-card-comprar btn col-12 col-lg-2">INGRESAR</a>
+        </div>
+
+        <hr class="my-2">
+      
+        <article class="row col-12 mt-4 table-responsive" id="contenedor-productos">
+            <table class="sm-table">
+                <thead>
+                    <tr>
+                        <th>idProducto</th>
+                        <th>Nombre</th>
+                        <th>Descripción</th>
+                        <th>Precio</th>
+                        <th>Stock</th>
+                        <th>Estado</th>
+                        <th>Marca</th>
+                        <th>Oculto</th>
+                        <th>Imagen</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="tablaProductos">
+
+                </tbody>
+            </table>
         </article>
         
-        <hr class="my-3 d-lg-none">
-  
-        <article class="art-datos-abrir col-8  col-md-6 col-lg-3">
-          <h1 class="titulo-producto id-producto my-2"></h1>
-          <div class="calificacion-total my-2">
-  
-          </div>
-          <div class="datos-estado">
-  
-          </div>
-          <div class="datos-caracteristicas">
-  
-          </div>
-        </article>
-  
-        <hr class="my-3 d-md-none">
-  
-        <article class="art-compra-abrir card py-2 col-8 col-md-6 col-lg-3">
-          <div class="card-body card-precios">
-            <p class="precio-nuevo mb-2"></p>
-            <p class="precio-anterior mb-0"></p>
-            <p class="precio-descuento mb-0"></p>
-          </div>
-          <hr>
-            <a class="btn btn-card-comprar w-100 btn-editar m-0 mb-1">
-                EDITAR
-            </a>
-            <a class="btn btn-card-comprar w-100 btn-agregar-car m-0 mb-1">
-                AGREGAR CARACTERÍSTICA
-            </a>
-            <a class="btn btn-card-comprar w-100 btn-agregar-cat m-0 mb-1">
-                AGREGAR CATEGORÍA
-            </a>
-            <a class="btn btn-card-comprar w-100 btn-agregar-des m-0 mb-1">
-                AGREGAR DESCUENTO
-            </a>
-        </article>
-      </section>
-  
-      <hr class="my-4">
-  
-      <section class="row justify-content-center">
-        <article class="col-8">
-          <h3>Descripción</h3>
-          <p id="p-descripcion-abrir">
-          </p>
-        </article>
-      </section>
-  
-      <hr class="my-4">
-  
-      <section class="row justify-content-center">
-        <article class="col-8 comentarios">
-          <h3 class="mb-3">Comentarios</h3>
-        </article>
-      </section>
+    </section>
   </main>
 
 <footer class="pie">
@@ -146,8 +143,8 @@
 
   <script src="js/jquery-3.7.1.min.js" type="module"></script>
   <script src="js/login.js" type="module"></script>
+  <script src="js/inventario.js" type="module"></script>
   <script src="js/pagina.js" type="module"></script>
-  <script src="js/abrirProducto.js" type="module"></script>
 
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
     integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
