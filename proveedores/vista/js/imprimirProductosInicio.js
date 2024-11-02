@@ -41,7 +41,9 @@ const tomarPendientes = (rut) => {
 }
 
 const imprimirPedidosPendientes = (pedidosPendientes) => {
-    $("#pedidos-pendientes").html(pedidosPendientes[0]['pedidosPendientes']);
+    if(pedidosPendientes.length) {
+        $("#pedidos-pendientes").html(pedidosPendientes[0]['pedidosPendientes']);
+    }
 }
 
 const tomarEstadisticasMes = (rut) => {
@@ -69,8 +71,10 @@ const tomarEstadisticasMes = (rut) => {
 }
 
 const imprimirEstadisticasMes = (estadisticas) => {
-    $("#ventas-mes").html(estadisticas[0]['ventasMes']);
-    $("#ingresos-mes").html("$"+estadisticas[0]['ingresosMes']);
+    if(estadisticas.length) {
+        $("#ventas-mes").html(estadisticas[0]['ventasMes']);
+        $("#ingresos-mes").html("$"+estadisticas[0]['ingresosMes']);
+    }
 }
 
 const tomarMasVendidos = (rut) => {
@@ -99,6 +103,9 @@ const tomarMasVendidos = (rut) => {
 
 const imprimirMasVendidos = (productos) => {
     $(".contenedor-mas-vendidos").html(`<h3 class="mb-3 mt-1 col-12 col-lg-10">Artículos más vendidos</h3>`)
+    if(!productos.length) {
+        $(".contenedor-mas-vendidos").append("<p>No tienes artículos</p>")
+    }
     for(let i = 0; i < productos.length; i++) {
         let producto = productos[i];
         let idProducto = producto['idProducto'];

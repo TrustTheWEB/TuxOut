@@ -5,11 +5,41 @@ window.addEventListener("pageshow", function() {
             window.location.href = 'login.html';
         }
     } else {
-        if (window.location.pathname.includes('login.html')) {
-            window.location.href = 'index.html';
-        }
+        tomarSuspendido();
     }
 });
+
+const tomarSuspendido = () => {
+    let rut = localStorage.getItem("rutEmpresa");
+    $.ajax({
+        url: '/TuxOut/proveedores/core/Enrutador.php', 
+        method: 'POST', 
+        dataType: 'json',
+        data: {accion: "tomarSuspendido", controlador: "EmpresaControlador", valores: [rut]},
+        success: function(response) {
+            if (response.error) {
+                console.error('Error:', response.error);
+            } else {
+                if(response) { 
+                    if(response[0]['suspendido'] == 0) {
+                        if (window.location.pathname.includes('login.html') || window.location.pathname.includes('deshabilitado.html')) {
+                            window.location.href = 'index.html';
+                        }
+                    }else {
+                        if(!window.location.pathname.includes('deshabilitado.html')) {
+                            window.location.href = 'deshabilitado.html';
+                        }
+                    }
+                }else {
+                    console.error("response")
+                }
+            }
+        },
+        error: function(xhr, status, error) {
+            console.error('Error en la solicitud:', xhr, error, status);
+        }
+    }); 
+}
 
 import Alerta from './Alerta.js';
 const alerta = new Alerta();
@@ -105,8 +135,8 @@ const registrarEmpresa = (rut, nombre, telefono, direccion, email, contra) => {
                     }else if (response == true) {
                         localStorage.setItem("logueadoEmpresa", true);
                         localStorage.setItem("emailEmpresa", email);
-                        localStorage.setItem("rutEmpresa", response['rut']);
-                        localStorage.setItem("nombreEmpresa", response['nombre'])
+                        localStorage.setItem("rutEmpresa", rut);
+                        localStorage.setItem("nombreEmpresa", nombre)
                         window.location.href = 'index.html'; 
                     }else {
                         alerta.alertar("Registro fallido")

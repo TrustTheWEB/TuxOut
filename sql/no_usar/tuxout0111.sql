@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 01-11-2024 a las 23:14:13
+-- Tiempo de generación: 31-10-2024 a las 15:42:41
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -95,6 +95,13 @@ CREATE TABLE `contiene` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
+-- Volcado de datos para la tabla `contiene`
+--
+
+INSERT INTO `contiene` (`idPedido`, `idProducto`, `cantidad`, `precioHistorico`, `estado`) VALUES
+(2, 7, 1, 344.00, 'preparando');
+
+--
 -- Disparadores `contiene`
 --
 DELIMITER $$
@@ -131,6 +138,13 @@ CREATE TABLE `direccion` (
   `direccion` varchar(60) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Volcado de datos para la tabla `direccion`
+--
+
+INSERT INTO `direccion` (`email`, `direccion`) VALUES
+('example@gmail.com', 'Paloma Tompkinson 7777 esq. Palomo');
+
 -- --------------------------------------------------------
 
 --
@@ -146,6 +160,13 @@ CREATE TABLE `empresa` (
   `contraseña` varchar(255) NOT NULL,
   `suspendido` tinyint(1) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `empresa`
+--
+
+INSERT INTO `empresa` (`RUT`, `nombre`, `telefono`, `direccion`, `email`, `contraseña`, `suspendido`) VALUES
+('12345678', 'Empresa', '9998887774', 'Calle 8000', 'emailempresa5@empresa.com', '$2y$10$j2rbZiUHtaFBATQXYsA06.bSvCahPwu3pY18X1im2TMJrJYd8Zo1i', 1);
 
 -- --------------------------------------------------------
 
@@ -173,6 +194,13 @@ CREATE TABLE `pedido` (
   `email` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Volcado de datos para la tabla `pedido`
+--
+
+INSERT INTO `pedido` (`idPedido`, `estado`, `medioPago`, `direccion`, `fecha`, `email`) VALUES
+(2, 'procesando', 'PayPal', 'Paloma Tompkinson 7777 esq. Palomo', '2024-10-31 13:04:10', 'example@gmail.com');
+
 -- --------------------------------------------------------
 
 --
@@ -190,6 +218,13 @@ CREATE TABLE `producto` (
   `marca` varchar(100) NOT NULL,
   `oculto` tinyint(1) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `producto`
+--
+
+INSERT INTO `producto` (`idProducto`, `RUT`, `nombre`, `descripcion`, `precio`, `stock`, `estado`, `marca`, `oculto`) VALUES
+(7, '12345678', 'Google Pixel', 'Celular de Google 2022', 344.00, 32, 'Nuevo', 'Google', 0);
 
 --
 -- Disparadores `producto`
@@ -234,6 +269,13 @@ CREATE TABLE `usuario` (
   `contraseña` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Volcado de datos para la tabla `usuario`
+--
+
+INSERT INTO `usuario` (`email`, `usuario`, `nombre`, `apellido`, `telefono`, `fechaNac`, `ci`, `contraseña`) VALUES
+('example@gmail.com', 'JuanP', 'Juan', 'Pettinari', '098766554', '2002-02-20', '56605252', '$2y$10$ETEnfz4WFPnsPo/7RDvyj.kWOBmpOHtNqwNO79cqGlusz2np9qbL.');
+
 -- --------------------------------------------------------
 
 --
@@ -245,6 +287,13 @@ CREATE TABLE `visita` (
   `idProducto` int(11) NOT NULL,
   `fecha` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `visita`
+--
+
+INSERT INTO `visita` (`email`, `idProducto`, `fecha`) VALUES
+('example@gmail.com', 7, '2024-10-31 14:07:07');
 
 -- --------------------------------------------------------
 
@@ -306,24 +355,6 @@ CREATE TABLE `vistapedidomonto` (
 ,`fecha` timestamp
 ,`email` varchar(255)
 ,`montoTotal` decimal(42,2)
-);
-
--- --------------------------------------------------------
-
---
--- Estructura Stand-in para la vista `vistapedidosempresa`
--- (Véase abajo para la vista actual)
---
-CREATE TABLE `vistapedidosempresa` (
-`usuario` varchar(255)
-,`idProducto` int(11)
-,`nombre` varchar(150)
-,`fecha` timestamp
-,`cantidad` int(10) unsigned
-,`montoTotal` decimal(20,2) unsigned
-,`estado` enum('preparando','entregado')
-,`rut` varchar(20)
-,`idPedido` int(11)
 );
 
 -- --------------------------------------------------------
@@ -393,15 +424,6 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 DROP TABLE IF EXISTS `vistapedidomonto`;
 
 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vistapedidomonto`  AS SELECT `p`.`idPedido` AS `idPedido`, `p`.`estado` AS `estado`, `p`.`medioPago` AS `medioPago`, `p`.`direccion` AS `direccion`, `p`.`fecha` AS `fecha`, `p`.`email` AS `email`, sum(`c`.`precioHistorico` * `c`.`cantidad`) AS `montoTotal` FROM (`pedido` `p` left join `contiene` `c` on(`p`.`idPedido` = `c`.`idPedido`)) GROUP BY `p`.`idPedido` ;
-
--- --------------------------------------------------------
-
---
--- Estructura para la vista `vistapedidosempresa`
---
-DROP TABLE IF EXISTS `vistapedidosempresa`;
-
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vistapedidosempresa`  AS SELECT `p`.`email` AS `usuario`, `cont`.`idProducto` AS `idProducto`, `prod`.`nombre` AS `nombre`, `p`.`fecha` AS `fecha`, `cont`.`cantidad` AS `cantidad`, `cont`.`precioHistorico`* `cont`.`cantidad` AS `montoTotal`, `cont`.`estado` AS `estado`, `prod`.`RUT` AS `rut`, `p`.`idPedido` AS `idPedido` FROM ((`contiene` `cont` join `pedido` `p` on(`cont`.`idPedido` = `p`.`idPedido`)) join `producto` `prod` on(`cont`.`idProducto` = `prod`.`idProducto`)) ;
 
 -- --------------------------------------------------------
 
@@ -548,13 +570,13 @@ ALTER TABLE `descuento`
 -- AUTO_INCREMENT de la tabla `pedido`
 --
 ALTER TABLE `pedido`
-  MODIFY `idPedido` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idPedido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `producto`
 --
 ALTER TABLE `producto`
-  MODIFY `idProducto` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idProducto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- Restricciones para tablas volcadas

@@ -267,6 +267,20 @@ class Empresa {
             return "Error en la consulta: " . $e->getMessage();
         }
     }
+
+    public function tomarSuspendido() {
+        try {
+            $consulta = $this->conn->prepare("SELECT suspendido FROM empresa WHERE rut = ?;");
+
+            $consulta->bindValue(1, $this->rut, PDO::PARAM_STR);
+            $consulta->execute();
+            $resultados = $consulta->fetchAll(PDO::FETCH_ASSOC);
+
+            return $resultados;
+        } catch (PDOException $e) {
+            return "Error en la consulta: " . $e->getMessage();
+        }
+    }
     
 }
 

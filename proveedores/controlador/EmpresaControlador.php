@@ -144,6 +144,16 @@ class EmpresaControlador {
         echo json_encode($resultados);
         exit;
     }
+
+    public function tomarSuspendido($valores) {
+        $modelo = new Empresa();
+        $modelo->setRut($valores[0]);
+        $resultados = $modelo->tomarSuspendido();
+        
+        header('Content-Type: application/json');
+        echo json_encode($resultados);
+        exit;
+    }
 }
 
 
