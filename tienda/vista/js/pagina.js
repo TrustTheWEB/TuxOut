@@ -1,8 +1,20 @@
 import Alerta from './Alerta.js';
 const alerta = new Alerta();
 
-$(".mostrarPassEditarUsuario").click(function() {
+$(".pass-nueva").click(function() {
   mostrarContraseña("#contraseñaEditarUsuario")
+});
+
+$(".pass-nueva-repetir").click(function() {
+  mostrarContraseña("#contraseñaRepetirEditarUsuario")
+});
+
+$(document).on('click', '.pass-login', function() {
+  mostrarContraseña("#contraSignUpUsuario")
+});
+
+$(document).on('click', '.pass-login-repetir', function() {
+  mostrarContraseña("#contraSignUpUsuarioRepetir")
 });
 
 //ocultar contraseña

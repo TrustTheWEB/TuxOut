@@ -59,6 +59,29 @@ const actualizarUsuario = (usuario,nombre,apellido,telefono,ci,fechaNac) => {
     });   
 }
 
+const cambiarContra = (email, contra) => {
+        $.ajax({
+            url: '/TuxOut/tienda/core/Enrutador.php', 
+            method: 'POST', 
+            dataType: 'json', 
+            data: {accion: "updateContra", controlador: "UsuarioControlador", valores: [email, contra]},
+            success: function(response) {
+                if (response.error) {
+                    console.error('Error:', response.error);
+                } else {
+                    if(response) {
+                        alerta.confirmar("Contraseña actualizada correctamente");
+                    }else {
+                        alerta.alertar("No se ha podido actualizar la contraseña")
+                    } 
+                }
+            },
+            error: function(xhr, status, error) {
+                console.error('Error en la solicitud:', xhr);
+            }
+        });
+}
+
 const imprimirDatosUsuario = (resultado) => {
     let usuario = resultado[0];
     
@@ -111,6 +134,27 @@ const tomarDatosActualizar = () => {
     }
 }
 
+const tomarDatosContra = () => {
+    let contraNueva = $("#contraseñaEditarUsuario").val();
+    let contraRepetir = $("#contraseñaRepetirEditarUsuario").val();
+    let email = localStorage.getItem('email');
+
+    try {
+        if(contraNueva != contraRepetir) {
+            throw new Error("Las contraseñas no coinciden");
+        }
+
+        if(!validaciones.validarContra(contraNueva)) {
+            throw new Error("La nueva contraseña no es válida");
+        }
+
+        cambiarContra(email, contraNueva);
+    }catch(e) {
+        alerta.alertar(e)
+    }
+}
+
 
 $(document).ready(tomarDatosUsuario);
 $("#btnGuardarCambios").click(tomarDatosActualizar)
+$("#btnGuardarContra").click(tomarDatosContra);

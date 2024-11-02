@@ -10,6 +10,7 @@ const tomarDatosRegistroUsuario = () => {
     let apellido =  $("#apellidoSignUpUsuario").val();
     let email = $("#emailSignUpUsuario").val();
     let contra = $("#contraSignUpUsuario").val();
+    let contraRepetir = $("#contraSignUpUsuarioRepetir").val();
 
     let usuarioValido = validaciones.validarNickUsuario(usuario);
     let nombreValido = validaciones.validarNombreUsuario(nombre);
@@ -18,6 +19,10 @@ const tomarDatosRegistroUsuario = () => {
     let contraValido = validaciones.validarContra(contra);
 
     try {
+        if(contraRepetir != contra) {
+            throw new Error("las contraseñas no son iguales.");
+        }
+
         if(!usuarioValido) {
             throw new Error("el nombre de usuario ingresado no es válido.");
         }
@@ -129,7 +134,7 @@ const tomarDatosLoginUsuario = () => {
 }
 
 
-const cargarPanelUsuario = (email) => {
+const cargarPanelUsuario = () => {
     $(".barra-header").after(
         `
     <div class="nav-item dropdown ms-auto">
@@ -169,10 +174,18 @@ const cargarFormulariosLogin = () => {
                     <input type="text" class="form-control mb-2" id="apellidoSignUpUsuario" placeholder="Ingresa tu apellido">
 
                     <label for="emailSignUpUsuario" class="form-label">Email</label>
-                    <input type="email" class="form-control mb-3" id="emailSignUpUsuario" placeholder="email@example.com">
+                    <input type="email" class="form-control mb-2" id="emailSignUpUsuario" placeholder="email@example.com">
 
-                    <label for="contraSignUpUsuario" class="form-label">Contraseña</label>
-                    <input type="password" class="form-control mb-3" id="contraSignUpUsuario" placeholder="Password">
+                    <label class="form-label" for="contraSignUpUsuario">Contraseña: </label>
+                    <div class="input-group mb-2">
+                        <input class="d-block form-control" type="password" id="contraSignUpUsuario" placeholder="Password" autocomplete="on">
+                        <button class="btn boton-mostrar mostrarPassEditarUsuario pass-login" type="button"><img src="../assets/logo/mostrar.svg" alt="mostrar"></button>
+                    </div>
+                    <label class="form-label" for="contraSignUpUsuarioRepetir">Repite la contraseña: </label>
+                    <div class="input-group mb-3">
+                        <input class="d-block form-control" type="password" id="contraSignUpUsuarioRepetir" placeholder="Password" autocomplete="on">
+                        <button class="btn boton-mostrar mostrarPassEditarUsuario pass-login-repetir" type="button"><img src="../assets/logo/mostrar.svg" alt="mostrar"></button>
+                    </div>
 
                     <button type="button" class="btn btn-primary" id="btnSignUpUsuario">Registrar</button>
                   </form>
@@ -188,7 +201,7 @@ const cargarFormulariosLogin = () => {
                     <input type="email" class="form-control mb-2" id="emailLoginUsuario" placeholder="email@example.com">
 
                     <label for="contraLoginUsuario" class="form-label">Contraseña</label>
-                    <input type="password" class="form-control mb-3" id="contraLoginUsuario" placeholder="Password">
+                    <input type="password" class="form-control mb-3" id="contraLoginUsuario" placeholder="Password" autocomplete="on">
 
                     <button type="button" class="btn btn-primary" id="btnLoginUsuario">Ingresar</button>
                   </form>
@@ -203,7 +216,7 @@ const cargarFormulariosLogin = () => {
 const tomarUsuarioLogueado = () => {
     let logueado = localStorage.getItem("logueado");
     if(logueado == "true") {
-        cargarPanelUsuario(localStorage.getItem("email"));
+        cargarPanelUsuario();
     }else {
         localStorage.setItem("logueado", false);
         cargarFormulariosLogin();
