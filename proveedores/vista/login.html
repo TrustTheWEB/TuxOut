@@ -25,9 +25,6 @@
           <img class="logo" src="../assets/logo/logoP.png" alt="Logo">
         </a>
         <!-- Boton responsive para adaptar la barra de navegacion a pantallas mas chicas -->
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
-          <span class="navbar-toggler-icon"></span>
-        </button>
       </div>
     </nav>
   </header>
@@ -62,7 +59,7 @@
                 </div>
                 <div class="mb-3">
                   <label for="contraLoginEmpresa" class="form-label">Contraseña</label>
-                  <input type="password" class="form-control" id="contraLoginEmpresa" placeholder="contraseña">
+                  <input type="password" class="form-control" id="contraLoginEmpresa" placeholder="Password" autocomplete="on">
                 </div>
                 <button id="btnLoginEmpresa" class="btn btn-primary w-100">Ingresar</button>
             </div>
@@ -87,13 +84,19 @@
                   <label for="emailSignUpEmpresa" class="form-label">Correo electrónico</label>
                   <input type="email" class="form-control" id="emailSignUpEmpresa" placeholder="email@example.com">
                 </div>
-                <div class="mb-3">
-                  <label for="contraSignUpEmpresa" class="form-label">Contraseña</label>
-                  <input type="password" class="form-control" id="contraSignUpEmpresa" placeholder="contraseña">
+                <label class="form-label" for="contraSignUpUsuario">Contraseña </label>
+                <div class="input-group mb-3">
+                    <input class="d-block form-control" type="password" id="contraSignUpEmpresa" placeholder="Password" autocomplete="on">
+                    <button class="btn boton-mostrar mostrarPassEditarUsuario pass-emp" type="button"><img src="../assets/logo/mostrar.svg" alt="mostrar"></button>
+                </div>
+                <label class="form-label" for="contraSignUpUsuarioRepetir">Repite la contraseña </label>
+                <div class="input-group mb-3">
+                    <input class="d-block form-control" type="password" id="contraSignUpEmpresaRepetir" placeholder="Password" autocomplete="on">
+                    <button class="btn boton-mostrar mostrarPassEditarUsuario pass-emp-repetir" type="button"><img src="../assets/logo/mostrar.svg" alt="mostrar"></button>
                 </div>
                 <button id="btnSignUpEmpresa" class="btn btn-primary w-100">Registrarse</button>
+              </div>
             </div>
-          </div>
         </div>
       </article>
     </section>
@@ -114,6 +117,7 @@
     crossorigin="anonymous"></script>
 
     <script src="js/login.js" type="module"></script>
+    <script src="js/pagina.js" type="module"></script>
 </body>
 
 </html>

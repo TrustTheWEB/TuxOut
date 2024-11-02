@@ -53,6 +53,7 @@ const tomarDatosRegistroEmpresa = () => {
     let nombre = $("#nombreSignUpEmpresa").val();
     let email = $("#emailSignUpEmpresa").val();
     let contra = $("#contraSignUpEmpresa").val();
+    let contraRep = $("#contraSignUpEmpresaRepetir").val();
     let telefono = $("#telefonoSignUpEmpresa").val();
     let direccion = $("#direccionSignUpEmpresa").val();
 
@@ -64,6 +65,10 @@ const tomarDatosRegistroEmpresa = () => {
     let direccionValido = validaciones.validarDireccion(direccion);
 
     try {
+        if(contra != contraRep) {
+            throw new Error("Las contraseñas no coinciden");
+        }
+
         if(!rutValido) {
             throw new Error("el RUT ingresado no es válido.");
         }
