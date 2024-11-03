@@ -3,7 +3,7 @@
 CREATE USER 'usuario'@'%' IDENTIFIED BY 'usuario';
 CREATE USER 'proveedor'@'%' IDENTIFIED BY 'proveedor';
 
-GRANT SELECT, UPDATE on tuxout.usuario to usuario;
+GRANT SELECT, INSERT, UPDATE on tuxout.usuario to usuario;
 GRANT SELECT, INSERT, UPDATE, DELETE on tuxout.usuario to backoffice;
 
 GRANT SELECT, INSERT, UPDATE on tuxout.empresa to proveedor;
