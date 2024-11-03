@@ -1,3 +1,5 @@
+-- El usuario backoffice se crea junto al contenedor del docker
+-- CREATE USER 'backoffice'@'%' IDENTIFIED BY 'backoffice';
 CREATE USER 'usuario'@'%' IDENTIFIED BY 'usuario';
 CREATE USER 'proveedor'@'%' IDENTIFIED BY 'proveedor';
 
@@ -56,3 +58,31 @@ GRANT SELECT, INSERT, UPDATE, INSERT on tuxout.comenta to backoffice;
 GRANT SELECT, INSERT, UPDATE, DELETE on tuxout.carrito to usuario;
 GRANT SELECT on tuxout.carrito to proveedor;
 GRANT SELECT, INSERT, UPDATE, DELETE on tuxout.carrito to backoffice;
+
+GRANT SELECT ON tuxout.vistacarritopreview TO usuario;
+GRANT SELECT ON tuxout.vistacarritopreview TO proveedor;
+GRANT SELECT, INSERT, UPDATE, DELETE ON tuxout.vistacarritopreview TO backoffice;
+
+GRANT SELECT ON tuxout.vistadetalles TO usuario;
+GRANT SELECT ON tuxout.vistadetalles TO proveedor;
+GRANT SELECT, INSERT, UPDATE, DELETE ON tuxout.vistadetalles TO backoffice;
+
+GRANT SELECT ON tuxout.vistaestadisticasmes TO usuario;
+GRANT SELECT ON tuxout.vistaestadisticasmes TO proveedor;
+GRANT SELECT, INSERT, UPDATE, DELETE ON tuxout.vistaestadisticasmes TO backoffice;
+
+GRANT SELECT ON tuxout.vistapedidomonto TO usuario;
+GRANT SELECT ON tuxout.vistapedidomonto TO proveedor;
+GRANT SELECT, INSERT, UPDATE, DELETE ON tuxout.vistapedidomonto TO backoffice;
+
+GRANT SELECT ON tuxout.vistapedidosempresa TO usuario;
+GRANT SELECT ON tuxout.vistapedidosempresa TO proveedor;
+GRANT SELECT, INSERT, UPDATE, DELETE ON tuxout.vistapedidosempresa TO backoffice;
+
+GRANT SELECT ON tuxout.vistapedidospendientes TO usuario;
+GRANT SELECT ON tuxout.vistapedidospendientes TO proveedor;
+GRANT SELECT, INSERT, UPDATE, DELETE ON tuxout.vistapedidospendientes TO backoffice;
+
+GRANT SELECT ON tuxout.vistaproducto TO usuario;
+GRANT SELECT ON tuxout.vistaproducto TO proveedor;
+GRANT SELECT, INSERT, UPDATE, DELETE ON tuxout.vistaproducto TO backoffice;
