@@ -14,6 +14,14 @@ function toggleOffcanvas() {
   $(document).on('click', '.pass-emp-repetir', function() {
     mostrarContraseña("#contraSignUpEmpresaRepetir")
   });
+
+  $(document).on('click', '.pass-nueva', function() {
+    mostrarContraseña("#contraseñaEditarEmpresa")
+  });
+
+  $(document).on('click', '.pass-nueva-repetir', function() {
+    mostrarContraseña("#contraseñaRepetirEditarEmpresa")
+  });
   
   //ocultar contraseña
   

@@ -20,7 +20,7 @@ class EmpresaControlador {
         $modelo->setTelefono($valores[2]);
         $modelo->setDireccion($valores[3]);
         $modelo->setEmail($valores[4]);
-        $modelo->setContraseña($valores[5]);
+        $modelo->setContra($valores[5]);
         
         $resultados = $modelo->store();
         header('Content-Type: application/json');
@@ -59,7 +59,7 @@ class EmpresaControlador {
             break;
     
         case "contraseña":
-            $modelo->setContraseña($valor);
+            $modelo->setContra($valor);
             break;
     
         default:
@@ -81,12 +81,22 @@ class EmpresaControlador {
         $modelo->setTelefono($valores[2]);
         $modelo->setDireccion($valores[3]);
         $modelo->setEmail($valores[4]);
-        $modelo->setContraseña($valores[5]);
 
         $resultados = $modelo->update();
-            header('Content-Type: application/json');
-            echo json_encode($resultados);
-            exit;
+        header('Content-Type: application/json');
+        echo json_encode($resultados);
+        exit;
+    }
+
+    public function updateContra($valores) {
+        $modelo = new Empresa();
+        $modelo->setRut($valores[0]);
+        $modelo->setContra($valores[1]);
+
+        $resultados = $modelo->updateContra();
+        header('Content-Type: application/json');
+        echo json_encode($resultados);
+        exit;
     }
 
     public function destroy($valores) {
@@ -106,7 +116,7 @@ class EmpresaControlador {
         $modelo->setTelefono($valores[2]);
         $modelo->setDireccion($valores[3]);
         $modelo->setEmail($valores[4]);
-        $modelo->setContraseña($valores[5]);
+        $modelo->setContra($valores[5]);
         
         $resultados = $modelo->registro();
         header('Content-Type: application/json');
@@ -117,7 +127,7 @@ class EmpresaControlador {
     public function login($valores) {
         $modelo = new Empresa();
         $modelo->setEmail($valores[0]);
-        $modelo->setContraseña($valores[1]);
+        $modelo->setContra($valores[1]);
         
         $resultados = $modelo->login();
         header('Content-Type: application/json');

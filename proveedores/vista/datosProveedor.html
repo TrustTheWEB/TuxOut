@@ -73,29 +73,46 @@
   </div>
 
   <main class="container">
-    <section class="row mt-3 justify-content-center">
-        <h1 class="mb-3 col-12 col-lg-10" id="nombre-empresa">Nombre Proveedor</h1>
-        <h3 class="mb-3 col-12 col-lg-10">Estadísticas</h3>
-        <section class="card-group col-12 col-lg-10 row">
-            <article class="card ps-3 pt-2 col-12 col-lg-4">
-                <h3>Ventas de este mes</h3>
-                <p class="ps-3" id="ventas-mes"></p>
-            </article>
-            <article class="card ps-3 pt-2 col-12 col-lg-4">
-                <h3>Ingresos de este mes</h3>
-                <p class="ps-3" id="ingresos-mes"></p>
-            </article>
-            <article class="card ps-3 pt-2 col-12 col-lg-4">
-                <h3>Pedidos pendientes</h3>
-                <p class="ps-3" id="pedidos-pendientes"></p>
-            </article>
-        </section>
-    </section>
-    <hr class="my-4">
     <section class="row justify-content-center">
-      <div class="col-12 col-lg-10 row contenedor-mas-vendidos g-3 mb-4">
+    <h1 class="my-3 col-12 text-center">Datos de mi Empresa</h1>
+      <article class="col-12 col-lg-6 justify-content-center text-start">
+        <h4>Modificar datos</h4>
+        <form>
+        <label class="d-block form-label" for="rutEditarEmpresa">RUT: </label>
+          <input class="d-block form-control mb-3" type="text" id="rutEditarEmpresa" disabled="true" placeholder="00000000000">
 
-      </div>
+          <label class="d-block form-label" for="emailEditarEmpresa">Email: </label>
+          <input class="d-block form-control mb-3" type="email" id="emailEditarEmpresa" disabled="true" placeholder="email@email.com">
+
+          <label class="d-block form-label" for="nombreEditarEmpresa">Nombre: </label>
+          <input class="d-block form-control mb-3" type="text" id="nombreEditarEmpresa" placeholder="Nombre">
+
+          <label class="d-block form-label" for="telefonoEditarEmpresa">Teléfono: </label>
+          <input class="d-block form-control mb-3" type="text" id="telefonoEditarEmpresa" placeholder="Número de teléfono">
+
+          <label class="d-block form-label" for="direccionEditarEmpresa">Dirección: </label>
+          <input class="d-block form-control mb-3" type="text" id="direccionEditarEmpresa" placeholder="Dirección 0011">
+
+          <button class="btn btn-guardar d-block w-100" id="btnGuardarCambios" type="button">Guardar</button>
+        </form>
+      </article>
+    </section>
+    <section class="row justify-content-center">
+      <hr class="col-12 col-lg-7 mt-4 mb-2">
+      <article class="col-12 col-lg-6 my-3">
+        <h4>Cambiar contraseña</h4>
+        <label class="d-block form-label" for="contraseñaEditarEmpresa">Contraseña Nueva: </label>
+          <div class="input-group mb-3">
+            <input class="d-block form-control" type="password" id="contraseñaEditarEmpresa" >
+            <button class="btn boton-mostrar mostrarPassEditarEmpresa pass-nueva" type="button"><img src="../assets/logo/mostrar.svg" alt="mostrar"></button>
+          </div>
+          <label class="d-block form-label" for="contraseñaRepetirEditarEmpresa">Vuelve a repetir la contraseña nueva: </label>
+          <div class="input-group mb-3">
+            <input class="d-block form-control" type="password" id="contraseñaRepetirEditarEmpresa" >
+            <button class="btn boton-mostrar mostrarPassEditarEmpresa pass-nueva-repetir" type="button"><img src="../assets/logo/mostrar.svg" alt="mostrar"></button>
+          </div>
+          <button class="btn btn-guardar d-block w-100" id="btnGuardarContra" type="button">Cambiar contraseña</button>
+      </article>
     </section>
   </main>
 
@@ -107,7 +124,7 @@
 
   <script src="js/jquery-3.7.1.min.js" type="module"></script>
   <script src="js/login.js" type="module"></script>
-  <script src="js/imprimirProductosInicio.js" type="module"></script>
+  <script src="js/datosProveedor.js" type="module"></script>
   <script src="js/pagina.js" type="module"></script>
 
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"

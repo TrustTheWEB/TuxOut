@@ -12,7 +12,7 @@ class Empresa {
     private $telefono;
     private $direccion;
     private $email;
-    private $contraseña;
+    private $contra;
 
     public function __construct() {
         $this->conn = Conexion::getInstance()->getDatabaseInstance();
@@ -59,12 +59,12 @@ class Empresa {
         $this->email = $email;
     }
 
-    public function getContraseña() {
-        return $this->contraseña;
+    public function getContra() {
+        return $this->contra;
     }
 
-    public function setContraseña($contraseña) {
-        $this->contraseña = $contraseña;
+    public function setContra($contra) {
+        $this->contra = $contra;
     }
 
     // Métodos CRUD
@@ -90,7 +90,7 @@ class Empresa {
             $stmt->bindValue(3, $this->telefono, PDO::PARAM_STR);
             $stmt->bindValue(4, $this->direccion, PDO::PARAM_STR);
             $stmt->bindValue(5, $this->email, PDO::PARAM_STR);
-            $hashedPassword = password_hash($this->contraseña, PASSWORD_DEFAULT);
+            $hashedPassword = password_hash($this->contra, PASSWORD_DEFAULT);
             $stmt->bindValue(6, $hashedPassword, PDO::PARAM_STR);
 
             return $stmt->execute();
@@ -124,7 +124,7 @@ class Empresa {
                     $tipoDato = PDO::PARAM_STR;
                     break;
                 case "contraseña":
-                    $parametro = $this->contraseña;
+                    $parametro = $this->contra;
                     $tipoDato = PDO::PARAM_STR;
                     break;
                 default:
@@ -145,7 +145,7 @@ class Empresa {
 
     public function update() {
         try {
-            $query = "UPDATE " . $this->tabla . " SET nombre=?, telefono=?, direccion=?, email=?, contraseña=? WHERE rut=?";
+            $query = "UPDATE " . $this->tabla . " SET nombre=?, telefono=?, direccion=?, email=? WHERE rut=?";
 
             $stmt = $this->conn->prepare($query);
 
@@ -153,9 +153,24 @@ class Empresa {
             $stmt->bindValue(2, $this->telefono, PDO::PARAM_STR);
             $stmt->bindValue(3, $this->direccion, PDO::PARAM_STR);
             $stmt->bindValue(4, $this->email, PDO::PARAM_STR);
-            $stmt->bindValue(5, $this->email, PDO::PARAM_STR);
-            $hashedPassword = password_hash($this->contraseña, PASSWORD_DEFAULT);
-            $stmt->bindValue(6, $this->rut, PDO::PARAM_STR);
+            $stmt->bindValue(5, $this->rut, PDO::PARAM_STR);
+
+            return $stmt->execute();
+
+        } catch (PDOException $e) {
+            return "Error en la consulta: " . $e->getMessage();
+        }
+    }
+
+    public function updateContra() {
+        try {
+            $query = "UPDATE " . $this->tabla . " SET contraseña=? WHERE rut=?";
+
+            $stmt = $this->conn->prepare($query);
+
+            $hashedPassword = password_hash($this->contra, PASSWORD_DEFAULT);
+            $stmt->bindValue(1, $hashedPassword, PDO::PARAM_STR);
+            $stmt->bindValue(2, $this->rut, PDO::PARAM_STR);
 
             return $stmt->execute();
 
@@ -212,7 +227,7 @@ class Empresa {
             $stmt->bindValue(3, $this->telefono, PDO::PARAM_STR);
             $stmt->bindValue(4, $this->direccion, PDO::PARAM_STR);
             $stmt->bindValue(5, $this->email, PDO::PARAM_STR);
-            $hashedPassword = password_hash($this->contraseña, PASSWORD_DEFAULT);
+            $hashedPassword = password_hash($this->contra, PASSWORD_DEFAULT);
             $stmt->bindValue(6, $hashedPassword, PDO::PARAM_STR);
 
             return $stmt->execute();
@@ -229,7 +244,7 @@ class Empresa {
             $stmt->execute();
             $resultado = $stmt->fetch(PDO::FETCH_ASSOC);
         
-            if ($resultado && password_verify($this->contraseña, $resultado['contraseña'])) {
+            if ($resultado && password_verify($this->contra, $resultado['contraseña'])) {
                 return [$resultado['rut'], $resultado['nombre']]; 
             }
 
