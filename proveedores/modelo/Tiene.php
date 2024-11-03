@@ -67,33 +67,31 @@ class Tiene {
     }
 
     public function show($tipoCondicion) {
-        switch ($tipoCondicion) {
-            case "idProducto":
-                $parametro = $this->idProducto;
-                $tipoDato = PDO::PARAM_INT;
-                break;
-            case "idDescuento":
-                $parametro = $this->idDescuento;
-                $tipoDato = PDO::PARAM_INT;
-                break;
-            default:
-                throw new Exception("Tipo de condición no reconocida");
+        try {
+            $query = "SELECT * FROM " . $this->tabla . " WHERE $tipoCondicion = ?";
+            $stmt = $this->conn->prepare($query);
+
+            switch ($tipoCondicion) {
+                case "idDescuento":
+                    $parametro = $this->idDescuento;
+                    $tipoDato = PDO::PARAM_INT;
+                    break;
+                case "idProducto":
+                    $parametro = $this->idProducto;
+                    $tipoDato = PDO::PARAM_INT;
+                    break;
+                default:
+                    throw new Exception("Tipo de condición no reconocida");
+            }
+
+            $stmt->bindValue(1, $parametro, $tipoDato);
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            return "Error en la consulta: " . $e->getMessage();
+        } catch (Exception $e) {
+            return "Error: " . $e->getMessage();
         }
-    
-        $query = "SELECT * FROM " . $this->tabla . " WHERE " . $tipoCondicion . " = ?;";
-        
-        $stmt = $this->conn->prepare($query);
-        $stmt->bindValue(1, $parametro, $tipoDato);
-        
-        $stmt->execute();
-        
-        $resultados = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    
-        if (!$resultados) {
-            throw new Exception("No se encontraron resultados para la consulta: " . $query . " con el valor: " . $parametro);
-        }
-    
-        return $resultados;
     }
 
     public function update() { // edit - update

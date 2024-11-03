@@ -44,3 +44,12 @@
   .btn-barra {
     line-height: 2px;
   }
+
+  .tabla-descuento, .tabla-descuento td {
+    background: none !important;
+    background-color: transparent;
+  }
+
+  #inputMotivo {
+    width: 160px;
+  }

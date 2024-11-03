@@ -12,7 +12,7 @@ const tomarFormulario = () => {
     
     switch(tipo) {
         case "descuento": 
-            //tomarDescuentos(idProducto);
+            tomarDescuentos(idProducto);
             break;
         case "caracteristica":
             tomarCaracteristicas(idProducto);
@@ -23,6 +23,96 @@ const tomarFormulario = () => {
         default:
             window.history.back();
     }
+}
+
+const tomarDescuentos = (idProducto) => {
+    $.ajax({
+        url: '/TuxOut/proveedores/core/Enrutador.php', 
+        method: 'POST', 
+        dataType: 'json', 
+        data: {accion: "index", controlador: "DescuentoControlador", valores: [null]},
+        success: function(response) {
+            if (response.error) {
+                alerta.alertar('Error al cargar los descuentos');
+            } else {
+                if(response) {
+                    imprimirDescuentos(response, idProducto);
+                }
+            }
+        },
+        error: function() {
+            alerta.alertar("Error al cargar los descuentos")
+        }
+    }); 
+}
+
+const imprimirDescuentos = (descuentos, idProducto) => {
+    $("#contenedorAgregar").html(`
+        <h2 class="col-12 text-center">Descuentos</h2>
+        <h4 class="col-12 text-center">Selecciona los descuentos para tu producto:</h4>
+        <p class="col-12 text-center">(Al vender solo se tendra en cuenta el descuento en fecha de mayor valor)</p>
+        <hr class="col-12 col-lg-8 my-2 mb-4">
+        <article class="col-12 col-lg-7 row justify-content-center table-responsive bg-transparent tabla-descuento">
+            <h4 class="text-center">Crear código de descuento</h4>
+            <table class="table sm-table tabla-descuento">
+                <thead>
+                    <tr>
+                        <td>Motivo</td>
+                        <td>Porcentaje</td>
+                        <td>Fecha Inicial</td>
+                        <td>Fecha Final</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><input type="text" class="form-control" id="inputMotivo"></input></td>
+                        <td><input type="number" class="form-control" id="inputPorcentaje"></input></td>
+                        <td><input type="date" class="form-control" id="inputFechaInicio"></input></td>
+                        <td><input type="date" class="form-control" id="inputFechaFin"></input></td>
+                    </tr>
+                </tbody>
+            </table>
+            <button class="btn col-3 border rounded-pill bg-none" id="boton-agregar-descuento">Ingresar</button>
+        </article>
+        <hr class="col-12 col-lg-7 mt-4 mb-4">
+        <article id="contenedorDescuentos" class="col-12 col-lg-6 row justify-content-between">
+        </article>
+        `);
+
+    for(let i = 0; i < descuentos.length; i++) {
+        $("#contenedorDescuentos").append(`
+        <div class="form-check col-12">
+            <input class="form-check-input check-descuento" type="checkbox" value="" data-id-descuento="${descuentos[i]['idDescuento']}">
+            <label class="form-check-label" for="flexCheckDefault">
+                ${descuentos[i]['motivo']} %${descuentos[i]['porcentaje']} (${descuentos[i]['fechaInicio']} - ${descuentos[i]['fechaFin']})
+            </label>
+        </div>     
+        `);
+    }
+
+    tomarDescuentosProducto(idProducto);
+}
+
+const tomarDescuentosProducto = (idProducto) => {
+
+    $.ajax({
+        url: '/TuxOut/proveedores/core/Enrutador.php', 
+        method: 'POST', 
+        dataType: 'json', 
+        data: {accion: "show", controlador: "TieneControlador", valores: ["idProducto", idProducto]},
+        success: function(response) {
+            if (response.error) {
+                alerta.alertar('Error al obtener descuentos');
+            } else {
+                if(response) {
+                    checkDescuentos(response);
+                }
+            }
+        },
+        error: function() {
+            alerta.alertar("Error al obtener descuentos")
+        }
+    }); 
 }
 
 const tomarCategorias = (idProducto) => {
@@ -69,6 +159,13 @@ const imprimirCategorias = (categorias, idProducto) => {
     tomarCategoriasProducto(idProducto);
 }
 
+const checkDescuentos = (descuentos) => {
+    for (let i = 0; i < descuentos.length; i++) {
+        let idDescuento = descuentos[i]['idDescuento'];
+        $(`.check-descuento[data-id-descuento="${idDescuento}"]`).prop('checked', true);
+    }
+}
+
 const tomarCategoriasProducto = (idProducto) => {
 
     $.ajax({
@@ -97,6 +194,7 @@ const checkCategorias = (categorias) => {
         $(`.check-categoria[data-id-categoria="${idCategoria}"]`).prop('checked', true);
     }
 }
+
 
 const tomarCaracteristicas = (idProducto) => {
     $.ajax({
@@ -307,7 +405,126 @@ const categorizar = (idProducto, idCategoria) => {
     }); 
 }
 
-$(document).on("change", ".form-check-input", tomarDatosCategorizar)
+const tomarDatosTieneDescuento = (e) => {
+    e.preventDefault();
+    let check = $(e.currentTarget);
+    let idDescuento = check.attr("data-id-descuento");
+    let urlParams = new URLSearchParams(window.location.search);
+    let idProducto = urlParams.get('idProducto');
+    
+    if(!check.is(":checked")) {
+        quitarDescuento(idProducto, idDescuento)
+    }else {
+        agregarDescuetno(idProducto, idDescuento);
+    }
+}
+
+const quitarDescuento = (idProducto, idDescuento) => {
+    $.ajax({
+        url: '/TuxOut/proveedores/core/Enrutador.php', 
+        method: 'POST', 
+        dataType: 'json', 
+        data: {accion: "destroy", controlador: "TieneControlador", valores: [idProducto, idDescuento]},
+        success: function(response) {
+            if (response.error) {
+                alerta.alertar('Error al quitar descuento');
+            } else {
+                if(response) {
+                    alerta.confirmar("Descuento removido correctamente")
+                }
+            }
+        },
+        error: function() {
+            alerta.alertar("Error al quitar descuento")
+        }
+    }); 
+}
+
+const agregarDescuetno = (idProducto, idDescuento) => {
+    $.ajax({
+        url: '/TuxOut/proveedores/core/Enrutador.php', 
+        method: 'POST', 
+        dataType: 'json', 
+        data: {accion: "store", controlador: "TieneControlador", valores: [idProducto, idDescuento]},
+        success: function(response) {
+            if (response.error) {
+                alerta.alertar('Error agregar descuento');
+            } else {
+                if(response) {
+                    alerta.confirmar("Descuento agregado correctamente")
+                }
+            }
+        },
+        error: function() {
+            alerta.alertar("Error agregar descuento")
+        }
+    }); 
+}
+
+const tomarDatosAgregarDescuento = () => {
+    let motivo = $("#inputMotivo").val();
+    let porcentaje = $("#inputPorcentaje").val();
+    let fechaInicio = $("#inputFechaInicio").val();
+    let fechaFin = $("#inputFechaFin").val();
+
+    try{
+        if(!validaciones.validarMotivoDescuento(motivo)) {
+            throw new Error("El motivo ingresado no es válido")
+        }
+
+        if(!validaciones.validarPorcentaje(porcentaje)) {
+            throw new Error("El porcentaje ingresado no es válido")
+        }
+
+        if(!validaciones.validarFechaNoNull(fechaInicio)) {
+            throw new Error("La fecha de inicio no es válida")
+        }
+
+        if(!validaciones.validarFechaNoNull(fechaFin)) {
+            throw new Error("La fecha de inicio no es válida")
+
+        } 
+
+        let dateInicio = new Date(fechaInicio);
+        let dateFin = new Date(fechaFin);
+
+        if (dateFin < dateInicio) {
+            throw new Error("La fecha de inicio debe ser posterior a la de finalización.")
+        }
+
+        crearDescuento(motivo, porcentaje, fechaInicio, fechaFin);
+
+    }catch(e) {
+        alerta.alertar(e);
+    }
+}
+
+const crearDescuento = (motivo, porcentaje, fechaInicio, fechaFin) => {
+    $.ajax({
+        url: '/TuxOut/proveedores/core/Enrutador.php', 
+        method: 'POST', 
+        dataType: 'json', 
+        data: {accion: "store", controlador: "DescuentoControlador", valores: [porcentaje, fechaInicio, fechaFin, motivo]},
+        success: function(response) {
+            if (response.error) {
+                alerta.alertar('Error al agregar descuento');
+            } else {
+                if(response) {  
+                    let urlParams = new URLSearchParams(window.location.search)
+                    let idProducto = urlParams.get('idProducto');
+                    tomarDescuentos(idProducto);
+                }
+            }
+        },
+        error: function() {
+            alerta.alertar("Error al agregar descuento")
+        }
+    }); 
+}
+
+$(document).on("change", ".check-descuento", tomarDatosTieneDescuento)
+$(document).on("change", ".check-categoria", tomarDatosCategorizar)
 $(document).on("click", ".boton-eliminar-car", tomarDatosEliminarCaracteristica)
+$(document).on("click", "#boton-agregar-descuento", tomarDatosAgregarDescuento)
 $(document).on("click", "#boton-agregar-car", tomarDatosAgregarCaracteristica)
 $(document).ready(tomarFormulario);

@@ -196,6 +196,63 @@ class Validaciones {
         return true;
     };
 
+    validarFechaNoNull = (fecha) => {
+
+        if(!fecha) {
+            return false;
+        }
+
+        const caracteresPermitidosFecha = "0123456789-";
+
+        let partes = fecha.split('-');
+        if (partes.length != 3) {
+            return false;
+        }
+
+        for (let i = 0; i < fecha.length; i++) {
+            if (!caracteresPermitidosFecha.includes(fecha[i])) {
+                return false;
+            }
+        }
+
+        let año = Number(partes[0]);
+        let mes = Number(partes[1]);
+        let dia = Number(partes[2]);
+        let bisiesto = false;
+
+        if (año > 2999 || año < 1900) {
+            return false;
+        }
+
+        if ((año % 4 == 0 && año % 100 != 0) || año % 400 == 0) {
+            bisiesto = true;
+        }
+
+        if (mes > 12 || mes < 0) {
+            return false;
+        }
+
+        if (mes == 2 && bisiesto) {
+            if (dia > 30 || dia < 0) {
+                return false;
+            }
+        } else if (mes == 2 && !bisiesto) {
+            if (dia > 29 || dia < 0) {
+                return false;
+            }
+        } else if (mes == 1 || mes == 3 || mes == 5 || mes == 7 || mes == 8 || mes == 10 || mes == 12) {
+            if (dia > 31 || dia < 0) {
+                return false;
+            }
+        } else {
+            if (dia > 30 || dia < 0) {
+                return false;
+            }
+        }
+
+        return true;
+    };
+
     validarFechaNac = (fecha) => {
 
         if(!fecha) {

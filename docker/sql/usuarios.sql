@@ -26,7 +26,7 @@ GRANT SELECT, INSERT, UPDATE on tuxout.descuento to proveedor;
 GRANT SELECT, INSERT, UPDATE, DELETE on tuxout.descuento to backoffice;
 
 GRANT INSERT on tuxout.tiene to usuario;
-GRANT INSERT, INSERT, UPDATE, DELETE on tuxout.tiene to proveedor;
+GRANT SELECT, INSERT, UPDATE, DELETE on tuxout.tiene to proveedor;
 GRANT SELECT, INSERT, UPDATE, DELETE on tuxout.tiene to backoffice;
 
 GRANT SELECT, INSERT, UPDATE on tuxout.visita to usuario;
