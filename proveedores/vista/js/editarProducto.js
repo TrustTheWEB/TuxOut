@@ -43,7 +43,7 @@ const quitarImagen = (event) => {
 
 const destruirImagen = (nombre) => {
     $.ajax({
-        url: 'http://localhost/TuxOut/backoffice/core/Enrutador.php',
+        url: '/TuxOut/backoffice/core/Enrutador.php',
         type: 'POST',
         dataType: 'json',
         data: { accion: "eliminarImagenNombre", valores: [nombre], controlador: "ImagenControlador"}

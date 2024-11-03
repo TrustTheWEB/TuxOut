@@ -1,0 +1,29 @@
+version: '3'
+
+services:
+  tuxout_app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: tuxoutAPP
+    ports:
+      - "3500:80"
+    depends_on:
+      - db
+
+  db:
+    image: mariadb
+    container_name: tuxoutDB
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: tuxout
+      MYSQL_USER: backoffice
+      MYSQL_PASSWORD: backoffice
+    ports:
+      - "33060:3306"
+    volumes:
+      - db-volume:/var/lib/mysql
+      - ./sql:/docker-entrypoint-initdb.d
+
+volumes:
+  db-volume:

@@ -1,6 +1,6 @@
 const eliminarImagenes = (id) => {
     $.ajax({
-        url: 'http://localhost/TuxOut/backoffice/core/Enrutador.php',
+        url: '/TuxOut/backoffice/core/Enrutador.php',
         type: 'POST',
         dataType: 'json',
         data: { accion: "eliminarImagenesId", valores: [id], controlador: "ImagenControlador"}
@@ -133,7 +133,7 @@ const eliminarDato = (tabla, botonEliminar) => {
 
     let controlador = tabla.charAt(0).toUpperCase() + tabla.slice(1) + "Controlador";
     $.ajax({
-        url: 'http://localhost/TuxOut/backoffice/core/Enrutador.php',
+        url: '/TuxOut/backoffice/core/Enrutador.php',
         method: 'POST',
         dataType: 'json',
         data: {accion: "destroy", controlador: controlador ,valores: valores},

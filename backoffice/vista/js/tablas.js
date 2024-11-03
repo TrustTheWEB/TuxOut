@@ -2,7 +2,7 @@ const indexTabla = (tabla) => {
     let controlador = tabla.charAt(0).toUpperCase() + tabla.slice(1) + "Controlador";
     let metodo = "imprimir"+tabla.charAt(0).toUpperCase() + tabla.slice(1);
     $.ajax({
-        url: 'http://localhost/TuxOut/backoffice/core/Enrutador.php', 
+        url: '/TuxOut/backoffice/core/Enrutador.php', 
         method: 'POST', 
         dataType: 'json', 
         data: {accion: "index", controlador: controlador, valores: null},
@@ -28,7 +28,7 @@ const showTabla = (tabla, valores) => {
     let controlador = tabla.charAt(0).toUpperCase() + tabla.slice(1) + "Controlador";
     let metodo = "imprimir"+tabla.charAt(0).toUpperCase() + tabla.slice(1);
     $.ajax({
-        url: 'http://localhost/TuxOut/backoffice/core/Enrutador.php', 
+        url: '/TuxOut/backoffice/core/Enrutador.php', 
         method: 'POST', 
         dataType: 'json', 
         data: {accion: "show", controlador: controlador, valores: valores},
@@ -805,7 +805,7 @@ const tomarTablaAtributo = () => {
 const ocultar = (idProducto, oculto) => {
 
     $.ajax({
-        url: 'http://localhost/TuxOut/backoffice/core/Enrutador.php', 
+        url: '/TuxOut/backoffice/core/Enrutador.php', 
         method: 'POST', 
         dataType: 'json', 
         data: {accion: "ocultar", controlador: "ProductoControlador", valores: [idProducto, oculto]},
@@ -829,7 +829,7 @@ const ocultar = (idProducto, oculto) => {
 const suspender = (rut, suspendido) => {
 
     $.ajax({
-        url: 'http://localhost/TuxOut/backoffice/core/Enrutador.php', 
+        url: '/TuxOut/backoffice/core/Enrutador.php', 
         method: 'POST', 
         dataType: 'json', 
         data: {accion: "suspender", controlador: "EmpresaControlador", valores: [rut, suspendido]},

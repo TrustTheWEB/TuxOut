@@ -14,7 +14,7 @@ window.addEventListener("pageshow", function() {
 
 const loginAdmin = (usuario, contra) => {
     $.ajax({
-        url: 'http://localhost/TuxOut/backoffice/core/Enrutador.php', 
+        url: '/TuxOut/backoffice/core/Enrutador.php', 
         method: 'POST', 
         dataType: 'json', 
         data: {accion: "login", controlador: "AdminControlador", valores: [usuario, contra]},

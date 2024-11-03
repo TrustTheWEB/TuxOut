@@ -138,7 +138,7 @@ const tomarIdOcultar = (evento) => {
 const ocultar = (idProducto, oculto) => {
 
     $.ajax({
-        url: 'http://localhost/TuxOut/backoffice/core/Enrutador.php', 
+        url: '/TuxOut/backoffice/core/Enrutador.php', 
         method: 'POST', 
         dataType: 'json', 
         data: {accion: "ocultar", controlador: "ProductoControlador", valores: [idProducto, oculto]},
