@@ -67,8 +67,8 @@ class CategorizaControlador {
 
     public function destroy($valores) {
         $modelo = new Categoriza();
-        $modelo->setIdProducto($valores[0]);
-        $modelo->setIdCategoria($valores[1]);
+        $modelo->setIdProducto($valores[1]);
+        $modelo->setIdCategoria($valores[0]);
         $resultados = $modelo->destroy();
         header('Content-Type: application/json');
         echo json_encode($resultados);
