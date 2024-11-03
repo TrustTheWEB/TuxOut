@@ -2,8 +2,8 @@
 
 define('DB_HOST', 'localhost');
 define('DB_NAME', 'tuxout');
-define('DB_USER', 'root');
-define('DB_PASS', '');
+define('DB_USER', 'usuario');
+define('DB_PASS', 'usuario');
 
 class Conexion {
 
