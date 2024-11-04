@@ -37,7 +37,7 @@ const tomarProdutosBusqueda = (busqueda, filtro) => {
             } else {
                 if(response) {
                     imprimirResultados(response, `Resultados para: ${busqueda}`);
-                    
+                    console.log(response)
                 }else {
                     console.error(response);
                 } 

@@ -313,7 +313,7 @@ class Producto {
         }
 
         try {
-            $consulta = $this->conn->prepare("SELECT v.* FROM vistaproducto v 
+            $consulta = $this->conn->prepare("SELECT DISTINCT v.* FROM vistaproducto v 
                 JOIN producto p
                 ON p.idProducto = v.idProducto
                 LEFT JOIN categoriza z
@@ -324,9 +324,8 @@ class Producto {
                 OR p.descripcion LIKE ? 
                 OR p.marca LIKE ? 
                 OR c.nombre LIKE ?
-                WHERE 
-                oculto = 0 
-                AND stock > 0
+                AND p.oculto = 0 
+                AND p.stock > 0
                 ORDER BY " . $filtro);
             $consulta->bindValue(1, "%{$this->busqueda}%", PDO::PARAM_STR);
             $consulta->bindValue(2, "%{$this->busqueda}%", PDO::PARAM_STR);
