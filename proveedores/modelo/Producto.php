@@ -338,7 +338,7 @@ class Producto {
         }
 
         try {
-            $consulta = $this->conn->prepare("SELECT p.* FROM vistaproducto v 
+            $consulta = $this->conn->prepare("SELECT DISTINCT p.* FROM vistaproducto v 
                 JOIN producto p
                 ON p.idProducto = v.idProducto
                 LEFT JOIN categoriza z
