@@ -1,6 +1,6 @@
 <?php
 
-define('DB_HOST', 'localhost');
+define('DB_HOST', 'db');
 define('DB_NAME', 'tuxout');
 define('DB_USER', 'proveedor');
 define('DB_PASS', 'proveedor');
