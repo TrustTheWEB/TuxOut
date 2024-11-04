@@ -1,6 +1,6 @@
 <?php
 
-define('DB_HOST', getenv('MYSQL_HOST') ?: 'localhost');
+define('DB_HOST', 'localhost');
 define('DB_NAME', 'tuxout_backoffice');
 define('DB_USER', 'root');
 define('DB_PASS', 'root');
