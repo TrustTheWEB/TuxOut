@@ -1,1 +1,5 @@
-<!-- Se implementara cuando se pase de XAMPP a un sistema LAMP personalizado -->
+<?php 
+
+header('Location: /TuxOut/tienda/vista/index.html');
+exit();
+?>

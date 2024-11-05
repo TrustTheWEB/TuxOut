@@ -13,52 +13,6 @@ class Imagen {
         $this->nombre = $nombre;
     }
 
-   /*  public function subirImagen() {
-
-        $nombre = $this->nombre; 
-        $directorioDestino = __DIR__.'/../../tienda/assets/img_productos/';
-        $archivoDestino = $directorioDestino . $nombre . '.jpg';
-
-        if ($this->imagen['error'] === UPLOAD_ERR_OK) {
-            $extension = strtolower(pathinfo($this->imagen['name'], PATHINFO_EXTENSION));
-
-            switch ($extension) {
-                case 'jpg':
-                case 'jpeg':
-                    $img = imagecreatefromjpeg($this->imagen['tmp_name']);
-                    break;
-                case 'png':
-                    $img = imagecreatefrompng($this->imagen['tmp_name']);
-                    break;
-                case 'gif':
-                    $img = imagecreatefromgif($this->imagen['tmp_name']);
-                    break;
-                case 'webp':
-                    $img = imagecreatefromwebp($this->imagen['tmp_name']);
-                    break;
-                default:
-                    return false;
-            }
-
-            if ($extension === 'png') {
-                $ancho = imagesx($img);
-                $alto = imagesy($img);
-
-                $this->imagenFinal = imagecreatetruecolor($ancho, $alto);
-
-                $blanco = imagecolorallocate($this->imagenFinal, 255, 255, 255);
-                imagefill($this->imagenFinal, 0, 0, $blanco);
-
-                imagecopy($this->imagenFinal, $img, 0, 0, 0, 0, $ancho, $alto);
-
-                imagejpeg($this->imagenFinal, $archivoDestino, 90);
-                imagedestroy($this->imagenFinal);
-            } else {
-                imagejpeg($img, $archivoDestino, 90);
-            }
-        }
-    } */
-
     public function subirImagen() {
         $nombre = $this->nombre; 
         $directorioDestino = __DIR__.'/../../tienda/assets/img_productos/';

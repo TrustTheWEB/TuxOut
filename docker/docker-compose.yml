@@ -15,6 +15,7 @@ services:
     image: mariadb
     container_name: tuxoutDB
     environment:
+      MYSQL_HOST: db
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: tuxout
       MYSQL_USER: backoffice

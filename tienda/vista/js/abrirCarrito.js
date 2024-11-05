@@ -89,7 +89,7 @@ const imprimirDatosCarrito = (resultado) => {
 
     $("#section-resumen-carrito").append(`
     <hr>
-    <p>Total: $<span id="resumen-total" data-total="${total}">${total}</span><p>  
+    <p>Total: $<span id="resumen-total" data-total="${Number(total).toFixed(2)}">${Number(total).toFixed(2)}</span><p>  
     `);
 
   }else {

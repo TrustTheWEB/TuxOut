@@ -140,7 +140,7 @@ const imprimirResumen = (resumen) => {
     let total = 0;
 
     resumen.forEach(producto => {
-        total += Number(producto['precioFinal'])
+        total += Number(producto['precioFinal']);
         $(".compra-resumen").append(`
             <p class="row">
               <span class="col-auto">
@@ -154,7 +154,7 @@ const imprimirResumen = (resumen) => {
           
     });
 
-    $(".compra-resumen").append(`Total: $${total}`);
+    $(".compra-resumen").append(`Total: $${Number(total).toFixed(2)}`);
 }
 
 const imprimirDirecciones = (direcciones) => {
