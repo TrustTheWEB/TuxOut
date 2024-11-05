@@ -1,0 +1,21 @@
+- name: Permitir tráfico MySQL en el puerto 3306
+  firewalld:
+    port: 3306/tcp
+    permanent: yes
+    state: enabled
+
+- name: Permitir tráfico MySQL en el puerto 33060
+  firewalld:
+    port: 33060/tcp
+    permanent: yes
+    state: enabled
+
+- name: Permitir tráfico SSH
+  firewalld:
+    service: ssh
+    permanent: yes
+    state: enabled
+
+- name: Recargar firewall para aplicar cambios
+  command: firewall-cmd --reload
+

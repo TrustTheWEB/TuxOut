@@ -1,0 +1,11 @@
+- name: Instalar MariaDB
+  dnf:
+    name: mariadb-server
+    state: present
+
+- name: Asegurar que el servicio de MariaDB esté iniciado
+  service:
+    name: mariadb
+    state: started
+    enabled: true
+

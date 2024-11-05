@@ -1,0 +1,16 @@
+- hosts: backup
+  tasks:
+    - name: Crear directorio de respaldo si no existe
+      file:
+        path: /backups/html_backup/
+        state: directory
+        mode: '0755'
+
+    - name: Obtener el ID del contenedor
+      command: docker ps -q --filter "name=<nombre_del_contenedor>"
+      register: container_id
+
+    - name: Copiar archivos del contenedor a la máquina host
+      command: docker cp {{ container_id.stdout }}:/var/www/html/TuxOut/ /backups/html_backup/
+      when: container_id.stdout != ""
+

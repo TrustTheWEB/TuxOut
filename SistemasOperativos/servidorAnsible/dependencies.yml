@@ -1,0 +1,10 @@
+- name: Instalar paquetes base
+  package:
+    name: "{{ item }}"
+    state: present
+  loop:
+    - vim
+    - curl
+    - wget
+    - git
+
