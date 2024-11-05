@@ -16,7 +16,6 @@ const validarImagenesUpdate = (idProducto) => {
         for (let i = 1; i <= 5; i++) {
             let inputImagen = $(`#inputImagen${i}`);
             let cambiado = inputImagen.attr("data-cambiado")
-            
             if(cambiado == "cambiado") {
                 cambiados++;
                 let archivo = inputImagen[0].files[0];
@@ -148,12 +147,10 @@ const storeTabla = (tabla, valores) => {
                 console.error('Error:', response.error);
             } else {
                 if(response) {
-                    if(response == true) {
-                        if(tabla === "producto") {
-                            validarImagenes(valores[0])
-                        } else{
-                            window.location.href = 'index.html';
-                        }
+                    if(tabla === "producto") {
+                        validarImagenes(response);
+                    }else if(response == true) {
+                        window.location.href = 'index.html';
                     }else {
                         alerta.alertar("Hubo un problema al ingresar.")
                     }
@@ -180,14 +177,12 @@ const updateTabla = (tabla, valores) => {
                 console.error('Error:', response.error);
             } else {
                 if(response) {
-                    if(response == true) {
-                        if(tabla === "producto") {
-                            validarImagenesUpdate(valores[0])
-                        } else{
-                            window.location.href = 'index.html';
-                        }
+                    if(tabla === "producto") {
+                        validarImagenesUpdate(valores[0]);
+                    }else if(response == true) {
+                        window.location.href = 'index.html';
                     }else {
-                        alerta.alertar("Hubo un problema al actualizar.")
+                        alerta.alertar("Hubo un problema al ingresar.")
                     }
                 }else {
                     console.error(response);
